@@ -13,9 +13,9 @@ public class LibraryAuth {
     	//true : login roi
       	//fail : chua
           HttpSession session = request.getSession();
-          if(session.getAttribute("sobjUser")==null){//chưa đăng nhâp 
+          if(session.getAttribute("sobjUserAdmin")==null){//chưa đăng nhâp 
          	 //chuyen huong
-         	 response.sendRedirect(request.getContextPath()+"/auth/show-login");
+         	 response.sendRedirect(request.getContextPath()+"/auth/admin/login");
          	 return false;
           }
           

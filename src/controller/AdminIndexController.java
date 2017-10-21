@@ -20,22 +20,17 @@ public class AdminIndexController extends HttpServlet {
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       doPost(request, response);
+		//kiểm tra đã đăng nhập chưa
+		if(  LibraryAuth.CheckLogin(request, response)==false){
+			return;
+		}
+		
+	     RequestDispatcher rd = request.getRequestDispatcher("/admin/users/index.jsp");
+	     rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-		//kiểm tra đã đăng nhập chưa
-		/*if(  LibraryAuth.CheckLogin(request, response)==false){
-			return;
-		}*/
-		
-        //D:\workspacejava12EE\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\CNEWS\files
-         
-         RequestDispatcher rd = request.getRequestDispatcher("/admin/users/index.jsp");
-         rd.forward(request, response);
-
-		 
 	}
 
 }
