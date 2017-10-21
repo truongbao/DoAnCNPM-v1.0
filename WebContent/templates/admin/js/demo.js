@@ -155,3 +155,13 @@ $('#show-list-topic').click(function(event) {
 	    $('#list-topic').hide();
   }
 });
+
+
+/**
+ * Show message if database has not data or search not found in page list
+ */
+var countElements = $('#table-contain tbody tr').length;
+console.log(countElements);
+if (countElements == 1) {// 1 is tr of element $('.no-result-search') not of record table
+    $('.no-result-search').show();
+}

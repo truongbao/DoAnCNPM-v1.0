@@ -111,7 +111,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>AdminIndexUserController</servlet-name>
-    <url-pattern>/admin/indexUser</url-pattern>
+    <url-pattern>/admin/user/index</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -120,7 +120,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>AdminShowAddUserController</servlet-name>
-    <url-pattern>/admin/show-addUser</url-pattern>
+    <url-pattern>/admin/user/form-add</url-pattern>
   </servlet-mapping>
   
    <servlet>
@@ -129,7 +129,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>AdminAddUserController</servlet-name>
-    <url-pattern>/admin/addUser</url-pattern>
+    <url-pattern>/admin/user/add</url-pattern>
   </servlet-mapping>
   
    <servlet>
@@ -138,7 +138,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>AdminShowEditUserController</servlet-name>
-    <url-pattern>/admin/show-editUser</url-pattern>
+    <url-pattern>/admin/user/form-edit</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -147,7 +147,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>AdminEditUserController</servlet-name>
-    <url-pattern>/admin/editUser</url-pattern>
+    <url-pattern>/admin/user/edit</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -156,17 +156,17 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>AdminDelUserController</servlet-name>
-    <url-pattern>/admin/deleteUser</url-pattern>
+    <url-pattern>/admin/user/del</url-pattern>
   </servlet-mapping>
   
   
    <servlet>
-    <servlet-name>AdminChiTietDDXController</servlet-name>
-    <servlet-class>controller.AdminChiTietDDXController</servlet-class>
+    <servlet-name>AdminShowDetailController</servlet-name>
+    <servlet-class>controller.AdminShowDetailController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>AdminChiTietDDXController</servlet-name>
-    <url-pattern>/admin/detail-ddx</url-pattern>
+    <servlet-name>AdminShowDetailController</servlet-name>
+    <url-pattern>/admin/user/show</url-pattern>
   </servlet-mapping>
   
   
