@@ -12,7 +12,7 @@ public class ConnectMySQLLibrary {
 	private String pass;
 	
 	public ConnectMySQLLibrary(){
-		this.url = "jdbc:mysql://localhost:3306/nckhbachkhoa?useUnicode=true&characterEncoding=UTF-8";
+		this.url = "jdbc:mysql://localhost:3307/nckhbachkhoa?useUnicode=true&characterEncoding=UTF-8";
 		this.user  = "root";
 		this.pass = "";
 	}
