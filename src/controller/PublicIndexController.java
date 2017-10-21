@@ -18,7 +18,7 @@ public class PublicIndexController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		//chao mmmmmmmm
+		//chao mmmmmmmm eeeee
 		
 		
 		 RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
