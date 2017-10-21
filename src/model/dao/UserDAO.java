@@ -26,35 +26,6 @@ public class UserDAO {
 	}
 	
 	
-	/*public ArrayList<User> getItems(){
-		ArrayList<User> listUser = new ArrayList<>();
-		conn = connectMySQLLibrary.getConnectMySQL();
-		
-		String sql = "select * FROM user ORDER BY id_user DESC";
-		
-		try {
-			st = conn.createStatement();
-			rs = st.executeQuery(sql);
-			
-			while(rs.next()){
-			   User objUser = new 
-               listUser.add(objUser);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally{
-			try {
-				st.close();
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return listUser;
-		
-	}*/
-	
-	
    public User checkLoginPublic(String username, String password) {
 		
         conn = connectMySQLLibrary.getConnectMySQL();
@@ -221,6 +192,7 @@ public class UserDAO {
 	}
 	
 	
+	
 	public int editItem(User objUser) {
 		 int result = 0;
         
@@ -266,19 +238,39 @@ public class UserDAO {
 	
 
 	
-/*	public ArrayList<User> getItems(){
+	public ArrayList<User> getItems(){
 		ArrayList<User> listUser = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
 		
-		String sql = "select * FROM user ORDER BY id_user DESC";
+		String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocVi from user AS u "
+	       		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
+	       		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
+	       		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi ORDER BY id_User DESC";
 		
 		try {
 			st = conn.createStatement();
 			rs = st.executeQuery(sql);
 			
 			while(rs.next()){
-			   User objUser = new User(rs.getInt("id_user"), rs.getString("username"), rs.getString("password"), 
-					                   rs.getString("fullname"), rs.getString("email"), rs.getInt("active"));
+			   User objUser = new User(
+					   rs.getInt("idUser"),
+					   rs.getString("fullName"),
+					   rs.getString("chucDanhKhoaHoc") ,
+					   rs.getString("diaChiCoQuan") ,
+			           rs.getString("dienThoaiCoQuan"),
+			           rs.getInt("idHocVi") ,
+			           rs.getString("tenHocVi"),
+			           rs.getString("namSinh") ,
+			           rs.getString("diaChiNhaRieng") , 
+			           rs.getString("dienThoaiNhaRieng") ,
+			           rs.getString("email") ,
+			           rs.getString("fax"),rs.getString("userName") , 
+			           rs.getString("matKhau") ,
+			           rs.getInt("idLoaiTaiKhoan"),
+			           rs.getString("tenLoaiTaiKhoan") ,
+			           rs.getInt("idKhoa"), 
+			           rs.getString("tenKhoa") );
+
                listUser.add(objUser);
 			}
 		} catch (SQLException e) {
@@ -299,16 +291,40 @@ public class UserDAO {
 		int result = 0;
 		conn = connectMySQLLibrary.getConnectMySQL();
 		
-		String sql="insert into user (username,password,fullname,email,active) values(?,?,?,?,?)";
+		String sql="insert into user ("
+				+ "fullName,"
+				+ "chucDanhKhoaHoc,"
+				+ "diaChiCoQuan,"
+				+ "dienThoaiCoQuan,"
+				+ "idHocVi,"
+				+ "namSinh,"
+				+ "diaChiNhaRieng,"
+				+ "dienThoaiNhaRieng,"
+				+ "email,"
+				+ "fax,"
+				+ "userName,"
+				+ "matKhau,"
+				+ "idLoaiTaiKhoan,"
+				+ "idKhoa) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		
 		
 		try {
 			pst = conn.prepareStatement(sql);
 			
-			pst.setString(1, objUser.getUsername());
-			pst.setString(2, objUser.getPassword());
-			pst.setString(3, objUser.getFullname());
-			pst.setString(4, objUser.getEmail());
-			pst.setInt(5, objUser.getActive());
+			pst.setString(1, objUser.getFullName());
+			pst.setString(2, objUser.getChucDanhKhoaHoc());
+			pst.setString(3, objUser.getDiaChiCoQuan());
+			pst.setString(4, objUser.getDienThoaiCoQuan());
+			pst.setInt(5, objUser.getIdHocVi());
+			pst.setString(6, objUser.getNamSinh());
+			pst.setString(7, objUser.getDiaChiNhaRieng());
+			pst.setString(8, objUser.getDienThoaiNhaRieng());
+			pst.setString(9, objUser.getEmail());
+			pst.setString(10, objUser.getFax());
+			pst.setString(11, objUser.getUserName());
+			pst.setString(12, objUser.getMatKhau());
+			pst.setInt(13, objUser.getIdLoaiTaiKhoan());
+			pst.setInt(14, objUser.getIdKhoa());
 			
 			result = pst.executeUpdate();
 			
@@ -326,69 +342,11 @@ public class UserDAO {
 		return result;
 	}
 
-	public User getItem(int idUser) {
-        conn = connectMySQLLibrary.getConnectMySQL();
-        
-        String sql = "select * from user where id_user = ?";
-        User objUser = null;
-        
-        try {
-			pst  =  conn.prepareStatement(sql);
-			pst.setInt(1, idUser);
-			rs  = pst.executeQuery();
-			if(rs.next()){
-				objUser = new User(rs.getInt("id_user"), rs.getString("username"), rs.getString("password"), 
-						           rs.getString("fullname"), rs.getString("email"), rs.getInt("active"));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally{
-			try {
-				pst.close();
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return objUser;
-	}
-
-	public int editItem(User objUser) {
-		 int result = 0;
-         
-         conn = connectMySQLLibrary.getConnectMySQL();
-         
-         String sql = "UPDATE user SET password = ? , fullname = ?,email= ?, active = ? WHERE id_user = ?";
-         
-         try {
-			pst = conn.prepareStatement(sql);
-			pst.setString(1, objUser.getPassword());
-			pst.setString(2, objUser.getFullname());
-			pst.setString(3, objUser.getEmail());
-			pst.setInt(4, objUser.getActive());
-			pst.setInt(5, objUser.getIdUser());
-			
-			result = pst.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally{
-			try {
-				pst.close();
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		  return result;
-	}
-
+	
 	public int delItem(int idUser) {
 		int result = 0;
         conn = connectMySQLLibrary.getConnectMySQL();
-        String sql = "delete from user where id_user = ? ";
+        String sql = "delete from user where idUser = ? ";
         
         try {
 			pst  = conn.prepareStatement(sql);
@@ -409,71 +367,7 @@ public class UserDAO {
 		
 		
 	}
-
-	public User checkUser(String username) {
 	
-         conn = connectMySQLLibrary.getConnectMySQL();
-         
-         String sql = "select * from user where username = ?";
-         User objUser = null;
-         try {
-			pst = conn.prepareStatement(sql);
-			pst.setString(1, username);
-			rs = pst.executeQuery();
-			if(rs.next()){
-			  objUser = new User(rs.getInt("id_user"), rs.getString("username"), rs.getString("password"), 
-			                     rs.getString("fullname"), rs.getString("email"), rs.getInt("active"));
-			}
-			
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally{
-			try {
-				pst.close();
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return objUser;
-	}
-
-	public User getUserLogin(User objUser) { //kiem tra tai khoan truoc khi dang nhap
-        conn = connectMySQLLibrary.getConnectMySQL();
-        
-        String sql = "select * from user where username = ? and password = ?";
-        
-        User objUserResult = null;
-        
-        try {
-			pst  =  conn.prepareStatement(sql);
-			pst.setString(1, objUser.getUsername());
-			pst.setString(2, objUser.getPassword());
-			rs  = pst.executeQuery();
-			
-			if(rs.next()){
-				objUserResult = new User(rs.getInt("id_user"), rs.getString("username"), rs.getString("password"), 
-						           rs.getString("fullname"), rs.getString("email"), rs.getInt("active"));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally{
-			try {
-				pst.close();
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return objUserResult;
-		
-		
-	}
-
 	public int countUser() {
 		int total = 0;
 		conn = connectMySQLLibrary.getConnectMySQL();
@@ -505,15 +399,34 @@ public class UserDAO {
 		ArrayList<User> listUser = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
 		
-		String sql = "select * FROM user ORDER BY id_user DESC LIMIT "+offset+","+define.ROW_COUNT;
+		String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocVi from user AS u "
+	       		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
+	       		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
+	       		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi ORDER BY idUser DESC LIMIT "+offset+","+define.ROW_COUNT;
 		
 		try {
 			st = conn.createStatement();
 			rs = st.executeQuery(sql);
 			
 			while(rs.next()){
-			   User objUser = new User(rs.getInt("id_user"), rs.getString("username"), rs.getString("password"), 
-					                   rs.getString("fullname"), rs.getString("email"), rs.getInt("active"));
+			   User objUser = new User(
+					   rs.getInt("idUser"),
+					   rs.getString("fullName"),
+					   rs.getString("chucDanhKhoaHoc") ,
+					   rs.getString("diaChiCoQuan") ,
+			           rs.getString("dienThoaiCoQuan"),
+			           rs.getInt("idHocVi") ,
+			           rs.getString("tenHocVi"),
+			           rs.getString("namSinh") ,
+			           rs.getString("diaChiNhaRieng") , 
+			           rs.getString("dienThoaiNhaRieng") ,
+			           rs.getString("email") ,
+			           rs.getString("fax"),rs.getString("userName") , 
+			           rs.getString("matKhau") ,
+			           rs.getInt("idLoaiTaiKhoan"),
+			           rs.getString("tenLoaiTaiKhoan") ,
+			           rs.getInt("idKhoa"), 
+			           rs.getString("tenKhoa") );
                listUser.add(objUser);
 			}
 		} catch (SQLException e) {
@@ -530,62 +443,6 @@ public class UserDAO {
 
 		
 	}
-
-	public User checkEmail(String email) {
-         conn = connectMySQLLibrary.getConnectMySQL();
-         
-         String sql = "select * from user where email = ?";
-         User objUser = null;
-         try {
-			pst = conn.prepareStatement(sql);
-			pst.setString(1, email);
-			rs = pst.executeQuery();
-			if(rs.next()){
-			  objUser = new User(rs.getInt("id_user"), rs.getString("username"), rs.getString("password"), 
-			                     rs.getString("fullname"), rs.getString("email"), rs.getInt("active"));
-			}
-			
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally{
-			try {
-				pst.close();
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return objUser;
-
-		
-	}
-
-	public boolean checkEmail1(String email){
-		conn = connectMySQLLibrary.getConnectMySQL();
-		
-		String sql = "select * from user where email = "+email;
-		
-		try {
-			st = conn.createStatement();
-			rs = st.executeQuery(sql);
-			while(rs.next()){
-				conn.close();
-				return true;
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		
-		return false;
-	}
-	
-	*/
-	
 	
 	
 	
