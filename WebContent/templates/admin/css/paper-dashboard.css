@@ -3339,3 +3339,13 @@ textarea.form-control {
     font-weight: bold;}
   .is{    padding: 7px;
     border-radius: 1px;}
+
+.pagination-div{
+	margin-right: 50px;
+}
+
+.filter-div >span{
+	border: 1px dashed;
+	border-radius: 3px;
+	padding: 2px;
+}

@@ -1,3 +1,4 @@
+<%@page import="java.util.Calendar"%>
 <%@page import="model.bean.User"%>
 <%@page import="model.bean.LoaiTaiKhoan"%>
 <%@page import="model.bean.Khoa"%>
@@ -79,6 +80,7 @@
                                 <div class="col-md-10 col-md-offset-1">
                                     <form action="" method="post">
                                     	<div class="row">
+                                    		
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <input type="text" name="fullname" class="form-control border-input" placeholder="Họ tên" value="">

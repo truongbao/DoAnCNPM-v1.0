@@ -169,6 +169,25 @@
     <url-pattern>/admin/user/show</url-pattern>
   </servlet-mapping>
   
+  <!-- ========= Statistical ============= -->
+  <servlet>
+    <servlet-name>AdminFacultyStatController</servlet-name>
+    <servlet-class>controller.AdminFacultyStatController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminFacultyStatController</servlet-name>
+    <url-pattern>/admin/faculty-statistical</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AdminGeneralStatController</servlet-name>
+    <servlet-class>controller.AdminGeneralStatController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminGeneralStatController</servlet-name>
+    <url-pattern>/admin/general-statistical</url-pattern>
+  </servlet-mapping>
+  
   
   <!-- ================== public ==================== -->
   
