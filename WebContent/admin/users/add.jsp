@@ -1,4 +1,8 @@
-
+<%@page import="model.bean.User"%>
+<%@page import="model.bean.LoaiTaiKhoan"%>
+<%@page import="model.bean.Khoa"%>
+<%@page import="model.bean.HocVi"%>
+<%@page import="model.dao.UserDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -14,10 +18,13 @@
 									minlength: 6,
 									maxlength: 32
 								},
-								"password":{
+								"namSinh":{
+									required: true
+								},
+								"matKhau":{
 									required: true,
 									minlength: 6,
-									maxlength: 15
+									maxlength: 20
 								},
 								"fullname":{
 									required: true,
@@ -36,7 +43,7 @@
 									minlength:"<p><span style='color:red' >   username phải có ít nhất 6 ký tự  </span></p>",
 									maxlength: "<p> <span style='color:red' >  username có nhiều nhất 32 ký tự  </span></p>"
 								},
-								"password":{
+								"matKhau":{
 									required: "<p> <span style='color:red' > Vui lòng nhập vào password </span> </p>",
 									minlength:"<p><span style='color:red' > password phải có ít nhất 6 ký tự  </span></p>",
 									maxlength: "<p> <span style='color:red' >  password có nhiều nhất 15 ký tự  </span></p>"
@@ -49,7 +56,10 @@
 								"email":{
 								    required:"<p style='color:red'> Vui lòng nhập email </p>",	
 			                        email: "<p style='color:red'> Vui lòng nhập đúng định dạng email : ai_do@example.com </p> "	
-								}
+								},
+								"namSinh":{
+								    required:"<p style='color:red'> Vui lòng nhập ngày tháng năm sinh </p>",	
+			                     }
 							}
 						});// ham tren
 			     });
@@ -69,12 +79,16 @@
 						      if(request.getParameter("msg")!=null){
 						          int msg = Integer.parseInt( request.getParameter("msg") );
 						          switch(msg){
-						            case 4: out.print("</br>&nbsp;&nbsp;&nbsp;&nbsp;<strong style='color : red ;font-weight: bold'>User Đã Tồn Tại !!</strong> ");break;
-						           }
+						            case 3: out.print("</br>&nbsp;&nbsp;&nbsp;&nbsp;<strong style='color : red ;font-weight: bold'>User Đã Tồn Tại !!</strong> ");break;
+						            case 2: out.print("</br>&nbsp;&nbsp;&nbsp;&nbsp;<strong style='color : red ;font-weight: bold'>Email Đã Tồn Tại !!</strong> ");break;
+						          }
 						      }
 	     			       %>       
                         <div class="content">
-                            <form id="frmUser" action="<%=request.getContextPath() %>/admin/addUser" method="post">
+                        	<%
+                        		UserDAO userDao = new UserDAO();
+                           	%>
+                            <form id="frmUser" action="<%=request.getContextPath() %>/admin/user/add" method="post">
 		                         <div class="col-md-3">
 		                             <div class="form-group">
 		                                 <label>Họ tên</label>
@@ -85,25 +99,27 @@
 		                             <div class="form-group">
 		                                 <div class="form-group">
 		                                 <label>Năm sinh</label>
-		                                 <input type='text' name="namSinh"  class="form-control border-input" data-format="yyyy-MM-dd" id="datetimepicker"/><span class="glyphicon glyphicon-calendar form-control-feedback" style="font-size: 20px;"></span>
+		                                 <input readonly type='text' name="nam_sinh"  class="form-control border-input" data-format="yyyy-MM-dd" id="datetimepicker"/><span class="glyphicon glyphicon-calendar form-control-feedback" style="font-size: 20px;"></span>
 		                                 </div>
 		                             </div>
 		                         </div>
 		                         <div class="col-md-3">
 		                             <div class="form-group">
 		                                 <label>Học vị</label>
-		                                 <select name="hocVi" class="form-control border-input">
-		                                     <option>Thạc sĩ</option>
-		                                     <option>Tiến sĩ</option>
-		                                     <option>Giáo sư</option>
-		                                     <option>Phó giáo sư</option>
+		                                 <select name="hoc_vi" class="form-control border-input">
+		                                     <%
+		                                    	ArrayList<HocVi> listHocVi = userDao.getListHocVi();
+		                                    	for(int i = 0; i < listHocVi.size(); i++) {
+	                                    	%>
+                                               	<option value="<%= listHocVi.get(i).getIdHocVi() %>"><%= listHocVi.get(i).getTenHocVi() %></option>
+                                               	<%} %>
 		                                 </select> 
 		                             </div>
 		                         </div>
 		                         <div class="col-md-4">
 		                             <div class="form-group">
 		                                 <label>Chức danh khoa học</label>
-		                                 <select name="chucDanhKhoaHoc" class="form-control border-input">
+		                                 <select name="chuc_danh_khoa_hoc" class="form-control border-input">
 		                                     <option> --</option>
 		                                     <option>---</option>
 		                                     <option>---</option>
@@ -113,13 +129,13 @@
 		                             <div class="col-md-3">
 		                                 <div class="form-group">
 		                                     <label for="read">Địa chỉ cơ quan</label>
-		                                     <textarea  name="diaChiCoQuan" class="form-control border-input" placeholder="Địa chỉ cơ quan"></textarea>
+		                                     <textarea  name="dia_chi_co_quan" class="form-control border-input" placeholder="Địa chỉ cơ quan"></textarea>
 		                                 </div>
 		                             </div>
 		                             <div class="col-md-3">
 		                                 <div class="form-group">
 		                                     <label for="read">Địa chỉ nhà riêng</label>
-		                                     <textarea  name="diaChiNhaRieng" class="form-control border-input" placeholder="Địa chỉ nhà riêng"></textarea>
+		                                     <textarea  name="dia_chi_nha_rieng" class="form-control border-input" placeholder="Địa chỉ nhà riêng"></textarea>
 		                             </div>
 		                         </div>
 		                          <div class="col-md-3">
@@ -137,44 +153,51 @@
 		                         <div class="col-md-3">
 		                             <div class="form-group">
 		                                 <label>Điện thoại cơ quan</label>
-		                                 <input type="text" name="dienThoaiCoQuan" class="form-control border-input" placeholder="Số điện thoại">
+		                                 <input type="text" name="dien_thoai_co_quan" class="form-control border-input" placeholder="Số điện thoại">
 		                             </div>
 		                         </div>
 		                         
 		                         <div class="col-md-3">
 		                             <div class="form-group">
-		                                 <label>Đi động</label>
-		                                 <input type="text" name="diDong" class="form-control border-input" placeholder="Số điện thoại">
+		                                 <label>Điện thoại nhà riêng</label>
+		                                 <input type="text" name="dien_thoai_nha_rieng" class="form-control border-input" placeholder="Số điện thoại">
 		                             </div>
 		                         </div>
 		                         <div class="col-md-3">
 		                             <div class="form-group">
 		                                 <label>Tên tài khoản</label>
-		                                 <input type="text" name="taiKhoan" class="form-control border-input">
+		                                 <input type="text" name="username" class="form-control border-input">
 		                             </div>
 		                         </div>
 		                         <div class="col-md-3">
 		                             <div class="form-group">
 		                                 <label>Mật khẩu</label>
-		                                 <input type="text" name="matKhau" class="form-control border-input">
+		                                 <input type="text" name="mat_khau" class="form-control border-input">
 		                             </div>
 		                         </div>
 		                         <div class="col-md-3">
 		                             <div class="form-group">
 		                                 <label>Khoa</label>
-		                                 <select name="idKhoa" class="form-control border-input">
-		                                     <option>Công nghệ thông tin</option>
-		                                     <option>Điện tử viễn thông</option>
+		                                 <select name="khoa" class="form-control border-input">
+		                                     <%
+		                                    	ArrayList<Khoa> listKhoa = userDao.getListKhoa();
+		                                    	for(int i = 0; i < listKhoa.size(); i++) {
+	                                    	%>
+                                               	<option value="<%= listKhoa.get(i).getIdKhoa() %>"><%= listKhoa.get(i).getTenKhoa() %></option>
+                                               	<%} %>
 		                                 </select>
 		                             </div>
 		                         </div>
 		                         <div class="col-md-3">
 		                             <div class="form-group">
 		                                 <label>Loại tài khoản</label>
-		                                 <select name="friend_lít" class="form-control border-input">
-		                                     <option>Giảng viên</option>
-		                                     <option>Chủ nhiệm khoa</option>
-		                                     <option>Nhân viên</option>
+		                                 <select name="loai_tai_khoan" class="form-control border-input">
+                                          	<%
+		                                    	ArrayList<LoaiTaiKhoan> listLoaiTaiKhoan = userDao.getListLoaiTK();
+		                                    	for(int i = 0; i < listLoaiTaiKhoan.size(); i++) {
+	                                    	%>
+                                               	<option value="<%= listLoaiTaiKhoan.get(i).getIdLoaiTaiKhoan() %>"><%= listLoaiTaiKhoan.get(i).getTenLoaiTaiKhoan() %></option>
+                                               	<%} %>
 		                                 </select>
 		                             </div>
 		                         </div>

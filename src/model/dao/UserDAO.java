@@ -445,6 +445,69 @@ public class UserDAO {
 	}
 	
 	
+	public boolean checkExistUserName(String username) {
+		
+        conn = connectMySQLLibrary.getConnectMySQL();
+        
+        String sql = "select * from user where username = ? ";
+        
+        User objUser = null;
+        try {
+			pst = conn.prepareStatement(sql);
+			
+			pst.setString(1, username);
+			
+			rs = pst.executeQuery();
+			if(rs.next()){
+			  return false;
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return true;
+	}
+	
+public boolean checkExistEmail(String email) {
+		
+        conn = connectMySQLLibrary.getConnectMySQL();
+        
+        String sql = "select * from user where email = ? ";
+        
+        User objUser = null;
+        try {
+			pst = conn.prepareStatement(sql);
+			
+			pst.setString(1, email);
+			
+			rs = pst.executeQuery();
+			if(rs.next()){
+			  return false;
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return true;
+	}
 	
 	
 }

@@ -72,8 +72,9 @@
 							      if(request.getParameter("msg")!=null){
 							          int msg = Integer.parseInt( request.getParameter("msg") );
 							          switch(msg){
-							            case 4: out.print("</br>&nbsp;&nbsp;&nbsp;&nbsp;<strong style='color : red ;font-weight: bold'>User Đã Tồn Tại !!</strong> ");break;
-							           }
+							            case 1: out.print("</br>&nbsp;&nbsp;&nbsp;&nbsp;<strong style='color : red ;font-weight: bold'>Xử lý thành công !!</strong> ");break;
+							            case 2: out.print("</br>&nbsp;&nbsp;&nbsp;&nbsp;<strong style='color : red ;font-weight: bold'>Không thành công vui lòng thử lại !!</strong> ");break;
+								        }
 							      }
 		     			       %>  
                                 <div class="col-md-10 col-md-offset-1">
@@ -86,7 +87,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <select name="friend_list" class="form-control border-input">
+                                                    <select name="loai_tai_khoan" class="form-control border-input">
                                                     	<option value="0">-- Tất cả loại tài khoản--</option>
                                                     	<% 
 
@@ -111,7 +112,7 @@
                                     </form>
                                 </div>
                                 
-                                <a href="edit.html" class="addtop"><img src="../assets/img/add.png" alt="" /> Thêm</a>
+                                <a href="<%=request.getContextPath() %>/admin/user/form-add" class="addtop"><img src="../assets/img/add.png" alt="" /> Thêm</a>
                             </div>
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-striped" id="table-contain">
