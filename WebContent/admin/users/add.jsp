@@ -75,6 +75,7 @@
 	     			       %>       
                         <div class="content">
                             <form id="frmUser" action="<%=request.getContextPath() %>/admin/addUser" method="post">
+                            	 
 		                         <div class="col-md-3">
 		                             <div class="form-group">
 		                                 <label>Họ tên</label>

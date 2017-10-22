@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//WebContent/add_member.jsp=UTF-8
+encoding//WebContent/admin/faculty_statistical.jsp=UTF-8
 encoding//WebContent/auth/login.jsp=UTF-8
 encoding//WebContent/detail_detai.jsp=UTF-8
 encoding//WebContent/detail_dkdt.jsp=UTF-8
@@ -15,3 +16,6 @@ encoding//WebContent/register_detai.jsp=UTF-8
 encoding//WebContent/thong_bao.jsp=UTF-8
 encoding//WebContent/update_detai.jsp=UTF-8
 encoding//WebContent/update_infor_person.jsp=UTF-8
+encoding//src/controller/AdminFacultyStatController.java=UTF-8
+encoding//src/controller/AdminGeneralStatController.java=UTF-8
+encoding//src/model/dao/DetaiDAO.java=UTF-8
