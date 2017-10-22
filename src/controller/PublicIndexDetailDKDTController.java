@@ -16,13 +16,13 @@ public class PublicIndexDetailDKDTController extends HttpServlet {
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       doPost(request, response);
+		 RequestDispatcher rd = request.getRequestDispatcher("/detail_dkdt.jsp");
+         rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
          
-         RequestDispatcher rd = request.getRequestDispatcher("/detail_dkdt.jsp");
-         rd.forward(request, response);
+        
 	}
 
 }

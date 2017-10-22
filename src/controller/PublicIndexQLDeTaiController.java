@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import library.LibraryAuth;
 import model.bean.DeTai;
 import model.bean.User;
 import model.dao.DetaiDAO;
@@ -28,27 +29,28 @@ public class PublicIndexQLDeTaiController extends HttpServlet {
 		 response.setCharacterEncoding("UTF-8");
 		 response.setContentType("text/html");
 		 
+		//kiểm tra đã đăng nhập ở public chưa
+		if(  LibraryAuth.CheckLoginPublic(request, response)==false){
+			return;
+		}
+		 
 		 //hiển thị danh sách đề tài có phân trang
 		    
-		    DetaiDAO detaiDAO = new DetaiDAO();
+		  DetaiDAO detaiDAO = new DetaiDAO();
 		    
-			HttpSession session = request.getSession();
-			
-	        if(session.getAttribute("sobjUserPublic")!=null){
-
-	        	 /*for (DeTai objDetai : detaiDAO.getListDeTai()) {
-	        		  String input = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(objDetai.getThoiGianDangKy());
-	        		  java.sql.Timestamp timeDK = java.sql.Timestamp.valueOf( input ) ;
-	        		  objDetai.setThoiGianDangKy(timeDK);
-					   
-				 }*/
-	        	
-	        	request.setAttribute("listDeTai", detaiDAO.getListDeTai());
-	        	
-	        	RequestDispatcher rd = request.getRequestDispatcher("/quanly_detai.jsp");
-	            rd.forward(request, response);
+    	 /*for (DeTai objDetai : detaiDAO.getListDeTai()) {
+    		  String input = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(objDetai.getThoiGianDangKy());
+    		  java.sql.Timestamp timeDK = java.sql.Timestamp.valueOf( input ) ;
+    		  objDetai.setThoiGianDangKy(timeDK);
+			   
+		 }*/
+    	
+    	request.setAttribute("listDeTai", detaiDAO.getListDeTai());
+    	
+    	RequestDispatcher rd = request.getRequestDispatcher("/quanly_detai.jsp");
+        rd.forward(request, response);
 	            
-	        }
+	        
 			
 	}
 
