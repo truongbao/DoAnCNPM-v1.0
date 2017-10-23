@@ -30,22 +30,36 @@ public class AuthAdminLoginController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 	    response.setCharacterEncoding("UTF-8");
 	    response.setContentType("text/html");
+
 	    
 	    StringLibrary st = new StringLibrary();//tao doi tuong lop ma hóa
 	    
 	    UserDAO objDAO = new UserDAO();
 	    
 		String username = request.getParameter("username");
-		String password =  st.MD5( request.getParameter("password")) ;
+		String password =  st.MD5( request.getParameter("matKhau")) ;
 		
 		//viet ham lay ra obj user ung vs username , pass
 		User  objUserLogin  = objDAO.checkLoginPublic(username, password);
-		
 		if( objUserLogin !=null && objUserLogin.getIdLoaiTaiKhoan() != 2){ //kiem tra  user và pass
 			//login thanh cong = > tạo session
+
 			HttpSession session = request.getSession();
+			String permision = null; 
+			switch (objUserLogin.getIdLoaiTaiKhoan() ) {
+			case 1:
+				permision = "admin";					
+				break;
+			case 3:
+				permision = "quanLyNCKHKhoa";
+				break;
+
+			case 4:
+				permision = "nhanVienQLNCKHTruong";
+				break;
+			}
 			//System.out.println(objUserLogin.toString());
-			session.setAttribute("sobjUserAdmin", objUserLogin );//gán đối tuong tra về cho session=> tâ có đoi tuong user lưu trong sesion
+			session.setAttribute(permision, objUserLogin );//gán đối tuong tra về cho session=> tâ có đoi tuong user lưu trong sesion
 			response.sendRedirect(request.getContextPath() + "/admin");
 			return; 
 		}else{
@@ -56,5 +70,4 @@ public class AuthAdminLoginController extends HttpServlet {
          
          
 	}
-
 }

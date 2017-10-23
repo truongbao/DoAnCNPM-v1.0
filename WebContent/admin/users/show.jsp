@@ -1,4 +1,4 @@
-
+<%@page import="model.bean.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -65,15 +65,12 @@
                             <h4 class="title" style="text-align: center; color : white ;border: 1px solid;padding: 4px 4px;border-radius: 4px;  background: #58a808; color: #FFF; font-weight: bold">Xem thông tin người dùng</h4>
                         </div>
                         
-                           <%
-						      if(request.getParameter("msg")!=null){
-						          int msg = Integer.parseInt( request.getParameter("msg") );
-						          switch(msg){
-						            case 4: out.print("</br>&nbsp;&nbsp;&nbsp;&nbsp;<strong style='color : red ;font-weight: bold'>User Đã Tồn Tại !!</strong> ");break;
-						           }
-						      }
-	     			       %> 
                         <div class="content">
+                        		<%
+								   if(request.getAttribute("objUser")!=null){
+									    User objUser =  (User)request.getAttribute("objUser");
+								 
+								 %>
                                 <div class="col-md-5 mt-20">
                                     <div class="col-md-12 text-center">
                                         <img class="img-circle"
@@ -82,22 +79,22 @@
                                     <div class="col-md-12">
                                         <div>
                                             <div class="col-md-4 mt-10"> Tài khoản:</div>
-                                            <div class="col-md-8 mt-10"><input type="text" style="color: black; font-weight: bold;" class="form-control text-center" name="username" value="anhhuy" readonly></div>
+                                            <div class="col-md-8 mt-10"><input type="text" style="color: black; font-weight: bold;" class="form-control text-center" name="username" value="<%= objUser.getUserName() %>" readonly></div>
                                         </div>
                                         <div>
                                             <div class="col-md-4 mt-10">Mật khẩu</div>
-                                            <div class="col-md-8 mt-10"><input type="text" style="color: black; font-weight: bold;" class="form-control text-center" name="matKhau" value="1234" readonly></div>
+                                            <div class="col-md-8 mt-10"><input type="text" style="color: black; font-weight: bold;" class="form-control text-center" name="matKhau" value="" readonly></div>
                                         </div>
                                         <div>
                                             <div class="col-md-4 mt-10">Email</div>
-                                            <div class="col-md-8 mt-10"><input type="text" style="color: black; font-weight: bold;" class="form-control text-center" name="email" value="huy@gmail.com" readonly></div>
+                                            <div class="col-md-8 mt-10"><input type="text" style="color: black; font-weight: bold;" class="form-control text-center" name="email" value="<%= objUser.getEmail() %>" readonly></div>
                                         </div>
 
                                         <div class="text-center">
-                                          <a href="">
+                                          <a href="<%=request.getContextPath() %>/admin/user/index">
                                             <button type="button" class="btn btn-warning mt-10">Trở về</button>
                                           </a>
-                                          <a href="">
+                                          <a href="<%=request.getContextPath() %>/admin/user/edit">
                                             <button type="button" class="btn btn-primary mt-10">Sửa</button>
                                           </a>
                                         </div>
@@ -108,66 +105,66 @@
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label>ID</label>
-                                            <input style="color: black" type="text" name="id" class="form-control border-input" disabled value="1">
+                                            <input style="color: black" type="text" name="id" class="form-control border-input" disabled value="<%= objUser.getIdUser() %>">
                                         </div>
                                     </div>
                                     <div class="col-md-10">
                                         <div class="form-group">
                                             <label>Họ tên</label>
-                                            <input style="color: black" type="text" name="fullname" class="form-control border-input" placeholder="Họ tên" value="Nguyễn Thế Hùng" readonly>
+                                            <input style="color: black" type="text" name="fullname" class="form-control border-input" placeholder="Họ tên" value="<%= objUser.getFullName() %>" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="read">Địa chỉ cơ quan</label>
-                                            <textarea  name="diaChiCoQuan" class="form-control border-input" placeholder="Địa chỉ cơ quan" readonly></textarea>
+                                            <textarea  name="diaChiCoQuan" class="form-control border-input" placeholder="Địa chỉ cơ quan" value="<%= objUser.getDiaChiCoQuan() %>" readonly></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Điện thoại cơ quan</label>
-                                            <input style="color: black" type="text" name="dienThoaiCoQuan" class="form-control border-input" placeholder="Số điện thoại" value="0977 665 886" readonly>
+                                            <input style="color: black" type="text" name="dienThoaiCoQuan" class="form-control border-input" placeholder="Số điện thoại" value="<%= objUser.getDienThoaiCoQuan() %>" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="read">Địa chỉ nhà riêng</label>
-                                            <textarea  name="diaChiNhaRieng" class="form-control border-input" placeholder="Địa chỉ nhà riêng" readonly></textarea>
+                                            <textarea  name="diaChiNhaRieng" class="form-control border-input" placeholder="Địa chỉ nhà riêng" value="<%= objUser.getDiaChiNhaRieng() %>" readonly></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Đi động</label>
-                                            <input style="color: black" type="text" name="diDong" class="form-control border-input" placeholder="Số điện thoại" value="0977 665 886" readonly>
+                                            <input style="color: black" type="text" name="diDong" class="form-control border-input" placeholder="Số điện thoại" value="<%= objUser.getDienThoaiNhaRieng() %>" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Năm sinh</label>
-                                            <input style="color: black" type="text" name="namSinh" class="form-control border-input" value="1987" readonly>
+                                            <input style="color: black" type="text" name="namSinh" class="form-control border-input" value="<%= objUser.getNamSinh() %>" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Fax</label>
-                                            <input style="color: black" type="text" name="fax" class="form-control border-input" value="" readonly>
+                                            <input style="color: black" type="text" name="fax" class="form-control border-input" value="<%= objUser.getFax() %>" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label>Học vị</label>
-                                        Thạc sĩ
+                                        <%=objUser.getTenHocVi()  %>
                                     </div>
                                     <div class="col-md-6">
                                         <label>Chức danh khoa học</label>
-                                        --------
+                                        <%=objUser.getChucDanhKhoaHoc()  %>
                                     </div>
                                     <div class="col-md-6">
                                          <label>Khoa: </label>
-                                        Công nghệ thông tin
+                                        <%=objUser.getTenKhoa()  %>
                                     </div>
                                     <div class="col-md-6">
                                         <label>Loại tài khoản: </label>
-                                        Giảng viên
+                                        <%=objUser.getTenLoaiTaiKhoan()  %>
                                     </div>
                                     <div class="col-md-12 text-center mt-20 mb-20"><button class="btn btn-link" id="show-list-topic">Danh sách đề tài</button></div>
                                 </div>
@@ -238,6 +235,7 @@
 	                            </div>
 	                        </div>
 	                        <div class="clearfix"></div>
+	                        <%} %>
         				</div>
         			</div>
         		</div>

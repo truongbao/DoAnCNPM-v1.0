@@ -6,6 +6,7 @@
 	<script src="<%=request.getContextPath()%>/library/js/jquery.validate.min.js"> </script>
 	<script src="<%=request.getContextPath()%>/library/ckeditor/ckeditor.js"> </script>
 	<script src="<%=request.getContextPath() %>/ckfinder/ckfinder.js"> </script>
+	<script src="<%=request.getContextPath() %>/templates/admin/bootstrap/js/bootstrap.min.js"></script>
 	
 	<meta charset="utf-8" />
 	<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
@@ -24,7 +25,8 @@
 
     <!-- Animation library for notifications   -->
     <link href="<%=request.getContextPath() %>/templates/admin/css/animate.min.css" rel="stylesheet"/>
-
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="<%=request.getContextPath() %>/templates/admin/css/demo.css" rel="stylesheet" />
     <!--  Paper Dashboard core CSS    -->
     <link href="<%=request.getContextPath() %>/templates/admin/css/paper-dashboard.css" rel="stylesheet"/>
     <style type="text/css">
@@ -33,11 +35,14 @@
 	          filter: alpha(opacity=100);
 	          visibility: visible;
 	}
+	
+	.modal-backdrop {
+	  z-index: 0;
+	}
     </style>
 
 
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="<%=request.getContextPath() %>/templates/admin/css/demo.css" rel="stylesheet" />
+
 
 
     <!--  Fonts and icons     -->

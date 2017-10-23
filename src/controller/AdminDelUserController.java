@@ -30,17 +30,14 @@ public class AdminDelUserController extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//kiểm tra đã đăng nhập chưa
-				if(  LibraryAuth.CheckLogin(request, response)==false){
-					return;
-				}
+//		//kiểm tra đã đăng nhập chưa
+//				if(  LibraryAuth.CheckLogin(request, response)==false){
+//					return;
+//				}
+		
 	    request.setCharacterEncoding("UTF-8");
 	    response.setCharacterEncoding("UTF-8");
-	    response.setContentType("text/html");
-	    
-	   /* HttpSession session = request.getSession();
-	    User userinfo =(User)session.getAttribute("sobjUser");
-	    
+	    response.setContentType("text/html");   
 	    
 	    
 	    UserDAO objDAO = new UserDAO();
@@ -48,40 +45,28 @@ public class AdminDelUserController extends HttpServlet {
 	    int idUser = Integer.parseInt(request.getParameter("uid"));
 	    
 	    //lay doi tuong ung voi uid
-		User objUser = objDAO.getItem(idUser);
+		User objUser = objDAO.getObjUser(idUser);
 		
-		//kiem tra username trong doi tuongj này có trung admin ko
-		//neu trung thi ko xoa còn neu ko Xóa đi
-		if("admin".equals(objUser.getUsername() )  ){
-			  //ko xóa
-			  response.sendRedirect(request.getContextPath() + "/admin/indexUser?msg=4");
-			  return;
-		 }else{
-		     if( ("admin".equals(userinfo.getUsername())) ){
-			  
+//		//kiem tra usercos phai la admin dang dang nhap ko
+//		//neu phai thi ko xoa còn neu ko Xóa đi
+//		HttpSession session = request.getSession();
+//		User objLogAdmin = (User) session.getAttribute("sobjUserAdmin");
+//		if(idUser ==  objLogAdmin.getIdUser()){
+//			  //ko xóa
+//			  response.sendRedirect(request.getContextPath() + "/admin/user/index?msg=1");
+//			  return;
+//		 }else{			  
 			    if( objDAO.delItem(idUser) > 0){
 					//xóa thanh cong
-					response.sendRedirect(request.getContextPath() + "/admin/indexUser?msg=3");
+					response.sendRedirect(request.getContextPath() + "/admin/user/index?msg=1");
 					return; 
 				}else{
 					//them that bai
-					response.sendRedirect(request.getContextPath() + "/admin/indexUser?msg=0");
+					response.sendRedirect(request.getContextPath() + "/admin/user/index?msg=0");
 					return; 
 				}
 			 
-		     }else{
-		    	 //chuyen hướng
-		    	 response.sendRedirect(request.getContextPath() + "/admin/indexUser?msg=5");
-			     return; 
-		     }
+//		     }
 			 
 		 }
-	    */
-		
-		
-		
-		
-		
-	}
-
 }
