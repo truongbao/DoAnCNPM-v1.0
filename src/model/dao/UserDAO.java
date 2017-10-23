@@ -26,7 +26,7 @@ public class UserDAO {
 		  connectMySQLLibrary = new ConnectMySQLLibrary();
 	}
 	
-	//lây danh sach giang vien  23/10/2017
+	//lây danh sach giang vien với idLoaiTaiKhoan  = 2 
 	
 	public ArrayList<User> getListGiangVien(){
 		ArrayList<User> listUser = new ArrayList<>();
@@ -35,7 +35,7 @@ public class UserDAO {
 		 String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocVi from user AS u "
 	        		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
 	        		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
-	        		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi ";
+	        		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi where u.idLoaiTaiKhoan = 2 ";
 		
 	    User objUser = null;
 		  
@@ -64,6 +64,50 @@ public class UserDAO {
 		return listUser;
 		
 	}
+	
+	
+	//lây danh sach giao vien trong trường (trong bảng user)
+	
+		public ArrayList<User> getListUserInSchool(){
+			ArrayList<User> listUser = new ArrayList<>();
+			conn = connectMySQLLibrary.getConnectMySQL();
+			
+			 String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocVi from user AS u "
+		        		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
+		        		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
+		        		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi ";
+			
+		    User objUser = null;
+			  
+			try {
+				st = conn.createStatement();
+				rs = st.executeQuery(sql);
+				
+				while(rs.next()){
+					 objUser = new User(rs.getInt("idUser"),rs.getString("fullName"),rs.getString("chucDanhKhoaHoc") ,rs.getString("diaChiCoQuan") ,
+				             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocVi") ,rs.getString("tenHocVi"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
+				             rs.getString("dienThoaiNhaRieng") ,rs.getString("email") ,rs.getString("fax"),rs.getString("userName") , 
+				             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa") );
+				                        
+					 listUser.add(objUser);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally{
+				try {
+					st.close();
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return listUser;
+			
+		}
+	
+	
+	
+	
 
 	//Hien thi danh sach thanh vien có phân trang ứng vs id chủ nhiệm đề tài (thèn đang login)
 	
