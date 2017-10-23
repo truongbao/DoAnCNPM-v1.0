@@ -118,19 +118,13 @@ public class DetaiDAO {
 		ArrayList<ThanhVien> listTVByDeTai = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
 
-		String sql = "select * from thanhvien where idDeTai = " + idDeTai;
+		String sql = "select tv.* , dt.idDeTai, dt.maSoDeTai from thanhvien AS tv  "
+				+ "  INNER JOIN  detai AS dt ON dt.idDeTai = tv.idDeTai "
+				+ "  where tv.idDeTai = " + idDeTai;
 
 		try {
 			st = conn.createStatement();
 			rs = st.executeQuery(sql);
-/*<<<<<<< HEAD
-
-			while (rs.next()) {
-
-				ThanhVien objTV = new ThanhVien(rs.getInt("idThanhVien"), rs.getString("tenThanhVien"),
-						rs.getString("donVi"), rs.getString("noiDungNghienCuu"), rs.getInt("idDeTai"));
-
-=======*/
 			
 			while(rs.next()){
 				
