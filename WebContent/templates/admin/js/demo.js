@@ -156,7 +156,6 @@ $('#show-list-topic').click(function(event) {
   }
 });
 
-
 /**
  * Show message if database has not data or search not found in page list
  */
@@ -165,3 +164,21 @@ console.log(countElements);
 if (countElements == 1) {// 1 is tr of element $('.no-result-search') not of record table
     $('.no-result-search').show();
 }
+
+/**
+ * remove image when click button remove image
+ */
+$('.link-xoa').bind('click',function(e){
+    e.preventDefault();
+    var form = $('#form-xoa');
+    var title = $(this).attr('data-title');
+    var body = '<i>' + $(this).attr('data-confirm') + '</i>';
+    $('#title-content').html(title);
+    $('#body-content').html(body);
+    $('#confirm').modal('show');
+    $('#delete-btn').one('click', function(){
+        form.submit();
+        console.log(form);
+        $('#confirm').modal('hide');
+    })
+});

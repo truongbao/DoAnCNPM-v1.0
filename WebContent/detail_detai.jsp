@@ -82,31 +82,31 @@
 					%>
 					
 					<tr>
-						<td width="4%;">1</td> <td width="25%;" style="font-weight:bold;">Mã đề tài</td>  <td>  <%=objDeTai.getMaSoDeTai() %> kk </td>
+						<td width="4%;">1</td> <td width="25%;" style="font-weight:bold;">Mã đề tài</td>  <td>  <%=objDeTai.getMaSoDeTai() %>  </td>
 					</tr>
 					<tr>
-						<td width="4%;">2</td> <td width="25%;" style="font-weight:bold;">Tên đề tài</td>  <td> <%=objDeTai.getTenDeTai() %> kk</td>
+						<td width="4%;">2</td> <td width="25%;" style="font-weight:bold;">Tên đề tài</td>  <td> <%=objDeTai.getTenDeTai() %> </td>
 					</tr>
 					<tr>
-						<td width="4%;">3</td> <td width="25%;" style="font-weight:bold;">Lĩnh vực nghiên cứu</td>  <td>  <%=objDeTai.getTenLinhVucNghienCuu() %> kk</td>
+						<td width="4%;">3</td> <td width="25%;" style="font-weight:bold;">Lĩnh vực nghiên cứu</td>  <td>  <%=objDeTai.getTenLinhVucNghienCuu() %> </td>
 					</tr>
 					<tr>
-						<td width="4%;">4</td> <td width="25%;" style="font-weight:bold;">Tính cấp thiết</td>  <td> <%=objDeTai.getTinhCapThiet() %> kk</td>
+						<td width="4%;">4</td> <td width="25%;" style="font-weight:bold;">Tính cấp thiết</td>  <td> <%=objDeTai.getTinhCapThiet() %></td>
 					</tr>
 					<tr>
-						<td width="4%;">5</td> <td width="25%;" style="font-weight:bold;">Loại hình nghiên cứu</td>  <td> <%=objDeTai.getTenLoaiHinhNghienCuu() %> kk</td>
+						<td width="4%;">5</td> <td width="25%;" style="font-weight:bold;">Loại hình nghiên cứu</td>  <td> <%=objDeTai.getTenLoaiHinhNghienCuu() %> </td>
 					</tr>
 					<tr>
-						<td width="4%;">6</td> <td width="25%;" style="font-weight:bold;">Mục tiêu</td>  <td> <%=objDeTai.getMucTieu() %> kk </td>
+						<td width="4%;">6</td> <td width="25%;" style="font-weight:bold;">Mục tiêu</td>  <td> <%=objDeTai.getMucTieu() %> </td>
 					</tr>
 					<tr>
-						<td width="4%;">7</td> <td width="25%;" style="font-weight:bold;">Đơn vị chủ trì</td>  <td> <%=objDeTai.getDonViChuTri() %> kk </td>
+						<td width="4%;">7</td> <td width="25%;" style="font-weight:bold;">Đơn vị chủ trì</td>  <td> <%=objDeTai.getDonViChuTri() %>  </td>
 					</tr>
 					<tr>
-						<td width="4%;">8</td> <td width="25%;" style="font-weight:bold;">Nội dung chính</td>  <td> <%=objDeTai.getNoiDung() %> kk  </td>
+						<td width="4%;">8</td> <td width="25%;" style="font-weight:bold;">Nội dung chính</td>  <td> <%=objDeTai.getNoiDung() %> </td>
 					</tr>
 					<tr>
-						<td width="4%;">9</td> <td width="25%;" style="font-weight:bold;">Đơn vị phối hợp chính</td>  <td> <%=objDeTai.getDonViPhoiHopChinh() %> kk </td>
+						<td width="4%;">9</td> <td width="25%;" style="font-weight:bold;">Đơn vị phối hợp chính</td>  <td> <%=objDeTai.getDonViPhoiHopChinh() %> </td>
 					</tr>
 					
 					<tr>

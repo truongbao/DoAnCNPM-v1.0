@@ -11,6 +11,7 @@ import library.ConnectMySQLLibrary;
 import model.bean.HocVi;
 import model.bean.Khoa;
 import model.bean.LoaiTaiKhoan;
+import model.bean.ThanhVien;
 import model.bean.User;
 import constant.define;
 
@@ -25,7 +26,81 @@ public class UserDAO {
 		  connectMySQLLibrary = new ConnectMySQLLibrary();
 	}
 	
+	//lây danh sach giang vien  23/10/2017
 	
+	public ArrayList<User> getListGiangVien(){
+		ArrayList<User> listUser = new ArrayList<>();
+		conn = connectMySQLLibrary.getConnectMySQL();
+		
+		 String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocVi from user AS u "
+	        		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
+	        		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
+	        		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi ";
+		
+	    User objUser = null;
+		  
+		try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			
+			while(rs.next()){
+				 objUser = new User(rs.getInt("idUser"),rs.getString("fullName"),rs.getString("chucDanhKhoaHoc") ,rs.getString("diaChiCoQuan") ,
+			             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocVi") ,rs.getString("tenHocVi"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
+			             rs.getString("dienThoaiNhaRieng") ,rs.getString("email") ,rs.getString("fax"),rs.getString("userName") , 
+			             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa") );
+			                        
+				 listUser.add(objUser);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				st.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listUser;
+		
+	}
+
+	//Hien thi danh sach thanh vien có phân trang ứng vs id chủ nhiệm đề tài (thèn đang login)
+	
+	public ArrayList<ThanhVien> getListThanhVienByIdUser(int idUser){
+		ArrayList<ThanhVien> listTV = new ArrayList<>();
+		conn = connectMySQLLibrary.getConnectMySQL();
+		
+		String sql = "select tv.idThanhVien, tv.tenThanhVien,tv.donVi, tv.noiDungNghienCuu, dt.idDeTai, dt.maSoDeTai FROM thanhvien AS tv"
+				+ " INNER JOIN  detai AS dt ON dt.idDeTai = tv.idDeTai"
+				+ " INNER JOIN  user AS u ON u.idUser = dt.idUser WHERE u.idUser = "+idUser;
+		
+		try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			
+			while(rs.next()){
+			   ThanhVien objTV = new ThanhVien(rs.getInt("idThanhVien"),rs.getString("tenThanhVien"),rs.getString("donVi"), 
+					                           rs.getString("noiDungNghienCuu"),rs.getInt("idDeTai"),rs.getString("maSoDeTai"));
+			   listTV.add(objTV);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				st.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listTV;
+		
+	}
+	
+	
+   //kiểm tra đăng nhập
+
    public User checkLoginPublic(String username, String password) {
 		
         conn = connectMySQLLibrary.getConnectMySQL();

@@ -1,3 +1,4 @@
+<%@page import="java.util.Calendar"%>
 <%@page import="model.bean.User"%>
 <%@page import="model.bean.LoaiTaiKhoan"%>
 <%@page import="model.bean.Khoa"%>
@@ -68,18 +69,10 @@
                             <div class="header">
 	                            <h4 class="title" style="text-align: center;margin-bottom: 20px; color : white ;border: 1px solid;padding: 4px 4px;border-radius: 4px;  background: #58a808; color: #FFF; font-weight: bold">Danh sách tài khoản</h4>
 	                        
-	                           <%
-							      if(request.getParameter("msg")!=null){
-							          int msg = Integer.parseInt( request.getParameter("msg") );
-							          switch(msg){
-							            case 1: out.print("</br>&nbsp;&nbsp;&nbsp;&nbsp;<strong style='color : red ;font-weight: bold'>Xử lý thành công !!</strong> ");break;
-							            case 2: out.print("</br>&nbsp;&nbsp;&nbsp;&nbsp;<strong style='color : red ;font-weight: bold'>Không thành công vui lòng thử lại !!</strong> ");break;
-								        }
-							      }
-		     			       %>  
                                 <div class="col-md-10 col-md-offset-1">
                                     <form action="" method="post">
                                     	<div class="row">
+                                    		
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <input type="text" name="fullname" class="form-control border-input" placeholder="Họ tên" value="">
@@ -113,15 +106,27 @@
                                 </div>
                                 
                                 <a href="<%=request.getContextPath() %>/admin/user/form-add" class="addtop"><img src="../assets/img/add.png" alt="" /> Thêm</a>
+                            	<div class="text-center text-danger col-md-12" style="font-size: 18px;font-weight: bold;">
+                            	 <%
+							      if(request.getParameter("msg")!=null){
+							          int msg = Integer.parseInt( request.getParameter("msg") );
+							          switch(msg){
+							            case 1: out.print("Xử lý thành công !!");break;
+							            case 0: out.print("Không thành công vui lòng thử lại !!");break;
+							            case 4: out.print("User không tồn tại !!");break;
+								        }
+							      }
+		     			       	%>  
+                            	</div>
                             </div>
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-striped" id="table-contain">
                                     <thead>
                                         <th>ID</th>
+                                    	<th>Username</th>
                                     	<th>Họ tên</th>
                                     	<th>Chức danh khoa học</th>
                                     	<th>Email</th>
-                                    	<th>SĐT</th>
                                         <th>Loại tài khoản</th>
                                     	<th>Chức năng</th>
                                     </thead>
@@ -131,16 +136,21 @@
                                     %>
                                         <tr>
                                         	<td><%= listUsers.get(i).getIdUser() %></td>
-                                        	<td><a href="edit.html"><%= listUsers.get(i).getFullName() %></a></td>
+                                        	<td><a href="<%=request.getContextPath() %>/admin/user/show?uid=<%=listUsers.get(i).getIdUser() %>"><%=listUsers.get(i).getUserName() %></a></td>
+                                        	<td><%= listUsers.get(i).getFullName() %></td>
                                         	<td><%= listUsers.get(i).getChucDanhKhoaHoc() %></td>
                                         	<td><%= listUsers.get(i).getEmail() %></td>
-                                        	<td><%=listUsers.get(i).getDienThoaiNhaRieng() %></td>
                                             <td><%=listUsers.get(i).getTenLoaiTaiKhoan() %></td>
                                         	<td>
-                                                <a href="edit.html"><img src="<%=request.getContextPath() %>/templates/admin/img/edit.gif" alt="" /> Sửa</a> &nbsp;||&nbsp;
-                                                <form style="display: inline">
-                                                    <a href="" class="link-xoa"><img src="<%= request.getContextPath() %>/templates/admin/img/del.gif" alt="" /> Xóa</a>
-                                                </form>
+                                                <a href="edit.html"><img src="<%=request.getContextPath() %>/templates/admin/img/edit.gif" alt="" /></a> &nbsp;||&nbsp;
+                                                <form id="form-xoa" method="post" action="<%=request.getContextPath() %>/admin/user/del?uid=<%=listUsers.get(i).getIdUser() %>" style="display: inline">
+                                                	
+						                           <a href="" class="link-xoa"
+						                              data-title="Confirm deletion!"
+						                              data-confirm="Are you sure you want to delete?">
+						                              <img src="<%= request.getContextPath() %>/templates/admin/img/del.gif" alt="" />
+						                            </a>
+                         						 </form> 
                                             </td>
                                         </tr>
                     			<% } %>
@@ -169,5 +179,6 @@
         </div>
                           
 
+   <%@include file="/templates/admin/inc/modal.jsp" %>
   <%@include file="/templates/admin/inc/footer.jsp" %>
        

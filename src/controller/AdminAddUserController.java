@@ -55,7 +55,7 @@ public class AdminAddUserController extends HttpServlet {
 		String email = request.getParameter("email");
 		String fax =  request.getParameter("fax");
 		String username = request.getParameter("username");
-		String matKhau = request.getParameter("mat_khau");
+		String matKhau = st.MD5(request.getParameter("mat_khau"));
 		int idLoaiTaiKhoan = Integer.parseInt(request.getParameter("loai_tai_khoan"));
 		int idKhoa =  Integer.parseInt(request.getParameter("khoa")) ;
 		

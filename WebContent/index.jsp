@@ -18,26 +18,26 @@
 							<div id="owl-demo-slide" class="owl-carousel owl-theme">
 
 								<div class="item">
-									<a href="#" title="Slide"><img src="<%=request.getContextPath()%>/templates/public/images/h1.jpg"
+									<a href="#" title="Slide"><img src="<%=request.getContextPath()%>/templates/public/images/slide5.jpg"
 										alt="Slide"> </a>
 
 								</div>
 
 
 								<div class="item">
-									<a href="#" title="Slide"><img src="<%=request.getContextPath()%>/templates/public/images/h1.jpg"
+									<a href="#" title="Slide"><img src="<%=request.getContextPath()%>/templates/public/images/slide4.jpg"
 										alt="Slide"> </a>
 								</div>
 
 
 								<div class="item">
-									<a href="#" title=""><img src="<%=request.getContextPath()%>/templates/public/images/h1.jpg" alt="">
+									<a href="#" title=""><img src="<%=request.getContextPath()%>/templates/public/images/slide2.jpg" alt="">
 									</a>
 								</div>
 
 
 								<div class="item">
-									<a href="#" title=""><img src="<%=request.getContextPath()%>/templates/public/images/h1.jpg" alt="">
+									<a href="#" title=""><img src="<%=request.getContextPath()%>/templates/public/images/slide1.jpg" alt="">
 									</a>
 								</div>
 
@@ -56,7 +56,7 @@
 									</span>
 									<!-- End .policy-icon -->
 									<span class="policy-text">
-										<h5>Thứ 2 - Thứ 7</h5>
+										<h5>Thứ 2 - Thứ 6</h5>
 										<p>7:00 am - 5:20 pm</p>
 									</span>
 									<!-- End .policy-text -->
@@ -65,15 +65,15 @@
 							<div class="time_work_content">
 								<div
 									class="col-md-12 home_banner_1 col-sm-5 hidden-xs no-padding-lr">
-									<a href="lien-he.html" title="Banner"><img
-										src="<%=request.getContextPath()%>/templates/public/images/h2.jpg" alt="Banner" /></a>
+									<a href="<%=request.getContextPath()%>/gioi-thieu" title="Banner"><img
+										src="<%=request.getContextPath()%>/templates/public/images/slide3.jpg" alt="Banner" /></a>
 								</div>
 							</div>
 						</div>
 						<div
 							class="col-md-12 home_banner_1 col-sm-5 hidden-xs no-padding-lr">
-							<a href="lien-he.html" title="Banner"><img
-								src="<%=request.getContextPath()%>/templates/public/images/h2.jpg" alt="Banner" /></a>
+							<a href="<%=request.getContextPath()%>/gioi-thieu" title="Banner"><img
+								src="<%=request.getContextPath()%>/templates/public/images/slide6.jpg" alt="Banner" /></a>
 						</div>
 					</div>
 				</div>
@@ -101,17 +101,17 @@
 							<div class="small_about_thumbnail">
 								<div class="col-md-4">
 									<div class="ov">
-										<img src="<%=request.getContextPath()%>/templates/public/images/h1.jpg" alt="banner">
+										<img src="<%=request.getContextPath()%>/templates/public/images/slide1.jpg" alt="banner">
 									</div>
 								</div>
 								<div class="col-md-4">
 									<div class="ov">
-										<img src="<%=request.getContextPath()%>/templates/public/images/h1.jpg" alt="banner">
+										<img src="<%=request.getContextPath()%>/templates/public/images/slide2.jpg" alt="banner">
 									</div>
 								</div>
 								<div class="col-md-4">
 									<div class="ov">
-										<img src="<%=request.getContextPath()%>/templates/public/images/h1.jpg" alt="Banner">
+										<img src="<%=request.getContextPath()%>/templates/public/images/slide3.jpg" alt="Banner">
 									</div>
 								</div>
 							</div>
@@ -119,8 +119,8 @@
 						</div>
 					</div>
 					<div class="home_about_big_banner ff col-xs-12 col-sm-12 col-md-6">
-						<a href="gioi-thieu.html" title="Banner"><img
-							src="<%=request.getContextPath()%>/templates/public/images/h1.jpg" alt="Banner" /></a>
+						<a href="<%=request.getContextPath()%>/gioi-thieu" title="Banner"><img height="350px;"
+							src="<%=request.getContextPath()%>/templates/public/images/slide7.jpg" alt="Banner" /></a>
 					</div>
 
 
@@ -154,210 +154,50 @@
 						</div>
 						</p>
 					</div>
-					<div
-						class="col-xs-12 col-sm-12 col-md-12 col-md-offset-0 std_icon text-center">
+					
+					
+					
+					<div class="col-xs-12 col-sm-12 col-md-12 col-md-offset-0 std_icon text-center">
+					
+					<%
+					 if(request.getAttribute("listUser")!=null){
+					    	ArrayList<User> listUser = (ArrayList<User>)request.getAttribute("listUser");
+					    	if(listUser.size() > 0){
+					    		for(User objUser : listUser){
+					
+					%>
+					
 						<div class="col-sm-6 col-xs-6 col-md-3 std_ic_ct_pr no-padding-lr">
 							<div class="">
 								<a href="chuong-trinh-chat-luong-cao.html"> <img
-									src="<%=request.getContextPath()%>/templates/public/images/thanhViet.jpg" alt="Thực đơn cho bé">
+									src="<%=request.getContextPath()%>/templates/public/images/thanhViet.jpg" alt="">
 								</a>
 							</div>
 							<a href="chuong-trinh-chat-luong-cao.html" class="std_ic_title">
-								ThS. Nguyễn Thanh Việt </a><br> <a href="">
+							     <% if(objUser.getIdHocVi() == 1) { %> 
+							        GS. <%=objUser.getFullName() %>
+							     <%}else if(objUser.getIdHocVi() == 2){ %>   
+							        PGS. <%=objUser.getFullName() %>
+							     <%}else if(objUser.getIdHocVi() == 3){ %>   
+							        TS. <%=objUser.getFullName() %>
+							     <%}else if(objUser.getIdHocVi() == 4){ %>   
+							        ThS. <%=objUser.getFullName() %>
+							     <%}else{ %>   
+							        GV. <%=objUser.getFullName() %>
+							      <%} %>  
+						     </a><br> 
+						    <a href="">
 								<p>Khoa Cơ Khí</p>
 								<p>Trường Đại học Bách khoa</p>
 							</a>
 						</div>
-						<div class="col-sm-6 col-xs-6 col-md-3 std_ic_ct_pr no-padding-lr">
-							<div class="">
-								<a href="chuong-trinh-chat-luong-cao.html"> <img
-									src="<%=request.getContextPath()%>/templates/public/images/tran_trung_viet.jpg" alt="Thực đơn cho bé">
-								</a>
-							</div>
-							<a href="chuong-trinh-chat-luong-cao.html" class="std_ic_title">
-								TS. Trần Trung Việt </a><br> <a href="">
-								<p>Khoa Xây dựng Cầu - Đường</p>
-								<p>Trường Đại học Bách khoa</p>
-							</a>
-						</div>
-						<div class="col-sm-6 col-xs-6 col-md-3 std_ic_ct_pr no-padding-lr">
-							<div class="">
-								<a href="chuong-trinh-chat-luong-cao.html"> <img
-									src="<%=request.getContextPath()%>/templates/public/images/tran_trung_viet.jpg" alt="Thực đơn cho bé">
-								</a>
-							</div>
-							<a href="chuong-trinh-chat-luong-cao.html" class="std_ic_title">
-								TS. Đặng Phước Vinh </a><br> <a href="">
-								<p>Khoa Cơ Khí</p>
-								<p>Trường Đại học Bách khoa</p>
-							</a>
-						</div>
-						<div class="col-sm-6 col-xs-6 col-md-3 std_ic_ct_pr no-padding-lr">
-							<div class="">
-								<a href="chuong-trinh-chat-luong-cao.html"> <img
-									src="<%=request.getContextPath()%>/templates/public/images/huynh_vinh.jpg" alt="Thực đơn cho bé">
-								</a>
-							</div>
-							<a href="chuong-trinh-chat-luong-cao.html" class="std_ic_title">
-								ThS. Huỳnh Vinh </a><br> <a href="">
-								<p>Khoa Sư phạm Kỹ thuật</p>
-								<p>Trường Đại học Bách khoa</p>
-							</a>
-						</div>
+						
+						<!-- hôi lỗi thì thêm vao 3 tên nữa -->
+						<%}}} %>
 					</div>
-					<div
-						class="col-xs-12 col-sm-12 col-md-12 col-md-offset-0 std_icon text-center">
-						<div class="col-sm-6 col-xs-6 col-md-3 std_ic_ct_pr no-padding-lr">
-							<div class="">
-								<a href="chuong-trinh-chat-luong-cao.html"> <img
-									src="<%=request.getContextPath()%>/templates/public/images/thanhViet.jpg" alt="Thực đơn cho bé">
-								</a>
-							</div>
-							<a href="chuong-trinh-chat-luong-cao.html" class="std_ic_title">
-								ThS. Nguyễn Thanh Việt </a><br> <a href="">
-								<p>Khoa Cơ Khí</p>
-								<p>Trường Đại học Bách khoa</p>
-							</a>
-						</div>
-						<div class="col-sm-6 col-xs-6 col-md-3 std_ic_ct_pr no-padding-lr">
-							<div class="">
-								<a href="chuong-trinh-chat-luong-cao.html"> <img
-									src="<%=request.getContextPath()%>/templates/public/images/tran_trung_viet.jpg" alt="Thực đơn cho bé">
-								</a>
-							</div>
-							<a href="chuong-trinh-chat-luong-cao.html" class="std_ic_title">
-								TS. Trần Trung Việt </a><br> <a href="">
-								<p>Khoa Xây dựng Cầu - Đường</p>
-								<p>Trường Đại học Bách khoa</p>
-							</a>
-						</div>
-						<div class="col-sm-6 col-xs-6 col-md-3 std_ic_ct_pr no-padding-lr">
-							<div class="">
-								<a href="chuong-trinh-chat-luong-cao.html"> <img
-									src="<%=request.getContextPath()%>/templates/public/images/tran_trung_viet.jpg" alt="Thực đơn cho bé">
-								</a>
-							</div>
-							<a href="chuong-trinh-chat-luong-cao.html" class="std_ic_title">
-								TS. Đặng Phước Vinh </a><br> <a href="">
-								<p>Khoa Cơ Khí</p>
-								<p>Trường Đại học Bách khoa</p>
-							</a>
-						</div>
-						<div class="col-sm-6 col-xs-6 col-md-3 std_ic_ct_pr no-padding-lr">
-							<div class="">
-								<a href="chuong-trinh-chat-luong-cao.html"> <img
-									src="<%=request.getContextPath()%>/templates/public/images/huynh_vinh.jpg" alt="Thực đơn cho bé">
-								</a>
-							</div>
-							<a href="chuong-trinh-chat-luong-cao.html" class="std_ic_title">
-								ThS. Huỳnh Vinh </a><br> <a href="">
-								<p>Khoa Sư phạm Kỹ thuật</p>
-								<p>Trường Đại học Bách khoa</p>
-							</a>
-						</div>
-					</div>
-					<div
-						class="col-xs-12 col-sm-12 col-md-12 col-md-offset-0 std_icon text-center">
-						<div class="col-sm-6 col-xs-6 col-md-3 std_ic_ct_pr no-padding-lr">
-							<div class="">
-								<a href="chuong-trinh-chat-luong-cao.html"> <img
-									src="<%=request.getContextPath()%>/templates/public/images/thanhViet.jpg" alt="Thực đơn cho bé">
-								</a>
-							</div>
-							<a href="chuong-trinh-chat-luong-cao.html" class="std_ic_title">
-								ThS. Nguyễn Thanh Việt </a><br> <a href="">
-								<p>Khoa Cơ Khí</p>
-								<p>Trường Đại học Bách khoa</p>
-							</a>
-						</div>
-						<div class="col-sm-6 col-xs-6 col-md-3 std_ic_ct_pr no-padding-lr">
-							<div class="">
-								<a href="chuong-trinh-chat-luong-cao.html"> <img
-									src="<%=request.getContextPath()%>/templates/public/images/tran_trung_viet.jpg" alt="Thực đơn cho bé">
-								</a>
-							</div>
-							<a href="chuong-trinh-chat-luong-cao.html" class="std_ic_title">
-								TS. Trần Trung Việt </a><br> <a href="">
-								<p>Khoa Xây dựng Cầu - Đường</p>
-								<p>Trường Đại học Bách khoa</p>
-							</a>
-						</div>
-						<div class="col-sm-6 col-xs-6 col-md-3 std_ic_ct_pr no-padding-lr">
-							<div class="">
-								<a href="chuong-trinh-chat-luong-cao.html"> <img
-									src="<%=request.getContextPath()%>/templates/public/images/tran_trung_viet.jpg" alt="Thực đơn cho bé">
-								</a>
-							</div>
-							<a href="chuong-trinh-chat-luong-cao.html" class="std_ic_title">
-								TS. Đặng Phước Vinh </a><br> <a href="">
-								<p>Khoa Cơ Khí</p>
-								<p>Trường Đại học Bách khoa</p>
-							</a>
-						</div>
-						<div class="col-sm-6 col-xs-6 col-md-3 std_ic_ct_pr no-padding-lr">
-							<div class="">
-								<a href="chuong-trinh-chat-luong-cao.html"> <img
-									src="<%=request.getContextPath()%>/templates/public/images/huynh_vinh.jpg" alt="Thực đơn cho bé">
-								</a>
-							</div>
-							<a href="chuong-trinh-chat-luong-cao.html" class="std_ic_title">
-								ThS. Huỳnh Vinh </a><br> <a href="">
-								<p>Khoa Sư phạm Kỹ thuật</p>
-								<p>Trường Đại học Bách khoa</p>
-							</a>
-						</div>
-					</div>
-					<div
-						class="col-xs-12 col-sm-12 col-md-12 col-md-offset-0 std_icon text-center">
-						<div class="col-sm-6 col-xs-6 col-md-3 std_ic_ct_pr no-padding-lr">
-							<div class="">
-								<a href="chuong-trinh-chat-luong-cao.html"> <img
-									src="<%=request.getContextPath()%>/templates/public/images/thanhViet.jpg" alt="Thực đơn cho bé">
-								</a>
-							</div>
-							<a href="chuong-trinh-chat-luong-cao.html" class="std_ic_title">
-								ThS. Nguyễn Thanh Việt </a><br> <a href="">
-								<p>Khoa Cơ Khí</p>
-								<p>Trường Đại học Bách khoa</p>
-							</a>
-						</div>
-						<div class="col-sm-6 col-xs-6 col-md-3 std_ic_ct_pr no-padding-lr">
-							<div class="">
-								<a href="chuong-trinh-chat-luong-cao.html"> <img
-									src="<%=request.getContextPath()%>/templates/public/images/tran_trung_viet.jpg" alt="Thực đơn cho bé">
-								</a>
-							</div>
-							<a href="chuong-trinh-chat-luong-cao.html" class="std_ic_title">
-								TS. Trần Trung Việt </a><br> <a href="">
-								<p>Khoa Xây dựng Cầu - Đường</p>
-								<p>Trường Đại học Bách khoa</p>
-							</a>
-						</div>
-						<div class="col-sm-6 col-xs-6 col-md-3 std_ic_ct_pr no-padding-lr">
-							<div class="">
-								<a href="chuong-trinh-chat-luong-cao.html"> <img
-									src="<%=request.getContextPath()%>/templates/public/images/tran_trung_viet.jpg" alt="Thực đơn cho bé">
-								</a>
-							</div>
-							<a href="chuong-trinh-chat-luong-cao.html" class="std_ic_title">
-								TS. Đặng Phước Vinh </a><br> <a href="">
-								<p>Khoa Cơ Khí</p>
-								<p>Trường Đại học Bách khoa</p>
-							</a>
-						</div>
-						<div class="col-sm-6 col-xs-6 col-md-3 std_ic_ct_pr no-padding-lr">
-							<div class="">
-								<a href="chuong-trinh-chat-luong-cao.html"> <img
-									src="<%=request.getContextPath()%>/templates/public/images/huynh_vinh.jpg" alt="Thực đơn cho bé">
-								</a>
-							</div>
-							<a href="chuong-trinh-chat-luong-cao.html" class="std_ic_title">
-								ThS. Huỳnh Vinh </a><br> <a href="">
-								<p>Khoa Sư phạm Kỹ thuật</p>
-								<p>Trường Đại học Bách khoa</p>
-							</a>
-						</div>
-					</div>
+					
+					
+					
 				</div>
 			</div>
 		</section>
