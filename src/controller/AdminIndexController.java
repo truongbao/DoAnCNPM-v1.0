@@ -25,7 +25,7 @@ public class AdminIndexController extends HttpServlet {
 			return;
 		}
 		
-	     RequestDispatcher rd = request.getRequestDispatcher("/admin/users/index.jsp");
+	     RequestDispatcher rd = request.getRequestDispatcher("/admin/index.jsp");
 	     rd.forward(request, response);
 	}
 
