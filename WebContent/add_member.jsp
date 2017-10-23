@@ -65,7 +65,7 @@
 										    Khoa : <%=objUser.getTenKhoa() %>
 										</option>
 										
-										<%}}}%>
+										<%}}} %>
 												
 									</select>
 								</div>
