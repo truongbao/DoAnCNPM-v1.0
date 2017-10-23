@@ -99,7 +99,7 @@
 		                             <div class="form-group">
 		                                 <div class="form-group">
 		                                 <label>Năm sinh</label>
-		                                 <input readonly type='text' name="nam_sinh"  class="form-control border-input" data-format="yyyy-MM-dd" id="datetimepicker"/><span class="glyphicon glyphicon-calendar form-control-feedback" style="font-size: 20px;"></span>
+		                                 <input type='text' name="nam_sinh"  class="form-control border-input" data-format="yyyy-MM-dd" id="datetimepicker"/><span class="glyphicon glyphicon-calendar form-control-feedback" style="font-size: 20px;"></span>
 		                                 </div>
 		                             </div>
 		                         </div>
@@ -119,11 +119,7 @@
 		                         <div class="col-md-4">
 		                             <div class="form-group">
 		                                 <label>Chức danh khoa học</label>
-		                                 <select name="chuc_danh_khoa_hoc" class="form-control border-input">
-		                                     <option> --</option>
-		                                     <option>---</option>
-		                                     <option>---</option>
-		                                 </select>
+		                                 <input type="text" name="chuc_danh_khoa_hoc" class="form-control border-input" style="height: 40px!important">
 		                             </div>
 		                         </div>
 		                             <div class="col-md-3">
@@ -201,7 +197,7 @@
 		                                 </select>
 		                             </div>
 		                         </div>
-		                         <div class="col-md-3">
+		                         <!--<div class="col-md-3">
 		                             <div class="form-group">
 		                                 <label>Hình ảnh</label>
 		                                 <input type="file" name="picture" class="form-control" placeholder="Chọn ảnh"/>
@@ -212,11 +208,13 @@
 		                                 <label> Xem ảnh</label>
 		                                 <div id="show-image" style="border-top: 0.5px solid #BFB8B8"></div>
 		                             </div>
-		                         </div>
+		                         </div> -->
 		                     
 		                         <div class="col-md-12">
 		                             <div class="text-center">
-		                                 <input type="button" class="btn btn-default" value="Hủy" />
+		                                 <a href="<%=request.getContextPath() %>/admin/user/index"> 
+		                                 	<input type="button" class="btn btn-default" value="Hủy" />
+		                                 </a>
 		                                 <input type="submit" class="btn btn-info btn-fill btn-wd" value="Thực hiện" />
 		                             </div>
 		                         </div>

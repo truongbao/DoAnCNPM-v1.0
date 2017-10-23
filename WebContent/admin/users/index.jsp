@@ -142,7 +142,7 @@
                                         	<td><%= listUsers.get(i).getEmail() %></td>
                                             <td><%=listUsers.get(i).getTenLoaiTaiKhoan() %></td>
                                         	<td>
-                                                <a href="edit.html"><img src="<%=request.getContextPath() %>/templates/admin/img/edit.gif" alt="" /></a> &nbsp;||&nbsp;
+                                                <a href="<%=request.getContextPath() %>/admin/user/form-edit?uid=<%=listUsers.get(i).getIdUser() %>"><img src="<%=request.getContextPath() %>/templates/admin/img/edit.gif" alt="" /></a> &nbsp;||&nbsp;
                                                 <form id="form-xoa" method="post" action="<%=request.getContextPath() %>/admin/user/del?uid=<%=listUsers.get(i).getIdUser() %>" style="display: inline">
                                                 	
 						                           <a href="" class="link-xoa"

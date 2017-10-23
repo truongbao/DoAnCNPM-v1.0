@@ -32,53 +32,50 @@ public class AdminEditUserController extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//kiểm tra đã đăng nhập chưa
-				if(  LibraryAuth.CheckLogin(request, response)==false){
-					return;
-				}
+//		//kiểm tra đã đăng nhập chưa
+//				if(  LibraryAuth.CheckLogin(request, response)==false){
+//					return;
+//				}
 	    request.setCharacterEncoding("UTF-8");
 	    response.setCharacterEncoding("UTF-8");
 	    response.setContentType("text/html");
 	    
-	    /*UserDAO objDAO = new UserDAO();
+	    UserDAO objDAO = new UserDAO();
 	    
 	    int idUser = Integer.parseInt( request.getParameter("uid") ) ;
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String fullname = request.getParameter("fullname");
+	    StringLibrary st = new StringLibrary();//tao doi tuong lop ma hóa
+	    
+	    
+		String fullName = request.getParameter("fullname");
+		String chucDanhKhoaHoc =  request.getParameter("chuc_danh_khoa_hoc");
+		String diaChiCoQuan = request.getParameter("dia_chi_co_quan");
+		String dienThoaiCoQuan = request.getParameter("dien_thoai_co_quan");
+		int idHocVi = Integer.parseInt(request.getParameter("hoc_vi"));
+		String namSinh =  request.getParameter("nam_sinh");
+		String diaChiNhaRieng = request.getParameter("dia_chi_nha_rieng");
+		String dienThoaiNhaRieng = request.getParameter("dien_thoai_nha_rieng");
 		String email = request.getParameter("email");
-		int active = 0;
-		if(request.getParameter("active")!=null){
-		    active = 1;
-		}
+		String fax =  request.getParameter("fax");
+		String username = request.getParameter("username");
+		String matKhau = st.MD5(request.getParameter("mat_khau"));
+		int idLoaiTaiKhoan = Integer.parseInt(request.getParameter("loai_tai_khoan"));
+		int idKhoa =  Integer.parseInt(request.getParameter("khoa")) ;
 		
-		//lây ra doi tuong ứng voi uid để lây ra doi tượng pass cũ
-		User objUserId = objDAO.getItem(idUser);
-		
-		StringLibrary st = new StringLibrary();//doi tuong de ma hoa MD5
-		
-		if("".equals(password)){ //lay lại pass cũ dựa vào id
-			password = objUserId.getPassword();
-			
-		}else{//cap nhat pass moi
-			password = st.MD5(password);
-		}
-		
-		
-		
-		User objUser = new User(idUser, username, password, fullname, email, active);
-		
+		User objUser = new  User(idUser, fullName, chucDanhKhoaHoc,
+				diaChiCoQuan, dienThoaiCoQuan, idHocVi,
+				"", namSinh, diaChiNhaRieng,
+				dienThoaiNhaRieng, email, fax,
+				username, matKhau, idLoaiTaiKhoan,
+				"", idKhoa, "");
 		if( objDAO.editItem(objUser) > 0){
-			//sua thanh cong
-			response.sendRedirect(request.getContextPath() + "/admin/indexUser?msg=2");
+			//them thanh cong
+			response.sendRedirect(request.getContextPath() + "/admin/user/index?msg=1");
 			return; 
 		}else{
 			//them that bai
-			response.sendRedirect(request.getContextPath() + "/admin/indexUser?msg=0");
+			response.sendRedirect(request.getContextPath() + "/admin/user/index?msg=0");
 			return; 
 		}
-		*/
-	    
 		
 	}
 
