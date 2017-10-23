@@ -161,11 +161,11 @@
   
   
    <servlet>
-    <servlet-name>AdminShowDetailController</servlet-name>
-    <servlet-class>controller.AdminShowDetailController</servlet-class>
+    <servlet-name>AdminShowDetailUserController</servlet-name>
+    <servlet-class>controller.AdminShowDetailUserController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>AdminShowDetailController</servlet-name>
+    <servlet-name>AdminShowDetailUserController</servlet-name>
     <url-pattern>/admin/user/show</url-pattern>
   </servlet-mapping>
   

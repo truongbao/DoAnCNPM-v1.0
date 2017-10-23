@@ -1,41 +1,57 @@
 package controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-/**
- * Servlet implementation class AdminShowDetailUserController
- */
-@WebServlet("/AdminShowDetailUserController")
+import library.LibraryAuth;
+import model.bean.User;
+import model.dao.UserDAO;
+
 public class AdminShowDetailUserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    
     public AdminShowDetailUserController() {
         super();
-        // TODO Auto-generated constructor stub
+       
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+//		//kiểm tra đã đăng nhập chưa
+//				if(  LibraryAuth.CheckLogin(request, response)==false){
+//					return;
+//				}
+		UserDAO objDAO = new UserDAO();
+		int idUser = Integer.parseInt(request.getParameter("uid"));//idUser tren url
+		//==============================
+		//phân quyền 
+//		HttpSession session = request.getSession();
+//	    User userinfo = (User)session.getAttribute("sobjUser");
+//	    if("admin".equals(objDAO.getItem( userinfo.getIdUser()).getUsername() ) || (idUser==userinfo.getIdUser()) ){
+	    	
+		User objUser = objDAO.getObjUser(idUser);
+		if (objUser != null) {
+		request.setAttribute("objUser", objUser);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/admin/users/show.jsp");
+		rd.forward(request, response);
+		
+	    }else{
+	    	response.sendRedirect(request.getContextPath()+"/admin/user/index?msg=4");
+	    	return;
+	    } 
 	}
 
 }
