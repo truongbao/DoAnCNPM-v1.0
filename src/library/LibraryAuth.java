@@ -23,4 +23,22 @@ public class LibraryAuth {
       
       }
       
+      
+      
+      public static boolean CheckLoginPublic(HttpServletRequest request ,HttpServletResponse response) throws IOException{
+      	//kiểm tra đã đăng nhập chưa
+      	//true : login roi
+        	//fail : chua
+            HttpSession session = request.getSession();
+            if(session.getAttribute("sobjUserPublic")==null){//chưa đăng nhâp 
+           	 //chuyen huong
+           	 response.sendRedirect(request.getContextPath()+"/auth/public/login");
+           	 return false;
+            }
+            
+            return true;
+        
+        }
+      
+      
 }

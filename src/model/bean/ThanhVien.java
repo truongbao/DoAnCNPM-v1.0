@@ -7,19 +7,21 @@ public class ThanhVien {
 	private String donVi;
 	private String noiDungNghienCuu;
 	private int idDeTai;
+	private String maSoDeTai;
 	
 	public ThanhVien() {
 		super();
 	}
 
 	public ThanhVien(int idThanhVien, String tenThanhVien, String donVi,
-			String noiDungNghienCuu, int idDeTai) {
+			String noiDungNghienCuu, int idDeTai, String maSoDeTai) {
 		super();
 		this.idThanhVien = idThanhVien;
 		this.tenThanhVien = tenThanhVien;
 		this.donVi = donVi;
 		this.noiDungNghienCuu = noiDungNghienCuu;
 		this.idDeTai = idDeTai;
+		this.maSoDeTai = maSoDeTai;
 	}
 
 	public int getIdThanhVien() {
@@ -62,13 +64,22 @@ public class ThanhVien {
 		this.idDeTai = idDeTai;
 	}
 
+	public String getMaSoDeTai() {
+		return maSoDeTai;
+	}
+
+	public void setMaSoDeTai(String maSoDeTai) {
+		this.maSoDeTai = maSoDeTai;
+	}
+
 	@Override
 	public String toString() {
 		return "ThanhVien [idThanhVien=" + idThanhVien + ", tenThanhVien="
 				+ tenThanhVien + ", donVi=" + donVi + ", noiDungNghienCuu="
-				+ noiDungNghienCuu + ", idDeTai=" + idDeTai + "]";
+				+ noiDungNghienCuu + ", idDeTai=" + idDeTai + ", maSoDeTai="
+				+ maSoDeTai + "]";
 	}
-	
+
 	
 	
 	

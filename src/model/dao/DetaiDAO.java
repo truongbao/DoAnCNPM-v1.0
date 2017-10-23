@@ -123,11 +123,21 @@ public class DetaiDAO {
 		try {
 			st = conn.createStatement();
 			rs = st.executeQuery(sql);
+/*<<<<<<< HEAD
 
 			while (rs.next()) {
 
 				ThanhVien objTV = new ThanhVien(rs.getInt("idThanhVien"), rs.getString("tenThanhVien"),
 						rs.getString("donVi"), rs.getString("noiDungNghienCuu"), rs.getInt("idDeTai"));
+
+=======*/
+			
+			while(rs.next()){
+				
+				ThanhVien objTV = new ThanhVien(rs.getInt("idThanhVien"),rs.getString("tenThanhVien"),rs.getString("donVi"),
+						                        rs.getString("noiDungNghienCuu"),rs.getInt("idDeTai"),rs.getString("maSoDeTai") );
+				
+				
 
 				listTVByDeTai.add(objTV);
 			}

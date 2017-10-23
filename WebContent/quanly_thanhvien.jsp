@@ -1,3 +1,4 @@
+<%@page import="model.bean.ThanhVien"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -70,16 +71,26 @@
 							</th>
 							</thead>
 							<tbody>
+							
+							<%
+							    int demstt = 1 ;
+							    if(request.getAttribute("ListThanhVienByIdUser")!=null){
+							    	ArrayList<ThanhVien> ListThanhVienByIdUser = (ArrayList<ThanhVien>)request.getAttribute("ListThanhVienByIdUser");
+							    	if(ListThanhVienByIdUser.size() > 0){
+							    		for(ThanhVien objTV : ListThanhVienByIdUser){
+							    			
+							%>
+							
 							<tr>
-								<td>1</td>
+								<td> <%=demstt %> </td>
 								<td>
-									<a href="#"> Trương Công Hoài Bảo</a>
+									<a href="#"> <%=objTV.getTenThanhVien() %> </a>
 								</td>
 								<td>
-									<a href="#">Khoa CNTT</a>
+									<a href="#"> <%=objTV.getDonVi() %> </a>
 								</td>
-								<td>Thị giác máy tính</td>
-								<td>MS-001</td>
+								<td> <%=objTV.getNoiDungNghienCuu() %> </td>
+								<td> <%=objTV.getMaSoDeTai() %> </td>
 								<td>
 									<center>
 											<div class="pull-right" >
@@ -95,31 +106,11 @@
 									</center>
 								</td>
 							</tr>
-							<tr>
-								<td>2</td>
-								<td>
-									<a href="#"> Nguyễn Minh Long</a>
-								</td>
-								<td>
-									<a href="#">Khoa CNTT</a>
-								</td>
-								<td>Thị giác máy tính</td>
-								<td>MS-001</td>
-								<td>
-									<center>
-										<div class="pull-right" >
-											<a href="edit_member.html" class="btn btn-default" style=""> Sửa </a>
-									   </div>
-								   </center>
-								</td>
-								<td>
-									<center>
-										<div >
-											<a href="" class="btn btn-danger " style=""> Xóa </a>
-										</div>
-									</center>
-								</td>
-							</tr>
+							   
+							   <% demstt = demstt  + 1; %>
+							
+							<%}}} %>
+							
 							</tbody>
 						</table>
 					</div>

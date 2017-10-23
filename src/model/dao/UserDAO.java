@@ -11,6 +11,7 @@ import library.ConnectMySQLLibrary;
 import model.bean.HocVi;
 import model.bean.Khoa;
 import model.bean.LoaiTaiKhoan;
+import model.bean.ThanhVien;
 import model.bean.User;
 import constant.define;
 
@@ -26,6 +27,43 @@ public class UserDAO {
 	}
 	
 	
+
+	//Hien thi danh sach thanh vien có phân trang ứng vs id chủ nhiệm đề tài (thèn đang login)
+	
+	public ArrayList<ThanhVien> getListThanhVienByIdUser(int idUser){
+		ArrayList<ThanhVien> listTV = new ArrayList<>();
+		conn = connectMySQLLibrary.getConnectMySQL();
+		
+		String sql = "select tv.idThanhVien, tv.tenThanhVien,tv.donVi, tv.noiDungNghienCuu, dt.idDeTai, dt.maSoDeTai FROM thanhvien AS tv"
+				+ " INNER JOIN  detai AS dt ON dt.idDeTai = tv.idDeTai"
+				+ " INNER JOIN  user AS u ON u.idUser = dt.idUser WHERE u.idUser = "+idUser;
+		
+		try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			
+			while(rs.next()){
+			   ThanhVien objTV = new ThanhVien(rs.getInt("idThanhVien"),rs.getString("tenThanhVien"),rs.getString("donVi"), 
+					                           rs.getString("noiDungNghienCuu"),rs.getInt("idDeTai"),rs.getString("maSoDeTai"));
+			   listTV.add(objTV);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				st.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listTV;
+		
+	}
+	
+	
+   //kiểm tra đăng nhập
+
    public User checkLoginPublic(String username, String password) {
 		
         conn = connectMySQLLibrary.getConnectMySQL();
