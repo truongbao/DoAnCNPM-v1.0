@@ -27,6 +27,8 @@ public class PublicAddMemberController extends HttpServlet {
 			return;
 		 }
 	     
+	     
+	     //tao doi tuong userDao kk
 	     UserDAO userDAO  = new UserDAO(); 
 		
 		//gửi danh sách các thanh viên trong trường
