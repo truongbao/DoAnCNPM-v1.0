@@ -30,18 +30,18 @@ public class AuthAdminLoginController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 	    response.setCharacterEncoding("UTF-8");
 	    response.setContentType("text/html");
+
 	    
 	    StringLibrary st = new StringLibrary();//tao doi tuong lop ma hóa
 	    
 	    UserDAO objDAO = new UserDAO();
 	    
 		String username = request.getParameter("username");
-		String password =  st.MD5( request.getParameter("password")) ;
+		String password =  st.MD5( request.getParameter("matKhau")) ;
 		
 		//viet ham lay ra obj user ung vs username , pass
 		User  objUserLogin  = objDAO.checkLoginPublic(username, password);
-		
-		if( objUserLogin !=null){ //kiem tra  user và pass
+		if( objUserLogin !=null && objUserLogin.getIdLoaiTaiKhoan() != 2){ //kiem tra  user và pass
 			//login thanh cong = > tạo session
 
 			HttpSession session = request.getSession();
