@@ -27,7 +27,7 @@ public class DetaiDAO {
 		connectMySQLLibrary = new ConnectMySQLLibrary();
 	}
 
-	// lay ra danh sÃ¡ch Ä‘á»� tÃ i ko phan trang (public)
+	// lay ra danh sach de tai ko phan trang (public)
 	public ArrayList<DeTai> getListDeTai() {
 		ArrayList<DeTai> listDeTai = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();

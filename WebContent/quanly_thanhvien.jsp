@@ -27,7 +27,12 @@
     				</div>
 				</div>
 			    <div class="container">
+			            
+			    
+			    
 			    	<div>
+			    	  
+			    	
 			    		<div class="col-xs-6">
 			    			<h1 class="default_title"><a href="#">Danh sách thành viên</a></h1>
 			    		</div>
@@ -59,6 +64,23 @@
 			    	</div>
 					
 		            <div class="page_content">
+		            
+		                  <%
+					        if(request.getParameter("msg")!=null){
+					          int msg = Integer.parseInt( request.getParameter("msg") );
+					          switch(msg){
+					              case 0: out.print("<h4 style='color :red'> Thêm thất bại ! </h4> ");break; 
+					              case 1: out.print("<h4 style='color :red'> Thêm thành công ! </h4> ");break; 
+					              case 2: out.print("<h4 style='color :red'> Sửa thành công ! </h4> ");break; 
+					              case 3: out.print("<h4 style='color :red'> Sửa thất bại ! </h4> ");break; 
+					              case 5: out.print("</br><p style='color :red;float:left;margin-left:-210px;'>Sửa thất bại ! &nbsp; Bạn chỉ được nhâp thông tin 1 trong 2 trường 'Tên thành viên' </p> ");break; 
+					           	     }
+					           }
+				          %>       
+			    	
+		            
+		            
+		            
 						<table class="table">
 							<thead>
 							<th>
@@ -67,7 +89,7 @@
 								<td>Nội dung nghiên cứu</td>
 								<td>Mã số đề tài</td>
 								<td style="float:right;margin-right:14px;"><center>Sửa</center></td>
-								<td><center> Xóa</center></td>
+								<!-- <td><center> Xóa</center></td> -->
 							</th>
 							</thead>
 							<tbody>
@@ -92,19 +114,21 @@
 								<td> <%=objTV.getNoiDungNghienCuu() %> </td>
 								<td> <%=objTV.getMaSoDeTai() %> </td>
 								<td>
-									<center>
-											<div class="pull-right" >
-												<a href="<%=request.getContextPath()%>/edit-member" class="btn btn-default" style=""> Sửa </a>
-											</div>
-										</center>
+								<center>
+									<div class="pull-right" >
+										<a href="<%=request.getContextPath()%>/edit-member?tidTV=<%=objTV.getIdThanhVien()%>&tnameTV=<%=objTV.getTenThanhVien() %>&tidDeTai=<%=objTV.getIdDeTai() %>" class="btn btn-default" style=""> Sửa </a>
+									</div>
+								</center>
 								</td>
-								<td>
+								
+								<!-- <td>
 									<center>
 										<div >
 											<a href="" class="btn btn-danger " style=""> Xóa </a>
 										</div>
 									</center>
-								</td>
+								</td> -->
+								
 							</tr>
 							   
 							   <% demstt = demstt  + 1; %>

@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import library.ConnectMySQLLibrary;
+import model.bean.DeTai;
 import model.bean.HocVi;
 import model.bean.Khoa;
 import model.bean.LoaiTaiKhoan;
@@ -117,7 +118,7 @@ public class UserDAO {
 		
 		String sql = "select tv.idThanhVien, tv.tenThanhVien,tv.donVi, tv.noiDungNghienCuu, dt.idDeTai, dt.maSoDeTai FROM thanhvien AS tv"
 				+ " INNER JOIN  detai AS dt ON dt.idDeTai = tv.idDeTai"
-				+ " INNER JOIN  user AS u ON u.idUser = dt.idUser WHERE u.idUser = "+idUser;
+				+ " INNER JOIN  user AS u ON u.idUser = dt.idUser WHERE u.idUser = "+idUser+" and u.idUser != tv.idThanhVien ";
 		
 		try {
 			st = conn.createStatement();
@@ -139,6 +140,39 @@ public class UserDAO {
 			}
 		}
 		return listTV;
+		
+	}
+	
+	
+	
+	public ArrayList<DeTai> getListMaSoDeTaiByIdUser(int idUser){
+		ArrayList<DeTai> listDeTai = new ArrayList<>();
+		conn = connectMySQLLibrary.getConnectMySQL();
+		
+		String sql = "select  dt.idDeTai, dt.maSoDeTai FROM detai AS dt "
+				+ " INNER JOIN  user AS u ON u.idUser = dt.idUser WHERE u.idUser = "+idUser ;
+		
+		try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			
+			while(rs.next()){
+				DeTai objDeTai = new DeTai(rs.getInt("idDeTai"), "", rs.getString("maSoDeTai"),
+					    0, "",0, "",null, null,"", 0, "","", "", "","", "", "","", "", "",0, "", "",null, 0);
+
+				listDeTai.add(objDeTai);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				st.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listDeTai;
 		
 	}
 	
@@ -185,6 +219,8 @@ public class UserDAO {
 		return objUser;
 	}
    
+   
+   
    public User getObjUser(int idUser) {
 		
        conn = connectMySQLLibrary.getConnectMySQL();
@@ -221,6 +257,8 @@ public class UserDAO {
 		
 		return objUser;
 	}
+   
+   
 
     //lay ra danh sách loai tai khoan ko phan trang (public)
 	public ArrayList<LoaiTaiKhoan> getListLoaiTK(){
@@ -627,6 +665,123 @@ public boolean checkExistEmail(String email) {
 		
 		return true;
 	}
+
+
+
+	public int addThanhVienPublic(ThanhVien objTV) {
+		int result = 0;
+		conn = connectMySQLLibrary.getConnectMySQL();
+		
+		String sql="insert into thanhvien (idThanhVien,tenThanhVien,donVi,noiDungNghienCuu,idDeTai) values(?,?,?,?,?)";
+		
+		try {
+			pst = conn.prepareStatement(sql);
+			
+			
+			
+			pst.setInt(1, objTV.getIdThanhVien());
+			pst.setString(2, objTV.getTenThanhVien());
+			pst.setString(3, objTV.getDonVi());
+			pst.setString(4, objTV.getNoiDungNghienCuu());
+			pst.setInt(5, objTV.getIdDeTai());
+			
+			result = pst.executeUpdate();
+			
+	 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+
+
+	 public ThanhVien getObjThanhVien(int idTV,String tenTV,int idDeTai) {
+			
+	       conn = connectMySQLLibrary.getConnectMySQL();
+	       
+	       String sql = "select tv.idThanhVien,tv.tenThanhVien,tv.donVi,tv.noiDungNghienCuu, tv.idDeTai, dt.maSoDeTai"
+	       		+ "  from thanhvien AS tv "
+	       		+ "  INNER JOIN detai AS dt ON dt.idDeTai = tv.idDeTai where tv.idThanhVien = ? and tv.tenThanhVien = ? and tv.idDeTai = ? ";
+	       	
+	       
+	       ThanhVien objTV = null;
+	       try {
+				pst = conn.prepareStatement(sql);
+				
+				pst.setInt(1, idTV);
+				pst.setString(2, tenTV);
+				pst.setInt(3, idDeTai);
+				
+				rs = pst.executeQuery();
+				
+				if(rs.next()){
+				     objTV = new ThanhVien(rs.getInt("idThanhVien"),rs.getString("tenThanhVien"),rs.getString("donVi"),rs.getString("noiDungNghienCuu"), 
+				    		               rs.getInt("idDeTai"),rs.getString("maSoDeTai"));
+				}
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally{
+				try {
+					pst.close();
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			return objTV;
+		}
+
+
+	 public int editThanhVienPublic(ThanhVien objTV,int idThanhVien1,int idDeTai1,String tenThanhVien1) {
+			int result = 0;
+			conn = connectMySQLLibrary.getConnectMySQL();
+			
+			String sql=" update thanhvien SET idThanhVien = ? , tenThanhVien = ?, donVi = ?, noiDungNghienCuu = ?, idDeTai = ? "
+					 + " where idThanhVien = "+idThanhVien1+" and idDeTai = "+idDeTai1+" and tenThanhVien = '"+tenThanhVien1+"'";
+			
+			try {
+				pst = conn.prepareStatement(sql);
+				
+				pst.setInt(1, objTV.getIdThanhVien());
+				pst.setString(2, objTV.getTenThanhVien());
+				pst.setString(3, objTV.getDonVi());
+				pst.setString(4, objTV.getNoiDungNghienCuu());
+				pst.setInt(5, objTV.getIdDeTai());
+				
+				result = pst.executeUpdate();
+				
+		 
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally{
+				try {
+					pst.close();
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return result;
+		}
+
+
+
+
+
+
+
+
+
 	
 	
 }
