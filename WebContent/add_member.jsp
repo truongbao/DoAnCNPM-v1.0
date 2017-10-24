@@ -1,3 +1,5 @@
+<%@page import="model.bean.DeTai"%>
+<%@page import="model.bean.ThanhVien"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -32,26 +34,28 @@
 			    	</div>
 					
 		            <div class="page_content">
-						<form class="form">
-							
+		            
+		            
+	            		  <%
+					        if(request.getParameter("msg")!=null){
+					          int msg = Integer.parseInt( request.getParameter("msg") );
+					          switch(msg){
+					              case 5: out.print("<h4 style='color :red; text-align:center;'> Bạn chỉ được nhâp thông tin 1 trong 2 trường 'Tên thành viên'  </h4> ");break; 
+					           	     }
+					           }
+				          %>      
+		            
+		            
+						<form class="form"  action="<%=request.getContextPath() %>/add-member" method="post">
 							
 							<div class="form-group row">
-								<div class="col-xs-3">
-									<label class="p-center">Tên thành viên(Ngoài trường) </label>
-								</div>
-								<div class="col-xs-9">
-									<input type="text" name="" class="form-control" placeholder="Vui lòng nhập tên thành viên  ...">
-								</div>
-								
-							</div>
-							
-							<div class="form-group row">
+							   
 								<div class="col-xs-3">
 									<label class="p-center">Tên thành viên(Trong trường)</label>
 								</div>
 								<div class="col-xs-9">
-									 <select name="idHocVi" class="form-control border-input">
-									    <option  value="0">------------------------ Chọn ------------------------</option>
+									 <select name="idUser" class="form-control border-input">
+									    <option  value="0">------------------------- Chọn ------------------------</option>
 										<%
 										if (request.getAttribute("listUserInSchool") != null){
 											ArrayList<User> listUserInSchool = (ArrayList<User>) request.getAttribute("listUserInSchool");
@@ -60,8 +64,8 @@
 													
 										%>
 										<option value="<%=objUser.getIdUser()%>">
-										    Tên : <%=objUser.getFullName() %>&nbsp;/&nbsp; 
-										    Ngày Sinh : <%=objUser.getNamSinh() %>&nbsp;/&nbsp;
+										    Tên : <%=objUser.getFullName() %>&nbsp;--&nbsp; 
+										   <%--  Ngày Sinh : <%=objUser.getNamSinh() %>&nbsp;/&nbsp; --%>
 										    Khoa : <%=objUser.getTenKhoa() %>
 										</option>
 										
@@ -74,10 +78,22 @@
 							
 							<div class="form-group row">
 								<div class="col-xs-3">
+									<label class="p-center">Tên thành viên(Ngoài trường) </label>
+								</div>
+								<div class="col-xs-9">
+									<input type="text" name="nameTV" class="form-control" placeholder="Vui lòng nhập tên thành viên (nếu có)  ...">
+								</div>
+								
+							</div>
+							
+							
+							
+							<div class="form-group row">
+								<div class="col-xs-3">
 									<label class="p-center">Đơn vị</label>
 								</div>
 								<div class="col-xs-9">
-									<input type="text" name="" class="form-control" placeholder="Vui lòng nhập tên đơn vị ...">
+									<input type="text" name="donVi" class="form-control" placeholder="Vui lòng nhập tên đơn vị ...">
 								</div>
 								
 							</div>
@@ -87,7 +103,7 @@
 									<label class="p-center">Nội dung nghiên cứu</label>
 								</div>
 								<div class="col-xs-9">
-									<textarea class="form-control" rows="5">
+									<textarea class="form-control" rows="5" name="noiDungNghienCuu">
 										
 									</textarea>
 								</div>
@@ -98,7 +114,24 @@
 									<label class="p-center">Mã đề tài</label>
 								</div>
 								<div class="col-xs-9">
-									<input type="text" name="" class="form-control" >
+									 <select name="idDeTai" class="form-control border-input">
+									   <%
+									     String maDT = null;
+										if (request.getAttribute("ListMaSoDeTaiByIdUser") != null){
+											ArrayList<DeTai> ListMaSoDeTaiByIdUser = (ArrayList<DeTai>) request.getAttribute("ListMaSoDeTaiByIdUser");
+											if (ListMaSoDeTaiByIdUser.size() > 0){
+												for (DeTai objDT : ListMaSoDeTaiByIdUser){
+													
+										%>
+										
+										<% if(!objDT.getMaSoDeTai().equalsIgnoreCase(maDT) ){ %>
+										    <option value="<%=objDT.getIdDeTai()%>" > <%=objDT.getMaSoDeTai() %> </option>
+										<%} %>
+										
+                                         <% maDT = objDT.getMaSoDeTai();  %>	
+                                          									
+										<%}}} %>
+									</select>
 								</div>
 								
 							</div>
@@ -111,9 +144,9 @@
 									
 								</div>
 								<div class="col-xs-10 ">
-									
 									<a href="javascript:void()" class="btn btn-lg btn-primary pull-right ml10" >Hủy</a>
-									<a href="javascript:void()" class="btn btn-lg btn-primary pull-right" onclick="showMessage()">Thêm</a>
+									<!-- <a href="javascript:void()" class="btn btn-lg btn-primary pull-right" onclick="showMessage()">Thêm</a> -->
+									<button class="btn btn-lg btn-primary pull-right"> Thêm </button>
 								</div>
 							</div>
 						</form>
