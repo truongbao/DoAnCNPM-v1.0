@@ -70,12 +70,14 @@
 	                            <h4 class="title" style="text-align: center;margin-bottom: 20px; color : white ;border: 1px solid;padding: 4px 4px;border-radius: 4px;  background: #58a808; color: #FFF; font-weight: bold">Danh sách tài khoản</h4>
 	                        
                                 <div class="col-md-10 col-md-offset-1">
-                                    <form action="" method="post">
+                                    <form action=""<%=request.getContextPath() %>/admin/user/index" method="get">
                                     	<div class="row">
                                     		
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <input type="text" name="fullname" class="form-control border-input" placeholder="Họ tên" value="">
+                                                    <input type="text" 
+	                                                    name="key" class="form-control border-input"
+	                                                    value="<%=request.getParameter("key") != null ? request.getParameter("key") : "" %>">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -85,19 +87,28 @@
                                                     	<% 
 
 	                                                    	UserDAO userDao = new UserDAO();
-	                                                    	ArrayList<User> listUsers = userDao.getItemsByPage(0);
+                                                    		
 					                                    	ArrayList<LoaiTaiKhoan> listLoaiTaiKhoan = userDao.getListLoaiTK();
 					                                    	for(int i = 0; i < listLoaiTaiKhoan.size(); i++) {
+					                                    		if (request.getParameter("loai_tai_khoan") != null) {
+					                                    		if (Integer.parseInt(request.getParameter("loai_tai_khoan")) == listLoaiTaiKhoan.get(i).getIdLoaiTaiKhoan()) {
 					                                    %>
+					                                    <option value="<%= listLoaiTaiKhoan.get(i).getIdLoaiTaiKhoan() %>" selected><%= listLoaiTaiKhoan.get(i).getTenLoaiTaiKhoan() %></option>
+                                                    	        <%} else {%>
                                                     	<option value="<%= listLoaiTaiKhoan.get(i).getIdLoaiTaiKhoan() %>"><%= listLoaiTaiKhoan.get(i).getTenLoaiTaiKhoan() %></option>
-                                                    	<%} %>
+                                                    		<%	  }
+					                                    	} else {%>
+					                                    	<option value="<%= listLoaiTaiKhoan.get(i).getIdLoaiTaiKhoan() %>"><%= listLoaiTaiKhoan.get(i).getTenLoaiTaiKhoan() %></option>
+                                                    		
+					                                    	<%}
+					                                    	}%>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                             	<div class="form-group">
-    		                                        <input type="submit" name="search" value="Tìm kiếm" class="btn btn-primary" />
-    		                                        <input type="submit" name="reset" value="Hủy tìm kiếm" class="btn btn-primary" />
+    		                                        <input type="submit" name="search" value="Tìm kiếm" class="btn btn-primary btn-search" />
+    		                                        <input type="submit" name="cancel" value="Hủy tìm kiếm" class="btn btn-primary btn-cancel-search" />
     	                                        </div>
                                             </div>
                                         </div>
@@ -132,6 +143,8 @@
                                     </thead>
                                     <tbody>
                                     <% 
+                                    if(request.getAttribute("listUsers")!=null){
+		                            	ArrayList<User> listUsers = (ArrayList<User>)request.getAttribute("listUsers");
                                     	for(int i = 0; i < listUsers.size(); i++) {
                                     %>
                                         <tr>
@@ -153,7 +166,8 @@
                          						 </form> 
                                             </td>
                                         </tr>
-                    			<% } %>
+                    			<% } 
+                    			}%>
                                         <tr class="text-center text-danger mt-20 no-result-search" hidden>
                                              <td colspan="7"><h5>Không tìm thấy kết quả</h5></td>
                                         </tr>
@@ -163,10 +177,66 @@
 
 								<div class="text-center">
 								    <ul class="pagination">
-								        <li><a href="?p=0" title="">1</a></li> 
-								        <li><a href="?p=1" title="">2</a></li> 
-								        <li><a href="?p=1" title="">3</a></li> 
-								        <li><a href="?p=1" title="">4</a></li> 
+								       <li>
+								    	<%
+											int sumPage = (Integer) request.getAttribute("sumPage");
+										    int current_page = (Integer) request.getAttribute("current_page");
+										    int pageFirst = 0;
+										    int pageEnd = 0;
+										    int numFix = 5;
+										    int move = (int)Math.ceil( (float)numFix / 2);
+										    //nếu current_page > 1 và sumPage > 1 thì thêm nút back
+										    if(current_page > 1 && sumPage > 1){
+										 %>  
+										   <a href="<%=request.getContextPath() %>/admin/user/index?page=<%=current_page-1%>">Back</a> 
+										 <%} %>  	
+										    	
+										    	
+										 <%
+										     //fix lại trang đầu và cuối
+										     if(current_page >=numFix){
+										    	 pageFirst = current_page-move;
+										    	 if(sumPage > (current_page+move) ){
+										    		 pageEnd = current_page+move;
+										    	 }else if(current_page < sumPage && current_page > (sumPage-(numFix-1) ) ){
+										    		 pageFirst = sumPage-(numFix-1);
+										    		 pageEnd = sumPage;
+										    	 }else{
+										    		 pageEnd = sumPage;
+										    	 }
+										     }else{
+												pageFirst=1;
+												if(sumPage > numFix){
+													pageEnd = numFix;
+												}else{
+													pageEnd = sumPage;
+												}
+										     }
+										    //lặp khoản giữa và active trang người dùng click
+										    String active="";
+											for (int i = pageFirst; i <= pageEnd; i++){
+												if(current_page==i){
+													active=" style='color :red; font-weight: bold' ";
+												}else{
+													active="";
+												}
+										 
+										 %>   	
+										   <a <%=active %> href="<%=request.getContextPath() %>/admin/user/index?page=<%=i%>"><%=i %></a>
+										     	
+										   <%}//for %> 	
+										    	
+										
+										  <%
+										    //nếu curren_Page  <sumPage và sumPage > 1 thì thêm Next
+										    if(current_page < sumPage && sumPage > 1){
+										  %>
+										  
+										 	 <a href="<%=request.getContextPath() %>/admin/user/index?page=<%=current_page+1%>">Next</a> 
+										 	
+										  <%} %>
+								        
+								        </li> 
 								    </ul>
 								</div>
                             </div>

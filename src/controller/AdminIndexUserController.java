@@ -31,22 +31,31 @@ public class AdminIndexUserController extends HttpServlet {
          response.setContentType("text/html");
        
          
-        /*//kiểm tra đã đăng nhập chưa
+        //kiểm tra đã đăng nhập chưa
  		if(  LibraryAuth.CheckLogin(request, response)==false){
  			return;
- 		}*/
+ 		}
+        int loaiTaiKhoan = 0;
+        String key = "";
+        if (request.getParameter("cancel") == null){
+        	if (request.getParameter("loai_tai_khoan") != null){
+     			loaiTaiKhoan = Integer.parseInt(request.getParameter("loai_tai_khoan"));
+     		}
+        	if (request.getParameter("key") != null){
+     			key = request.getParameter("key");
+     		}
+ 		}
          
-         
-         
-         /*UserDAO objDAO = new UserDAO();
+         UserDAO objDAO = new UserDAO();
          
          int row_count = define.ROW_COUNT;
  		 int current_page = 1;		
  		 
- 		 //tong so tin
- 		  * +
+ 		 //tong so user
  		 int sumUser = objDAO.countUser();
- 		 
+ 		if (request.getParameter("search") != null){
+ 			sumUser = objDAO.countUserSearch(key, loaiTaiKhoan );
+ 		}
  		// tong so trang
  		 int sumPage = (int)Math.ceil((float)sumUser/row_count);
  		 request.setAttribute("sumPage", sumPage);
@@ -60,12 +69,12 @@ public class AdminIndexUserController extends HttpServlet {
  		int offset = (current_page - 1) * row_count;
  		request.setAttribute("current_page", current_page);
          
- 		ArrayList<User> listUser = objDAO.getItemsByPage(offset);
-		request.setAttribute("listUser", listUser); 
+ 		ArrayList<User> listUsers = objDAO.getItemsByPageSearch(offset, key, loaiTaiKhoan);
+		request.setAttribute("listUsers", listUsers); 
          
         //ArrayList<User> listUser = objDAO.getItems();
         //request.setAttribute("listUser", listUser);
-         */
+         
          RequestDispatcher rd = request.getRequestDispatcher("/admin/users/index.jsp");
          rd.forward(request, response);
 

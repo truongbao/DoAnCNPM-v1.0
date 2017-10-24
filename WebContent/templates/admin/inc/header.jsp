@@ -76,7 +76,7 @@
             <% } %>
 
             <ul class="nav">
-            	<li class="active">
+            	<li>
                     <a href="<%=request.getContextPath() %>/admin">
                         <!-- <i class="ti-user"></i> -->
                         <p>Trang quản lý</p>
@@ -91,7 +91,7 @@
                 </li>
                 
                  <li class="">
-                    <a href="<%=request.getContextPath() %>/admin/users">
+                    <a href="<%=request.getContextPath() %>/admin/user/index">
                         <!-- <i class="ti-user"></i> -->
                         <p>Quản lý tài khoản</p>
                     </a>

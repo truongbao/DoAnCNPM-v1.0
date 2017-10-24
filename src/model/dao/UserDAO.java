@@ -513,6 +513,46 @@ public class UserDAO {
 		return total;
 
 	}
+	
+	public int countUserSearch(String key, int loaiTaiKhoan) {
+		if ((key == "") && (loaiTaiKhoan == 0)) return this.countUser();
+		int total = 0;
+		conn = connectMySQLLibrary.getConnectMySQL();
+		String sql = "select count(*) AS total from user";
+		if (key != "") {
+			sql += " where ((userName like '%" 
+				+ key 
+				+ "%') or (fullName like '%" 
+				+ key 
+				+ "%') or (email like '%" 
+				+ key 
+				+ "%'))";
+		}
+		if (loaiTaiKhoan != 0){
+			String pre = key != "" ? " and" : " where";
+			sql += pre + "(idLoaiTaiKhoan = " + loaiTaiKhoan + ") ";
+		}
+        try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			if(rs.next()){
+				total = rs.getInt("total");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			 try {
+				rs.close();
+				st.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return total;
+
+	}
 
 	public ArrayList<User> getItemsByPage(int offset) {
 		ArrayList<User> listUser = new ArrayList<>();
@@ -559,10 +599,70 @@ public class UserDAO {
 			}
 		}
 		return listUser;
-
-		
 	}
 	
+	public ArrayList<User> getItemsByPageSearch(int offset, String key, int loaiTaiKhoan) {
+		if ((key == "") && (loaiTaiKhoan == 0)) return this.getItemsByPage(offset);
+
+		ArrayList<User> listUser = new ArrayList<>();
+		conn = connectMySQLLibrary.getConnectMySQL();
+		
+		String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocVi from user AS u "
+	       		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
+	       		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
+	       		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi";
+		if (key != "") {
+			sql += " where ((userName like '%" 
+				+ key 
+				+ "%') or (fullName like '%" 
+				+ key 
+				+ "%') or (email like '%" 
+				+ key 
+				+ "%'))";
+		}
+		if (loaiTaiKhoan != 0){
+			String pre = key != "" ? " and" : " where";
+			sql += pre + "(u.idLoaiTaiKhoan = " + loaiTaiKhoan + ") ";
+		}
+		sql += " ORDER BY idUser DESC LIMIT "+offset+","+define.ROW_COUNT;
+		System.out.println(sql);
+		try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			
+			while(rs.next()){
+			   User objUser = new User(
+					   rs.getInt("idUser"),
+					   rs.getString("fullName"),
+					   rs.getString("chucDanhKhoaHoc") ,
+					   rs.getString("diaChiCoQuan") ,
+			           rs.getString("dienThoaiCoQuan"),
+			           rs.getInt("idHocVi") ,
+			           rs.getString("tenHocVi"),
+			           rs.getString("namSinh") ,
+			           rs.getString("diaChiNhaRieng") , 
+			           rs.getString("dienThoaiNhaRieng") ,
+			           rs.getString("email") ,
+			           rs.getString("fax"),rs.getString("userName") , 
+			           rs.getString("matKhau") ,
+			           rs.getInt("idLoaiTaiKhoan"),
+			           rs.getString("tenLoaiTaiKhoan") ,
+			           rs.getInt("idKhoa"), 
+			           rs.getString("tenKhoa") );
+               listUser.add(objUser);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				st.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listUser;
+	}
 	
 	public boolean checkExistUserName(String username) {
 		
