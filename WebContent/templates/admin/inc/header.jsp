@@ -39,6 +39,9 @@
 	.modal-backdrop {
 	  z-index: 0;
 	}
+	.datetimepicker {
+		display:none;
+	}
     </style>
 
 

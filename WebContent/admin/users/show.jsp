@@ -94,7 +94,7 @@
                                           <a href="<%=request.getContextPath() %>/admin/user/index">
                                             <button type="button" class="btn btn-warning mt-10">Trở về</button>
                                           </a>
-                                          <a href="<%=request.getContextPath() %>/admin/user/edit">
+                                          <a href="<%=request.getContextPath() %>/admin/user/form-edit?uid=<%=objUser.getIdUser() %>">
                                             <button type="button" class="btn btn-primary mt-10">Sửa</button>
                                           </a>
                                         </div>
