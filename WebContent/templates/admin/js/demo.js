@@ -182,3 +182,12 @@ $('.link-xoa').bind('click',function(e){
         $('#confirm').modal('hide');
     })
 });
+
+// active link in left bar
+$(document).ready(function() {
+	// get current URL path and assign 'active' class
+	var pathName = window.location.pathname;
+	var pathParent = pathName.slice(0, pathName.lastIndexOf("/"));
+	$('.nav > li > a[href="'+pathName+'"]').parent().addClass('active');
+	$('.nav > li > a[href="'+pathParent+'/index"]').parent().addClass('active');
+})
