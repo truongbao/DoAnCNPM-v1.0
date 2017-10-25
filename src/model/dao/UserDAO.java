@@ -158,7 +158,7 @@ public class UserDAO {
 			
 			while(rs.next()){
 				DeTai objDeTai = new DeTai(rs.getInt("idDeTai"), "", rs.getString("maSoDeTai"),
-					    0, "",0, "",null, null,"", 0, "","", "", "","", "", "","", "", "",0, "", "",null, 0);
+					    0, "",0, "",null, null,"", 0, "","", "", "","", "", "","", "", "",0, "", "",null, 0, "");
 
 				listDeTai.add(objDeTai);
 			}
@@ -202,7 +202,7 @@ public class UserDAO {
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
 						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
-						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"));
+						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
 				listDeTai.add(objDeTai);
 			}
 		} catch (SQLException e) {

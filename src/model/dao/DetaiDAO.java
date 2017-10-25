@@ -11,6 +11,7 @@ import library.ConnectMySQLLibrary;
 import model.bean.DeTai;
 import model.bean.HocVi;
 import model.bean.Khoa;
+import model.bean.LinhVucNC;
 import model.bean.LoaiTaiKhoan;
 import model.bean.ThanhVien;
 import model.bean.User;
@@ -52,7 +53,7 @@ public class DetaiDAO {
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
 						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
-						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"));
+						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
 
 				listDeTai.add(objDeTai);
 			}
@@ -95,7 +96,7 @@ public class DetaiDAO {
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
 						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
-						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"));
+						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload") );
 
 				listDeTai.add(objDeTai);
 			}
@@ -174,7 +175,7 @@ public class DetaiDAO {
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
 						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
-						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"));
+						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
 			}
 
 		} catch (SQLException e) {
@@ -218,7 +219,7 @@ public class DetaiDAO {
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
 						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
-						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"));
+						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
 				listDeTai.add(objDeTai);
 			}
 		} catch (SQLException e) {
@@ -233,6 +234,39 @@ public class DetaiDAO {
 		}
 		return listDeTai;
 	}
+	
+	
+	//lay ra danh sách linh vuc nghien cuu ko phan trang (public)
+	public ArrayList<LinhVucNC> getListLinhVucNC(){
+		ArrayList<LinhVucNC> listLinhVucNC = new ArrayList<>();
+		conn = connectMySQLLibrary.getConnectMySQL();
+		
+		String sql = "select * FROM linhvucnghiencuu ORDER BY idLinhVucNghienCuu DESC";
+		
+		try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			
+			while(rs.next()){
+				LinhVucNC objLVNC = new LinhVucNC(rs.getInt("idLinhVucNghienCuu") ,rs.getString("tenLinhVucNghienCuu") );
+			   listLinhVucNC.add(objLVNC);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				st.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listLinhVucNC;
+		
+	}
+	
+	
+	
 
 	/*
 	 * //lay ra danh sÃ¡ch hoc vi ko phan trang (public) public ArrayList<HocVi>
@@ -361,7 +395,7 @@ public class DetaiDAO {
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
 						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
-						rs.getTimestamp("thoiGianDangKy"), idKhoa);
+						rs.getTimestamp("thoiGianDangKy"), idKhoa, rs.getString("linkUpload"));
 				listObj.add(objDetai);
 			}
 		} catch (SQLException e) {
@@ -401,7 +435,7 @@ public class DetaiDAO {
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
 						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
-						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"));
+						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
 				listObj.add(objDetai);
 			}
 		} catch (SQLException e) {
@@ -472,7 +506,7 @@ public class DetaiDAO {
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
 						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
-						rs.getTimestamp("thoiGianDangKy"), idFaculty);
+						rs.getTimestamp("thoiGianDangKy"), idFaculty, rs.getString("linkUpload"));
 				listObj.add(objDetai);
 			}
 		} catch (SQLException e) {
