@@ -67,9 +67,9 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-	                            <h4 class="title" style="text-align: center;margin-bottom: 20px; color : white ;border: 1px solid;padding: 4px 4px;border-radius: 4px;  background: #58a808; color: #FFF; font-weight: bold">Danh sách tài khoản</h4>
+	                            <h4 class="title">Danh sách tài khoản</h4>
 	                        
-                                <div class="col-md-10 col-md-offset-1">
+                                <div class="col-md-9 col-md-offset-1">
                                     <form action=""<%=request.getContextPath() %>/admin/user/index" method="get">
                                     	<div class="row">
                                     		
@@ -116,7 +116,7 @@
                                     </form>
                                 </div>
                                 
-                                <a href="<%=request.getContextPath() %>/admin/user/form-add" class="addtop"><img src="../assets/img/add.png" alt="" /> Thêm</a>
+                                <a href="<%=request.getContextPath() %>/admin/user/form-add" class="addtop"><img src="<%=request.getContextPath() %>/templates/admin/img/add.png" alt="" /> Thêm</a>
                             	<div class="text-center text-danger col-md-12" style="font-size: 18px;font-weight: bold;">
                             	 <%
 							      if(request.getParameter("msg")!=null){

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import library.LibraryAuth;
+import model.bean.DeTai;
 import model.bean.User;
 import model.dao.UserDAO;
 
@@ -42,9 +44,10 @@ public class AdminShowDetailUserController extends HttpServlet {
 //	    if("admin".equals(objDAO.getItem( userinfo.getIdUser()).getUsername() ) || (idUser==userinfo.getIdUser()) ){
 	    	
 		User objUser = objDAO.getObjUser(idUser);
+		ArrayList<DeTai> listDeTai = objDAO.getListDeTaiByIdUser(idUser);
 		if (objUser != null) {
 		request.setAttribute("objUser", objUser);
-		
+		request.setAttribute("listDeTai", listDeTai);
 		RequestDispatcher rd = request.getRequestDispatcher("/admin/users/show.jsp");
 		rd.forward(request, response);
 		
