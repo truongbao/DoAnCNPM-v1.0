@@ -30,6 +30,7 @@ public class DeTai {
 	private String capDeTai;
 	private Timestamp thoiGianDangKy;
     private int idKhoa;
+    private String linkUpload;
 	
 	
 	public DeTai() {
@@ -46,7 +47,7 @@ public class DeTai {
 			String mucTieu, String phamViNghienCuu, String phuongPhapNghienCuu,
 			String noiDung, String sanPham, String hieuQua,
 			int kinhPhiThucHien, String trangThai, String capDeTai,
-			Timestamp thoiGianDangKy, int idKhoa) {
+			Timestamp thoiGianDangKy, int idKhoa, String linkUpload) {
 		super();
 		this.idDeTai = idDeTai;
 		this.tenDeTai = tenDeTai;
@@ -74,6 +75,7 @@ public class DeTai {
 		this.capDeTai = capDeTai;
 		this.thoiGianDangKy = thoiGianDangKy;
 		this.idKhoa = idKhoa;
+		this.linkUpload = linkUpload;
 	}
 
 
@@ -335,6 +337,18 @@ public class DeTai {
 	public void setIdKhoa(int idKhoa) {
 		this.idKhoa = idKhoa;
 	}
+
+
+	public String getLinkUpload() {
+		return linkUpload;
+	}
+
+
+	public void setLinkUpload(String linkUpload) {
+		this.linkUpload = linkUpload;
+	}
+
+
 	
 	
 	

@@ -158,7 +158,7 @@ public class UserDAO {
 			
 			while(rs.next()){
 				DeTai objDeTai = new DeTai(rs.getInt("idDeTai"), "", rs.getString("maSoDeTai"),
-					    0, "",0, "",null, null,"", 0, "","", "", "","", "", "","", "", "",0, "", "",null, 0);
+					    0, "",0, "",null, null,"", 0, "","", "", "","", "", "","", "", "",0, "", "",null, 0, "");
 
 				listDeTai.add(objDeTai);
 			}

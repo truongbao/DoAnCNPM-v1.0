@@ -11,6 +11,13 @@
 	
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <head>
+
+        <script src="<%=request.getContextPath()%>/library/js/jquery-3.1.1.min.js"> </script>
+	    <script src="<%=request.getContextPath()%>/library/js/jquery.validate.min.js"> </script>
+	    <script src="<%=request.getContextPath()%>/library/ckeditor/ckeditor.js"> </script>
+	    <script src="<%=request.getContextPath() %>/ckfinder/ckfinder.js"> </script>
+
+
         <title>Trang Chủ</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
