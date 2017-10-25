@@ -16,9 +16,9 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-	                            <h4 class="title" style="text-align: center;margin-bottom: 20px; color : white ;border: 1px solid;padding: 4px 4px;border-radius: 4px;  background: #58a808; color: #FFF; font-weight: bold">Danh sách hơp đồng</h4>
+	                            <h4 class="title">Quản lý hơp đồng</h4>
                                 
-                                <a href="<%=request.getContextPath() %>/admin/hopdong/form-add" class="addtop"><img src="../assets/img/add.png" alt="" /> Thêm</a>
+                                <a href="<%=request.getContextPath() %>/admin/hopdong/form-add" class="addtop"><img src="<%=request.getContextPath() %>/templates/admin/img/add.png" alt="" /> Thêm</a>
                             	<div class="text-center text-danger col-md-12" style="font-size: 18px;font-weight: bold;">
                             	 <%
 							      if(request.getParameter("msg")!=null){
@@ -67,7 +67,10 @@
 						                              data-confirm="Are you sure you want to delete?">
 						                              <img src="<%= request.getContextPath() %>/templates/admin/img/del.gif" alt="" />
 						                            </a>
-                         						 </form> 
+                         						 </form> &nbsp;||&nbsp;
+                         						 <form action="" style=" display: inline;">
+                         						 	<button class="btn btn-info btn-sm">Xuất</button>
+                         						 </form>
                                             </td>
                                         </tr>
                     			<% } 

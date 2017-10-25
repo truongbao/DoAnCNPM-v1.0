@@ -58,7 +58,7 @@
 
 <div class="wrapper">
     <div class="sidebar" data-background-color="white" data-active-color="danger">
-        <div class="sidebar-wrapper">
+        <div class="sidebar-wrapper" style="background: black; color: white;">
         	<%
     	    if(session.getAttribute("sobjUser")!=null){//login rồi
     	         User sobjUser = (User)session.getAttribute("sobjUser");
@@ -144,7 +144,7 @@
     </div>
     <div class="main-panel">
         <nav class="navbar navbar-default">
-            <div class="container-fluid">
+            <div class="container-fluid" style="background: black">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle">
                         <span class="sr-only">Toggle navigation</span>
