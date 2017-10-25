@@ -70,6 +70,50 @@ public class DetaiDAO {
 		return listDeTai;
 
 	}
+	
+	
+	// lay ra danh sach de tai ko phan trang (public)
+		public ArrayList<DeTai> getListDeTaiDK() {
+			ArrayList<DeTai> listDeTai = new ArrayList<>();
+			conn = connectMySQLLibrary.getConnectMySQL();
+
+			String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu FROM detai AS dt "
+					+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
+					+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
+					+ "  WHERE dt.trangThai = "+define.DangChoXetDeTai;
+
+			try {
+				st = conn.createStatement();
+				rs = st.executeQuery(sql);
+
+				while (rs.next()) {
+					DeTai objDeTai = new DeTai(rs.getInt("idDeTai"), rs.getString("tenDeTai"), rs.getString("maSoDeTai"),
+							rs.getInt("idLinhVucNghienCuu"), rs.getString("tenLinhVucNghienCuu"),
+							rs.getInt("idLoaiHinhNghienCuu"), "",
+							rs.getTimestamp("thoiGianBatDau"), rs.getTimestamp("thoiGianKetThuc"),
+							rs.getString("donViChuTri"), rs.getInt("idUser"), rs.getString("fullName"),
+							rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
+							rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
+							rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
+							rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+							rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
+
+					listDeTai.add(objDeTai);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					st.close();
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return listDeTai;
+
+		}
+	
 
 	public ArrayList<DeTai> getListDeTai(int offset, int row_count) {
 		ArrayList<DeTai> listDeTai = new ArrayList<>();
@@ -637,6 +681,56 @@ public class DetaiDAO {
 		return sql + " YEAR(thoiGianDangKy) = " + year + " AND trangThai = '" + type_stat + "' AND capDeTai = '"
 				+ type_detai + "'";
 	}
+	
+	
+	public int addDeTaiPublic(DeTai objDeTai) {
+		int result = 0;
+		conn = connectMySQLLibrary.getConnectMySQL();
+		
+		
+		String sql="insert into detai (tenDeTai,idLinhVucNghienCuu,idUser,tinhCapThiet,"
+				+ " mucTieu,noiDung,sanPham,hieuQua,kinhPhiThucHien,trangThai,idKhoa ) values(?,?,?,?,?,?,?,?,?,?,?)";
+		
+		try {
+			pst = conn.prepareStatement(sql);
+			
+			pst.setString(1, objDeTai.getTenDeTai());
+			pst.setInt(2, objDeTai.getIdLinhVucNghienCuu());
+			pst.setInt(3, objDeTai.getIdUser());
+			pst.setString(4, objDeTai.getTinhCapThiet());
+			pst.setString(5, objDeTai.getMucTieu());
+			pst.setString(6, objDeTai.getNoiDung());
+			pst.setString(7, objDeTai.getSanPham());
+			pst.setString(8, objDeTai.getHieuQua());
+			pst.setInt(9, objDeTai.getKinhPhiThucHien());
+			pst.setString(10, objDeTai.getTrangThai());
+			pst.setInt(11, objDeTai.getIdKhoa());
+			
+			
+			result = pst.executeUpdate();
+			
+	 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
 
 	
 }

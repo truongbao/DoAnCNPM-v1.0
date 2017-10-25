@@ -41,6 +41,18 @@
 			    	%>
 					
 		            <div class="page_content">
+		                  <%
+					        if(request.getParameter("msg")!=null){
+					          int msg = Integer.parseInt( request.getParameter("msg") );
+					          switch(msg){
+					              case 0: out.print("<h4 style='color :red'>  Thất bại ! </h4> ");break; 
+					              case 1: out.print("<h4 style='color :red'> Thêm thành công ! </h4> ");break; 
+					             
+					           	 }
+					        }
+				          %>       
+		            
+		            
 						<form class="form" action="<%=request.getContextPath() %>/register-detai" method="post">
 							<div class="form-group row">
 								<div class="col-xs-3">
@@ -141,7 +153,7 @@
 									<label class="p-center">Sản phẩm:</label>
 								</div>
 								<div class="col-xs-9">
-									<textarea id="cktext4" class="form-control" rows="4">
+									<textarea id="cktext4" name="sanPham" class="form-control" rows="4">
 										
 									</textarea>
 									
@@ -158,7 +170,7 @@
 									<label class="p-center">Hiệu quả dự kiến:</label>
 								</div>
 								<div class="col-xs-9">
-									<input type="text" name="" class="form-control">
+									<input type="text" name="hieuQuaDukien" class="form-control">
 								</div>
 							</div>
 							
@@ -167,7 +179,7 @@
 									<label class="p-center">Nhu cầu kinh phí dự kiến:</label>
 								</div>
 								<div class="col-xs-9">
-									<input type="number" name="" class="form-control">
+									<input type="number" name="kinhPhiThucHien" class="form-control">
 								</div>
 								
 							</div>	
@@ -177,7 +189,7 @@
 									<label class="p-center">Thông tin liên lạc của người đề xuất (điện thoại/email):</label>
 								</div>
 								<div class="col-xs-9">
-									<textarea disabled="disabled" id="cktext5" class="form-control ckeditor" rows="4">
+									<textarea disabled="disabled" id="cktext5" name="thongTinLienHe" class="form-control ckeditor" rows="4">
 										Email :  <%=objUser.getEmail() %> </br>
 										Phone : <%=objUser.getDienThoaiNhaRieng() %>
 									</textarea>
@@ -197,7 +209,8 @@
 								<div class="col-xs-9 ">
 									
 									<a href="javascript:void()" class="btn btn-lg btn-primary pull-right ml10" >Hủy</a>
-									<a href="javascript:void()" class="btn btn-lg btn-primary pull-right" onclick="showMessage()">Đăng ký</a>
+									<!-- <a href="javascript:void()" class="btn btn-lg btn-primary pull-right" onclick="showMessage()">Đăng ký</a> -->
+									<button class="btn btn-lg btn-primary pull-right">  Cập nhật</button>
 								</div>
 							</div>
 						</form>

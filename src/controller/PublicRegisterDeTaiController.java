@@ -9,7 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import constant.define;
 import library.LibraryAuth;
+import library.StringLibrary;
+import model.bean.DeTai;
 import model.bean.User;
 import model.dao.DetaiDAO;
 import model.dao.UserDAO;
@@ -53,6 +56,8 @@ public class PublicRegisterDeTaiController extends HttpServlet {
 		 RequestDispatcher rd = request.getRequestDispatcher("/register_detai.jsp");
          rd.forward(request, response);
 	}
+	
+	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
@@ -64,10 +69,41 @@ public class PublicRegisterDeTaiController extends HttpServlet {
 			return;
 		}
 		
+		DetaiDAO detaiDAO = new DetaiDAO();
 		
+		User objUser = null;
+		HttpSession session = request.getSession();
+		if(session.getAttribute("sobjUserPublic")!=null){
+            objUser = (User)session.getAttribute("sobjUserPublic");
+        }
 		
+		String tenDeTai = request.getParameter("tenDeTai");
+		int idLinhVucNghienCuu = Integer.parseInt(request.getParameter("idLinhVucNghienCuu"));
+		String tinhCapThiet = request.getParameter("tinhCapThiet");
+		String mucTieu = request.getParameter("mucTieu");
+		String noiDung = request.getParameter("noiDungChinh");
+		String sanPham = request.getParameter("sanPham");
+		String hieuQua = request.getParameter("hieuQuaDukien");
+		int kinhPhiThucHien = Integer.parseInt(request.getParameter("kinhPhiThucHien"));
+		int idUser = objUser.getIdUser();
 		
+		DeTai objDeTai = new DeTai( 0, tenDeTai, "", idLinhVucNghienCuu,
+									"", 0, "", null, null, "", idUser, "", "", "",
+									tinhCapThiet, mucTieu, "", "",
+									noiDung, sanPham, hieuQua, kinhPhiThucHien, 
+									define.DangChoXetDeTai, "", null, objUser.getIdKhoa(), "");
         
+		 if(detaiDAO.addDeTaiPublic(objDeTai) >  0){
+				response.sendRedirect(request.getContextPath()+"/list-register-detai?msg=1");
+				return;
+		 }else{
+				response.sendRedirect(request.getContextPath()+"/list-register-detai?msg=0");
+				return;
+		 }
+		
+		
+		
+		
 	}
 	
 	
