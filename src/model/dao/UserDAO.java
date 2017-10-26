@@ -158,7 +158,7 @@ public class UserDAO {
 			
 			while(rs.next()){
 				DeTai objDeTai = new DeTai(rs.getInt("idDeTai"), "", rs.getString("maSoDeTai"),
-					    0, "",0, "",null, null,"", 0, "","", "", "","", "", "","", "", "",0, "", "",null, 0);
+					    0, "",0, "",null, null,"", 0, "","", "", "","", "", "","", "", "",0, "", "",null, 0, "");
 
 				listDeTai.add(objDeTai);
 			}
@@ -202,7 +202,7 @@ public class UserDAO {
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
 						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
-						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"));
+						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
 				listDeTai.add(objDeTai);
 			}
 		} catch (SQLException e) {
@@ -226,7 +226,7 @@ public class UserDAO {
 				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
-				+ " where dt.idUser = ? and trangThai = 'Đã duyệt' ORDER BY idDeTai ASC";
+				+ " where dt.idUser = ? and trangThai = '11' ORDER BY idDeTai ASC";
 		// String sql = "select * FROM detai WHERE idKhoa = ? ORDER BY idDeTai
 		// ASC";
 		DeTai objDeTai = null;
@@ -245,7 +245,7 @@ public class UserDAO {
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
 						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
-						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"));
+						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
 				listDeTai.add(objDeTai);
 			}
 		} catch (SQLException e) {
@@ -487,7 +487,7 @@ public class UserDAO {
 		String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocVi from user AS u "
 	       		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
 	       		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
-	       		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi ORDER BY id_User DESC";
+	       		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi ORDER BY idUser DESC";
 		
 		try {
 			st = conn.createStatement();

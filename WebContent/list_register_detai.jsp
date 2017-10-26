@@ -1,3 +1,5 @@
+<%@page import="constant.define"%>
+<%@page import="model.bean.DeTai"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -58,28 +60,56 @@
 			    	</div>
 					
 		            <div class="page_content">
+		            
+		               <%
+					        if(request.getParameter("msg")!=null){
+					          int msg = Integer.parseInt( request.getParameter("msg") );
+					          switch(msg){
+					              case 0: out.print("<h4 style='color :red'>  Thất bại ! </h4> ");break; 
+					              case 1: out.print("<h4 style='color :red'> Thêm thành công ! </h4> ");break; 
+					             
+					           	 }
+					        }
+				          %>       
+		            
+		            
 						<table class="table">
 							<thead>
 							<th>
 								<td>Tên đề tài</td>
 								<td>Chủ nhiệm đề tài</td>
-								<td>Thời gian</td>
+								<td>Thời gian đăng ký</td>
 								<td>Trạng thái</td>
 								<td><center> Sửa</center></td>
 								<td><center> Xóa</center></td>
 							</th>
 							</thead>
 							<tbody>
+							
+							
+							<%
+							    int demstt = 1 ;
+							    if(request.getAttribute("listDeTaiDK")!=null){
+							    	ArrayList<DeTai> listDeTaiDK = (ArrayList<DeTai>)request.getAttribute("listDeTaiDK");
+							    	if(listDeTaiDK.size() > 0){
+							    		for(DeTai objDT : listDeTaiDK){
+							    			
+							%>
 							<tr>
-								<td>1</td>
+								<td><%=demstt %></td>
 								<td>
-									<a href="<%=request.getContextPath()%>/detail-dkdt"> Nghiên cứu giải tích 1 </a>
+									<a href="<%=request.getContextPath()%>/detail-dkdt"> <%=objDT.getTenDeTai() %> </a>
 								</td>
 								<td>
-									<a href="#">Bạch Linh</a>
+									<a href="#"> <%=objDT.getFullName() %> </a>
 								</td>
-								<td>12/9/2017</td>
-								<td>Đang đề xuất</td>
+								<td> <%=objDT.getThoiGianDangKy() %> </td>
+								<td>
+								  <%if("2".equals(objDT.getTrangThai())) {%>
+								        Đang chờ xét đề tài
+								   <%} %>
+							    </td>
+							    
 								<td>
 									<center>
 										<button class="btn btn-primary">
@@ -95,31 +125,11 @@
 									</center>
 								</td>
 							</tr>
-							<tr>
-								<td>2</td>
-								<td>
-									<a href="<%=request.getContextPath()%>/detail-dkdt"> Chơi game thần thánh </a>
-								</td>
-								<td>
-									<a href="#">Bạch Linh</a>
-								</td>
-								<td>13/9/2017</td>
-								<td>Khoa đã duyệt</td>
-								<td>
-									<center>
-										<button class="btn btn-primary">
-											Sửa
-										</button>
-									</center>
-								</td>
-								<td>
-									<center>
-										<button class="btn btn-danger">
-											Xóa
-										</button>
-									</center>
-								</td>
-							</tr>
+							
+							  <% demstt = demstt  + 1; %>
+							
+							<%}}} %>
+							
 							</tbody>
 						</table>
 					</div>

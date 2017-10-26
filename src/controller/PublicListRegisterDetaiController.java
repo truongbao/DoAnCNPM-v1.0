@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import library.LibraryAuth;
+import model.dao.DetaiDAO;
+
 public class PublicListRegisterDetaiController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -16,13 +19,27 @@ public class PublicListRegisterDetaiController extends HttpServlet {
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       doPost(request, response);
+		request.setCharacterEncoding("UTF-8");
+	    response.setCharacterEncoding("UTF-8");
+	    response.setContentType("text/html");
+	    
+	    //kiểm tra đã đăng nhập ở public chưa
+		if(  LibraryAuth.CheckLoginPublic(request, response)==false){
+			return;
+		}
+		
+		DetaiDAO detaiDAO =new DetaiDAO();
+		    
+		request.setAttribute("listDeTaiDK", detaiDAO.getListDeTaiDK() );
+		
+		 RequestDispatcher rd = request.getRequestDispatcher("/list_register_detai.jsp");
+         rd.forward(request, response);       
+         
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
          
-         RequestDispatcher rd = request.getRequestDispatcher("/list_register_detai.jsp");
-         rd.forward(request, response);
+        
 	}
 
 }

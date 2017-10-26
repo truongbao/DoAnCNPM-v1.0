@@ -48,7 +48,7 @@ public class ListDeTaiFollowGiangVienController extends HttpServlet {
 		out.println("</select>");
 		}
 		else {
-			out.println("<div>Khong co de tai!</div>");
+			out.println("<select name='de_tai' class='form-control border-input'>Khong co de tai!</select>");
 		}
         
 		

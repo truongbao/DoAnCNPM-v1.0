@@ -42,7 +42,6 @@ public class HopDongDAO {
 					  				   rs.getString("chucVuKH") ,
 					  				   rs.getString("diaChiKH"),
 					  				   rs.getString("emailKH") ,
-					  				   rs.getInt("idNguoiDaiDien"),
 					  				   rs.getInt("idGiangVien") ,
 					  				   rs.getInt("idDeTai") , 
 					  				   rs.getTimestamp("thoiGianBatDau") ,
@@ -112,7 +111,6 @@ public class HopDongDAO {
 		  				   rs.getString("chucVuKH") ,
 		  				   rs.getString("diaChiKH"),
 		  				   rs.getString("emailKH") ,
-		  				   rs.getInt("idNguoiDaiDien"),
 		  				   rs.getInt("idGiangVien") ,
 		  				   rs.getInt("idDeTai") , 
 		  				   rs.getTimestamp("thoiGianBatDau") ,
@@ -153,7 +151,6 @@ public class HopDongDAO {
 		  				   rs.getString("chucVuKH") ,
 		  				   rs.getString("diaChiKH"),
 		  				   rs.getString("emailKH") ,
-		  				   rs.getInt("idNguoiDaiDien"),
 		  				   rs.getInt("idGiangVien") ,
 		  				   rs.getInt("idDeTai") , 
 		  				   rs.getTimestamp("thoiGianBatDau") ,
@@ -186,7 +183,6 @@ public class HopDongDAO {
 				+ "chucVuKH,"
 				+ "diaChiKH,"
 				+ "emailKH,"
-				+ "idNguoiDaiDien,"
 				+ "idGiangVien,"
 				+ "idDeTai,"
 				+ "thoiGianBatDau,"
@@ -194,7 +190,7 @@ public class HopDongDAO {
 				+ "kinhPhi,"
 				+ "thoiGianKyHopDong,"
 				+ "dienThoaiKH,"
-				+ "trangThaiHopDong) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "trangThaiHopDong) values(?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		
 		try {
@@ -204,15 +200,14 @@ public class HopDongDAO {
 			pst.setString(2, objHopDong.getChucVuKH());
 			pst.setString(3, objHopDong.getDiaChiKH());
 			pst.setString(4, objHopDong.getEmailKH());
-			pst.setInt(5, objHopDong.getIdNguoiDaiDien());
-			pst.setInt(6, objHopDong.getIdGiangVien());
-			pst.setInt(7, objHopDong.getIdDeTai());
-			pst.setTimestamp(8, objHopDong.getThoiGianBatDau());
-			pst.setTimestamp(9, objHopDong.getThoiGianKetThuc());
-			pst.setInt(10, objHopDong.getKinhPhi());
-			pst.setTimestamp(11, objHopDong.getThoiGianKyHopDong());
-			pst.setString(12, objHopDong.getDienThoaiKH());
-			pst.setString(13, objHopDong.getTrangThaiHopDong());
+			pst.setInt(5, objHopDong.getIdGiangVien());
+			pst.setInt(6, objHopDong.getIdDeTai());
+			pst.setTimestamp(7, objHopDong.getThoiGianBatDau());
+			pst.setTimestamp(8, objHopDong.getThoiGianKetThuc());
+			pst.setInt(9, objHopDong.getKinhPhi());
+			pst.setTimestamp(10, objHopDong.getThoiGianKyHopDong());
+			pst.setString(11, objHopDong.getDienThoaiKH());
+			pst.setString(12, objHopDong.getTrangThaiHopDong());
 			
 			result = pst.executeUpdate();
 			
@@ -235,7 +230,7 @@ public class HopDongDAO {
 		conn = connectMySQLLibrary.getConnectMySQL();
 		
        
-       String sql = "UPDATE hopdong SET tenKhachHang = ?, chucVuKH = ?, diaChiKH = ?, emailKH = ?,idNguoiDaiDien = ?, "
+       String sql = "UPDATE hopdong SET tenKhachHang = ?, chucVuKH = ?, diaChiKH = ?, emailKH = ?, "
        		+ " idGiangVien = ?,idDeTai = ?, thoiGianBatDau = ?,thoiGianKetThuc = ?,kinhPhi = ?, "
        		+ " thoiGianKyHopDong = ?,dienThoaiKH = ?,trangThaiHopDong = ? "
        		+ " WHERE idHopDong = ?";
@@ -246,16 +241,15 @@ public class HopDongDAO {
 			pst.setString(2, objHopDong.getChucVuKH());
 			pst.setString(3, objHopDong.getDiaChiKH());
 			pst.setString(4, objHopDong.getEmailKH());
-			pst.setInt(5, objHopDong.getIdNguoiDaiDien());
-			pst.setInt(6, objHopDong.getIdGiangVien());
-			pst.setInt(7, objHopDong.getIdDeTai());
-			pst.setTimestamp(8, objHopDong.getThoiGianBatDau());
-			pst.setTimestamp(9, objHopDong.getThoiGianKetThuc());
-			pst.setInt(10, objHopDong.getKinhPhi());
-			pst.setTimestamp(11, objHopDong.getThoiGianKyHopDong());
-			pst.setString(12, objHopDong.getDienThoaiKH());
-			pst.setString(13, objHopDong.getTrangThaiHopDong());
-			pst.setInt(14, objHopDong.getIdHopDong());
+			pst.setInt(5, objHopDong.getIdGiangVien());
+			pst.setInt(6, objHopDong.getIdDeTai());
+			pst.setTimestamp(7, objHopDong.getThoiGianBatDau());
+			pst.setTimestamp(8, objHopDong.getThoiGianKetThuc());
+			pst.setInt(9, objHopDong.getKinhPhi());
+			pst.setTimestamp(10, objHopDong.getThoiGianKyHopDong());
+			pst.setString(11, objHopDong.getDienThoaiKH());
+			pst.setString(12, objHopDong.getTrangThaiHopDong());
+			pst.setInt(13, objHopDong.getIdHopDong());
 			
 			result = pst.executeUpdate();
 		} catch (SQLException e) {

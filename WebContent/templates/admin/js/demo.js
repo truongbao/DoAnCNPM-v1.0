@@ -205,3 +205,11 @@ $('#giangvien-hopdong').change(function(event) {
                 }
             });
     });
+
+// show date time picker bootstrap
+
+$(function () {
+    $('.datetime-choose').datetimepicker({
+        format: 'yyyy-mm-dd HH:ii:ss'
+    });
+});

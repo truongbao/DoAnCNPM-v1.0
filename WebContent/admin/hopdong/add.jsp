@@ -23,13 +23,16 @@
 								"thoi_gian_bat_dau":{
 									required: true
 								},
-								"thoi_gian_ket_thuc":{
-									required: true
+								"giang_vien":{
+									min:1
 								},
-								"emai_KH":{
+								"email_KH":{
 									 required:true,
 									  email:true
 									
+								},
+								"thoi_gian_ket_thuc":{
+									required: true
 								},
 								"kinh_phi":{
 									required: true
@@ -37,24 +40,26 @@
 							},
 							messages:{
 								"ten_KH":{
-									required: "<p> <span style='color:red' > Vui lòng nhập vào tên khách hàng</span> </p>"
-									
+									required: "<p> <span style='color:red; font-size: 15;' > Vui lòng nhập vào tên khách hàng</span> </p>"
 								},
 								"de_tai":{
-									required: "<p> <span style='color:red' > Vui lòng chọn đề tài </span> </p>"
+									required: "<p> <span style='color:red; font-size: 15;' > Giảng viên chưa có đề tài được duyệt, vui lòng chọn lại! </span> </p>"
 								},
-								"thoi_gian_bat_dau":{
-									required: "<p> <span style='color:red' > Vui lòng nhập vào thời gian bắt đầu</span> </p>"
+								"giang_vien":{
+									min: "<p> <span style='color:red; font-size: 15;' > Vui lòng chọn giảng viên </span> </p>"
 								},
 								"email_KH":{
-								    required:"<p style='color:red'> Vui lòng nhập email </p>",	
-			                        email: "<p style='color:red'> Vui lòng nhập đúng định dạng email : ai_do@example.com </p> "	
+								    required:"<p style='color:red; font-size: 15;'> Vui lòng nhập email </p>",	
+			                        email: "<p style='color:red; font-size: 15;'> Vui lòng nhập đúng định dạng email : ai_do@example.com </p> "	
+								},
+								"thoi_gian_bat_dau":{
+									required: "<p> <span style='color:red; font-size: 15;' > Vui lòng nhập vào thời gian bắt đầu</span> </p>"
 								},
 								"thoi_gian_ket_thuc":{
-								    required:"<p style='color:red'> Vui lòng nhập thời gian kết thúc </p>",	
+								    required:"<p style='color:red; font-size: 15;'> Vui lòng nhập thời gian kết thúc </p>",	
 			                     },
 								"kinh_phi":{
-								    required:"<p style='color:red'> Vui lòng nhập kinh phí </p>",	
+								    required:"<p style='color:red; font-size: 15;'> Vui lòng nhập kinh phí </p>",	
 			                     }
 							}
 						});// ham tren
@@ -78,33 +83,33 @@
                            	%>
                             <form id="frmHopDong" action="<%=request.getContextPath() %>/admin/hopdong/add" method="post">
 		                         <div class="col-md-3">
-		                             <div class="form-group">
+		                             <div class="form-group height-100">
 		                                 <label>Tên khách hàng</label>
 		                                 <input type="text" name="ten_KH" class="form-control border-input" placeholder="Họ tên">
 		                             </div>
 		                         </div>
 		                         <div class="col-md-2">
-		                             <div class="form-group">
-		                                 <div class="form-group">
+		                             <div class="form-group height-100">
+		                                 <div class="form-group height-100">
 		                                 <label>Chức vụ khách hàng</label>
 		                                 <input type='text' name="chuc_vu_KH"  class="form-control border-input"/>
 		                                 </div>
 		                             </div>
 		                         </div>
 		                         <div class="col-md-3">
-		                             <div class="form-group">
+		                             <div class="form-group height-100">
 		                                 <label>Địa chỉ khách hàng</label>
 		                                 <input type="text" name="dia_chi_KH" class="form-control border-input" style="height: 40px!important">
 		                             </div>
 		                         </div>
 		                         <div class="col-md-4">
-		                             <div class="form-group">
+		                             <div class="form-group height-100">
 		                                 <label>Email khách hàng</label>
-		                                 <input type="text" name="emai_KH" class="form-control border-input" style="height: 40px!important">
+		                                 <input type="text" name="email_KH" class="form-control border-input" style="height: 40px!important">
 		                             </div>
 		                         </div>
-		                             <div class="col-md-3">
-		                                 <div class="form-group">
+		                             <div class="col-md-5">
+		                                 <div class="form-group height-100">
 		                                     <label for="read">Giảng viên</label>
 		                                     <select name="giang_vien" class="form-control border-input" id="giangvien-hopdong">
 		                                     
@@ -118,63 +123,62 @@
 		                                 	</select>
 		                                 </div>
 		                             </div>
-		                             <div class="col-md-3">
-		                                 <div class="form-group">
-		                                     <label for="read">Người đại diện</label>
-		                                     <select name="nguoi_dai_dien" class="form-control border-input">
-                                               	
-		                                     <%
-		                                    	ArrayList<User > listUser = userDao.getItems();
-		                                    	for(int i = 0; i < listUser.size(); i++) {
-	                                    	%>
-                                               	<option value="<%= listUser.get(i).getIdUser() %>"><%=(listUser.get(i).getFullName() + "___" + listUser.get(i).getUserName()) %></option>
-                                               	<%} %>
-		                                 	</select>
-		                             </div>
-		                         </div>
-		                          <div class="col-md-3">
-		                             <div class="form-group">
+		                          <div class="col-md-4">
+		                             <div class="form-group height-100">
 		                                 <label>Đề tài</label>
 		                                 <div id="list-detai-follow-giangvien"></div>
 		                                 
 		                             </div>
 		                         </div>
-		                         <div class="col-md-3">
-		                             <div class="form-group">
-		                                 <label>Thời gian kí hợp đồng</label>
-		                                 <input type="text" name="thoi_gian_ki_HD" class="form-control border-input" id="datetimepicker">
-		                                 <span class="glyphicon glyphicon-calendar form-control-feedback" style="font-size: 20px;"></span>
-		                             </div>
-		                         </div>
-		                         <div class="col-md-3">
-		                             <div class="form-group">
-		                                 <label>Thời gian bắt đầu</label>
-		                                 <input type="text" name="thoi_gian_bat_dau" class="form-control border-input" id="datetimepicker">
-		                                 <span class="glyphicon glyphicon-calendar form-control-feedback" style="font-size: 20px;"></span>
-		                             </div>
-		                         </div>
-		                         
-		                         <div class="col-md-3">
-		                             <div class="form-group">
-		                                 <label>Thời gian kết thúc</label>
-		                                 <input type="text" name="thoi_gian_ket_thuc" class="form-control border-input" id="datetimepicker">
-		                                 <span class="glyphicon glyphicon-calendar form-control-feedback" style="font-size: 20px;"></span>
-		                             </div>
-		                         </div>
-		                         <div class="col-md-3">
-		                             <div class="form-group">
+		                          <div class="col-md-3">
+		                             <div class="form-group height-100">
 		                                 <label>Kinh phí</label>
 		                                 <input type="text" name="kinh_phi" class="form-control border-input">
 		                             </div>
 		                         </div>
 		                         <div class="col-md-3">
-		                             <div class="form-group">
+		                             <div class="form-group height-100 has-feedback">
+		                                 <label>Thời gian kí hợp đồng</label>
+		                                <div class='input-group date datetime-choose'>
+							                <span class="input-group-addon" style="border: 0.5px solid gray;">
+							                    <span class="glyphicon glyphicon-calendar"></span>
+							                </span>
+							                <input type='text' class="form-control border-input" placeholder="yyyy-mm-dd HH:ii:ss" style="background: #F28B65;" name="thoi_gian_ki_HD" />
+							            </div>
+		                             </div>
+		                         </div>
+		                         <div class="col-md-3">
+		                             <div class="form-group height-100 has-feedback">
+		                                <label>Thời gian bắt đầu</label>
+							            <div class='input-group date datetime-choose'>  
+							                <span class="input-group-addon" style="border: 0.5px solid gray; height: 40px!important">
+							                    <span class="glyphicon glyphicon-calendar"></span>
+							                </span>
+							                <input type='text' class="form-control border-input" placeholder="yyyy-mm-dd HH:ii:ss" style="background: #F28B65;" name="thoi_gian_bat_dau" />
+							            </div>
+							        </div>
+		                         </div>
+		                         
+		                         <div class="col-md-3">
+		                             <div class="form-group height-100 has-feedback">
+		                                 <label>Thời gian kết thúc</label>
+		                                 <div class='input-group date datetime-choose'>  
+							                <span class="input-group-addon" style="border: 0.5px solid gray;">
+							                    <span class="glyphicon glyphicon-calendar"></span>
+							                </span>
+							                <input type='text' class="form-control border-input" placeholder="yyyy-mm-dd HH:ii:ss" style="background: #F28B65;" name="thoi_gian_ket_thuc" />						                
+							            </div>
+							        </div>
+		                         </div>
+		                        
+		                         <div class="col-md-3">
+		                             <div class="form-group height-100">
 		                                 <label>Số điện thoai khách hàng</label>
 		                                 <input type="text" name="sdt_KH" class="form-control border-input">
 		                             </div>
 		                         </div>
 		                         <div class="col-md-3">
-		                             <div class="form-group">
+		                             <div class="form-group height-100">
 		                                 <label>Trạng thái Hơp đồng</label>
 		                                 <select name="trang_thai_HD" class="form-control border-input">
 		                                    <option value="Đã ký">Đã ký</option>
@@ -183,7 +187,7 @@
 		                             </div>
 		                         </div>
 		                         </div>
-		                     
+
 		                         <div class="col-md-12">
 		                             <div class="text-center">
 		                                 <a href="<%=request.getContextPath() %>/admin/hopdong/index"> 

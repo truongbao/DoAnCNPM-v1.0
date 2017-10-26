@@ -45,21 +45,20 @@ public class AdminAddHopDongController extends HttpServlet {
 	    
 	    HopDongDAO objDAO = new HopDongDAO();
 	    
-		String tenKhachHang = request.getParameter("fax");
-		String chucVuKH = request.getParameter("fax");
-		String diaChiKH = request.getParameter("fax");
-		String emailKH = request.getParameter("fax");
-		int idNguoiDaiDien = Integer.parseInt(request.getParameter("fax"));
-		int idGiangVien = Integer.parseInt(request.getParameter("fax"));
-		int idDeTai = Integer.parseInt(request.getParameter("fax"));
-		Timestamp thoiGianBatDau = Timestamp.valueOf(request.getParameter("fax"));
-		Timestamp thoiGianKetThuc = Timestamp.valueOf(request.getParameter("fax"));
-		int kinhPhi = Integer.parseInt(request.getParameter("fax"));
-		Timestamp thoiGianKyHopDong = Timestamp.valueOf(request.getParameter("fax"));
-		String dienThoaiKH = request.getParameter("fax");
-		String trangThaiHopDong = request.getParameter("fax");
+		String tenKhachHang = request.getParameter("ten_KH");
+		String chucVuKH = request.getParameter("chuc_vu_KH");
+		String diaChiKH = request.getParameter("dia_chi_KH");
+		String emailKH = request.getParameter("email_KH");
+		int idGiangVien = Integer.parseInt(request.getParameter("giang_vien"));
+		int idDeTai = Integer.parseInt(request.getParameter("de_tai"));
+		Timestamp thoiGianBatDau = Timestamp.valueOf(request.getParameter("thoi_gian_bat_dau"));
+		Timestamp thoiGianKetThuc = Timestamp.valueOf(request.getParameter("thoi_gian_ket_thuc"));
+		int kinhPhi = Integer.parseInt(request.getParameter("kinh_phi"));
+		Timestamp thoiGianKyHopDong = request.getParameter("thoi_gian_ki_HD") != "" ? Timestamp.valueOf(request.getParameter("thoi_gian_ki_HD")) : null;
+		String dienThoaiKH = request.getParameter("sdt_KH");
+		String trangThaiHopDong = request.getParameter("trang_thai_HD");
 		HopDong objHopDong = new  HopDong(0, tenKhachHang, chucVuKH,
-				diaChiKH, emailKH, idNguoiDaiDien,
+				diaChiKH, emailKH,
 				idGiangVien, idDeTai, thoiGianBatDau,
 				thoiGianKetThuc, kinhPhi,
 				thoiGianKyHopDong, dienThoaiKH,

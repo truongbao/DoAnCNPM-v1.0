@@ -38,7 +38,6 @@
                                         <th>ID</th>
                                     	<th>Tên khách hàng</th>
                                     	<th>Giảng viên</th>
-                                    	<th>Người đại diện</th>
                                         <th>Đề tài</th>
                                     	<th>Trạng thái</th>
                                     	<th>Chức năng</th>
@@ -55,7 +54,6 @@
                                         	<td><a href="<%=request.getContextPath() %>/admin/hopdong/show?uid=<%=listHopDong.get(i).getIdHopDong() %>"><%= listHopDong.get(i).getIdHopDong() %></td>
                                         	<td><%=listHopDong.get(i).getTenKhachHang() %></a></td>
                                         	<td><%= userDAO.getObjUser(listHopDong.get(i).getIdGiangVien()).getFullName() %></td>
-                                        	<td><%= userDAO.getObjUser(listHopDong.get(i).getIdNguoiDaiDien()).getFullName() %></td>
                                         	<td><%= detaiDAO.getObjDeTai(listHopDong.get(i).getIdDeTai()).getTenDeTai() %></td>
                                             <td><%=listHopDong.get(i).getTrangThaiHopDong() %></td>
                                         	<td>
