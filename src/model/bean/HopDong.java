@@ -9,7 +9,6 @@ public class HopDong {
 	private String chucVuKH;
 	private String diaChiKH;
 	private String emailKH;
-	private int idNguoiDaiDien;
 	private int idGiangVien;
 	private int idDeTai;
 	private Timestamp thoiGianBatDau;
@@ -26,7 +25,7 @@ public class HopDong {
 
 
 	public HopDong(int idHopDong, String tenKhachHang, String chucVuKH,
-			String diaChiKH, String emailKH, int idNguoiDaiDien,
+			String diaChiKH, String emailKH, 
 			int idGiangVien, int idDeTai, Timestamp thoiGianBatDau,
 			Timestamp thoiGianKetThuc, int kinhPhi,
 			Timestamp thoiGianKyHopDong, String dienThoaiKH,
@@ -37,7 +36,6 @@ public class HopDong {
 		this.chucVuKH = chucVuKH;
 		this.diaChiKH = diaChiKH;
 		this.emailKH = emailKH;
-		this.idNguoiDaiDien = idNguoiDaiDien;
 		this.idGiangVien = idGiangVien;
 		this.idDeTai = idDeTai;
 		this.thoiGianBatDau = thoiGianBatDau;
@@ -96,16 +94,6 @@ public class HopDong {
 
 	public void setEmailKH(String emailKH) {
 		this.emailKH = emailKH;
-	}
-
-
-	public int getIdNguoiDaiDien() {
-		return idNguoiDaiDien;
-	}
-
-
-	public void setIdNguoiDaiDien(int idNguoiDaiDien) {
-		this.idNguoiDaiDien = idNguoiDaiDien;
 	}
 
 
@@ -194,7 +182,7 @@ public class HopDong {
 		return "HopDong [idHopDong=" + idHopDong + ", tenKhachHang="
 				+ tenKhachHang + ", chucVuKH=" + chucVuKH + ", diaChiKH="
 				+ diaChiKH + ", emailKH=" + emailKH + ", idNguoiDaiDien="
-				+ idNguoiDaiDien + ", idGiangVien=" + idGiangVien
+				+ ", idGiangVien=" + idGiangVien
 				+ ", idDeTai=" + idDeTai + ", thoiGianBatDau=" + thoiGianBatDau
 				+ ", thoiGianKetThuc=" + thoiGianKetThuc + ", kinhPhi="
 				+ kinhPhi + ", thoiGianKyHopDong=" + thoiGianKyHopDong

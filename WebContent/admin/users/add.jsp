@@ -90,21 +90,21 @@
                            	%>
                             <form id="frmUser" action="<%=request.getContextPath() %>/admin/user/add" method="post">
 		                         <div class="col-md-3">
-		                             <div class="form-group">
+		                             <div class="form-group height-100">
 		                                 <label>Họ tên</label>
 		                                 <input type="text" name="fullname" class="form-control border-input" placeholder="Họ tên">
 		                             </div>
 		                         </div>
 		                         <div class="col-md-2">
-		                             <div class="form-group">
+		                             <div class="form-group height-100">
 		                                 <div class="form-group">
 		                                 <label>Năm sinh</label>
-		                                 <input type='text' name="nam_sinh"  class="form-control border-input" data-format="yyyy-MM-dd" id="datetimepicker"/><span class="glyphicon glyphicon-calendar form-control-feedback" style="font-size: 20px;"></span>
+		                                 <input type='text' name="nam_sinh"  class="form-control border-input" data-format="yyyy-MM-dd" id="datetimepicker"/><span class="glyphicon glyphicon-calendar form-control-feedback" style="font-size: 20px; position:absolute; top:50px;"></span>
 		                                 </div>
 		                             </div>
 		                         </div>
 		                         <div class="col-md-3">
-		                             <div class="form-group">
+		                             <div class="form-group height-100">
 		                                 <label>Học vị</label>
 		                                 <select name="hoc_vi" class="form-control border-input">
 		                                     <%
@@ -117,62 +117,62 @@
 		                             </div>
 		                         </div>
 		                         <div class="col-md-4">
-		                             <div class="form-group">
+		                             <div class="form-group height-100">
 		                                 <label>Chức danh khoa học</label>
 		                                 <input type="text" name="chuc_danh_khoa_hoc" class="form-control border-input" style="height: 40px!important">
 		                             </div>
 		                         </div>
 		                             <div class="col-md-3">
-		                                 <div class="form-group">
+		                                 <div class="form-group height-100">
 		                                     <label for="read">Địa chỉ cơ quan</label>
 		                                     <textarea  name="dia_chi_co_quan" class="form-control border-input" placeholder="Địa chỉ cơ quan"></textarea>
 		                                 </div>
 		                             </div>
 		                             <div class="col-md-3">
-		                                 <div class="form-group">
+		                                 <div class="form-group height-100">
 		                                     <label for="read">Địa chỉ nhà riêng</label>
 		                                     <textarea  name="dia_chi_nha_rieng" class="form-control border-input" placeholder="Địa chỉ nhà riêng"></textarea>
 		                             </div>
 		                         </div>
 		                          <div class="col-md-3">
-		                             <div class="form-group">
+		                             <div class="form-group height-100">
 		                                 <label>Email</label>
 		                                 <input type="text" name="email" class="form-control border-input" placeholder=" yourmail@gmail.com" style="height: 62px!important">
 		                             </div>
 		                         </div>
 		                         <div class="col-md-3">
-		                             <div class="form-group">
+		                             <div class="form-group height-100">
 		                                 <label>Fax</label>
 		                                 <input type="text" name="fax" class="form-control border-input" style="height: 62px!important">
 		                             </div>
 		                         </div>
 		                         <div class="col-md-3">
-		                             <div class="form-group">
+		                             <div class="form-group height-100">
 		                                 <label>Điện thoại cơ quan</label>
 		                                 <input type="text" name="dien_thoai_co_quan" class="form-control border-input" placeholder="Số điện thoại">
 		                             </div>
 		                         </div>
 		                         
 		                         <div class="col-md-3">
-		                             <div class="form-group">
+		                             <div class="form-group height-100">
 		                                 <label>Điện thoại nhà riêng</label>
 		                                 <input type="text" name="dien_thoai_nha_rieng" class="form-control border-input" placeholder="Số điện thoại">
 		                             </div>
 		                         </div>
 		                         <div class="col-md-3">
-		                             <div class="form-group">
+		                             <div class="form-group height-100">
 		                                 <label>Tên tài khoản</label>
 		                                 <input type="text" name="username" class="form-control border-input">
 		                             </div>
 		                         </div>
 		                         <div class="col-md-3">
-		                             <div class="form-group">
+		                             <div class="form-group height-100">
 		                                 <label>Mật khẩu</label>
 		                                 <input type="text" name="mat_khau" class="form-control border-input">
 		                             </div>
 		                         </div>
 		                         <div class="col-md-3">
-		                             <div class="form-group">
+		                             <div class="form-group height-100">
 		                                 <label>Khoa</label>
 		                                 <select name="khoa" class="form-control border-input">
 		                                     <%
@@ -185,7 +185,7 @@
 		                             </div>
 		                         </div>
 		                         <div class="col-md-3">
-		                             <div class="form-group">
+		                             <div class="form-group height-100">
 		                                 <label>Loại tài khoản</label>
 		                                 <select name="loai_tai_khoan" class="form-control border-input">
                                           	<%
@@ -198,13 +198,13 @@
 		                             </div>
 		                         </div>
 		                         <!--<div class="col-md-3">
-		                             <div class="form-group">
+		                             <div class="form-group height-100">
 		                                 <label>Hình ảnh</label>
 		                                 <input type="file" name="picture" class="form-control" placeholder="Chọn ảnh"/>
 		                             </div>
 		                         </div>
 		                         <div class="col-md-3">
-		                             <div class="form-group">
+		                             <div class="form-group height-100">
 		                                 <label> Xem ảnh</label>
 		                                 <div id="show-image" style="border-top: 0.5px solid #BFB8B8"></div>
 		                             </div>

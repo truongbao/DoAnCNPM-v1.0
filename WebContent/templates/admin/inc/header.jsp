@@ -7,6 +7,7 @@
 	<script src="<%=request.getContextPath()%>/library/ckeditor/ckeditor.js"> </script>
 	<script src="<%=request.getContextPath() %>/ckfinder/ckfinder.js"> </script>
 	<script src="<%=request.getContextPath() %>/templates/admin/bootstrap/js/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath() %>/templates/admin/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
 	
 	<meta charset="utf-8" />
 	<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
