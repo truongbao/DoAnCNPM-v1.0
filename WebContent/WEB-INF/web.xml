@@ -208,7 +208,7 @@
   
   <servlet>
     <servlet-name>AdminEditHopDongController</servlet-name>
-    <servlet-class>controller.AdminEditUserController</servlet-class>
+    <servlet-class>controller.AdminEditHopDongController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>AdminEditHopDongController</servlet-name>

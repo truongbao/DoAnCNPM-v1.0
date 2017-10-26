@@ -14,11 +14,11 @@ import model.bean.HopDong;
 import model.dao.HopDongDAO;;
 
 
-public class AdminAddHopDongController extends HttpServlet {
+public class AdminEditHopDongController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
-    public AdminAddHopDongController() {
+    public AdminEditHopDongController() {
         super();
        
     }
@@ -41,9 +41,9 @@ public class AdminAddHopDongController extends HttpServlet {
 	    response.setCharacterEncoding("UTF-8");
 	    response.setContentType("text/html");
 	    
-	    
 	    HopDongDAO objDAO = new HopDongDAO();
 	    
+	    int idHopDong = Integer.parseInt( request.getParameter("uid") ) ;
 		String tenKhachHang = request.getParameter("ten_KH");
 		String chucVuKH = request.getParameter("chuc_vu_KH");
 		String diaChiKH = request.getParameter("dia_chi_KH");
@@ -56,13 +56,13 @@ public class AdminAddHopDongController extends HttpServlet {
 		Timestamp thoiGianKyHopDong = request.getParameter("thoi_gian_ki_HD") != "" ? Timestamp.valueOf(request.getParameter("thoi_gian_ki_HD")) : null;
 		String dienThoaiKH = request.getParameter("sdt_KH");
 		String trangThaiHopDong = request.getParameter("trang_thai_HD");
-		HopDong objHopDong = new  HopDong(0, tenKhachHang, chucVuKH,
+		HopDong objHopDong = new  HopDong(idHopDong, tenKhachHang, chucVuKH,
 				diaChiKH, emailKH,
 				idGiangVien, idDeTai, thoiGianBatDau,
 				thoiGianKetThuc, kinhPhi,
 				thoiGianKyHopDong, dienThoaiKH,
 				trangThaiHopDong);
-		if( objDAO.addItem(objHopDong) > 0){
+		if( objDAO.editItem(objHopDong) > 0){
 			//them thanh cong
 			response.sendRedirect(request.getContextPath() + "/admin/hopdong/index?msg=1");
 			return; 
@@ -71,7 +71,6 @@ public class AdminAddHopDongController extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/admin/hopdong/index?msg=0");
 			return; 
 		}
-
 	}
 
 }
