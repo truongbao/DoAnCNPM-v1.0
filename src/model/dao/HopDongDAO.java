@@ -5,10 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import library.ConnectMySQLLibrary;
 import model.bean.HopDong;
+import model.bean.User;
 import constant.define;
 
 public class HopDongDAO {
@@ -174,4 +176,125 @@ public class HopDongDAO {
 		}
 		return listHopDong;
 	}
+	
+	public int addItem(HopDong objHopDong) {
+		int result = 0;
+		conn = connectMySQLLibrary.getConnectMySQL();
+		
+		String sql="insert  hopdong ("
+				+ "tenKhachHang,"
+				+ "chucVuKH,"
+				+ "diaChiKH,"
+				+ "emailKH,"
+				+ "idNguoiDaiDien,"
+				+ "idGiangVien,"
+				+ "idDeTai,"
+				+ "thoiGianBatDau,"
+				+ "thoiGianKetThuc,"
+				+ "kinhPhi,"
+				+ "thoiGianKyHopDong,"
+				+ "dienThoaiKH,"
+				+ "trangThaiHopDong) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		
+		
+		try {
+			pst = conn.prepareStatement(sql);
+			
+			pst.setString(1, objHopDong.getTenKhachHang());
+			pst.setString(2, objHopDong.getChucVuKH());
+			pst.setString(3, objHopDong.getDiaChiKH());
+			pst.setString(4, objHopDong.getEmailKH());
+			pst.setInt(5, objHopDong.getIdNguoiDaiDien());
+			pst.setInt(6, objHopDong.getIdGiangVien());
+			pst.setInt(7, objHopDong.getIdDeTai());
+			pst.setTimestamp(8, objHopDong.getThoiGianBatDau());
+			pst.setTimestamp(9, objHopDong.getThoiGianKetThuc());
+			pst.setInt(10, objHopDong.getKinhPhi());
+			pst.setTimestamp(11, objHopDong.getThoiGianKyHopDong());
+			pst.setString(12, objHopDong.getDienThoaiKH());
+			pst.setString(13, objHopDong.getTrangThaiHopDong());
+			
+			result = pst.executeUpdate();
+			
+	 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	public int editItem(HopDong objHopDong) {
+		int result = 0;
+		conn = connectMySQLLibrary.getConnectMySQL();
+		
+       
+       String sql = "UPDATE hopdong SET tenKhachHang = ?, chucVuKH = ?, diaChiKH = ?, emailKH = ?,idNguoiDaiDien = ?, "
+       		+ " idGiangVien = ?,idDeTai = ?, thoiGianBatDau = ?,thoiGianKetThuc = ?,kinhPhi = ?, "
+       		+ " thoiGianKyHopDong = ?,dienThoaiKH = ?,trangThaiHopDong = ? "
+       		+ " WHERE idHopDong = ?";
+       
+       try {
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, objHopDong.getTenKhachHang());
+			pst.setString(2, objHopDong.getChucVuKH());
+			pst.setString(3, objHopDong.getDiaChiKH());
+			pst.setString(4, objHopDong.getEmailKH());
+			pst.setInt(5, objHopDong.getIdNguoiDaiDien());
+			pst.setInt(6, objHopDong.getIdGiangVien());
+			pst.setInt(7, objHopDong.getIdDeTai());
+			pst.setTimestamp(8, objHopDong.getThoiGianBatDau());
+			pst.setTimestamp(9, objHopDong.getThoiGianKetThuc());
+			pst.setInt(10, objHopDong.getKinhPhi());
+			pst.setTimestamp(11, objHopDong.getThoiGianKyHopDong());
+			pst.setString(12, objHopDong.getDienThoaiKH());
+			pst.setString(13, objHopDong.getTrangThaiHopDong());
+			pst.setInt(14, objHopDong.getIdHopDong());
+			
+			result = pst.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		  return result;
+	}
+	
+	public int delItem(int idHopDong) {
+		int result = 0;
+        conn = connectMySQLLibrary.getConnectMySQL();
+        String sql = "delete from hopdong where idHopDong = ? ";
+        
+        try {
+			pst  = conn.prepareStatement(sql);
+			pst.setInt(1, idHopDong);
+			result = pst.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				pst.close();
+				conn.close();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+		
+		
+	}
+	
 }

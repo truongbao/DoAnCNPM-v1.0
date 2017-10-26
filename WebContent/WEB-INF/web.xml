@@ -199,7 +199,7 @@
   
    <servlet>
     <servlet-name>AdminShowEditHopDongController</servlet-name>
-    <servlet-class>controller.AdminShowEditHopDongrController</servlet-class>
+    <servlet-class>controller.AdminShowEditHopDongController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>AdminShowEditHopDongController</servlet-name>
@@ -234,6 +234,14 @@
     <url-pattern>/admin/hopdong/show</url-pattern>
   </servlet-mapping>
   
+    <servlet>
+    <servlet-name>ListDeTaiFollowGiangVienController</servlet-name>
+    <servlet-class>controller.ListDeTaiFollowGiangVienController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListDeTaiFollowGiangVienController</servlet-name>
+    <url-pattern>/admin/hopdong/detai-follow-giangvien</url-pattern>
+  </servlet-mapping>
   <!-- ========= Statistical ============= -->
   <servlet>
     <servlet-name>AdminFacultyStatController</servlet-name>

@@ -191,3 +191,17 @@ $(document).ready(function() {
 	$('.nav > li > a[href="'+pathName+'"]').parent().addClass('active');
 	$('.nav > li > a[href="'+pathParent+'/index"]').parent().addClass('active');
 })
+
+
+// show list deatai follow giangvien
+$('#giangvien-hopdong').change(function(event) {
+//	alert("ss");
+        var uid = $(this).val();
+        $.ajax({
+                url: "http://localhost:8080/DoAnCNPM_SE03/admin/hopdong/detai-follow-giangvien?uid="+uid,
+                type: 'GET',
+                success: function( msg ) {
+                    $('#list-detai-follow-giangvien').html(msg);
+                }
+            });
+    });
