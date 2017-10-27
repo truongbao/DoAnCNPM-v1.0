@@ -139,9 +139,9 @@
 			                                 	for(int i = 0; i < listDeTai.size(); i++) {
 		                                    		if(objHopDong.getIdDeTai() == listDeTai.get(i).getIdDeTai()) {
 	                                 		%>
-	                                 		<option selected value="<%= listDeTai.get(i).getIdDeTai() %>"><%=listDeTai.get(i).getTenDeTai() %></option>
+	                                 		<option selected value="<%= listDeTai.get(i).getIdDeTai() %>"><%=listDeTai.get(i).getTenDeTai()+"___"+ listDeTai.get(i).getMaSoDeTai() %></option>
 	                                        <%} else { %>
-	                                        	<option value="<%= listDeTai.get(i).getIdDeTai() %>"><%=listDeTai.get(i).getTenDeTai() %></option>
+	                                        	<option value="<%= listDeTai.get(i).getIdDeTai() %>"><%=listDeTai.get(i).getTenDeTai()+"___"+ listDeTai.get(i).getMaSoDeTai() %></option>
 	                                       		<%} 
 	                                        }%>
 	                                        </select>
