@@ -126,7 +126,7 @@
                 </li>
                 <li>
                 <% if(isAdmin || isNhanVienQLNCKHTruong){ %>
-                    <a href="<%=request.getContextPath() %>/admin/general_statistical?type=load">
+                    <a href="<%=request.getContextPath() %>/admin/general-statistical?type=load">
                 <% }else if(isQuanLyNCKHKhoa){ %>
                 	<a href="<%=request.getContextPath() %>/admin/faculty-statistical?type=load">
                 <%} %>

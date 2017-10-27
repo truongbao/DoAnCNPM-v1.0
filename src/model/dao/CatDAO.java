@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import constant.define;
 import library.ConnectMySQLLibrary;
+import library.LibraryConstant;
 import model.bean.Cat;
 
 public class CatDAO {
@@ -241,7 +241,7 @@ public class CatDAO {
    	 
    	    conn = connectMySQLLibrary.getConnectMySQL();
    	 
-   	    String sql = "select * from danhmuc where parent_id = 0 ORDER BY id_cat DESC LIMIT "+offset+", "+define.ROW_COUNT_CAT;
+   	    String sql = "select * from danhmuc where parent_id = 0 ORDER BY id_cat DESC LIMIT "+offset+", "+LibraryConstant.ROW_COUNT_CAT;
 
    	 try {
 			st = conn.createStatement();

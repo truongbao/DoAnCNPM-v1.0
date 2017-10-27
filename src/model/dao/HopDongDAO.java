@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import library.ConnectMySQLLibrary;
 import model.bean.HopDong;
 import model.bean.User;
-import constant.define;
 
 public class HopDongDAO {
 	private ConnectMySQLLibrary connectMySQLLibrary;

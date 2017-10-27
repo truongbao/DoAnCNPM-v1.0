@@ -19,7 +19,6 @@ import model.bean.User;
 import model.dao.DetaiDAO;
 import model.dao.FacultyDAO;
 import model.dao.UserDAO;
-import constant.define;
 
 public class AdminGeneralStatController extends HttpServlet {
 	private static final long serialVersionUID = 1L;

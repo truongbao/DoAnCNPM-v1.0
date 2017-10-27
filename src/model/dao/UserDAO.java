@@ -8,13 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import library.ConnectMySQLLibrary;
+import library.LibraryConstant;
 import model.bean.DeTai;
 import model.bean.HocVi;
 import model.bean.Khoa;
 import model.bean.LoaiTaiKhoan;
 import model.bean.ThanhVien;
 import model.bean.User;
-import constant.define;
 
 public class UserDAO {
 	private ConnectMySQLLibrary connectMySQLLibrary;
@@ -684,7 +684,7 @@ public class UserDAO {
 		String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocVi from user AS u "
 	       		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
 	       		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
-	       		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi ORDER BY idUser DESC LIMIT "+offset+","+define.ROW_COUNT;
+	       		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi ORDER BY idUser DESC LIMIT "+offset+","+LibraryConstant.ROW_COUNT;
 		
 		try {
 			st = conn.createStatement();
@@ -747,7 +747,7 @@ public class UserDAO {
 			String pre = key != "" ? " and" : " where";
 			sql += pre + "(u.idLoaiTaiKhoan = " + loaiTaiKhoan + ") ";
 		}
-		sql += " ORDER BY idUser DESC LIMIT "+offset+","+define.ROW_COUNT;
+		sql += " ORDER BY idUser DESC LIMIT "+offset+","+LibraryConstant.ROW_COUNT;
 		System.out.println(sql);
 		try {
 			st = conn.createStatement();
