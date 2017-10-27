@@ -1,3 +1,4 @@
+<%@page import="library.LibraryConstant"%>
 <%@page import="model.bean.DeTai"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -88,7 +89,7 @@
 								<td> <%=objDetai.getThoiGianDangKy() %> </td>
 								<td> <%=objDetai.getThoiGianBatDau() %> </td>
 								<td> <%=objDetai.getThoiGianKetThuc() %> </td>
-								<td> <%=objDetai.getTrangThai() %> </td>
+								<td> <%= LibraryConstant.ConvertTrangThai(objDetai.getTrangThai())  %> </td>
 								<td>
 									<center>
 										<div class="pull-right" >
