@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import library.LibraryAuth;
+import library.LibraryConstant;
 import model.bean.HopDong;
 import model.dao.HopDongDAO;
-import constant.define;
 
 public class AdminIndexHopDongController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -32,12 +32,12 @@ public class AdminIndexHopDongController extends HttpServlet {
        
          
         //kiểm tra đã đăng nhập chưa
- 		if(  LibraryAuth.CheckLogin(request, response)==false){
+ 		if(  LibraryAuth.CheckAdmin(request, response)==false){
  			return;
  		}
  		HopDongDAO objDAO = new HopDongDAO();
          
-         int row_count = define.ROW_COUNT;
+         int row_count = LibraryConstant.ROW_COUNT;
  		 int current_page = 1;		
  		 
  		 //tong so hop dong

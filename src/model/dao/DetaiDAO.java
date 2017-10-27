@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import library.ConnectMySQLLibrary;
+import library.LibraryConstant;
 import model.bean.DeTai;
 import model.bean.HocVi;
 import model.bean.Khoa;
@@ -15,7 +16,6 @@ import model.bean.LinhVucNC;
 import model.bean.LoaiTaiKhoan;
 import model.bean.ThanhVien;
 import model.bean.User;
-import constant.define;
 
 public class DetaiDAO {
 	private ConnectMySQLLibrary connectMySQLLibrary;
@@ -80,8 +80,8 @@ public class DetaiDAO {
 			String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu FROM detai AS dt "
 					+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 					+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
-					+ "  WHERE dt.trangThai = "+define.DangChoXetDeTai;
-
+					+ "  WHERE  dt.maSoDeTai = 'no' ";
+			
 			try {
 				st = conn.createStatement();
 				rs = st.executeQuery(sql);
@@ -113,6 +113,92 @@ public class DetaiDAO {
 			return listDeTai;
 
 		}
+		
+		
+		//Lay ra chi tiet de tai ứng vs idDeTai (public)
+		public DeTai getObjectDeTaiByIdDeTaiDK(int idDeTai) {
+			conn = connectMySQLLibrary.getConnectMySQL();
+
+			String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu FROM detai AS dt "
+					+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
+					+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
+					+ "  WHERE dt.trangThai = "+LibraryConstant.DangChoXetDeTai+"  and  dt.idDeTai = "+idDeTai;
+
+			DeTai objDeTai =null;
+			try {
+				st = conn.createStatement();
+				rs = st.executeQuery(sql);
+
+				if (rs.next()) {
+					 objDeTai = new DeTai(rs.getInt("idDeTai"), rs.getString("tenDeTai"), rs.getString("maSoDeTai"),
+							rs.getInt("idLinhVucNghienCuu"), rs.getString("tenLinhVucNghienCuu"),
+							rs.getInt("idLoaiHinhNghienCuu"), "",
+							rs.getTimestamp("thoiGianBatDau"), rs.getTimestamp("thoiGianKetThuc"),
+							rs.getString("donViChuTri"), rs.getInt("idUser"), rs.getString("fullName"),
+							rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
+							rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
+							rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
+							rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+							rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
+
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					st.close();
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return objDeTai;
+
+		}	
+		
+		
+		
+		//Lay ra lay ra trangThai mới cập nhật ứng vs idDeTai vừa dk (public)
+		public DeTai getTrangThaiUpdateUpdByIdDeTaiDK(int idDeTai) {
+			conn = connectMySQLLibrary.getConnectMySQL();
+
+			String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu FROM detai AS dt "
+					+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
+					+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
+					+ "  WHERE  dt.trangThai IN ('3','7','10','11')  and  dt.idDeTai = "+idDeTai;
+
+			DeTai objDeTai =null;
+			try {
+				st = conn.createStatement();
+				rs = st.executeQuery(sql);
+
+				if (rs.next()) {
+					 objDeTai = new DeTai(rs.getInt("idDeTai"), rs.getString("tenDeTai"), rs.getString("maSoDeTai"),
+							rs.getInt("idLinhVucNghienCuu"), rs.getString("tenLinhVucNghienCuu"),
+							rs.getInt("idLoaiHinhNghienCuu"), "",
+							rs.getTimestamp("thoiGianBatDau"), rs.getTimestamp("thoiGianKetThuc"),
+							rs.getString("donViChuTri"), rs.getInt("idUser"), rs.getString("fullName"),
+							rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
+							rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
+							rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
+							rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+							rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
+
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					st.close();
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return objDeTai;
+
+		}	
+		
 	
 
 	public ArrayList<DeTai> getListDeTai(int offset, int row_count) {

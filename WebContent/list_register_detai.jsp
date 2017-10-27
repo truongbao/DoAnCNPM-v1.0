@@ -1,4 +1,5 @@
-<%@page import="constant.define"%>
+<%@page import="library.LibraryConstant"%>
+<%@page import="model.dao.DetaiDAO"%>
 <%@page import="model.bean.DeTai"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -81,7 +82,8 @@
 								<td>Thời gian đăng ký</td>
 								<td>Trạng thái</td>
 								<td><center> Sửa</center></td>
-								<td><center> Xóa</center></td>
+								<td><center> Thông báo</center></td>
+							<!-- 	<td><center> Xóa</center></td> -->
 							</th>
 							</thead>
 							<tbody>
@@ -98,32 +100,46 @@
 							<tr>
 								<td><%=demstt %></td>
 								<td>
-									<a href="<%=request.getContextPath()%>/detail-dkdt"> <%=objDT.getTenDeTai() %> </a>
+									<a href="<%=request.getContextPath()%>/detail-dkdt?did=<%=objDT.getIdDeTai()%>"> <%=objDT.getTenDeTai() %> </a>
 								</td>
 								<td>
 									<a href="#"> <%=objDT.getFullName() %> </a>
 								</td>
 								<td> <%=objDT.getThoiGianDangKy() %> </td>
 								<td>
-								  <%if("2".equals(objDT.getTrangThai())) {%>
-								        Đang chờ xét đề tài
-								   <%} %>
+								   <%= LibraryConstant.ConvertTrangThai(objDT.getTrangThai())%>
 							    </td>
 							    
 								<td>
 									<center>
-										<button class="btn btn-primary">
-											Sửa
-										</button>
+										<a href="<%=request.getContextPath()%>/update-detai" class="btn btn-primary" style="">  Sửa </a>
 									</center>
 								</td>
-								<td>
+								
+								<!-- <td>
 									<center>
 										<button class="btn btn-danger">
 											Xóa
 										</button>
 									</center>
-								</td>
+								</td> -->
+								
+								 <td>
+									<center>
+									  <%
+									    //viet phuong thuc lay ra trangThai mới cập nhật ứng vs idDeTai vừa dk
+									    DetaiDAO detaiDAO = new DetaiDAO();
+									    DeTai objDeTaiById =  detaiDAO.getTrangThaiUpdateUpdByIdDeTaiDK(objDT.getIdDeTai());
+									    if( objDeTaiById != null ){
+									  
+									  %>
+										<a href="<%=request.getContextPath()%>/thong-bao?id_detai=<%=objDT.getIdDeTai() %>" class="btn btn-danger" style="">  Xem thông báo </a>
+									  <%}else{%>
+									  
+									  <%} %>
+									</center>
+								</td> 
+								
 							</tr>
 							
 							  <% demstt = demstt  + 1; %>

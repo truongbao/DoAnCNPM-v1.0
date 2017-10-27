@@ -13,9 +13,17 @@ public class LibraryAuth {
 		// true : login roi
 		// fail : chua
 		HttpSession session = request.getSession();
-		if (session.getAttribute("admin") == null) {// chưa đăng nhâp
+		if (session.getAttribute("admin") == null && session.getAttribute("quanLyNCKHKhoa") == null
+				&& session.getAttribute("nhanVienQLNCKHTruong") == null) {// chưa
+																			// đăng
+																			// nhâp
 			// chuyen huong
-			response.sendRedirect(request.getContextPath() + "/auth/admin/login");
+			try {
+				response.sendRedirect(request.getContextPath() + "/auth/admin/login");
+			} catch (IOException e) {
+				System.out.println(e);
+				e.printStackTrace();
+			}
 			return false;
 		}
 

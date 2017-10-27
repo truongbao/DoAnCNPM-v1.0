@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import constant.define;
 import library.LibraryAuth;
+import library.LibraryConstant;
 import model.bean.Cat;
 import model.dao.CatDAO;
 
@@ -40,7 +40,7 @@ public class AdminIndexCatController extends HttpServlet {
  		
         //================================
  		 int current_page = 1;		
- 		 int row_count = define.ROW_COUNT_CAT;
+ 		 int row_count = LibraryConstant.ROW_COUNT_CAT;
  		 CatDAO objDAO = new CatDAO();
  		 
  		 //tong so danh muc

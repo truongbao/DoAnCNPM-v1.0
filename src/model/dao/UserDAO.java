@@ -8,13 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import library.ConnectMySQLLibrary;
+import library.LibraryConstant;
 import model.bean.DeTai;
 import model.bean.HocVi;
 import model.bean.Khoa;
 import model.bean.LoaiTaiKhoan;
 import model.bean.ThanhVien;
 import model.bean.User;
-import constant.define;
 
 public class UserDAO {
 	private ConnectMySQLLibrary connectMySQLLibrary;
@@ -184,6 +184,49 @@ public class UserDAO {
 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
 				+ " where dt.idUser = ? ORDER BY idDeTai ASC";
+		// String sql = "select * FROM detai WHERE idKhoa = ? ORDER BY idDeTai
+		// ASC";
+		DeTai objDeTai = null;
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, idUser);
+			rs = pst.executeQuery();
+
+			while (rs.next()) {
+				objDeTai = new DeTai(rs.getInt("idDeTai"), rs.getString("tenDeTai"), rs.getString("maSoDeTai"),
+						rs.getInt("idLinhVucNghienCuu"), rs.getString("tenLinhVucNghienCuu"),
+						rs.getInt("idLoaiHinhNghienCuu"), rs.getString("tenLoaiHinhNghienCuu"),
+						rs.getTimestamp("thoiGianBatDau"), rs.getTimestamp("thoiGianKetThuc"),
+						rs.getString("donViChuTri"), rs.getInt("idUser"), rs.getString("fullName"),
+						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
+						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
+						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
+						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
+				listDeTai.add(objDeTai);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listDeTai;
+	}
+	
+	public ArrayList<DeTai> getListDeTaiByIdUserCanCreateHopDong(int idUser) {
+
+		ArrayList<DeTai> listDeTai = new ArrayList<>();
+		conn = connectMySQLLibrary.getConnectMySQL();
+		String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
+				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
+				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
+				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
+				+ " where dt.idUser = ? and trangThai = '11' ORDER BY idDeTai ASC";
 		// String sql = "select * FROM detai WHERE idKhoa = ? ORDER BY idDeTai
 		// ASC";
 		DeTai objDeTai = null;
@@ -444,7 +487,7 @@ public class UserDAO {
 		String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocVi from user AS u "
 	       		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
 	       		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
-	       		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi ORDER BY id_User DESC";
+	       		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi ORDER BY idUser DESC";
 		
 		try {
 			st = conn.createStatement();
@@ -641,7 +684,7 @@ public class UserDAO {
 		String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocVi from user AS u "
 	       		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
 	       		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
-	       		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi ORDER BY idUser DESC LIMIT "+offset+","+define.ROW_COUNT;
+	       		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi ORDER BY idUser DESC LIMIT "+offset+","+LibraryConstant.ROW_COUNT;
 		
 		try {
 			st = conn.createStatement();
@@ -704,7 +747,7 @@ public class UserDAO {
 			String pre = key != "" ? " and" : " where";
 			sql += pre + "(u.idLoaiTaiKhoan = " + loaiTaiKhoan + ") ";
 		}
-		sql += " ORDER BY idUser DESC LIMIT "+offset+","+define.ROW_COUNT;
+		sql += " ORDER BY idUser DESC LIMIT "+offset+","+LibraryConstant.ROW_COUNT;
 		System.out.println(sql);
 		try {
 			st = conn.createStatement();
@@ -917,8 +960,43 @@ public boolean checkExistEmail(String email) {
 		}
 
 
-
-
+	 // lay danh sách giang vien có dang ki de tai
+	 public ArrayList<User> getListGiangVienDetai(){
+			ArrayList<User> listUser = new ArrayList<>();
+			conn = connectMySQLLibrary.getConnectMySQL();
+			
+			 String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocVi from user AS u "
+			       		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
+			       		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
+			       		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi where u.idUser in (select distinct idUser from detai)";
+			
+		    User objUser = null;
+			  
+			try {
+				st = conn.createStatement();
+				rs = st.executeQuery(sql);
+				
+				while(rs.next()){
+					 objUser = new User(rs.getInt("idUser"),rs.getString("fullName"),rs.getString("chucDanhKhoaHoc") ,rs.getString("diaChiCoQuan") ,
+				             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocVi") ,rs.getString("tenHocVi"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
+				             rs.getString("dienThoaiNhaRieng") ,rs.getString("email") ,rs.getString("fax"),rs.getString("userName") , 
+				             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa") );
+				                        
+					 listUser.add(objUser);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally{
+				try {
+					st.close();
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return listUser;
+			
+		}
 
 
 

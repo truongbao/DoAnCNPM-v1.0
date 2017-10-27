@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import library.LibraryAuth;
+import library.LibraryConstant;
 import model.bean.User;
 import model.dao.UserDAO;
-import constant.define;
 
 public class AdminIndexUserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -32,7 +32,7 @@ public class AdminIndexUserController extends HttpServlet {
        
          
         //kiểm tra đã đăng nhập chưa
- 		if(  LibraryAuth.CheckLogin(request, response)==false){
+ 		if(  LibraryAuth.CheckAdmin(request, response)==false){
  			return;
  		}
         int loaiTaiKhoan = 0;
@@ -48,7 +48,7 @@ public class AdminIndexUserController extends HttpServlet {
          
          UserDAO objDAO = new UserDAO();
          
-         int row_count = define.ROW_COUNT;
+         int row_count = LibraryConstant.ROW_COUNT;
  		 int current_page = 1;		
  		 
  		 //tong so user

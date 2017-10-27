@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import library.LibraryAuth;
 
-public class AdminShowAddUserController extends HttpServlet {
+public class AdminShowAddHopDongController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
-    public AdminShowAddUserController() {
+    public AdminShowAddHopDongController() {
         super();
        
     }
@@ -31,7 +31,7 @@ public class AdminShowAddUserController extends HttpServlet {
 					return;
 				}
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/admin/users/add.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/admin/hopdong/add.jsp");
 		rd.forward(request, response);
 	}
 

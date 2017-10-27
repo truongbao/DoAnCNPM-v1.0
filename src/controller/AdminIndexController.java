@@ -21,7 +21,8 @@ public class AdminIndexController extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//kiểm tra đã đăng nhập chưa
-		if(  LibraryAuth.CheckQuanLyKhoa(request, response)==false){
+
+		if(!LibraryAuth.CheckLogin(request, response)){
 			return;
 		}
 		

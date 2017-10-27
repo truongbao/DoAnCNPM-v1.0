@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,16 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import library.LibraryAuth;
-import model.bean.DeTai;
-import model.bean.User;
-import model.dao.UserDAO;
+import org.apache.jasper.tagplugins.jstl.core.Out;
 
-public class AdminShowDetailUserController extends HttpServlet {
+import library.LibraryAuth;
+import model.bean.HopDong;
+import model.bean.User;
+import model.dao.HopDongDAO;
+
+public class AdminShowEditHopDongController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
-    public AdminShowDetailUserController() {
+    public AdminShowEditHopDongController() {
         super();
        
     }
@@ -35,26 +36,26 @@ public class AdminShowDetailUserController extends HttpServlet {
 				if(  LibraryAuth.CheckAdmin(request, response)==false){
 					return;
 				}
-		UserDAO objDAO = new UserDAO();
-		int idUser = Integer.parseInt(request.getParameter("uid"));//idUser tren url
+		HopDongDAO objDAO = new HopDongDAO();
+		int idHopDong = Integer.parseInt(request.getParameter("uid"));//idUser tren url
 		//==============================
 		//phân quyền 
 //		HttpSession session = request.getSession();
-//	    User userinfo = (User)session.getAttribute("sobjUser");
+//	    User userinfo = (User)session.getAttribute("sobjHopDong");
 //	    if("admin".equals(objDAO.getItem( userinfo.getIdUser()).getUsername() ) || (idUser==userinfo.getIdUser()) ){
 	    	
-		User objUser = objDAO.getObjUser(idUser);
-		ArrayList<DeTai> listDeTai = objDAO.getListDeTaiByIdUser(idUser);
-		if (objUser != null) {
-		request.setAttribute("objUser", objUser);
-		request.setAttribute("listDeTai", listDeTai);
-		RequestDispatcher rd = request.getRequestDispatcher("/admin/users/show.jsp");
+		HopDong objHopDong = objDAO.getObjHopDong(idHopDong);
+		if (objHopDong != null) {
+		request.setAttribute("objHopDong", objHopDong);
+		RequestDispatcher rd = request.getRequestDispatcher("/admin/hopdong/edit.jsp");
 		rd.forward(request, response);
 		
 	    }else{
-	    	response.sendRedirect(request.getContextPath()+"/admin/user/index?msg=4");
+	    	response.sendRedirect(request.getContextPath()+"/admin/hopdongs/index?msg=4");
 	    	return;
 	    } 
+	    
+	    
 	}
 
 }

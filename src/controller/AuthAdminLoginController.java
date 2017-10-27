@@ -59,6 +59,9 @@ public class AuthAdminLoginController extends HttpServlet {
 				break;
 			}
 			//System.out.println(objUserLogin.toString());
+			
+			System.out.println(objUserLogin.getFullName()+"pass : "+objUserLogin.getMatKhau());
+			
 			session.setAttribute(permision, objUserLogin );//gán đối tuong tra về cho session=> tâ có đoi tuong user lưu trong sesion
 			response.sendRedirect(request.getContextPath() + "/admin");
 			return; 
@@ -67,7 +70,6 @@ public class AuthAdminLoginController extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/auth/admin/login?msg=0");
 			return; 
 		}
-         
          
 	}
 }
