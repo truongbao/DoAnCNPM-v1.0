@@ -1,3 +1,4 @@
+<%@page import="model.bean.DeTai"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -72,41 +73,48 @@
 						<td width="4%;" colspan="3">Thông tin chi tiết đề tài đăng ký</td>
 					</tr>
 					
+					<%
+				    if(request.getAttribute("objDeTaiByIdDeTaiDK") != null){
+				    	 DeTai objDeTaiByIdDeTaiDK =(DeTai)request.getAttribute("objDeTaiByIdDeTaiDK");
+					%>
 					
 					<tr>
-						<td width="4%;">1</td> <td width="25%;" style="font-weight:bold;">Tên đề tài</td>  <td> Quản lý quản lý đề tài nghiên cứu khoa học</td>
+						<td width="4%;">1</td> <td width="25%;" style="font-weight:bold;">Tên đề tài</td>  <td> <%=objDeTaiByIdDeTaiDK.getTenDeTai() %> </td>
 					</tr>
 					<tr>
-						<td width="4%;">2</td> <td width="25%;" style="font-weight:bold;">Chủ nhiệm đề tài</td>  <td> Bạch linh</td>
+						<td width="4%;">2</td> <td width="25%;" style="font-weight:bold;">Chủ nhiệm đề tài</td>  <td> <%=objDeTaiByIdDeTaiDK.getFullName() %> </td>
 					</tr>
 					<tr>
-						<td width="4%;">3</td> <td width="25%;" style="font-weight:bold;">Lĩnh vực nghiên cứu</td>  <td> Xã Hội và Nhân Văn </td>
+						<td width="4%;">3</td> <td width="25%;" style="font-weight:bold;">Lĩnh vực nghiên cứu</td>  <td> <%=objDeTaiByIdDeTaiDK.getTenLinhVucNghienCuu() %> </td>
 					</tr>
 					<tr>
-						<td width="4%;">4</td> <td width="25%;" style="font-weight:bold;">Tính cấp thiết</td>  <td> Giải quyết vấn đề đăng ký và triển khai đề tài </td>
+						<td width="4%;">4</td> <td width="25%;" style="font-weight:bold;">Tính cấp thiết</td>  <td> <%=objDeTaiByIdDeTaiDK.getTinhCapThiet() %> </td>
 					</tr>
 					<tr>
-						<td width="4%;">5</td> <td width="25%;" style="font-weight:bold;">Mục tiêu</td>  <td> Xây dựng được website đăng ký và triển khai đề tài nghiên cứu khoa học</td>
+						<td width="4%;">5</td> <td width="25%;" style="font-weight:bold;">Mục tiêu</td>  <td> <%=objDeTaiByIdDeTaiDK.getMucTieu() %> </td>
 					</tr>
 					<tr>
-						<td width="4%;">6</td> <td width="25%;" style="font-weight:bold;">Nội dung chính</td>  <td> Triển khai đề tài nghiên cứu khoa học cấp trường đại học bách khoa  </td>
+						<td width="4%;">6</td> <td width="25%;" style="font-weight:bold;">Nội dung chính</td>  <td> <%=objDeTaiByIdDeTaiDK.getNoiDung() %>  </td>
 					</tr>
-					<tr>
+					
+					<!-- <tr>
 						<td width="4%;">7</td> <td width="25%;" style="font-weight:bold;">Cấp đề tài</td>  <td> Cấp trường </td>
 					</tr>
 					<tr>
 						<td width="4%;">8</td> <td width="25%;" style="font-weight:bold;">Kết quả dự kiến</td>  <td>  </td>
+					</tr> -->
+					
+					<tr>
+						<td width="4%;">9</td> <td width="25%;" style="font-weight:bold;">Hiệu quả dự kiến</td>  <td> <%=objDeTaiByIdDeTaiDK.getHieuQua() %> </td>
 					</tr>
 					<tr>
-						<td width="4%;">9</td> <td width="25%;" style="font-weight:bold;">Hiệu quả dự kiến</td>  <td> Xấy dựng được các chức năng chính </td>
-					</tr>
-					<tr>
-						<td width="4%;">10</td> <td width="25%;" style="font-weight:bold;">Kinh phí dự kiếm</td>  <td> 10 triệu </td>
+						<td width="4%;">10</td> <td width="25%;" style="font-weight:bold;">Kinh phí dự kiếm</td>  <td>  <%=objDeTaiByIdDeTaiDK.getKinhPhiThucHien() %> Đồng </td>
 					</tr>
 					<tr>
 						<td width="4%;">11</td> <td width="25%;" style="font-weight:bold;">Thời gian dư kiến</td>  <td> 1 năm</td>
 					</tr>
 					
+					<%} %>
 				</tbody>
 			</table>
 

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import library.LibraryAuth;
 import model.bean.Cat;
 import model.bean.DeTai;
 import model.bean.ThanhVien;
@@ -22,6 +23,14 @@ public class PublicIndexDetailDeTaiController extends HttpServlet {
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+	    response.setCharacterEncoding("UTF-8");
+	    response.setContentType("text/html");
+	    
+	    //kiểm tra đã đăng nhập ở public chưa
+		if(  LibraryAuth.CheckLoginPublic(request, response)==false){
+			return;
+		}
 
 		DetaiDAO detaiDAO = new DetaiDAO();
 		  

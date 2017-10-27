@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import library.LibraryAuth;
+import model.bean.DeTai;
 import model.dao.DetaiDAO;
 
 public class PublicListRegisterDetaiController extends HttpServlet {
@@ -30,7 +32,14 @@ public class PublicListRegisterDetaiController extends HttpServlet {
 		
 		DetaiDAO detaiDAO =new DetaiDAO();
 		    
+		ArrayList<DeTai> listDeTaiDKSave = new ArrayList<DeTai>();
+		
+		listDeTaiDKSave = detaiDAO.getListDeTaiDK();
+		
 		request.setAttribute("listDeTaiDK", detaiDAO.getListDeTaiDK() );
+		request.setAttribute("listDeTaiDKSave", listDeTaiDKSave );
+		
+		
 		
 		 RequestDispatcher rd = request.getRequestDispatcher("/list_register_detai.jsp");
          rd.forward(request, response);       
