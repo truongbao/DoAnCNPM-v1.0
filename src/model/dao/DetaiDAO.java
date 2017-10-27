@@ -38,7 +38,6 @@ public class DetaiDAO {
 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
 				+ " order by dt.idDeTai DESC";
-
 		try {
 			st = conn.createStatement();
 			rs = st.executeQuery(sql);
@@ -550,6 +549,7 @@ public class DetaiDAO {
 				+ " JOIN loaihinhnghiencuu AS lhnc ON dt.idLoaiHinhNghienCuu = lhnc.idLoaiHinhNghienCuu JOIN user ON dt.idUser"
 				+ " = user.idUser WHERE";
 		sql = getSqlWithSearch(sql, year, type_detai, type_stat) + " ORDER BY dt.idDeTai DESC LIMIT ?, ?";
+		System.out.println(sql);
 		try {
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, offset);

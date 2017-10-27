@@ -1,3 +1,4 @@
+<%@page import="library.LibraryConstant"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="model.bean.Khoa"%>
 <%@page import="model.bean.DeTai"%>
@@ -54,9 +55,9 @@
 											class="form-control border-input" onchange="enableTypeDT()">
 											<option value="0">-- Chọn kiểu thống kê --</option>
 											<!-- Value = 1 to enable type_dt -->
-											<option value="Đã hoàn thành">Thông kê đề tài hoàn
+											<option value="<%=LibraryConstant.DaHoanThanh%>">Thông kê đề tài hoàn
 												thành</option>
-											<option value="Đang thực thiện">Thống kê đề tài đang
+											<option value="<%=LibraryConstant.DangThucHien%>">Thống kê đề tài đang
 												thực hiện</option>
 										</select>
 									</div>
@@ -66,9 +67,9 @@
 										<select name="type_detai" id="type_detai"
 											class="form-control border-input">
 											<option value="0">-- Chọn cấp đề tài --</option>
-											<option value="Cấp cơ sở">Cơ sở</option>
-											<option value="Đại học Đà Nẵng">Đại học Đà Nẵng</option>
-											<option value="Bộ giáo dục">Bộ giáo dục</option>
+											<option value="<%=LibraryConstant.TOPICTYPE_CAPCOSO%>">Cơ sở</option>
+											<option value="<%=LibraryConstant.TOPICTYPE_CAPDHDN%>">Đại học Đà Nẵng</option>
+											<option value="<%=LibraryConstant.TOPICTYPE_CAPBGD%>">Bộ giáo dục</option>
 										</select>
 									</div>
 								</div>
@@ -112,7 +113,7 @@
 							<%	} 
 								if(!"0".equals(filter_type_stat)){
 							%>
-								<span><%=filter_type_stat %></span>	
+								<span><%=LibraryConstant.ConvertTrangThai(filter_type_stat) %></span>	
 							<%	} 
 								if(!"0".equals(filter_type_detai)){
 							%>
