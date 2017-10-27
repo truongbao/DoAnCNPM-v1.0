@@ -76,6 +76,9 @@
 					<%
 				    if(request.getAttribute("objDeTaiByIdDeTaiDK") != null){
 				    	 DeTai objDeTaiByIdDeTaiDK =(DeTai)request.getAttribute("objDeTaiByIdDeTaiDK");
+				    	 
+				    	 
+				    	 
 					%>
 					
 					<tr>
