@@ -150,7 +150,7 @@ public class UserDAO {
 		conn = connectMySQLLibrary.getConnectMySQL();
 		
 		String sql = "select  dt.idDeTai, dt.maSoDeTai FROM detai AS dt "
-				+ " INNER JOIN  user AS u ON u.idUser = dt.idUser WHERE u.idUser = "+idUser ;
+				+ " INNER JOIN  user AS u ON u.idUser = dt.idUser WHERE dt.maSoDeTai != 'no' and  u.idUser = "+idUser ;
 		
 		try {
 			st = conn.createStatement();

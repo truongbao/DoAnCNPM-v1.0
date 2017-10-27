@@ -1,3 +1,4 @@
+<%@page import="model.bean.ThongBao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -20,7 +21,7 @@
 										
 					                    <li><a href="index.html">Trang chủ </a> </li>
 										
-											 <li class="active breadcrumb-title">Thông báo</li>
+										<li class="active breadcrumb-title">Thông báo</li>
 										
 					                </ol>
 					            </div>
@@ -32,43 +33,63 @@
 
 
 
-					<section class="mb25">
+<section class="mb25">
     <div class="container">
     
-    <div class="row">
+       <div class="row">
         
-	<div class="sidebar-collection col-md-5">	
+	    <div class="sidebar-collection col-md-5">	
 			
 	      <div style="margin-bottom:15px">
 	        <h2 class="default_title"><a href="tin-tuc.html">Thông báo mới</a></h2>
 	      </div>
 
+                <%
+				    if(request.getAttribute("listThongBaoByIdDeTai")!=null){
+				    	ArrayList<ThongBao> listThongBao = (ArrayList<ThongBao>)request.getAttribute("listThongBaoByIdDeTai");
+				    	if(listThongBao.size() > 0){
+				    		for(ThongBao objThongBao : listThongBao){
+				    			
+				%>
 	
-	<div class="new-item col-xs-12 no-padding-lr first ">
-		<div class="new-item-brbt">
-			<div class="col-xs-12 col-sm-5 no-padding-l home-blog-content-left">
-				<div class="new-img">
-					
-						<a href="ebook-nhung-em-be-khon-ngoan-day-con-tu-bao-ve-minh.html" title=""><img src="<%=request.getContextPath()%>/templates/public/images/thongbao.jpg" alt=""></a>
-					
+				<div class="new-item col-xs-12 no-padding-lr first ">
+					<div class="new-item-brbt">
+						<div class="col-xs-12 col-sm-5 no-padding-l home-blog-content-left">
+							<div class="new-img">
+								
+								<a href="ebook-nhung-em-be-khon-ngoan-day-con-tu-bao-ve-minh.html" title="">
+								   <img src="<%=request.getContextPath()%>/templates/public/images/thongbao.jpg" alt="">
+								</a>
+								
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-7 no-padding-r home-blog-content-right">
+							<div class="home-blog-content-right-div">
+			
+								<h3 class="new-name"><a href="" title=""> <span style="color : red;">Thông báo: </span> 
+								<%
+								   if(objThongBao.getNoiDung().length() > 50){
+								%>
+								   <%=objThongBao.getNoiDung().substring(0,50) %>... </a>
+								<%}else{ %>
+								   <%=objThongBao.getNoiDung() %> </a>
+								<%} %>
+								
+								</h3>
+								
+								<p class="new-info"><span><i class="fa fa-calendar"></i> <%=objThongBao.getThoiGian() %> </span> 
+								<%-- <p class="new-description">
+									 <%=objThongBao. %>
+									<br>
+								</p> --%>
+							</div>
+						</div>
+					</div>	
+			
 				</div>
-			</div>
-			<div class="col-xs-12 col-sm-7 no-padding-r home-blog-content-right">
-				<div class="home-blog-content-right-div">
-
-					<h3 class="new-name"><a href="" title="">Thông báo: Chỉnh sửa đề xuất đề tài Nghiên cứu giải tích 1</a></h3>
-					<p class="new-info"><span><i class="fa fa-calendar"></i> 29/ 09/ 2016</span> 
-					<p class="new-description">
-						 Phần dự trù kinh phí ... 
-						<br>
-					</p>
-				</div>
-			</div>
-		</div>	
-
-	</div>
-	
-
+				
+				<%}}} %>
+				
 	
 			</div>		
 			
@@ -107,57 +128,7 @@
 							</div>
 							<!--End. blog-item-->
 							
-							<div class="new-item col-xs-12 first ">
-								<div class="new-item-brbt">
-									<div class="col-xs-12 col-sm-5 no-padding-l home-blog-content-left">
-										<div class="new-img">
-											
-												<a href="" title=""><img src="<%=request.getContextPath()%>/templates/public/images/thongbao.jpg" alt=""></a>
-											
-										</div>
-									</div>
-									<div class="col-xs-12 col-sm-7 no-padding-r home-blog-content-right">
-										<div class="home-blog-content-right-div">
-
-											<h3 class="new-name"><a href="" title="">Thông báo: Chỉnh sửa đề tài Thuật toán nhánh cận</a></h3>
-											<p class="new-info"><span><i class="fa fa-calendar"></i> 29/ 09/ 2017</span> 
-											<p class="new-description">
-												 Thuật toán nhánh cận ... 
-												<br>
-											</p>
-											<a class="theme_default_btn" href="">Xem chi tiết </a>
-										</div>
-									</div>
-								</div>	
-
-							</div>
-							<!--End. blog-item-->
 							
-							<div class="new-item col-xs-12 first ">
-								<div class="new-item-brbt">
-									<div class="col-xs-12 col-sm-5 no-padding-l home-blog-content-left">
-										<div class="new-img">
-											
-												<a href="" title=""><img src="<%=request.getContextPath()%>/templates/public/images/thongbao.jpg" alt=""></a>
-											
-										</div>
-									</div>
-									<div class="col-xs-12 col-sm-7 no-padding-r home-blog-content-right">
-										<div class="home-blog-content-right-div">
-
-											<h3 class="new-name"><a href="" title="">Thông báo: Chỉnh sửa đề tài Thuật toán nhánh cận</a></h3>
-											<p class="new-info"><span><i class="fa fa-calendar"></i> 29/ 09/ 2017</span> 
-											<p class="new-description">
-												 Thuật toán nhánh cận ... 
-												<br>
-											</p>
-											<a class="theme_default_btn" href="">Xem chi tiết</a>
-										</div>
-									</div>
-								</div>	
-
-							</div>
-							<!--End. blog-item-->
 							
 						
 						
