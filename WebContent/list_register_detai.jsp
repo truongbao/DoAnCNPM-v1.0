@@ -127,16 +127,13 @@
 								 <td>
 									<center>
 									  <%
-									    //lấy dc trang thai ban dau là 2
-									     String tt = objDT.getTrangThai();
-									   
 									    //viet phuong thuc lay ra trangThai mới cập nhật ứng vs idDeTai vừa dk
 									    DetaiDAO detaiDAO = new DetaiDAO();
 									    DeTai objDeTaiById =  detaiDAO.getTrangThaiUpdateUpdByIdDeTaiDK(objDT.getIdDeTai());
 									    if( objDeTaiById != null ){
 									  
 									  %>
-										<a href="<%=request.getContextPath()%>/update-detai" class="btn btn-danger" style="">  Xem thông báo </a>
+										<a href="<%=request.getContextPath()%>/thong-bao?id_detai=<%=objDT.getIdDeTai() %>" class="btn btn-danger" style="">  Xem thông báo </a>
 									  <%}else{%>
 									  
 									  <%} %>
