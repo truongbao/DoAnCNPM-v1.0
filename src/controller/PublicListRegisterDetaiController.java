@@ -32,12 +32,7 @@ public class PublicListRegisterDetaiController extends HttpServlet {
 		
 		DetaiDAO detaiDAO =new DetaiDAO();
 		    
-		ArrayList<DeTai> listDeTaiDKSave = new ArrayList<DeTai>();
-		
-		listDeTaiDKSave = detaiDAO.getListDeTaiDK();
-		
 		request.setAttribute("listDeTaiDK", detaiDAO.getListDeTaiDK() );
-		//request.setAttribute("listDeTaiDKSave", listDeTaiDKSave );
 		
 		
 		

@@ -81,7 +81,7 @@ public class DetaiDAO {
 					+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 					+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 					+ "  WHERE  dt.maSoDeTai = 'no' ";
-			       //+ "  WHERE dt.trangThai = "+define.DangChoXetDeTai+" and dt.maSoDeTai = 'null' ";
+			
 			try {
 				st = conn.createStatement();
 				rs = st.executeQuery(sql);

@@ -10,13 +10,15 @@ public class ThongBao {
 	private String noiDung;
 	private int idQuaTrinhThucHien;
 	private Timestamp thoiGian;
+	private int idDeTai;
 	
 	public ThongBao() {
 		super();
 	}
 
 	public ThongBao(int idThongBao, int idUserThongBao, int idUserDen,
-			String noiDung, int idQuaTrinhThucHien, Timestamp thoiGian) {
+			String noiDung, int idQuaTrinhThucHien, Timestamp thoiGian,
+			int idDeTai) {
 		super();
 		this.idThongBao = idThongBao;
 		this.idUserThongBao = idUserThongBao;
@@ -24,6 +26,7 @@ public class ThongBao {
 		this.noiDung = noiDung;
 		this.idQuaTrinhThucHien = idQuaTrinhThucHien;
 		this.thoiGian = thoiGian;
+		this.idDeTai = idDeTai;
 	}
 
 	public int getIdThongBao() {
@@ -74,13 +77,23 @@ public class ThongBao {
 		this.thoiGian = thoiGian;
 	}
 
+	public int getIdDeTai() {
+		return idDeTai;
+	}
+
+	public void setIdDeTai(int idDeTai) {
+		this.idDeTai = idDeTai;
+	}
+
 	@Override
 	public String toString() {
 		return "ThongBao [idThongBao=" + idThongBao + ", idUserThongBao="
 				+ idUserThongBao + ", idUserDen=" + idUserDen + ", noiDung="
 				+ noiDung + ", idQuaTrinhThucHien=" + idQuaTrinhThucHien
-				+ ", thoiGian=" + thoiGian + "]";
+				+ ", thoiGian=" + thoiGian + ", idDeTai=" + idDeTai + "]";
 	}
+
+	
 
 	
 }
