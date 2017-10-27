@@ -71,7 +71,7 @@
                  <div class="col-lg-12 col-md-12">
                     <div class="card">
                        <div class="header">
-                            <h4 class="title" style="text-align: center; color : white ;border: 1px solid;padding: 4px 4px;border-radius: 4px;  background: #58a808; color: #FFF; font-weight: bold">Thêm Người Dùng</h4>
+                            <h4 class="title" style="text-align: center; color : white ;border: 1px solid;padding: 4px 4px;border-radius: 4px;  background: #58a808; color: #FFF; font-weight: bold">Sửa Người Dùng</h4>
                         </div>
                         <div class="content">
                         	<%

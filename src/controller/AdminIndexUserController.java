@@ -32,7 +32,7 @@ public class AdminIndexUserController extends HttpServlet {
        
          
         //kiểm tra đã đăng nhập chưa
- 		if(  LibraryAuth.CheckAdmin(request, response)==false){
+ 		if(  LibraryAuth.CheckLogin(request, response)==false){
  			return;
  		}
         int loaiTaiKhoan = 0;
