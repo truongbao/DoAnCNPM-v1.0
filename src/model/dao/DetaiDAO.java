@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import library.ConnectMySQLLibrary;
+import library.LibraryConstant;
 import model.bean.DeTai;
 import model.bean.HocVi;
 import model.bean.Khoa;
@@ -15,7 +16,6 @@ import model.bean.LinhVucNC;
 import model.bean.LoaiTaiKhoan;
 import model.bean.ThanhVien;
 import model.bean.User;
-import constant.define;
 
 public class DetaiDAO {
 	private ConnectMySQLLibrary connectMySQLLibrary;
@@ -122,7 +122,7 @@ public class DetaiDAO {
 			String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu FROM detai AS dt "
 					+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 					+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
-					+ "  WHERE dt.trangThai = "+define.DangChoXetDeTai+"  and  dt.idDeTai = "+idDeTai;
+					+ "  WHERE dt.trangThai = "+LibraryConstant.DangChoXetDeTai+"  and  dt.idDeTai = "+idDeTai;
 
 			DeTai objDeTai =null;
 			try {

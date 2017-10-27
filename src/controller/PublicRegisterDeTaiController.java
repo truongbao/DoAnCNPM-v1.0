@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import constant.define;
 import library.LibraryAuth;
+import library.LibraryConstant;
 import library.StringLibrary;
 import model.bean.DeTai;
 import model.bean.User;
@@ -91,7 +91,7 @@ public class PublicRegisterDeTaiController extends HttpServlet {
 									"", 0, "", null, null, "", idUser, "", "", "",
 									tinhCapThiet, mucTieu, "", "",
 									noiDung, sanPham, hieuQua, kinhPhiThucHien, 
-									define.DangChoXetDeTai, "", null, objUser.getIdKhoa(), "");
+									LibraryConstant.DangChoXetDeTai, "", null, objUser.getIdKhoa(), "");
         
 		 if(detaiDAO.addDeTaiPublic(objDeTai) >  0){
 				response.sendRedirect(request.getContextPath()+"/list-register-detai?msg=1");
