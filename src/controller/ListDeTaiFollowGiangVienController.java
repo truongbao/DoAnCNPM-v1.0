@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import constant.define;
 import library.LibraryAuth;
 import model.bean.Cat;
 import model.bean.DeTai;

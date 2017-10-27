@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import constant.define;
 import library.ConnectMySQLLibrary;
 import model.bean.Cat;
 import model.bean.Khoa;

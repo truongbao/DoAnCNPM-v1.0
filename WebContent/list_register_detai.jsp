@@ -1,5 +1,5 @@
+<%@page import="library.LibraryConstant"%>
 <%@page import="model.dao.DetaiDAO"%>
-<%@page import="constant.define"%>
 <%@page import="model.bean.DeTai"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -107,7 +107,7 @@
 								</td>
 								<td> <%=objDT.getThoiGianDangKy() %> </td>
 								<td>
-								   <%= define.ConvertTrangThai(objDT.getTrangThai())%>
+								   <%= LibraryConstant.ConvertTrangThai(objDT.getTrangThai())%>
 							    </td>
 							    
 								<td>
@@ -127,16 +127,13 @@
 								 <td>
 									<center>
 									  <%
-									    //lấy dc trang thai ban dau là 2
-									     String tt = objDT.getTrangThai();
-									   
 									    //viet phuong thuc lay ra trangThai mới cập nhật ứng vs idDeTai vừa dk
 									    DetaiDAO detaiDAO = new DetaiDAO();
 									    DeTai objDeTaiById =  detaiDAO.getTrangThaiUpdateUpdByIdDeTaiDK(objDT.getIdDeTai());
 									    if( objDeTaiById != null ){
 									  
 									  %>
-										<a href="<%=request.getContextPath()%>/update-detai" class="btn btn-danger" style="">  Xem thông báo </a>
+										<a href="<%=request.getContextPath()%>/thong-bao?id_detai=<%=objDT.getIdDeTai() %>" class="btn btn-danger" style="">  Xem thông báo </a>
 									  <%}else{%>
 									  
 									  <%} %>

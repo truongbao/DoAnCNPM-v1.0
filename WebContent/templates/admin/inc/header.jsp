@@ -1,3 +1,4 @@
+<%@page import="library.LibraryAuth"%>
 <%@page import="model.bean.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -61,20 +62,27 @@
     <div class="sidebar" data-background-color="white" data-active-color="danger">
         <div class="sidebar-wrapper" style="background: black; color: white;">
         	<%
-    	    if(session.getAttribute("sobjUser")!=null){//login rồi
-    	         User sobjUser = (User)session.getAttribute("sobjUser");
+        	User sobjUser = new User();
+        	boolean isAdmin = false;
+        	boolean isQuanLyNCKHKhoa = false;
+        	boolean isNhanVienQLNCKHTruong = false;
+    	    if(session.getAttribute("admin")!=null){//login by admin
+    	         sobjUser = (User)session.getAttribute("admin");
+    	         isAdmin = true;    	    	
+    	    }else if(session.getAttribute("quanLyNCKHKhoa")!=null){ //login by quanLyNCKHKhoa
+    	    	sobjUser = (User)session.getAttribute("quanLyNCKHKhoa");
+    	    	isQuanLyNCKHKhoa = true;
+    	    }else if(session.getAttribute("nhanVienQLNCKHTruong")!=null){ //login by nhanVienQLNCKHTruong
+    	    	sobjUser = (User)session.getAttribute("nhanVienQLNCKHTruong");
+    	    	isNhanVienQLNCKHTruong = true;
+    	    }
     	    %>
             <div class="logo">
                 <a href="<%=request.getContextPath()%>/admin/show-user?uid=<%=sobjUser.getIdUser() %>" class="simple-text"><img src="<%=request.getContextPath() %>/templates/admin/img/faces/face-3.jpg" class="img-circle" style="display:inline-block; width:130px;height:100px">
-                	 <h5> truongcongbao </h5> 
+                	 <h5> <%=sobjUser.getFullName() %> </h5> 
                 </a>
             </div>
-            <%} else { %>
-            <div class="text-center">
-            	<img src="<%=request.getContextPath() %>/templates/admin/img/faces/face-3.jpg" class="img-circle" style="display:inline-block; width:130px;height:100px">
-            	<h5 class="text-center">Admin</h5>
-            </div>
-            <% } %>
+
 
             <ul class="nav">
             	<li>
@@ -117,7 +125,11 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                <% if(isAdmin || isNhanVienQLNCKHTruong){ %>
+                    <a href="<%=request.getContextPath() %>/admin/general-statistical?type=load">
+                <% }else if(isQuanLyNCKHKhoa){ %>
+                	<a href="<%=request.getContextPath() %>/admin/faculty-statistical?type=load">
+                <%} %>
                         <!-- <i class="ti-stats-up"></i> -->
                         <p>Thống kê</p>
                     </a>
@@ -128,22 +140,19 @@
                         <p>Thông báo</p>
                     </a>
                 </li>
-                <li>
-                    <a href="index.html">
-                        <!-- <i class="ti-user"></i> -->
-                        <p>Quản lý triễn khai</p>
-                    </a>
-                </li>
+                <% if(isAdmin || isNhanVienQLNCKHTruong){ %>
                 <li>
                     <a href="<%=request.getContextPath() %>/admin/hopdong/index">
                         <!-- <i class="ti-user"></i> -->
                         <p>Quản lý hợp đồng</p>
                     </a>
                 </li>
+                <% }%>
+                
             </ul>
         </div>
     </div>
-    <div class="main-panel">
+     <div class="main-panel">
         <nav class="navbar navbar-default">
             <div class="container-fluid" style="background: black">
                 <div class="navbar-header">
@@ -158,7 +167,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href=""<%=request.getContextPath()%>/auth/logout">
+                            <a href="<%=request.getContextPath()%>/auth/admin/logout">
                                 <i class="ti-settings"></i>
                                 <p>Đăng Xuất</p>
                             </a>
@@ -168,4 +177,6 @@
                 </div>
             </div>
         </nav>
+    
+
     
