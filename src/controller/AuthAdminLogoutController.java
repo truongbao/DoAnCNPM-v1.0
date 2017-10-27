@@ -29,7 +29,11 @@ public class AuthAdminLogoutController extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		doPost(request, response);
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("admin")!=null){
 			//xóa session
@@ -40,13 +44,7 @@ public class AuthAdminLogoutController extends HttpServlet {
 		}else if(session.getAttribute("nhanVienQLNCKHTruong")!=null){
 			session.removeAttribute("nhanVienQLNCKHTruong");
 		}
-		response.sendRedirect(request.getContextPath()+"/home");//chuyen sang trang public
-		
-		
-	}
-
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.sendRedirect(request.getContextPath()+"/auth/admin/login");
 		
 	}
 

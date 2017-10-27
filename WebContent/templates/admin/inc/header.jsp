@@ -167,7 +167,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href=""<%=request.getContextPath()%>/auth/admin/logout">
+                            <a href="<%=request.getContextPath()%>/auth/admin/logout">
                                 <i class="ti-settings"></i>
                                 <p>Đăng Xuất</p>
                             </a>
