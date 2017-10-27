@@ -78,7 +78,7 @@ public class LibraryAuth {
 		// true : login roi
 		// fail : chua
 		HttpSession session = request.getSession();
-		if (session.getAttribute("nhanVienQLNCKHTruong") == null) {// chưa đăng
+		if (session.getAttribute("nhanVienQLNCKHTruong") == null && session.getAttribute("admin") == null) {// chưa đăng
 																	// nhâp
 			// chuyen huong
 			response.sendRedirect(request.getContextPath() + "/auth/admin/login");

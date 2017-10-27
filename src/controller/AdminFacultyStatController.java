@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,7 +15,6 @@ import library.LibraryConstant;
 import model.bean.DeTai;
 import model.bean.User;
 import model.dao.DetaiDAO;
-import model.dao.UserDAO;
 
 public class AdminFacultyStatController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -43,14 +41,15 @@ public class AdminFacultyStatController extends HttpServlet {
 		int dt_BGD = 0; // so detai cap Bo GD
 		
 		// kiá»ƒm tra Ä‘Ã£ Ä‘Äƒng nháº­p chÆ°a
-		// if( LibraryAuth.CheckLogin(request, response)==false){
-		// return;
-		// }
-		// HttpSession session = request.getSession();
-		// User objUser = (User) session.getAttribute("objUser");
-		// int idFaculty = objUser.getIdKhoa();
+		 if( !LibraryAuth.CheckQuanLyKhoa(request, response)){
+			 return;
+		 }
+		 HttpSession session = request.getSession();
+		 User objUser = (User) session.getAttribute("quanLyNCKHKhoa");
+		 System.out.println(objUser.getIdKhoa());
+		 int idFaculty = objUser.getIdKhoa();
 
-		int idFaculty = 6;
+//		int idFaculty = 6;
 		DetaiDAO model = new DetaiDAO();
 		if ("load".equals(request.getParameter("type"))) {
 			
@@ -66,12 +65,12 @@ public class AdminFacultyStatController extends HttpServlet {
 			request.setAttribute("alItem",model.getListByFaculty(idFaculty, offset, LibraryConstant.ROW_COUNT));
 			ArrayList<DeTai> arrDT = (ArrayList<DeTai>)model.getListByFaculty(idFaculty, offset, DT_sum);
 			for (DeTai obj : arrDT) {
-				if( "Cấp cơ sở".equals(obj.getCapDeTai())) dt_CCS++;
-				else if ("Đại học Đà Nẵng".equals(obj.getCapDeTai())) dt_DHDN++;
-				else if ("Bộ giáo dục".equals(obj.getCapDeTai())) dt_BGD++;
+				if( LibraryConstant.TOPICTYPE_CAPCOSO.equals(obj.getCapDeTai())) dt_CCS++;
+				else if (LibraryConstant.TOPICTYPE_CAPDHDN.equals(obj.getCapDeTai())) dt_DHDN++;
+				else if (LibraryConstant.TOPICTYPE_CAPBGD.equals(obj.getCapDeTai())) dt_BGD++;
 				
-				if("Đã hoàn thành".equals(obj.getTrangThai())) dt_hoanthanh++;
-				else if("Đang thực hiện".equals(obj.getTrangThai())) dt_dangthuchien++;
+				if(LibraryConstant.DaHoanThanh.equals(obj.getTrangThai())) dt_hoanthanh++;
+				else if(LibraryConstant.DangThucHien.equals(obj.getTrangThai())) dt_dangthuchien++;
 			}
 			request.setAttribute("dt_CCS", dt_CCS);
 			request.setAttribute("dt_DHDN", dt_DHDN);
@@ -96,12 +95,12 @@ public class AdminFacultyStatController extends HttpServlet {
 			request.setAttribute("alItem",model.getSearchListByFaculty(idFaculty,year,type_detai, type_stat, offset, LibraryConstant.ROW_COUNT));
 			ArrayList<DeTai> arrDT = (ArrayList<DeTai>)model.getSearchListByFaculty(idFaculty,year,type_detai, type_stat, offset, DT_sum);
 			for (DeTai obj : arrDT) {
-				if( "Cấp cơ sở".equals(obj.getCapDeTai())) dt_CCS++;
-				else if ("Đại học Đà Nẵng".equals(obj.getCapDeTai())) dt_DHDN++;
-				else if ("Bộ giáo dục".equals(obj.getCapDeTai())) dt_BGD++;
+				if( LibraryConstant.TOPICTYPE_CAPCOSO.equals(obj.getCapDeTai())) dt_CCS++;
+				else if (LibraryConstant.TOPICTYPE_CAPDHDN.equals(obj.getCapDeTai())) dt_DHDN++;
+				else if (LibraryConstant.TOPICTYPE_CAPBGD.equals(obj.getCapDeTai())) dt_BGD++;
 				
-				if("Đã hoàn thành".equals(obj.getTrangThai())) dt_hoanthanh++;
-				else if("Đang thực hiện".equals(obj.getTrangThai())) dt_dangthuchien++;
+				if(LibraryConstant.DaHoanThanh.equals(obj.getTrangThai())) dt_hoanthanh++;
+				else if(LibraryConstant.DangThucHien.equals(obj.getTrangThai())) dt_dangthuchien++;
 			}
 			request.setAttribute("filter_year", year);
 			request.setAttribute("filter_type_stat", type_stat);
