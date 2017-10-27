@@ -25,7 +25,7 @@ public class AdminEditUserController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//kiểm tra đã đăng nhập chưa
-				if(  LibraryAuth.CheckLogin(request, response)==false){
+				if(  LibraryAuth.CheckAdmin(request, response)==false){
 					return;
 				}
 	}

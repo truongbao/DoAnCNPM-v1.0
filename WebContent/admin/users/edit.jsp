@@ -139,7 +139,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group height-100">
                                                 <label>Fax</label>
-                                                <input type="text" name="fax" class="form-control border-input" style="height: 62px!important" value="<%=objUser.getFax() %>">
+                                                <input type="text" name="fax" class="form-control border-input" style="height: 62px!important" placeholder="Địa chỉ nhà riêng" value="<%=objUser.getFax() %>">
                                             </div>
                                         </div>
                                         <div class="col-md-3">

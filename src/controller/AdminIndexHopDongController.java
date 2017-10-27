@@ -32,7 +32,7 @@ public class AdminIndexHopDongController extends HttpServlet {
        
          
         //kiểm tra đã đăng nhập chưa
- 		if(  LibraryAuth.CheckLogin(request, response)==false){
+ 		if(  LibraryAuth.CheckAdmin(request, response)==false){
  			return;
  		}
  		HopDongDAO objDAO = new HopDongDAO();

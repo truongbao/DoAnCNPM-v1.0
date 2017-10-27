@@ -43,7 +43,7 @@ public class ListDeTaiFollowGiangVienController extends HttpServlet {
 			
 			out.println("<select name='de_tai' class='form-control border-input'>");
 		for(int i = 0; i < listDeTai.size(); i++) {
-			out.println("<option value="+ listDeTai.get(i).getIdDeTai()+">"+listDeTai.get(i).getTenDeTai()+"</option>");
+			out.println("<option value="+ listDeTai.get(i).getIdDeTai()+">"+listDeTai.get(i).getTenDeTai()+"___"+ listDeTai.get(i).getMaSoDeTai()+"</option>");
 		}
 		out.println("</select>");
 		}
