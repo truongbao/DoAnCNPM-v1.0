@@ -110,7 +110,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="index.html">
+                    <a href="<%=request.getContextPath() %>/admin/qldangkydetai/index_khoa">
                         <!-- <i class="ti-user"></i> -->
                         <p>Quản lý đăng ký đề tài</p>
                     </a>

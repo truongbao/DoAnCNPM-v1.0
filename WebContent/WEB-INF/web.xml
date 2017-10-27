@@ -65,6 +65,56 @@
     <url-pattern>/admin</url-pattern>
   </servlet-mapping>
   
+  <!-- ============== RIN QL dang ky de tai cua Khoa ==================== -->
+   <servlet>
+    <servlet-name>AdminIndexQLDKDTKhoa</servlet-name>
+    <servlet-class>controller.AdminIndexQLDKDTKhoa</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminIndexQLDKDTKhoa</servlet-name>
+    <url-pattern>/admin/qldangkydetai/index_khoa</url-pattern>
+  </servlet-mapping>
+  
+  <!-- ============== RIN QL duyet de xuat cua Khoa ==================== -->
+   <servlet>
+    <servlet-name>AdminDuyetDTKhoa</servlet-name>
+    <servlet-class>controller.AdminDuyetDTKhoa</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminDuyetDTKhoa</servlet-name>
+    <url-pattern>/admin/qldangkydetai/duyet_de_xuat_khoa</url-pattern>
+  </servlet-mapping>
+  
+  <!-- ============== RIN QL duyet de xuat cua Khoa ==================== -->
+   <servlet>
+    <servlet-name>AdminXemDeTai</servlet-name>
+    <servlet-class>controller.AdminXemDeTai</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminXemDeTai</servlet-name>
+    <url-pattern>/admin/qldangkydetai/xem_de_tai</url-pattern>
+  </servlet-mapping>
+  
+  <!-- ============== RIN QL duyet de xuat cua Khoa ==================== -->
+   <servlet>
+    <servlet-name>AdminDetailDuyetDeXuatKhoa</servlet-name>
+    <servlet-class>controller.AdminDetailDuyetDeXuatKhoa</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminDetailDuyetDeXuatKhoa</servlet-name>
+    <url-pattern>/admin/qldangkydetai/detail_duyet_dx_khoa</url-pattern>
+  </servlet-mapping>
+  
+  
+   <!-- ============== RIN QL duyet de xuat cua Khoa ==================== -->
+   <servlet>
+    <servlet-name>AdminDanhGiaDXKhoa</servlet-name>
+    <servlet-class>controller.AdminDanhGiaDXKhoa</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminDanhGiaDXKhoa</servlet-name>
+    <url-pattern>/admin/qldangkydetai/danh_gia_dx_khoa</url-pattern>
+  </servlet-mapping>
   <!--====== Cat ==========  -->
   
   <servlet>

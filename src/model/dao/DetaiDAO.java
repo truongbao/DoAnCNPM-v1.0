@@ -244,7 +244,7 @@ public class DetaiDAO {
 				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
-				+ " where dt.idKhoa = ? ORDER BY idDeTai ASC";
+				+ " where dt.idKhoa = ? ORDER BY dt.idDeTai ASC";
 		// String sql = "select * FROM detai WHERE idKhoa = ? ORDER BY idDeTai
 		// ASC";
 		DeTai objDeTai = null;
@@ -279,6 +279,48 @@ public class DetaiDAO {
 		return listDeTai;
 	}
 	
+	public ArrayList<DeTai> getListDuyetDeTaiByIdKhoa(int idKhoa) {
+
+		ArrayList<DeTai> listDeTai = new ArrayList<>();
+		conn = connectMySQLLibrary.getConnectMySQL();
+		String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
+				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
+				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
+				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
+				+ " where dt.idKhoa = ? and dt.trangThai = " + define.DangChoDuyetCapKhoa + " ORDER BY dt.idDeTai ASC";
+		// String sql = "select * FROM detai WHERE idKhoa = ? ORDER BY idDeTai
+		// ASC";
+		DeTai objDeTai = null;
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, idKhoa);
+			rs = pst.executeQuery();
+
+			while (rs.next()) {
+				objDeTai = new DeTai(rs.getInt("idDeTai"), rs.getString("tenDeTai"), rs.getString("maSoDeTai"),
+						rs.getInt("idLinhVucNghienCuu"), rs.getString("tenLinhVucNghienCuu"),
+						rs.getInt("idLoaiHinhNghienCuu"), rs.getString("tenLoaiHinhNghienCuu"),
+						rs.getTimestamp("thoiGianBatDau"), rs.getTimestamp("thoiGianKetThuc"),
+						rs.getString("donViChuTri"), rs.getInt("idUser"), rs.getString("fullName"),
+						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
+						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
+						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
+						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
+				listDeTai.add(objDeTai);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listDeTai;
+	}
 	
 	//lay ra danh sách linh vuc nghien cuu ko phan trang (public)
 	public ArrayList<LinhVucNC> getListLinhVucNC(){
