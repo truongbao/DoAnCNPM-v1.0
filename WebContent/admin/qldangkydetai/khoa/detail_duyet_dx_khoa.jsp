@@ -25,12 +25,16 @@
                                                 <input type="text" name="id" class="form-control border-input" disabled value="<%=objDeTai.getTenDeTai() %>">
                                             </div>
                                         </div>
+                                     </div>
+                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Chủ nhiệm</label>
                                                 <input type="text" name="id" class="form-control border-input" disabled value="<%=objDeTai.getFullName() %>">
                                             </div>
                                         </div>
+                                        </div>
+                                        <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Lĩnh vực nghiên cứu</label>
@@ -43,6 +47,8 @@
                                                 <input type="text" name="id" class="form-control border-input" disabled value="<%=objDeTai.getTenLoaiHinhNghienCuu() %>">
                                             </div>
                                         </div>
+                                        </div>
+                                        <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Cấp đề tài</label>
@@ -55,56 +61,72 @@
                                                 <input type="text" name="id" class="form-control border-input" disabled value="<%=objDeTai.getDonViChuTri() %>">
                                             </div>
                                         </div>
+                                        </div>
+                                        <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Tính cấp thiết</label>
                                                 <input type="text" name="id" class="form-control border-input" disabled value="<%=objDeTai.getTinhCapThiet() %>">
                                             </div>
                                         </div>
+                                        </div>
+                                        <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Mục tiêu </label>
                                                 <input type="text" name="id" class="form-control border-input" disabled value="<%=objDeTai.getMucTieu() %>">
                                             </div>
                                         </div>
-                                    
+                                    		</div>
+                                    		<div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Nội dung chính</label>
                                                 <textarea rows="6" class="form-control border-input" disabled="" value="<%=objDeTai.getNoiDung() %> "></textarea>
                                             </div>
                                         </div>
+                                        </div>
+                                        <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Tổng quan</label>
                                                 <textarea rows="3" class="form-control border-input" disabled="" value="<%=objDeTai.getTongQuan() %>"></textarea>
                                             </div>
                                         </div>
+                                        </div>
+                                        <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Sản phẩm dự kiến</label>
                                                 <textarea rows="3" class="form-control border-input" disabled="" value="<%=objDeTai.getSanPham() %>"></textarea>
                                             </div>
                                         </div>
+                                        </div>
+                                        <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Hiệu quả dự kiến</label>
                                                 <textarea rows="3" class="form-control border-input" disabled=" " value="<%=objDeTai.getHieuQua() %>"></textarea>
                                             </div>
                                         </div>
+                                        </div>
+                                        <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Kinh phí dự kiến </label>
                                                 <input type="text" name="id" class="form-control border-input" disabled value="<%=objDeTai.getKinhPhiThucHien() %>">
                                             </div>
                                     	   </div>
+                                    	   </div>
+                                    	   <div class="row">
                                     <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Thời gian dự kiến </label>
                                                 <input type="text" name="id" class="form-control border-input" disabled value="1 năm">
                                             </div>
                                     </div>
-                                    
+                                    </div>
+                                    <div class="row">
                                     <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Trạng thái </label>
@@ -112,13 +134,14 @@
                                             </div>
                                     </div>
                                     </div>
+                                    <div class="row">
                                     <div class="text-center">
                                         <input type="submit" class="btn btn-info btn-fill btn-wd" value="Huỷ đề xuất" />
-                                        <a href="<%=request.getContextPath()%>/admin/qldangkydetai/danh_gia_dx_khoa?did=<%=objDeTai.getIdDeTai()%>">
+                                        <a href="<%=request.getContextPath()%>/admin/qldangkydetai/khoa/danh_gia_dx_khoa?did=<%=objDeTai.getIdDeTai()%>">
                                         <input class="btn btn-info btn-fill btn-wd" value="Duyệt đề xuất" />
                                         </a>
                                     </div>
-                        
+                        				</div>
                                     <div class="clearfix"></div>
                                 </form>
                             </div>

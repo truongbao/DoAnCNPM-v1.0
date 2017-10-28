@@ -15,7 +15,6 @@ import model.bean.DeTai;
 import model.bean.User;
 import model.dao.DetaiDAO;
 import model.dao.UserDAO;
-import constant.define;
 
 public class AdminDuyetDTKhoa extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -44,7 +43,7 @@ public class AdminDuyetDTKhoa extends HttpServlet {
 		 ArrayList<DeTai> listDuyetDeTaiByIdKhoa = detaiDAO.getListDuyetDeTaiByIdKhoa(objUserAdmin.getIdKhoa());
 		 request.setAttribute("listDuyetDeTaiByIdKhoa", listDuyetDeTaiByIdKhoa);
 		System.out.println(listDuyetDeTaiByIdKhoa.size());
-		 RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/duyet_de_xuat_khoa.jsp");
+		 RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/khoa/duyet_de_xuat_khoa.jsp");
          rd.forward(request, response);
          
 

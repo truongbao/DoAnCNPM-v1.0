@@ -16,7 +16,6 @@ import model.bean.ThanhVien;
 import model.bean.User;
 import model.dao.DetaiDAO;
 import model.dao.UserDAO;
-import constant.define;
 
 public class AdminDanhGiaDXKhoa extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -42,7 +41,7 @@ public class AdminDanhGiaDXKhoa extends HttpServlet {
 		
 		request.setAttribute("objDeTai", objDeTai);
 		
-		 RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/danh_gia_dx_khoa.jsp");
+		 RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/khoa/danh_gia_dx_khoa.jsp");
          rd.forward(request, response);
          
 

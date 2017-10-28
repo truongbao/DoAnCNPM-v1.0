@@ -25,6 +25,8 @@
                                                 <input type="text" name="id" class="form-control border-input" disabled value="<%=objDeTai.getTenDeTai()%>">
                                             </div>
                                         </div>
+                                        </div>
+                                        <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Chủ nhiệm</label>
@@ -38,7 +40,11 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Nội dung đánh giá</label>
-                                                <textarea rows="10" class="form-control border-input"></textarea>
+                                                <textarea id="cktext1" class="form-control border-input"></textarea>
+                                                 <script type="text/javascript">
+							               			var editor = CKEDITOR.replace('cktext1');
+							               			CKFinder.setupCKEditor(editor,'<%=request.getContextPath()%>/ckfinder/')
+							         			</script>
                                             </div>
                                         </div>
                                     </div>

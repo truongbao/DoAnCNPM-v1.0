@@ -16,10 +16,10 @@ import model.bean.User;
 import model.dao.DetaiDAO;
 import model.dao.UserDAO;
 
-public class AdminIndexQLDKDTKhoa extends HttpServlet {
+public class AdminIndexQLDKDTNhanVien extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AdminIndexQLDKDTKhoa() {
+    public AdminIndexQLDKDTNhanVien() {
         super();
     }
     
@@ -29,21 +29,21 @@ public class AdminIndexQLDKDTKhoa extends HttpServlet {
         response.setContentType("text/html");
         
       //kiểm tra đã đăng nhập chưa
-      	if(  LibraryAuth.CheckQuanLyKhoa(request, response)==false){
+      	if(  LibraryAuth.CheckNhanVienTruong(request, response)==false){
       		return;
       	}
       		
         HttpSession session = request.getSession();
         DetaiDAO detaiDAO = new DetaiDAO();
 		User objUserAdmin = null;
-		 if(session.getAttribute("quanLyNCKHKhoa")!=null){
-			 objUserAdmin = (User)session.getAttribute("quanLyNCKHKhoa");
+		 if(session.getAttribute("nhanVienQLNCKHTruong")!=null){
+			 objUserAdmin = (User)session.getAttribute("nhanVienQLNCKHTruong");
 		 }
 		 
-		 ArrayList<DeTai> listDeTaiByIdKhoa = detaiDAO.getListDeTaiByIdKhoa(objUserAdmin.getIdKhoa());
-		 request.setAttribute("listDeTaiByIdKhoa", listDeTaiByIdKhoa);
+		 ArrayList<DeTai> listDeTaiNhanVien = detaiDAO.getListDeTaiNhanVien();
+		 request.setAttribute("listDeTaiNhanVien", listDeTaiNhanVien);
 		
-		 RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/khoa/index_khoa.jsp");
+		 RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/nhanvien/index_nhanvien.jsp");
          rd.forward(request, response);
          
 

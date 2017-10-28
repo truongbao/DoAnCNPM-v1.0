@@ -32,10 +32,7 @@
                             </div>
                             
                             <div class="content table-responsive table-full-width">
-                            <div class="row"> 
-                            		<div class="col-md-8"><h3>DANH SÁCH ĐỀ TÀI</h3></div>
-                            		<div class="col-md-4"><a class="btn btn-info btn-fill btn-wd" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldangkydetai/duyet_de_xuat_khoa">Xem danh sách duyệt đề xuất</a>
-                            </div></div>
+                            <h3>DANH SÁCH ĐỀ XUẤT CẦN DUYỆT</h3>
                             		
                             
                                 <table class="table table-striped">
@@ -49,8 +46,8 @@
                                     </thead>
                                     <tbody>
                                     <%
-                                       if(request.getAttribute("listDeTaiByIdKhoa") != null) {
-                                    	   ArrayList<DeTai> listDeTaiByIdKhoa = (ArrayList<DeTai>)request.getAttribute("listDeTaiByIdKhoa");
+                                       if(request.getAttribute("listDuyetDeTaiByIdKhoa") != null) {
+                                    	   ArrayList<DeTai> listDeTaiByIdKhoa = (ArrayList<DeTai>)request.getAttribute("listDuyetDeTaiByIdKhoa");
                                     	   if (listDeTaiByIdKhoa.size() > 0) {
                                     		   for (DeTai objDeTai : listDeTaiByIdKhoa){
                                     			   
@@ -59,12 +56,12 @@
                                     %>
                                         <tr>
                                         	<td><%=objDeTai.getIdDeTai() %></td>
-                                            <td><a href="<%=request.getContextPath()%>/admin/qldangkydetai/xem_de_tai?did=<%=objDeTai.getIdDeTai()%>"><%=objDeTai.getTenDeTai() %></a></td>
+                                            <td><a href="<%=request.getContextPath()%>/admin/qldangkydetai/khoa/detail_duyet_dx_khoa?did=<%=objDeTai.getIdDeTai()%>"><%=objDeTai.getTenDeTai() %></a></td>
                                             <td><%=objDeTai.getFullName() %></td>
                                         	<td><%=objDeTai.getCapDeTai() %></td>
                                         	<td><%=objDeTai.getTrangThai() %></td>
                                         	<td>
-                                        		<a href="<%=request.getContextPath()%>/admin/qldangkydetai/xem_de_tai?did=<%=objDeTai.getIdDeTai()%>"><img src="assets/img/edit.gif" alt="" /> Xem</a>
+                                        		<a href="<%=request.getContextPath()%>/admin/qldangkydetai/khoa/detail_duyet_dx_khoa?did=<%=objDeTai.getIdDeTai()%>"><img src="assets/img/edit.gif" alt="" /> Xem</a>
                                         	</td>
                                         </tr>
                                           

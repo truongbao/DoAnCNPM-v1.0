@@ -12,14 +12,15 @@ import javax.servlet.http.HttpSession;
 
 import library.LibraryAuth;
 import model.bean.DeTai;
+import model.bean.ThanhVien;
 import model.bean.User;
 import model.dao.DetaiDAO;
 import model.dao.UserDAO;
 
-public class AdminIndexQLDKDTKhoa extends HttpServlet {
+public class AdminDetailDuyetDeXuatNhanVien extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AdminIndexQLDKDTKhoa() {
+    public AdminDetailDuyetDeXuatNhanVien() {
         super();
     }
     
@@ -28,22 +29,18 @@ public class AdminIndexQLDKDTKhoa extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
         
-      //kiểm tra đã đăng nhập chưa
-      	if(  LibraryAuth.CheckQuanLyKhoa(request, response)==false){
-      		return;
-      	}
-      		
-        HttpSession session = request.getSession();
         DetaiDAO detaiDAO = new DetaiDAO();
-		User objUserAdmin = null;
-		 if(session.getAttribute("quanLyNCKHKhoa")!=null){
-			 objUserAdmin = (User)session.getAttribute("quanLyNCKHKhoa");
-		 }
-		 
-		 ArrayList<DeTai> listDeTaiByIdKhoa = detaiDAO.getListDeTaiByIdKhoa(objUserAdmin.getIdKhoa());
-		 request.setAttribute("listDeTaiByIdKhoa", listDeTaiByIdKhoa);
+		  
+	    int idDeTai = Integer.parseInt(request.getParameter("did"));
+	    
+	    //tu idDeTai => danh sach thanh vien lam de tai nay (o bang thanh vien)
+	    //send qua jsp
+	    
+	    	    
+		DeTai objDeTai = detaiDAO.getObjDeTai(idDeTai);
+		request.setAttribute("objDeTai", objDeTai);
 		
-		 RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/khoa/index_khoa.jsp");
+		 RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/nhanvien/detail_duyet_dx_nv.jsp");
          rd.forward(request, response);
          
 
