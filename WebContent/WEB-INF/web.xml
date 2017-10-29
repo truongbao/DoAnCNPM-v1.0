@@ -226,12 +226,12 @@
   
   
    <servlet>
-    <servlet-name>AdminShowDetailHopDongController</servlet-name>
-    <servlet-class>controller.AdminShowDetailHopDongController</servlet-class>
+    <servlet-name>AdminExportHopDongController</servlet-name>
+    <servlet-class>controller.AdminExportHopDongController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>AdminShowDetailHopDongController</servlet-name>
-    <url-pattern>/admin/hopdong/show</url-pattern>
+    <servlet-name>AdminExportHopDongController</servlet-name>
+    <url-pattern>/admin/hopdong/export</url-pattern>
   </servlet-mapping>
   
     <servlet>

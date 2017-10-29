@@ -16,11 +16,11 @@ import model.bean.HopDong;
 import model.bean.User;
 import model.dao.HopDongDAO;
 
-public class AdminShowEditHopDongController extends HttpServlet {
+public class AdminExportHopDongController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
-    public AdminShowEditHopDongController() {
+    public AdminExportHopDongController() {
         super();
        
     }
@@ -38,16 +38,11 @@ public class AdminShowEditHopDongController extends HttpServlet {
 				}
 		HopDongDAO objDAO = new HopDongDAO();
 		int idHopDong = Integer.parseInt(request.getParameter("uid"));//idUser tren url
-		//==============================
-		//phân quyền 
-//		HttpSession session = request.getSession();
-//	    User userinfo = (User)session.getAttribute("sobjHopDong");
-//	    if("admin".equals(objDAO.getItem( userinfo.getIdUser()).getUsername() ) || (idUser==userinfo.getIdUser()) ){
-	    	
+    	
 		HopDong objHopDong = objDAO.getObjHopDong(idHopDong);
 		if (objHopDong != null) {
 		request.setAttribute("objHopDong", objHopDong);
-		RequestDispatcher rd = request.getRequestDispatcher("/admin/hopdong/edit.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/admin/hopdong/exportWord.jsp");
 		rd.forward(request, response);
 		
 	    }else{

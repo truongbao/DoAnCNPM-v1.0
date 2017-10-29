@@ -51,8 +51,8 @@
                                     	for(int i = 0; i < listHopDong.size(); i++) {
                                     %>
                                         <tr>
-                                        	<td><a href="<%=request.getContextPath() %>/admin/hopdong/show?uid=<%=listHopDong.get(i).getIdHopDong() %>"><%= listHopDong.get(i).getIdHopDong() %></td>
-                                        	<td><%=listHopDong.get(i).getTenKhachHang() %></a></td>
+                                        	<td><%= listHopDong.get(i).getIdHopDong() %></td>
+                                        	<td><%=listHopDong.get(i).getTenKhachHang() %></td>
                                         	<td><%= userDAO.getObjUser(listHopDong.get(i).getIdGiangVien()).getFullName() %></td>
                                         	<td><%= detaiDAO.getObjDeTai(listHopDong.get(i).getIdDeTai()).getTenDeTai() %></td>
                                             <td><%=listHopDong.get(i).getTrangThaiHopDong() %></td>
@@ -66,7 +66,7 @@
 						                              <img src="<%= request.getContextPath() %>/templates/admin/img/del.gif" alt="" />
 						                            </a>
                          						 </form> &nbsp;||&nbsp;
-                         						 <form action="" style=" display: inline;">
+                         						 <form method="post" target="_blank"  action="<%=request.getContextPath() %>/admin/hopdong/export?uid=<%=listHopDong.get(i).getIdHopDong() %>" style=" display: inline;">
                          						 	<button class="btn btn-info btn-sm">Xuất</button>
                          						 </form>
                                             </td>
