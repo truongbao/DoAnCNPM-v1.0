@@ -205,9 +205,10 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; 
 													<%  
 													  if(session.getAttribute("sobjUserPublic") != null ){
 													 %>
-													<li class="">
+													 
+													<%-- <li class="">
 														<a href="<%=request.getContextPath()%>/thong-bao" class=""><span>Thông báo</span></a>
-													</li>
+													</li> --%>
 													
 													
 													<li class=" sub-menu"><a href="" class=""><span>Quản Lý</span></a>
@@ -308,17 +309,6 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; 
 														<a href="gioi-thieu.html"><span>Giới thiệu về trường</span></a>	
 													</li>
 													
-													<li class="">
-														<a href="co-so-vat-chat.html"><span>Cơ sở vật chất</span></a>	
-													</li>
-													
-													
-													
-													<li class="last ">
-														<a href="co-so-vat-chat.html"><span>Đội ngũ giảng viên</span></a>	
-													</li>
-													
-													
 												</ul>
 											</li>
 											
@@ -337,19 +327,6 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; 
 													<li class="first ">
 														<a href="tuyen-dung.html"><span>Thông tin tuyển sinh</span></a>	
 													</li>
-													
-													
-													
-													<li class="">
-														<a href="tuyen-dung.html"><span>Hướng dẫn tuyển sinh</span></a>	
-													</li>
-													
-													
-													
-													<li class="last ">
-														<a href="co-so-vat-chat.html"><span>Đăng ký nhập học trực tuyến</span></a>	
-													</li>
-													
 													
 												</ul>
 											</li>
