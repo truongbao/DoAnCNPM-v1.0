@@ -997,7 +997,86 @@ public boolean checkExistEmail(String email) {
 			return listUser;
 			
 		}
-
+    /*
+     * Author:Quoc
+     * Create Date: 2/11/2017
+     * */
+	 public ArrayList<User> getListGV(int idFac,String key_word, int offset, int row_count){
+			ArrayList<User> listUser = new ArrayList<>();
+			conn = connectMySQLLibrary.getConnectMySQL();
+			
+			String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocVi from user AS u "
+		        		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
+		        		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
+		        		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi where u.idLoaiTaiKhoan = 2";
+			if(idFac != 0){
+				 sql += " AND k.idKhoa = "+idFac;
+			}
+			if(!"".equals(key_word)){
+					sql += " AND (u.idUser LIKE '"+key_word+"' OR u.fullName LIKE '%"+key_word+"%')";
+			}
+			 sql += " GROUP BY u.fullName LIMIT ?,?";
+		    User objUser = null;	  
+			try {
+				pst = conn.prepareStatement(sql);
+				pst.setInt(1, offset);
+				pst.setInt(2,row_count);
+				rs = pst.executeQuery();
+				
+				while(rs.next()){
+					 objUser = new User(rs.getInt("idUser"),rs.getString("fullName"),rs.getString("chucDanhKhoaHoc") ,rs.getString("diaChiCoQuan") ,
+				             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocVi") ,rs.getString("tenHocVi"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
+				             rs.getString("dienThoaiNhaRieng") ,rs.getString("email") ,rs.getString("fax"),rs.getString("userName") , 
+				             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa") );
+				                        
+					 listUser.add(objUser);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally{
+				try {
+					pst.close();
+					rs.close();
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return listUser;
+			
+		}
+	 
+	public int getSumGV(int idFaculty, String key_word) {
+		int sum = 0;
+		conn = connectMySQLLibrary.getConnectMySQL();
+		String sql = "select count(*) AS soluong from user WHERE idLoaiTaiKhoan = 2";
+		if(idFaculty != 0){
+			sql += " AND idKhoa = "+idFaculty;
+		}
+		if(!"".equals(key_word)){
+			sql += " AND (idUser LIKE '"+key_word+"' OR fullName LIKE '%"+key_word+"%')";
+		}
+		System.out.println(sql);
+        try {
+        	pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			if(rs.next()){
+				sum = rs.getInt("soluong");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			 try {
+				rs.close();
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return sum;
+	}
+	
 
 
 

@@ -11,14 +11,18 @@ public class ThongBao {
 	private int idQuaTrinhThucHien;
 	private Timestamp thoiGian;
 	private int idDeTai;
+	private String tenDeTai;
+	private String tenCNDT;
+	private String tenNguoiGui;
+	private int wasRead;
 	
 	public ThongBao() {
 		super();
 	}
 
-	public ThongBao(int idThongBao, int idUserThongBao, int idUserDen,
-			String noiDung, int idQuaTrinhThucHien, Timestamp thoiGian,
-			int idDeTai) {
+
+	public ThongBao(int idThongBao, int idUserThongBao, int idUserDen, String noiDung, int idQuaTrinhThucHien,
+			Timestamp thoiGian, int idDeTai, String tenDeTai, String tenCNDT, String tenNguoiGui, int wasRead) {
 		super();
 		this.idThongBao = idThongBao;
 		this.idUserThongBao = idUserThongBao;
@@ -27,6 +31,47 @@ public class ThongBao {
 		this.idQuaTrinhThucHien = idQuaTrinhThucHien;
 		this.thoiGian = thoiGian;
 		this.idDeTai = idDeTai;
+		this.tenDeTai = tenDeTai;
+		this.tenCNDT = tenCNDT;
+		this.tenNguoiGui = tenNguoiGui;
+		this.wasRead = wasRead;
+	}
+
+
+	public String getTenNguoiGui() {
+		return tenNguoiGui;
+	}
+
+
+	public void setTenNguoiGui(String tenNguoiGui) {
+		this.tenNguoiGui = tenNguoiGui;
+	}
+
+
+	public int getWasRead() {
+		return wasRead;
+	}
+
+
+	public void setWasRead(int wasRead) {
+		this.wasRead = wasRead;
+	}
+
+
+	public String getTenDeTai() {
+		return tenDeTai;
+	}
+
+	public void setTenDeTai(String tenDeTai) {
+		this.tenDeTai = tenDeTai;
+	}
+
+	public String getTenCNDT() {
+		return tenCNDT;
+	}
+
+	public void setTenCNDT(String tenCNDT) {
+		this.tenCNDT = tenCNDT;
 	}
 
 	public int getIdThongBao() {

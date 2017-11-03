@@ -260,6 +260,32 @@
     <servlet-name>AdminGeneralStatController</servlet-name>
     <url-pattern>/admin/general-statistical</url-pattern>
   </servlet-mapping>
+  <!-- ========= Notification Admin ============= -->
+  <servlet>
+    <servlet-name>AdminIndexNotificationController</servlet-name>
+    <servlet-class>controller.AdminIndexNotificationController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminIndexNotificationController</servlet-name>
+    <url-pattern>/admin/notif</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AdminAddNotificationController</servlet-name>
+    <servlet-class>controller.AdminAddNotificationController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminAddNotificationController</servlet-name>
+    <url-pattern>/admin/add-notif</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AdminAjaxListDeTaiController</servlet-name>
+    <servlet-class>controller.AdminAjaxListDeTaiController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminAjaxListDeTaiController</servlet-name>
+    <url-pattern>/admin/ajax-get-list</url-pattern>
+  </servlet-mapping>
   
   
   <!-- ================== public ==================== -->
