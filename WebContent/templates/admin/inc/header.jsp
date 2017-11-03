@@ -135,7 +135,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="index.html">
+                    <a href="<%=request.getContextPath() %>/admin/notif?type=load">
                         <!-- <i class="ti-announcement"></i> -->
                         <p>Thông báo</p>
                     </a>

@@ -7,6 +7,18 @@
 
 <%@include file="/templates/admin/inc/header.jsp"%>
 
+<script type="text/javascript">
+	function validateForm() {
+	    var a = document.forms["searchform"]["year_create"].value;
+	    var b = document.forms["searchform"]["type_stat"].value;
+	    var c = document.forms["searchform"]["type_detai"].value;
+	    if (a == 0 && b == 0 && c == 0) {
+	        alert("Chọn ít nhất 1 điều kiện!");
+	        return false;
+	    }
+	}
+</script>
+
 <div class="content">
 	<div class="container-fluid">
 		<div class="row">
