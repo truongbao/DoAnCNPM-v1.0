@@ -70,11 +70,11 @@
     	         sobjUser = (User)session.getAttribute("admin");
     	         isAdmin = true;    	    	
     	    }else if(session.getAttribute("quanLyNCKHKhoa")!=null){ //login by quanLyNCKHKhoa
-    	    	sobjUser = (User)session.getAttribute("quanLyNCKHKhoa");
-    	    	isQuanLyNCKHKhoa = true;
+    	    		sobjUser = (User)session.getAttribute("quanLyNCKHKhoa");
+    	    		isQuanLyNCKHKhoa = true;
     	    }else if(session.getAttribute("nhanVienQLNCKHTruong")!=null){ //login by nhanVienQLNCKHTruong
-    	    	sobjUser = (User)session.getAttribute("nhanVienQLNCKHTruong");
-    	    	isNhanVienQLNCKHTruong = true;
+    	    		sobjUser = (User)session.getAttribute("nhanVienQLNCKHTruong");
+    	    		isNhanVienQLNCKHTruong = true;
     	    }
     	    %>
             <div class="logo">
@@ -113,13 +113,23 @@
                     </a>
                 </li>
                 <li>
-                    <a href="index.html">
+                    <% if (isNhanVienQLNCKHTruong) {%>
+                			<a href="<%= request.getContextPath() %>/admin/qldetai/nhanvien/index_nhanvien">
+                 <%} else if (isAdmin) { %>
+                			<a href="<%= request.getContextPath() %>/admin/qldetai/admin/index_admin">
+                	<%} %> 
                         <!-- <i class="ti-panel"></i> -->
                         <p>Quản lý đề tài</p>
                     </a>
                 </li>
                 <li>
-                    <a href="index.html">
+                	<%if (isQuanLyNCKHKhoa) { %>
+                			<a href="<%= request.getContextPath() %>/admin/qldangkydetai/khoa/index_khoa">
+                	<%} else if (isNhanVienQLNCKHTruong) {%>
+                			<a href="<%= request.getContextPath() %>/admin/qldangkydetai/nhanvien/index_nhanvien">
+                 <%} else if (isAdmin) { %>
+                			<a href="<%= request.getContextPath() %>/admin/qldangkydetai/admin/index_admin">
+                	<%} %>   
                         <!-- <i class="ti-user"></i> -->
                         <p>Quản lý đăng ký đề tài</p>
                     </a>
