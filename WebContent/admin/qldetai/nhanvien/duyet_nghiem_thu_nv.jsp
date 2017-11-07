@@ -33,13 +33,8 @@
                             </div>
                             
                             <div class="content table-responsive table-full-width">
-                            <div class="row"> 
-                            		<div class="col-md-4"><h3>DANH SÁCH ĐỀ TÀI</h3></div>
-                            		<div class="col-md-4"><a class="btn btn-info btn-fill btn-wd" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/duyet_de_xuat_nv">Xem danh sách duyệt đề xuất</a>
-                            		</div>
-                            		<div class="col-md-4"><a class="btn btn-info btn-fill btn-wd" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/duyet_thuyet_minh_nv">Xem danh sách duyệt thuyết minh</a>
-                            		</div>
-                            	</div>
+                            <h3>DANH SÁCH THUYẾT MINH CẦN DUYỆT</h3>
+                            		
                             
                                 <table class="table table-striped">
                                     <thead>
@@ -62,12 +57,12 @@
                                     %>
                                         <tr>
                                         	<td><%=objDeTai.getIdDeTai() %></td>
-                                            <td><a href="<%=request.getContextPath()%>/admin/qldangkydetai/khoa/xem_de_tai?did=<%=objDeTai.getIdDeTai()%>"><%=objDeTai.getTenDeTai() %></a></td>
+                                            <td><a href="<%=request.getContextPath()%>/admin/qldetai/nhanvien/detail_duyet_nt_nv?did=<%=objDeTai.getIdDeTai()%>"><%=objDeTai.getTenDeTai() %></a></td>
                                             <td><%=objDeTai.getFullName() %></td>
                                         	<td><%=objDeTai.getCapDeTai() %></td>
                                         	<td><%=LibraryConstant.ConvertTrangThai(objDeTai.getTrangThai()) %></td>
                                         	<td>
-                                        		<a href="<%=request.getContextPath()%>/admin/qldangkydetai/khoa/xem_de_tai?did=<%=objDeTai.getIdDeTai()%>"><img src="assets/img/edit.gif" alt="" /> Xem</a>
+                                        		<a href="<%=request.getContextPath()%>/admin/qldetai/nhanvien/detail_duyet_nt_nv?did=<%=objDeTai.getIdDeTai()%>"><img src="assets/img/edit.gif" alt="" /> Xem</a>
                                         	</td>
                                         </tr>
                                           

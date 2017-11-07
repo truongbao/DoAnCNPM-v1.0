@@ -159,6 +159,161 @@
     <url-pattern>/admin/qldangkydetai/nhanvien/danh_gia_dx_nv</url-pattern>
    </servlet-mapping>
     
+    
+    <!-- ============== RIN QL duyet thuyet minh cua Nhan vien ==================== -->
+   <servlet>
+    <servlet-name>AdminDuyetTMNhanVien</servlet-name>
+    <servlet-class>controller.AdminDuyetTMNhanVien</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminDuyetTMNhanVien</servlet-name>
+    <url-pattern>/admin/qldangkydetai/nhanvien/duyet_thuyet_minh_nv</url-pattern>
+   </servlet-mapping>
+   
+   
+   <!-- ============== RIN QL duyet thuyet minh cua Nhan vien ==================== -->
+   <servlet>
+    <servlet-name>AdminDetailDuyetThuyetMinhNhanVien</servlet-name>
+    <servlet-class>controller.AdminDetailDuyetThuyetMinhNhanVien</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminDetailDuyetThuyetMinhNhanVien</servlet-name>
+    <url-pattern>/admin/qldangkydetai/nhanvien/detail_duyet_tm_nv</url-pattern>
+   </servlet-mapping>
+   
+   
+   <!-- ============== RIN QL duyet thuyet minh cua Nhan vien ==================== -->
+   <servlet>
+    <servlet-name>AdminDanhGiaTMNhanVien</servlet-name>
+    <servlet-class>controller.AdminDanhGiaTMNhanVien</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminDanhGiaTMNhanVien</servlet-name>
+    <url-pattern>/admin/qldangkydetai/nhanvien/danh_gia_tm_nv</url-pattern>
+   </servlet-mapping>
+   
+   
+   <!-- ============== RIN QL duyet de xuat cua Admin ==================== -->
+   <servlet>
+    <servlet-name>AdminIndexQLDKDTAdmin</servlet-name>
+    <servlet-class>controller.AdminIndexQLDKDTAdmin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminIndexQLDKDTAdmin</servlet-name>
+    <url-pattern>/admin/qldangkydetai/admin/index_admin</url-pattern>
+    </servlet-mapping>
+    
+    
+    <!-- ============== RIN QL duyet de xuat cua Admin ==================== -->
+   <servlet>
+    <servlet-name>AdminDuyetDXAdmin</servlet-name>
+    <servlet-class>controller.AdminDuyetDXAdmin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminDuyetDXAdmin</servlet-name>
+    <url-pattern>/admin/qldangkydetai/admin/duyet_de_xuat_ad</url-pattern>
+    </servlet-mapping>
+    
+    
+    <!-- ============== RIN QL duyet de xuat cua Admin ==================== -->
+   <servlet>
+    <servlet-name>AdminDetailDuyetDeXuatAdmin</servlet-name>
+    <servlet-class>controller.AdminDetailDuyetDeXuatAdmin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminDetailDuyetDeXuatAdmin</servlet-name>
+    <url-pattern>/admin/qldangkydetai/admin/detail_duyet_dx_ad</url-pattern>
+    </servlet-mapping>
+    
+    
+    <!-- ============== RIN QL duyet thuyet minh cua Admin ==================== -->
+   <servlet>
+    <servlet-name>AdminDuyetTMAdmin</servlet-name>
+    <servlet-class>controller.AdminDuyetTMAdmin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminDuyetTMAdmin</servlet-name>
+    <url-pattern>/admin/qldangkydetai/admin/duyet_thuyet_minh_ad</url-pattern>
+    </servlet-mapping>
+    
+    
+    <!-- ============== RIN QL duyet thuyet minh cua Admin ==================== -->
+   <servlet>
+    <servlet-name>AdminDetailDuyetThuyetMinhAdmin</servlet-name>
+    <servlet-class>controller.AdminDetailDuyetThuyetMinhAdmin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminDetailDuyetThuyetMinhAdmin</servlet-name>
+    <url-pattern>/admin/qldangkydetai/admin/detail_duyet_tm_ad</url-pattern>
+    </servlet-mapping>
+    
+    
+    <!-- ============== RIN QL de tai nhan vien ==================== -->
+   <servlet>
+    <servlet-name>AdminIndexQLDTNhanVien</servlet-name>
+    <servlet-class>controller.AdminIndexQLDTNhanVien</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminIndexQLDTNhanVien</servlet-name>
+    <url-pattern>/admin/qldetai/nhanvien/index_nhanvien</url-pattern>
+    </servlet-mapping>
+    
+    
+    <!-- ============== RIN QL de tai nhan vien ==================== -->
+   <servlet>
+    <servlet-name>AdminDuyetNTNhanVien</servlet-name>
+    <servlet-class>controller.AdminDuyetNTNhanVien</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminDuyetNTNhanVien</servlet-name>
+    <url-pattern>/admin/qldetai/nhanvien/duyet_nghiem_thu_nv</url-pattern>
+    </servlet-mapping>
+    
+    
+    <!-- ============== RIN QL de tai nhan vien ==================== -->
+   <servlet>
+    <servlet-name>AdminDetailDuyetNghiemThuNhanVien</servlet-name>
+    <servlet-class>controller.AdminDetailDuyetNghiemThuNhanVien</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminDetailDuyetNghiemThuNhanVien</servlet-name>
+    <url-pattern>/admin/qldetai/nhanvien/detail_duyet_nt_nv</url-pattern>
+    </servlet-mapping>
+    
+    
+    <!-- ============== RIN QL de tai admin ==================== -->
+   <servlet>
+    <servlet-name>AdminIndexQLDTAdmin</servlet-name>
+    <servlet-class>controller.AdminIndexQLDTAdmin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminIndexQLDTAdmin</servlet-name>
+    <url-pattern>/admin/qldetai/admin/index_admin</url-pattern>
+    </servlet-mapping>
+    
+    
+    <!-- ============== RIN QL de tai admin ==================== -->
+   <servlet>
+    <servlet-name>AdminDuyetNTAdmin</servlet-name>
+    <servlet-class>controller.AdminDuyetNTAdmin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminDuyetNTAdmin</servlet-name>
+    <url-pattern>/admin/qldetai/admin/duyet_nghiem_thu_ad</url-pattern>
+    </servlet-mapping>
+    
+    
+    <!-- ============== RIN QL de tai admin ==================== -->
+   <servlet>
+    <servlet-name>AdminDetailDuyetNghiemThuAdmin</servlet-name>
+    <servlet-class>controller.AdminDetailDuyetNghiemThuAdmin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminDetailDuyetNghiemThuAdmin</servlet-name>
+    <url-pattern>/admin/qldetai/admin/detail_duyet_nt_ad</url-pattern>
+    </servlet-mapping>
+    
+    
   <!--====== Cat ==========  -->
   
   <servlet>

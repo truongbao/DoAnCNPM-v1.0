@@ -1,3 +1,4 @@
+<%@page import="library.LibraryConstant"%>
 <%@page import="model.bean.DeTai"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -59,7 +60,7 @@
                                             <td><a href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/detail_duyet_dx_nv?did=<%=objDeTai.getIdDeTai()%>"><%=objDeTai.getTenDeTai() %></a></td>
                                             <td><%=objDeTai.getFullName() %></td>
                                         	<td><%=objDeTai.getCapDeTai() %></td>
-                                        	<td><%=objDeTai.getTrangThai() %></td>
+                                        	<td><%=LibraryConstant.ConvertTrangThai(objDeTai.getTrangThai()) %></td>
                                         	<td>
                                         		<a href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/detail_duyet_dx_nv?did=<%=objDeTai.getIdDeTai()%>"><img src="assets/img/edit.gif" alt="" /> Xem</a>
                                         	</td>

@@ -137,8 +137,8 @@
                                     </div>
                                     <div class="row">
                                     <div class="text-center">
-                                        <a href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/danh_gia_dx_nv?did=<%=objDeTai.getIdDeTai()%>">
-                                        <input class="btn btn-info btn-fill btn-wd" value="Nhập kết quả đánh giá đề xuất" />
+                                        <a href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/danh_gia_tm_nv?did=<%=objDeTai.getIdDeTai()%>">
+                                        <input class="btn btn-info btn-fill btn-wd" value="Nhập kết quả đánh giá thuyết minh" />
                                         </a>
                                     </div>
                         				</div>

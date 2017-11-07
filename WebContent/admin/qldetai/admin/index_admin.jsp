@@ -35,10 +35,9 @@
                             <div class="content table-responsive table-full-width">
                             <div class="row"> 
                             		<div class="col-md-4"><h3>DANH SÁCH ĐỀ TÀI</h3></div>
-                            		<div class="col-md-4"><a class="btn btn-info btn-fill btn-wd" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/duyet_de_xuat_nv">Xem danh sách duyệt đề xuất</a>
+                            		<div class="col-md-8"><a class="btn btn-info btn-fill btn-wd" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldetai/admin/duyet_nghiem_thu_ad">Xem danh sách duyệt kết quả nghiệm thu</a>
                             		</div>
-                            		<div class="col-md-4"><a class="btn btn-info btn-fill btn-wd" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/duyet_thuyet_minh_nv">Xem danh sách duyệt thuyết minh</a>
-                            		</div>
+                            		
                             	</div>
                             
                                 <table class="table table-striped">
@@ -52,8 +51,8 @@
                                     </thead>
                                     <tbody>
                                     <%
-                                       if(request.getAttribute("listDeTaiNhanVien") != null) {
-                                    	   ArrayList<DeTai> listDeTaiByIdKhoa = (ArrayList<DeTai>)request.getAttribute("listDeTaiNhanVien");
+                                       if(request.getAttribute("listDeTaiAdmin") != null) {
+                                    	   ArrayList<DeTai> listDeTaiByIdKhoa = (ArrayList<DeTai>)request.getAttribute("listDeTaiAdmin");
                                     	   if (listDeTaiByIdKhoa.size() > 0) {
                                     		   for (DeTai objDeTai : listDeTaiByIdKhoa){
                                     			   

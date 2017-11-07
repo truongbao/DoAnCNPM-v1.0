@@ -113,7 +113,11 @@
                     </a>
                 </li>
                 <li>
-                    <a href="index.html">
+                    <% if (isNhanVienQLNCKHTruong) {%>
+                			<a href="<%= request.getContextPath() %>/admin/qldetai/nhanvien/index_nhanvien">
+                 <%} else if (isAdmin) { %>
+                			<a href="<%= request.getContextPath() %>/admin/qldetai/admin/index_admin">
+                	<%} %> 
                         <!-- <i class="ti-panel"></i> -->
                         <p>Quản lý đề tài</p>
                     </a>
@@ -124,7 +128,7 @@
                 	<%} else if (isNhanVienQLNCKHTruong) {%>
                 			<a href="<%= request.getContextPath() %>/admin/qldangkydetai/nhanvien/index_nhanvien">
                  <%} else if (isAdmin) { %>
-                			<a href="<%= request.getContextPath() %>/admin/qldangkydetai/nhanvien/index_nhanvien">
+                			<a href="<%= request.getContextPath() %>/admin/qldangkydetai/admin/index_admin">
                 	<%} %>   
                         <!-- <i class="ti-user"></i> -->
                         <p>Quản lý đăng ký đề tài</p>

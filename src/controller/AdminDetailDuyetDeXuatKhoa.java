@@ -29,6 +29,11 @@ public class AdminDetailDuyetDeXuatKhoa extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
         
+      //kiểm tra đã đăng nhập chưa
+      	if(  LibraryAuth.CheckQuanLyKhoa(request, response)==false){
+      		return;
+      	}
+      	
         DetaiDAO detaiDAO = new DetaiDAO();
 		  
 	    int idDeTai = Integer.parseInt(request.getParameter("did"));

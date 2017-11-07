@@ -136,9 +136,21 @@
                                     </div>
                                     </div>
                                     <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Nội dung đánh giá</label>
+                                                <textarea id="cktext1" class="form-control border-input"></textarea>
+                                                 <script type="text/javascript">
+							               			var editor = CKEDITOR.replace('cktext1');
+							               			CKFinder.setupCKEditor(editor,'<%=request.getContextPath()%>/ckfinder/')
+							         			</script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                     <div class="text-center">
-                                        <a href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/danh_gia_dx_nv?did=<%=objDeTai.getIdDeTai()%>">
-                                        <input class="btn btn-info btn-fill btn-wd" value="Nhập kết quả đánh giá đề xuất" />
+                                        <a href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/danh_gia_tm_nv?did=<%=objDeTai.getIdDeTai()%>">
+                                        <input class="btn btn-info btn-fill btn-wd" value="Nhập kết quả đánh giá nghiệm thu" />
                                         </a>
                                     </div>
                         				</div>

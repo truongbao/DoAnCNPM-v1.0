@@ -17,10 +17,10 @@ import model.bean.User;
 import model.dao.DetaiDAO;
 import model.dao.UserDAO;
 
-public class AdminDanhGiaDXKhoa extends HttpServlet {
+public class AdminDetailDuyetThuyetMinhNhanVien extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AdminDanhGiaDXKhoa() {
+    public AdminDetailDuyetThuyetMinhNhanVien() {
         super();
     }
     
@@ -28,9 +28,8 @@ public class AdminDanhGiaDXKhoa extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
-        
       //kiểm tra đã đăng nhập chưa
-      	if(  LibraryAuth.CheckQuanLyKhoa(request, response)==false){
+      	if(  LibraryAuth.CheckNhanVienTruong(request, response)==false){
       		return;
       	}
       	
@@ -43,10 +42,9 @@ public class AdminDanhGiaDXKhoa extends HttpServlet {
 	    
 	    	    
 		DeTai objDeTai = detaiDAO.getObjDeTai(idDeTai);
-		
 		request.setAttribute("objDeTai", objDeTai);
 		
-		 RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/khoa/danh_gia_dx_khoa.jsp");
+		 RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/nhanvien/detail_duyet_tm_nv.jsp");
          rd.forward(request, response);
          
 

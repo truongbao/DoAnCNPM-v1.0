@@ -116,7 +116,7 @@
                                     </form>
                                 </div>
                                 
-                                <a href="<%=request.getContextPath() %>/admin/user/form-add" class="addtop"><img src="<%=request.getContextPath() %>/templates/admin/img/add.png" alt="" /> Thêm</a>
+                                <div style="display: inline;" class='<%=request.getSession().getAttribute("admin") == null? "disabled" : "" %>'><a href="<%=request.getContextPath() %>/admin/user/form-add" class="addtop"><img src="<%=request.getContextPath() %>/templates/admin/img/add.png" alt="" /> Thêm</a></div>
                             	<div class="text-center text-danger col-md-12" style="font-size: 18px;font-weight: bold;">
                             	 <%
 							      if(request.getParameter("msg")!=null){
@@ -155,10 +155,10 @@
                                         	<td><%= listUsers.get(i).getEmail() %></td>
                                             <td><%=listUsers.get(i).getTenLoaiTaiKhoan() %></td>
                                         	<td>
-                                                <a href="<%=request.getContextPath() %>/admin/user/form-edit?uid=<%=listUsers.get(i).getIdUser() %>"><img src="<%=request.getContextPath() %>/templates/admin/img/edit.gif" alt="" /></a> &nbsp;||&nbsp;
-                                                <form id="form-xoa" method="post" action="<%=request.getContextPath() %>/admin/user/del?uid=<%=listUsers.get(i).getIdUser() %>" style="display: inline">
+                                                <div style="display: inline;" class='<%=request.getSession().getAttribute("admin") == null? "disabled" : "" %>'><a href="<%=request.getContextPath() %>/admin/user/form-edit?uid=<%=listUsers.get(i).getIdUser() %>"><img src="<%=request.getContextPath() %>/templates/admin/img/edit.gif" alt="" /></a></div> &nbsp;||&nbsp;
+                                                <form id="form-xoa" method="post" action="<%=request.getContextPath() %>/admin/user/del?uid=<%=listUsers.get(i).getIdUser() %>" style="display: inline" class='<%=request.getSession().getAttribute("admin") == null? "disabled" : "" %>'>
                                                 	
-						                           <a href="" class="link-xoa"
+						                           <a href="" class='link-xoa'
 						                              data-title="Confirm deletion!"
 						                              data-confirm="Are you sure you want to delete?">
 						                              <img src="<%= request.getContextPath() %>/templates/admin/img/del.gif" alt="" />

@@ -40,7 +40,7 @@ public class AdminIndexQLDKDTNhanVien extends HttpServlet {
 			 objUserAdmin = (User)session.getAttribute("nhanVienQLNCKHTruong");
 		 }
 		 
-		 ArrayList<DeTai> listDeTaiNhanVien = detaiDAO.getListDeTaiNhanVien();
+		 ArrayList<DeTai> listDeTaiNhanVien = detaiDAO.getListDangKyDeTai();
 		 request.setAttribute("listDeTaiNhanVien", listDeTaiNhanVien);
 		
 		 RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/nhanvien/index_nhanvien.jsp");
