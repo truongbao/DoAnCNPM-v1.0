@@ -78,7 +78,7 @@
     	    }
     	    %>
             <div class="logo">
-                <a href="<%=request.getContextPath()%>/admin/show-user?uid=<%=sobjUser.getIdUser() %>" class="simple-text"><img src="<%=request.getContextPath() %>/templates/admin/img/faces/face-3.jpg" class="img-circle" style="display:inline-block; width:130px;height:100px">
+                <a href="<%=request.getContextPath()%>/admin/user/show?uid=<%=sobjUser.getIdUser() %>" class="simple-text"><img src="<%=request.getContextPath() %>/templates/admin/img/faces/face-3.jpg" class="img-circle" style="display:inline-block; width:130px;height:100px">
                 	 <h5> <%=sobjUser.getFullName() %> </h5> 
                 </a>
             </div>
