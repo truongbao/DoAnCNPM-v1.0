@@ -143,6 +143,9 @@
                                     </thead>
                                     <tbody>
                                     <% 
+                                    int idLogin = 0;
+                                    User userLogin = (User) request.getSession().getAttribute("admin");
+                                    if (userLogin != null) idLogin = userLogin.getIdUser();
                                     if(request.getAttribute("listUsers")!=null){
 		                            	ArrayList<User> listUsers = (ArrayList<User>)request.getAttribute("listUsers");
                                     	for(int i = 0; i < listUsers.size(); i++) {
@@ -156,7 +159,7 @@
                                             <td><%=listUsers.get(i).getTenLoaiTaiKhoan() %></td>
                                         	<td>
                                                 <div style="display: inline;" class='<%=request.getSession().getAttribute("admin") == null? "disabled" : "" %>'><a href="<%=request.getContextPath() %>/admin/user/form-edit?uid=<%=listUsers.get(i).getIdUser() %>"><img src="<%=request.getContextPath() %>/templates/admin/img/edit.gif" alt="" /></a></div> &nbsp;||&nbsp;
-                                                <form id="form-xoa" method="post" action="<%=request.getContextPath() %>/admin/user/del?uid=<%=listUsers.get(i).getIdUser() %>" style="display: inline" class='<%=request.getSession().getAttribute("admin") == null? "disabled" : "" %>'>
+                                                <form id="form-xoa" method="post" action="<%=request.getContextPath() %>/admin/user/del?uid=<%=listUsers.get(i).getIdUser() %>" style="display: inline" class='<%=userLogin == null || idLogin == listUsers.get(i).getIdUser()? "disabled" : "" %>'>
                                                 	
 						                           <a href="" class='link-xoa'
 						                              data-title="Confirm deletion!"

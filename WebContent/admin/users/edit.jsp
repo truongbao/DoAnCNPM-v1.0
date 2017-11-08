@@ -187,7 +187,12 @@
                                         <div class="col-md-3">
                                             <div class="form-group height-100">
                                                 <label>Loại tài khoản</label>
-                                                <select name="loai_tai_khoan" class="form-control border-input">
+                                                <%
+	                                                int idLogin = 0;
+	                                                User userLogin = (User) request.getSession().getAttribute("admin");
+	                                                if (userLogin != null) idLogin = userLogin.getIdUser();
+                                                %>
+                                                <select name="loai_tai_khoan" class="form-control border-input" <%=idLogin == objUser.getIdUser() ? "disabled" : ""%>>
                                                     <%
 				                                    	ArrayList<LoaiTaiKhoan> listLoaiTaiKhoan = userDao.getListLoaiTK();
 				                                    	for(int i = 0; i < listLoaiTaiKhoan.size(); i++) {
