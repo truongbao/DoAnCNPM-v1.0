@@ -1,7 +1,7 @@
 <%@page import="model.bean.User"%>
 <%@page import="model.bean.LoaiTaiKhoan"%>
 <%@page import="model.bean.Khoa"%>
-<%@page import="model.bean.HocVi"%>
+<%@page import="model.bean.HocViHocHam"%>
 <%@page import="model.dao.UserDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -98,24 +98,40 @@
                                         <div class="col-md-3">
                                             <div class="form-group height-100">
                                                 <label>Học vị</label>
-                                                <select name="hoc_vi" class="form-control border-input">
+                                                <select name="hoc_vi_hoc_ham" class="form-control border-input">
 				                                     <%
-				                                    	ArrayList<HocVi> listHocVi = userDao.getListHocVi();
-				                                    	for(int i = 0; i < listHocVi.size(); i++) {
-				                                    		if (listHocVi.get(i).getIdHocVi() == objUser.getIdHocVi()) {
+				                                    	ArrayList<HocViHocHam> listHocViHocHam = userDao.getListHocViHocHam();
+				                                    	for(int i = 0; i < listHocViHocHam.size(); i++) {
+				                                    		if (listHocViHocHam.get(i).getIdHocViHocHam() == objUser.getIdHocViHocHam()) {
 			                                    	%>
-		                                               	<option value="<%= listHocVi.get(i).getIdHocVi() %>" selected><%= listHocVi.get(i).getTenHocVi() %></option>
+		                                               	<option value="<%= listHocViHocHam.get(i).getIdHocViHocHam() %>" selected><%= listHocViHocHam.get(i).getTenHocViHocHam() %></option>
 		                                               	<%	} else { %>
-		                                               	<option value="<%= listHocVi.get(i).getIdHocVi() %>"><%= listHocVi.get(i).getTenHocVi() %></option>
+		                                               	<option value="<%= listHocViHocHam.get(i).getIdHocViHocHam() %>"><%= listHocViHocHam.get(i).getTenHocViHocHam() %></option>
 				                                    	<%  }
 				                                    	}%>
 				                                 </select> 
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                         <div class="col-md-3">
                                             <div class="form-group height-100">
-                                                <label>Chức danh khoa học</label>
-                                                <input type="text" name="chuc_danh_khoa_hoc" class="form-control border-input" value="<%=objUser.getChucDanhKhoaHoc() %>" style="height: 40px!important">
+                                                <label>Loại tài khoản</label>
+                                                <%
+	                                                int idLogin = 0;
+	                                                User userLogin = (User) request.getSession().getAttribute("admin");
+	                                                if (userLogin != null) idLogin = userLogin.getIdUser();
+                                                %>
+                                                <select name="loai_tai_khoan" class="form-control border-input" <%=idLogin == objUser.getIdUser() ? "disabled" : ""%>>
+                                                    <%
+				                                    	ArrayList<LoaiTaiKhoan> listLoaiTaiKhoan = userDao.getListLoaiTK();
+				                                    	for(int i = 0; i < listLoaiTaiKhoan.size(); i++) {
+				                                    		if (listLoaiTaiKhoan.get(i).getIdLoaiTaiKhoan() == objUser.getIdLoaiTaiKhoan()) {
+			                                    	%>
+		                                               	<option value="<%= listLoaiTaiKhoan.get(i).getIdLoaiTaiKhoan() %>" selected><%= listLoaiTaiKhoan.get(i).getTenLoaiTaiKhoan() %></option>
+		                                               	<%	} else { %>
+		                                               	<option value="<%= listLoaiTaiKhoan.get(i).getIdLoaiTaiKhoan() %>"><%= listLoaiTaiKhoan.get(i).getTenLoaiTaiKhoan() %></option>
+				                                    	<%  }
+				                                    	}%>
+                                                </select>
                                             </div>
                                         </div>
                                             <div class="col-md-3">
@@ -184,28 +200,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group height-100">
-                                                <label>Loại tài khoản</label>
-                                                <%
-	                                                int idLogin = 0;
-	                                                User userLogin = (User) request.getSession().getAttribute("admin");
-	                                                if (userLogin != null) idLogin = userLogin.getIdUser();
-                                                %>
-                                                <select name="loai_tai_khoan" class="form-control border-input" <%=idLogin == objUser.getIdUser() ? "disabled" : ""%>>
-                                                    <%
-				                                    	ArrayList<LoaiTaiKhoan> listLoaiTaiKhoan = userDao.getListLoaiTK();
-				                                    	for(int i = 0; i < listLoaiTaiKhoan.size(); i++) {
-				                                    		if (listLoaiTaiKhoan.get(i).getIdLoaiTaiKhoan() == objUser.getIdLoaiTaiKhoan()) {
-			                                    	%>
-		                                               	<option value="<%= listLoaiTaiKhoan.get(i).getIdLoaiTaiKhoan() %>" selected><%= listLoaiTaiKhoan.get(i).getTenLoaiTaiKhoan() %></option>
-		                                               	<%	} else { %>
-		                                               	<option value="<%= listLoaiTaiKhoan.get(i).getIdLoaiTaiKhoan() %>"><%= listLoaiTaiKhoan.get(i).getTenLoaiTaiKhoan() %></option>
-				                                    	<%  }
-				                                    	}%>
-                                                </select>
-                                            </div>
-                                        </div>
+                                       
                                         <!--  <div class="col-md-3">
                                             <div class="form-group height-100">
                                                 <label>Hình ảnh</label>

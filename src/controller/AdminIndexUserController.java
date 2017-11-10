@@ -35,7 +35,7 @@ public class AdminIndexUserController extends HttpServlet {
  		if(  LibraryAuth.CheckLogin(request, response)==false){
  			return;
  		}
-        int loaiTaiKhoan = 0;
+        int loaiTaiKhoan = 0, khoa =0;
         String key = "";
         if (request.getParameter("cancel") == null){
         	if (request.getParameter("loai_tai_khoan") != null){
@@ -43,6 +43,9 @@ public class AdminIndexUserController extends HttpServlet {
      		}
         	if (request.getParameter("key") != null){
      			key = request.getParameter("key");
+     		}
+        	if (request.getParameter("khoa") != null){
+     			khoa =  Integer.parseInt(request.getParameter("khoa"));;
      		}
  		}
          
@@ -54,7 +57,7 @@ public class AdminIndexUserController extends HttpServlet {
  		 //tong so user
  		 int sumUser = objDAO.countUser();
  		if (request.getParameter("search") != null){
- 			sumUser = objDAO.countUserSearch(key, loaiTaiKhoan );
+ 			sumUser = objDAO.countUserSearch(key, loaiTaiKhoan , khoa);
  		}
  		// tong so trang
  		 int sumPage = (int)Math.ceil((float)sumUser/row_count);
@@ -69,7 +72,7 @@ public class AdminIndexUserController extends HttpServlet {
  		int offset = (current_page - 1) * row_count;
  		request.setAttribute("current_page", current_page);
          
- 		ArrayList<User> listUsers = objDAO.getItemsByPageSearch(offset, key, loaiTaiKhoan);
+ 		ArrayList<User> listUsers = objDAO.getItemsByPageSearch(offset, key, loaiTaiKhoan, khoa);
 		request.setAttribute("listUsers", listUsers); 
          
         //ArrayList<User> listUser = objDAO.getItems();

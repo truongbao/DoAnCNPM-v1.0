@@ -48,7 +48,7 @@ public class AdminAddUserController extends HttpServlet {
 		String chucDanhKhoaHoc =  request.getParameter("chuc_danh_khoa_hoc");
 		String diaChiCoQuan = request.getParameter("dia_chi_co_quan");
 		String dienThoaiCoQuan = request.getParameter("dien_thoai_co_quan");
-		int idHocVi = Integer.parseInt(request.getParameter("hoc_vi"));
+		int idHocViHocHam = Integer.parseInt(request.getParameter("hoc_vi_hoc_ham"));
 		String namSinh =  request.getParameter("nam_sinh");
 		String diaChiNhaRieng = request.getParameter("dia_chi_nha_rieng");
 		String dienThoaiNhaRieng = request.getParameter("dien_thoai_nha_rieng");
@@ -59,8 +59,8 @@ public class AdminAddUserController extends HttpServlet {
 		int idLoaiTaiKhoan = Integer.parseInt(request.getParameter("loai_tai_khoan"));
 		int idKhoa =  Integer.parseInt(request.getParameter("khoa")) ;
 		
-		User objUser = new  User(0, fullName, chucDanhKhoaHoc,
-				diaChiCoQuan, dienThoaiCoQuan, idHocVi,
+		User objUser = new  User(0, fullName,
+				diaChiCoQuan, dienThoaiCoQuan, idHocViHocHam,
 				"", namSinh, diaChiNhaRieng,
 				dienThoaiNhaRieng, email, fax,
 				username, matKhau, idLoaiTaiKhoan,

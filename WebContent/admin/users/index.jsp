@@ -2,7 +2,7 @@
 <%@page import="model.bean.User"%>
 <%@page import="model.bean.LoaiTaiKhoan"%>
 <%@page import="model.bean.Khoa"%>
-<%@page import="model.bean.HocVi"%>
+<%@page import="model.bean.HocViHocHam"%>
 <%@page import="model.dao.UserDAO"%>
 
 <%@page import="java.util.ArrayList"%>
@@ -69,24 +69,48 @@
                             <div class="header">
 	                            <h4 class="title">Danh sách tài khoản</h4>
 	                        
-                                <div class="col-md-9 col-md-offset-1">
+                                <div class="col-md-12">
                                     <form action=""<%=request.getContextPath() %>/admin/user/index" method="get">
                                     	<div class="row">
                                     		
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                                 <div class="form-group">
                                                     <input type="text" 
 	                                                    name="key" class="form-control border-input"
 	                                                    value="<%=request.getParameter("key") != null ? request.getParameter("key") : "" %>">
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <select name="khoa" class="form-control border-input">
+                                                    	<option value="0">-- Tất cả các khoa--</option>
+                                                    	<% 
+
+	                                                    	UserDAO userDao = new UserDAO();
+                                                    		
+					                                    	ArrayList<Khoa> listKhoa = userDao.getListKhoa();
+					                                    	for(int i = 0; i < listKhoa.size(); i++) {
+					                                    		if (request.getParameter("khoa") != null) {
+					                                    		if (Integer.parseInt(request.getParameter("khoa")) == listKhoa.get(i).getIdKhoa()) {
+					                                    %>
+					                                    <option value="<%= listKhoa.get(i).getIdKhoa() %>" selected><%= listKhoa.get(i).getTenKhoa() %></option>
+                                                    	        <%} else {%>
+                                                    	<option value="<%= listKhoa.get(i).getIdKhoa() %>"><%= listKhoa.get(i).getTenKhoa() %></option>
+                                                    		<%	  }
+					                                    	} else {%>
+					                                    	<option value="<%= listKhoa.get(i).getIdKhoa() %>"><%= listKhoa.get(i).getTenKhoa() %></option>
+                                                    		
+					                                    	<%}
+					                                    	}%>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
                                                 <div class="form-group">
                                                     <select name="loai_tai_khoan" class="form-control border-input">
                                                     	<option value="0">-- Tất cả loại tài khoản--</option>
                                                     	<% 
 
-	                                                    	UserDAO userDao = new UserDAO();
                                                     		
 					                                    	ArrayList<LoaiTaiKhoan> listLoaiTaiKhoan = userDao.getListLoaiTK();
 					                                    	for(int i = 0; i < listLoaiTaiKhoan.size(); i++) {
@@ -105,7 +129,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                             	<div class="form-group">
     		                                        <input type="submit" name="search" value="Tìm kiếm" class="btn btn-primary btn-search" />
     		                                        <input type="submit" name="cancel" value="Hủy tìm kiếm" class="btn btn-primary btn-cancel-search" />
@@ -136,7 +160,7 @@
                                         <th>ID</th>
                                     	<th>Username</th>
                                     	<th>Họ tên</th>
-                                    	<th>Chức danh khoa học</th>
+                                    	<th>Khoa</th>
                                     	<th>Email</th>
                                         <th>Loại tài khoản</th>
                                     	<th>Chức năng</th>
@@ -154,7 +178,7 @@
                                         	<td><%= listUsers.get(i).getIdUser() %></td>
                                         	<td><a href="<%=request.getContextPath() %>/admin/user/show?uid=<%=listUsers.get(i).getIdUser() %>"><%=listUsers.get(i).getUserName() %></a></td>
                                         	<td><%= listUsers.get(i).getFullName() %></td>
-                                        	<td><%= listUsers.get(i).getChucDanhKhoaHoc() %></td>
+                                        	<td><%= listUsers.get(i).getTenKhoa() %></td>
                                         	<td><%= listUsers.get(i).getEmail() %></td>
                                             <td><%=listUsers.get(i).getTenLoaiTaiKhoan() %></td>
                                         	<td>
