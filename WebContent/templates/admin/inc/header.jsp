@@ -105,13 +105,14 @@
                         <p>Quản lý tài khoản</p>
                     </a>
                 </li>
-                
+                <% if(isAdmin){ %>
                  <li>
-                    <a href="index.html">
+                    <a href="<%= request.getContextPath() %>/admin/capdetai/index">
                         <!-- <i class="ti-view-list-alt"></i> -->
                         <p>Quản lý cấp đề tài</p>
                     </a>
                 </li>
+                <%} %>
                 <li>
                     <% if (isNhanVienQLNCKHTruong) {%>
                 			<a href="<%= request.getContextPath() %>/admin/qldetai/nhanvien/index_nhanvien">

@@ -491,6 +491,46 @@
     <servlet-name>ListDeTaiFollowGiangVienController</servlet-name>
     <url-pattern>/admin/hopdong/detai-follow-giangvien</url-pattern>
   </servlet-mapping>
+  
+  <!--====== Cấp đề tài ==========  -->
+  <servlet>
+    <servlet-name>AdminIndexCapDeTaiController</servlet-name>
+    <servlet-class>controller.AdminIndexCapDeTaiController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminIndexCapDeTaiController</servlet-name>
+    <url-pattern>/admin/capdetai/index</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>AdminAddCapDeTaiController</servlet-name>
+    <servlet-class>controller.AdminAddCapDeTaiController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminAddCapDeTaiController</servlet-name>
+    <url-pattern>/admin/capdetai/add</url-pattern>
+  </servlet-mapping>
+  
+   
+  <servlet>
+    <servlet-name>AdminEditCapDeTaiController</servlet-name>
+    <servlet-class>controller.AdminEditCapDeTaiController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminEditCapDeTaiController</servlet-name>
+    <url-pattern>/admin/capdetai/edit</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AdminDelCapDeTaiController</servlet-name>
+    <servlet-class>controller.AdminDelCapDeTaiController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminDelCapDeTaiController</servlet-name>
+    <url-pattern>/admin/capdetai/del</url-pattern>
+  </servlet-mapping>
+  
+ 
   <!-- ========= Statistical ============= -->
   <servlet>
     <servlet-name>AdminFacultyStatController</servlet-name>
