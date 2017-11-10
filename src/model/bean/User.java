@@ -4,11 +4,10 @@ public class User {
 	
 	private int idUser;
 	private String fullName;
-	private String chucDanhKhoaHoc;
 	private String diaChiCoQuan;
 	private String dienThoaiCoQuan;
-	private int idHocVi;
-	private String tenHocVi;
+	private int idHocViHocHam;
+	private String tenHocViHocHam;
 	private String namSinh;
 	private String diaChiNhaRieng;
 	private String dienThoaiNhaRieng;
@@ -25,20 +24,19 @@ public class User {
 		super();
 	}
 
-	public User(int idUser, String fullName, String chucDanhKhoaHoc,
-			String diaChiCoQuan, String dienThoaiCoQuan, int idHocVi,
-			String tenHocVi, String namSinh, String diaChiNhaRieng,
+	public User(int idUser, String fullName,
+			String diaChiCoQuan, String dienThoaiCoQuan, int idHocViHocHam,
+			String tenHocViHocHam, String namSinh, String diaChiNhaRieng,
 			String dienThoaiNhaRieng, String email, String fax,
 			String userName, String matKhau, int idLoaiTaiKhoan,
 			String tenLoaiTaiKhoan, int idKhoa, String tenKhoa) {
 		super();
 		this.idUser = idUser;
 		this.fullName = fullName;
-		this.chucDanhKhoaHoc = chucDanhKhoaHoc;
 		this.diaChiCoQuan = diaChiCoQuan;
 		this.dienThoaiCoQuan = dienThoaiCoQuan;
-		this.idHocVi = idHocVi;
-		this.tenHocVi = tenHocVi;
+		this.idHocViHocHam = idHocViHocHam;
+		this.tenHocViHocHam = tenHocViHocHam;
 		this.namSinh = namSinh;
 		this.diaChiNhaRieng = diaChiNhaRieng;
 		this.dienThoaiNhaRieng = dienThoaiNhaRieng;
@@ -68,14 +66,6 @@ public class User {
 		this.fullName = fullName;
 	}
 
-	public String getChucDanhKhoaHoc() {
-		return chucDanhKhoaHoc;
-	}
-
-	public void setChucDanhKhoaHoc(String chucDanhKhoaHoc) {
-		this.chucDanhKhoaHoc = chucDanhKhoaHoc;
-	}
-
 	public String getDiaChiCoQuan() {
 		return diaChiCoQuan;
 	}
@@ -92,20 +82,20 @@ public class User {
 		this.dienThoaiCoQuan = dienThoaiCoQuan;
 	}
 
-	public int getIdHocVi() {
-		return idHocVi;
+	public int getIdHocViHocHam() {
+		return idHocViHocHam;
 	}
 
-	public void setIdHocVi(int idHocVi) {
-		this.idHocVi = idHocVi;
+	public void setIdHocViHocHam(int idHocViHocHam) {
+		this.idHocViHocHam = idHocViHocHam;
 	}
 
-	public String getTenHocVi() {
-		return tenHocVi;
+	public String getTenHocViHocHam() {
+		return tenHocViHocHam;
 	}
 
-	public void setTenHocVi(String tenHocVi) {
-		this.tenHocVi = tenHocVi;
+	public void setTenHocViHocHam(String tenHocViHocHam) {
+		this.tenHocViHocHam = tenHocViHocHam;
 	}
 
 	public String getNamSinh() {
@@ -199,9 +189,9 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [idUser=" + idUser + ", fullName=" + fullName
-				+ ", chucDanhKhoaHoc=" + chucDanhKhoaHoc + ", diaChiCoQuan="
+				+ ", chucDanhKhoaHoc=" + ", diaChiCoQuan="
 				+ diaChiCoQuan + ", dienThoaiCoQuan=" + dienThoaiCoQuan
-				+ ", idHocVi=" + idHocVi + ", tenHocVi=" + tenHocVi
+				+ ", idHocViHocHam=" + idHocViHocHam + ", tenHocViHocHam=" + tenHocViHocHam
 				+ ", namSinh=" + namSinh + ", diaChiNhaRieng=" + diaChiNhaRieng
 				+ ", dienThoaiNhaRieng=" + dienThoaiNhaRieng + ", email="
 				+ email + ", fax=" + fax + ", userName=" + userName

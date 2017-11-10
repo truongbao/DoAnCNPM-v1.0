@@ -1,7 +1,7 @@
 <%@page import="model.bean.User"%>
 <%@page import="model.bean.LoaiTaiKhoan"%>
 <%@page import="model.bean.Khoa"%>
-<%@page import="model.bean.HocVi"%>
+<%@page import="model.bean.HocViHocHam"%>
 <%@page import="model.dao.UserDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -105,21 +105,28 @@
 		                         </div>
 		                         <div class="col-md-3">
 		                             <div class="form-group height-100">
-		                                 <label>Học vị</label>
-		                                 <select name="hoc_vi" class="form-control border-input">
+		                                 <label>Học vị hoc hàm</label>
+		                                 <select name="hoc_vi_hoc_ham" class="form-control border-input">
 		                                     <%
-		                                    	ArrayList<HocVi> listHocVi = userDao.getListHocVi();
-		                                    	for(int i = 0; i < listHocVi.size(); i++) {
+		                                    	ArrayList<HocViHocHam> listHocViHocHam = userDao.getListHocViHocHam();
+		                                    	for(int i = 0; i < listHocViHocHam.size(); i++) {
 	                                    	%>
-                                               	<option value="<%= listHocVi.get(i).getIdHocVi() %>"><%= listHocVi.get(i).getTenHocVi() %></option>
+                                               	<option value="<%= listHocViHocHam.get(i).getIdHocViHocHam() %>"><%= listHocViHocHam.get(i).getTenHocViHocHam() %></option>
                                                	<%} %>
 		                                 </select> 
 		                             </div>
 		                         </div>
-		                         <div class="col-md-4">
+		                         <div class="col-md-3">
 		                             <div class="form-group height-100">
-		                                 <label>Chức danh khoa học</label>
-		                                 <input type="text" name="chuc_danh_khoa_hoc" class="form-control border-input" style="height: 40px!important">
+		                                 <label>Loại tài khoản</label>
+		                                 <select name="loai_tai_khoan" class="form-control border-input">
+                                          	<%
+		                                    	ArrayList<LoaiTaiKhoan> listLoaiTaiKhoan = userDao.getListLoaiTK();
+		                                    	for(int i = 0; i < listLoaiTaiKhoan.size(); i++) {
+	                                    	%>
+                                               	<option value="<%= listLoaiTaiKhoan.get(i).getIdLoaiTaiKhoan() %>"><%= listLoaiTaiKhoan.get(i).getTenLoaiTaiKhoan() %></option>
+                                               	<%} %>
+		                                 </select>
 		                             </div>
 		                         </div>
 		                             <div class="col-md-3">
@@ -184,19 +191,7 @@
 		                                 </select>
 		                             </div>
 		                         </div>
-		                         <div class="col-md-3">
-		                             <div class="form-group height-100">
-		                                 <label>Loại tài khoản</label>
-		                                 <select name="loai_tai_khoan" class="form-control border-input">
-                                          	<%
-		                                    	ArrayList<LoaiTaiKhoan> listLoaiTaiKhoan = userDao.getListLoaiTK();
-		                                    	for(int i = 0; i < listLoaiTaiKhoan.size(); i++) {
-	                                    	%>
-                                               	<option value="<%= listLoaiTaiKhoan.get(i).getIdLoaiTaiKhoan() %>"><%= listLoaiTaiKhoan.get(i).getTenLoaiTaiKhoan() %></option>
-                                               	<%} %>
-		                                 </select>
-		                             </div>
-		                         </div>
+		                         
 		                         <!--<div class="col-md-3">
 		                             <div class="form-group height-100">
 		                                 <label>Hình ảnh</label>

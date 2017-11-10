@@ -94,10 +94,10 @@
 									</div>
 								</div>
 								<div>
-									<div class="col-md-4 mt-10">Mật khẩu</div>
+									<div class="col-md-4 mt-10">Loại TK:</div>
 									<div class="col-md-8 mt-10">
 										<input type="text" style="color: black; font-weight: bold;"
-											class="form-control text-center" name="matKhau" value=""
+											class="form-control text-center" name="loai_tai_khoan" value="<%=objUser.getTenLoaiTaiKhoan() %>"
 											readonly>
 									</div>
 								</div>
@@ -189,20 +189,12 @@
 								</div>
 							</div>
 							<div class="col-md-6">
-								<label>Học vị</label>
-								<%=objUser.getTenHocVi()  %>
-							</div>
-							<div class="col-md-6">
-								<label>Chức danh khoa học</label>
-								<%=objUser.getChucDanhKhoaHoc()  %>
+								<label>Học vị học hàm</label>
+								<%=objUser.getTenHocViHocHam()  %>
 							</div>
 							<div class="col-md-6">
 								<label>Khoa: </label>
 								<%=objUser.getTenKhoa()  %>
-							</div>
-							<div class="col-md-6">
-								<label>Loại tài khoản: </label>
-								<%=objUser.getTenLoaiTaiKhoan()  %>
 							</div>
 							<div class="col-md-12 text-center mt-20 mb-20">
 								<button class="btn btn-link" id="show-list-topic">Danh
