@@ -54,11 +54,15 @@
 		                            	ArrayList<CapDeTai> listCapDeTai = (ArrayList<CapDeTai>)request.getAttribute("listCapDeTai");
                                     	for(int i = 0; i < listCapDeTai.size(); i++) {
                                     %>
-                                        <tr>
+                                        <tr id="<%= listCapDeTai.get(i).getIdCapDeTai() %>">
                                         	<td><%= listCapDeTai.get(i).getIdCapDeTai() %></td>
                                         	<td><%=listCapDeTai.get(i).getTenCapDeTai() %></td>
                                         	<td>
-                                                <div style="display: inline;" class='<%=request.getSession().getAttribute("admin") == null? "disabled" : "" %>'><a href="<%=request.getContextPath() %>/admin/capdetai/form-edit?uid=<%=listCapDeTai.get(i).getIdCapDeTai() %>"><img src="<%=request.getContextPath() %>/templates/admin/img/edit.gif" alt="" /></a></div> &nbsp;||&nbsp;
+                                                <a class="edit-capdetai" 
+                                                	data-idcdt="<%= listCapDeTai.get(i).getIdCapDeTai() %>"
+                                                	data-namecdt="<%= listCapDeTai.get(i).getTenCapDeTai() %>"
+                                                	data-url="<%=request.getContextPath() %>/admin/capdetai/edit?uid=<%=listCapDeTai.get(i).getIdCapDeTai() %>"
+                                                	><img src="<%=request.getContextPath() %>/templates/admin/img/edit.gif" alt="" /></a> &nbsp;||&nbsp;
                                                 <form id="form-xoa" method="post" action="<%=request.getContextPath() %>/admin/capdetai/del?uid=<%=listCapDeTai.get(i).getIdCapDeTai() %>" style="display: inline" >
                                                 	
 						                           <a href="" class='link-xoa'

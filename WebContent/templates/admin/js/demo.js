@@ -213,3 +213,10 @@ $(function () {
         format: 'yyyy-mm-dd HH:ii:ss'
     });
 });
+
+$('.edit-capdetai').click(function(event) {
+	var idcdt = $('.edit-capdetai').data('idcdt');
+	var namecdt = $('.edit-capdetai').data('namecdt');
+	var url = $('.edit-capdetai').data('url');
+	$("#" + idcdt).html('<td>'+idcdt+'</td><td colspan="2"><form action="' + url + '" method="post" style="display:inline;"> <input name = "name-cdt" value="'+ namecdt +'" style="margin-right:26%;"><button class="btn btn-info" type="submit">Save</button> </form></td>');
+});
