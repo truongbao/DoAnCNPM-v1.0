@@ -121,7 +121,7 @@ public class DetaiDAO {
 			String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu FROM detai AS dt "
 					+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 					+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
-					+ "  WHERE dt.trangThai = "+LibraryConstant.DangChoXetDeTai+"  and  dt.idDeTai = "+idDeTai;
+					+ "  WHERE  dt.idDeTai = "+idDeTai;
 
 			DeTai objDeTai =null;
 			try {

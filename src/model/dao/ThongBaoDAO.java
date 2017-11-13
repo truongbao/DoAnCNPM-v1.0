@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import library.ConnectMySQLLibrary;
+import model.bean.Cat;
+import model.bean.DeTai;
 import model.bean.ThongBao;
 
 public class ThongBaoDAO {
@@ -20,6 +22,77 @@ public class ThongBaoDAO {
 	public ThongBaoDAO() {
 		connectMySQLLibrary = new ConnectMySQLLibrary();
 	}
+	
+	//lay doi tuong thong bao
+	public ThongBao getObjThongBao(int idDeTai) {
+		conn = connectMySQLLibrary.getConnectMySQL();
+
+		String sql = "select * FROM thongbao AS tb "
+				 + "  WHERE tb.idDeTai = "+idDeTai;
+
+		ThongBao objTB =null;
+		try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+
+			if (rs.next()) {
+				objTB = new ThongBao(rs.getInt("idThongBao") ,rs.getInt("idUserThongBao") ,rs.getInt("idUserDen"),
+									 rs.getString("noiDung"),rs.getInt("idQuaTrinhThucHien") ,rs.getTimestamp("thoiGian") ,
+									 rs.getInt("idDeTai"), "" , "",
+									 "",rs.getInt("wasRead") );
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				st.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return objTB;
+
+	}	
+	
+	
+	//cap nhat trang thai
+	public int updateWasRead(int idTB , int idDeTai) {
+        int result = 0;
+		
+		conn = connectMySQLLibrary.getConnectMySQL();
+		
+		String sql="update thongbao set wasRead = 1   where idDeTai = ? && idThongBao = ?  ";
+		
+		try {
+			pst = conn.prepareStatement(sql);
+			
+			pst.setInt(1 , idDeTai );
+			pst.setInt(2 , idTB );
+			
+           
+		    result = pst.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			 try {
+				 pst.close();
+				 conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+
+	
+	
+	
+	
+	
 
 	public ArrayList<ThongBao> getListThongBaoByIdDeTai(int idDeTai) {
 

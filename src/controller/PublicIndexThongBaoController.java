@@ -31,7 +31,10 @@ public class PublicIndexThongBaoController extends HttpServlet {
 		 ThongBaoDAO thongBaoDAO = new ThongBaoDAO();
 		 
 	    int idDeTai = Integer.parseInt(request.getParameter("id_detai"));
+	    int idTB = Integer.parseInt(request.getParameter("idTB"));
 	    
+	    //set lại trạng thái wasRead = 1 là đã đọc
+	    thongBaoDAO.updateWasRead(idTB,idDeTai);
 
 	    //lây ra danh sach thong bao ứng với idDeTai
 	    request.setAttribute("listThongBaoByIdDeTai",  thongBaoDAO.getListThongBaoByIdDeTai(idDeTai) );

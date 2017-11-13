@@ -33,10 +33,10 @@ public class UserDAO {
 		ArrayList<User> listUser = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
 		
-		 String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocVi from user AS u "
+		 String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocViHocHam from user AS u "
 	        		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
 	        		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
-	        		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi where u.idLoaiTaiKhoan = 2 ";
+	        		+ " INNER JOIN  hocvihocham AS hv ON hv.idHocViHocHam = u.idHocViHocHam where u.idLoaiTaiKhoan = 2 ";
 		
 	    User objUser = null;
 		  
@@ -45,8 +45,8 @@ public class UserDAO {
 			rs = st.executeQuery(sql);
 			
 			while(rs.next()){
-				 objUser = new User(rs.getInt("idUser"),rs.getString("fullName"),rs.getString("chucDanhKhoaHoc") ,rs.getString("diaChiCoQuan") ,
-			             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocVi") ,rs.getString("tenHocVi"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
+				 objUser = new User(rs.getInt("idUser"),rs.getString("fullName") ,rs.getString("diaChiCoQuan") ,
+			             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocViHocHam") ,rs.getString("tenHocViHocHam"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
 			             rs.getString("dienThoaiNhaRieng") ,rs.getString("email") ,rs.getString("fax"),rs.getString("userName") , 
 			             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa") );
 			                        
@@ -73,10 +73,10 @@ public class UserDAO {
 			ArrayList<User> listUser = new ArrayList<>();
 			conn = connectMySQLLibrary.getConnectMySQL();
 			
-			 String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocVi from user AS u "
+			 String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocViHocHam from user AS u "
 		        		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
 		        		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
-		        		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi ";
+		        		+ " INNER JOIN  hocvihocham AS hv ON hv.idHocViHocHam = u.idHocViHocHam ";
 			
 		    User objUser = null;
 			  
@@ -85,8 +85,8 @@ public class UserDAO {
 				rs = st.executeQuery(sql);
 				
 				while(rs.next()){
-					 objUser = new User(rs.getInt("idUser"),rs.getString("fullName"),rs.getString("chucDanhKhoaHoc") ,rs.getString("diaChiCoQuan") ,
-				             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocVi") ,rs.getString("tenHocVi"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
+					 objUser = new User(rs.getInt("idUser"),rs.getString("fullName") ,rs.getString("diaChiCoQuan") ,
+				             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocViHocHam") ,rs.getString("tenHocViHocHam"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
 				             rs.getString("dienThoaiNhaRieng") ,rs.getString("email") ,rs.getString("fax"),rs.getString("userName") , 
 				             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa") );
 				                        
@@ -268,10 +268,10 @@ public class UserDAO {
 		
         conn = connectMySQLLibrary.getConnectMySQL();
         
-        String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocVi from user AS u "
+        String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocViHocHam from user AS u "
         		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
         		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
-        		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi "
+        		+ " INNER JOIN  hocvihocham AS hv ON hv.idHocViHocHam = u.idHocViHocHam "
         		+ " where userName = ? and matKhau = ? ";
         
         User objUser = null;
@@ -283,8 +283,8 @@ public class UserDAO {
 			
 			rs = pst.executeQuery();
 			if(rs.next()){
-			  objUser = new User(rs.getInt("idUser"),rs.getString("fullName"),rs.getString("chucDanhKhoaHoc") ,rs.getString("diaChiCoQuan") ,
-					             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocVi") ,rs.getString("tenHocVi"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
+			  objUser = new User(rs.getInt("idUser"),rs.getString("fullName") ,rs.getString("diaChiCoQuan") ,
+					             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocViHocHam") ,rs.getString("tenHocViHocHam"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
 					             rs.getString("dienThoaiNhaRieng") ,rs.getString("email") ,rs.getString("fax"),rs.getString("userName") , 
 					             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa") );
 			}
@@ -310,10 +310,10 @@ public class UserDAO {
 		
        conn = connectMySQLLibrary.getConnectMySQL();
        
-       String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocVi from user AS u "
+       String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocViHocHam from user AS u "
        		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
        		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
-       		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi where u.idUser = "+idUser ;
+       		+ " INNER JOIN  hocvihocham AS hv ON hv.idHocViHocHam = u.idHocViHocHam where u.idUser = "+idUser ;
        	
        
        User objUser = null;
@@ -322,8 +322,8 @@ public class UserDAO {
 			
 			rs = pst.executeQuery();
 			if(rs.next()){
-			  objUser = new User(rs.getInt("idUser"),rs.getString("fullName"),rs.getString("chucDanhKhoaHoc") ,rs.getString("diaChiCoQuan") ,
-					             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocVi") ,rs.getString("tenHocVi"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
+			  objUser = new User(rs.getInt("idUser"),rs.getString("fullName"),rs.getString("diaChiCoQuan") ,
+					             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocViHocHam") ,rs.getString("tenHocViHocHam"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
 					             rs.getString("dienThoaiNhaRieng") ,rs.getString("email") ,rs.getString("fax"),rs.getString("userName") , 
 					             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa") );
 			}
@@ -379,14 +379,14 @@ public class UserDAO {
 		ArrayList<HocVi> listHocVi = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
 		
-		String sql = "select * FROM hocvi ORDER BY idHocVi ASC";
+		String sql = "select * FROM hocvihocham ORDER BY idHocViHocHam ASC";
 		
 		try {
 			st = conn.createStatement();
 			rs = st.executeQuery(sql);
 			
 			while(rs.next()){
-			   HocVi objHocVi = new HocVi(rs.getInt("idHocVi") ,rs.getString("tenHocVi") );
+			   HocVi objHocVi = new HocVi(rs.getInt("idHocViHocHam") ,rs.getString("tenHocViHocHam") );
 			   listHocVi.add(objHocVi);
 			}
 		} catch (SQLException e) {
@@ -440,8 +440,8 @@ public class UserDAO {
         
         conn = connectMySQLLibrary.getConnectMySQL();
         
-        String sql = "UPDATE user SET fullname = ?, matKhau = ?, email = ?, idKhoa = ?,idHocVi = ?, "
-        		+ " idLoaiTaiKhoan = ?,chucDanhKhoaHoc = ?, diaChiCoQuan = ?,diaChiNhaRieng = ?,fax = ?, "
+        String sql = "UPDATE user SET fullname = ?, matKhau = ?, email = ?, idKhoa = ?,idHocViHocHam = ?, "
+        		+ " idLoaiTaiKhoan = ?, diaChiCoQuan = ?,diaChiNhaRieng = ?,fax = ?, "
         		+ " dienThoaiCoQuan = ?,dienThoaiNhaRieng = ?,namSinh = ? "
         		+ " WHERE idUser = ?";
         
@@ -453,14 +453,14 @@ public class UserDAO {
 			pst.setInt(4, objUser.getIdKhoa());
 			pst.setInt(5, objUser.getIdHocVi());
 			pst.setInt(6, objUser.getIdLoaiTaiKhoan());
-			pst.setString(7, objUser.getChucDanhKhoaHoc() );
-			pst.setString(8, objUser.getDiaChiCoQuan());
-			pst.setString(9, objUser.getDiaChiNhaRieng());
-			pst.setString(10, objUser.getFax());
-			pst.setString(11, objUser.getDienThoaiCoQuan());
-			pst.setString(12, objUser.getDienThoaiNhaRieng());
-			pst.setString(13, objUser.getNamSinh());
-			pst.setInt(14, objUser.getIdUser());
+			//pst.setString(7, objUser.getChucDanhKhoaHoc() );
+			pst.setString(7, objUser.getDiaChiCoQuan());
+			pst.setString(8, objUser.getDiaChiNhaRieng());
+			pst.setString(9, objUser.getFax());
+			pst.setString(10, objUser.getDienThoaiCoQuan());
+			pst.setString(11, objUser.getDienThoaiNhaRieng());
+			pst.setString(12, objUser.getNamSinh());
+			pst.setInt(13, objUser.getIdUser());
 			
 			result = pst.executeUpdate();
 		} catch (SQLException e) {
@@ -484,10 +484,10 @@ public class UserDAO {
 		ArrayList<User> listUser = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
 		
-		String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocVi from user AS u "
+		String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocViHocHam from user AS u "
 	       		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
 	       		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
-	       		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi ORDER BY idUser DESC";
+	       		+ " INNER JOIN  hocvihocham AS hv ON hv.idHocViHocHam = u.idHocViHocHam ORDER BY idUser DESC";
 		
 		try {
 			st = conn.createStatement();
@@ -497,11 +497,10 @@ public class UserDAO {
 			   User objUser = new User(
 					   rs.getInt("idUser"),
 					   rs.getString("fullName"),
-					   rs.getString("chucDanhKhoaHoc") ,
 					   rs.getString("diaChiCoQuan") ,
 			           rs.getString("dienThoaiCoQuan"),
-			           rs.getInt("idHocVi") ,
-			           rs.getString("tenHocVi"),
+			           rs.getInt("idHocViHocHam") ,
+			           rs.getString("tenHocViHocHam"),
 			           rs.getString("namSinh") ,
 			           rs.getString("diaChiNhaRieng") , 
 			           rs.getString("dienThoaiNhaRieng") ,
@@ -535,10 +534,9 @@ public class UserDAO {
 		
 		String sql="insert into user ("
 				+ "fullName,"
-				+ "chucDanhKhoaHoc,"
 				+ "diaChiCoQuan,"
 				+ "dienThoaiCoQuan,"
-				+ "idHocVi,"
+				+ "idHocViHocHam,"
 				+ "namSinh,"
 				+ "diaChiNhaRieng,"
 				+ "dienThoaiNhaRieng,"
@@ -547,26 +545,26 @@ public class UserDAO {
 				+ "userName,"
 				+ "matKhau,"
 				+ "idLoaiTaiKhoan,"
-				+ "idKhoa) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "idKhoa) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		
 		try {
 			pst = conn.prepareStatement(sql);
 			
 			pst.setString(1, objUser.getFullName());
-			pst.setString(2, objUser.getChucDanhKhoaHoc());
-			pst.setString(3, objUser.getDiaChiCoQuan());
-			pst.setString(4, objUser.getDienThoaiCoQuan());
-			pst.setInt(5, objUser.getIdHocVi());
-			pst.setString(6, objUser.getNamSinh());
-			pst.setString(7, objUser.getDiaChiNhaRieng());
-			pst.setString(8, objUser.getDienThoaiNhaRieng());
-			pst.setString(9, objUser.getEmail());
-			pst.setString(10, objUser.getFax());
-			pst.setString(11, objUser.getUserName());
-			pst.setString(12, objUser.getMatKhau());
-			pst.setInt(13, objUser.getIdLoaiTaiKhoan());
-			pst.setInt(14, objUser.getIdKhoa());
+			//pst.setString(2, objUser.getChucDanhKhoaHoc());
+			pst.setString(2, objUser.getDiaChiCoQuan());
+			pst.setString(3, objUser.getDienThoaiCoQuan());
+			pst.setInt(4, objUser.getIdHocVi());
+			pst.setString(5, objUser.getNamSinh());
+			pst.setString(6, objUser.getDiaChiNhaRieng());
+			pst.setString(7, objUser.getDienThoaiNhaRieng());
+			pst.setString(8, objUser.getEmail());
+			pst.setString(9, objUser.getFax());
+			pst.setString(10, objUser.getUserName());
+			pst.setString(11, objUser.getMatKhau());
+			pst.setInt(12, objUser.getIdLoaiTaiKhoan());
+			pst.setInt(13, objUser.getIdKhoa());
 			
 			result = pst.executeUpdate();
 			
@@ -681,10 +679,10 @@ public class UserDAO {
 		ArrayList<User> listUser = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
 		
-		String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocVi from user AS u "
+		String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocViHocHam from user AS u "
 	       		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
 	       		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
-	       		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi ORDER BY idUser DESC LIMIT "+offset+","+LibraryConstant.ROW_COUNT;
+	       		+ " INNER JOIN  hocvihocham AS hv ON hv.idHocViHocHam = u.idHocViHocHam ORDER BY idUser DESC LIMIT "+offset+","+LibraryConstant.ROW_COUNT;
 		
 		try {
 			st = conn.createStatement();
@@ -694,11 +692,11 @@ public class UserDAO {
 			   User objUser = new User(
 					   rs.getInt("idUser"),
 					   rs.getString("fullName"),
-					   rs.getString("chucDanhKhoaHoc") ,
+					  // rs.getString("chucDanhKhoaHoc") ,
 					   rs.getString("diaChiCoQuan") ,
 			           rs.getString("dienThoaiCoQuan"),
-			           rs.getInt("idHocVi") ,
-			           rs.getString("tenHocVi"),
+			           rs.getInt("idHocViHocHam") ,
+			           rs.getString("tenHocViHocHam"),
 			           rs.getString("namSinh") ,
 			           rs.getString("diaChiNhaRieng") , 
 			           rs.getString("dienThoaiNhaRieng") ,
@@ -730,10 +728,10 @@ public class UserDAO {
 		ArrayList<User> listUser = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
 		
-		String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocVi from user AS u "
+		String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocViHocHam from user AS u "
 	       		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
 	       		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
-	       		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi";
+	       		+ " INNER JOIN  hocvihocham AS hv ON hv.idHocViHocHam = u.idHocViHocHam";
 		if (key != "") {
 			sql += " where ((userName like '%" 
 				+ key 
@@ -757,11 +755,11 @@ public class UserDAO {
 			   User objUser = new User(
 					   rs.getInt("idUser"),
 					   rs.getString("fullName"),
-					   rs.getString("chucDanhKhoaHoc") ,
+					   //rs.getString("chucDanhKhoaHoc") ,
 					   rs.getString("diaChiCoQuan") ,
 			           rs.getString("dienThoaiCoQuan"),
-			           rs.getInt("idHocVi") ,
-			           rs.getString("tenHocVi"),
+			           rs.getInt("idHocViHocHam") ,
+			           rs.getString("tenHocViHocHam"),
 			           rs.getString("namSinh") ,
 			           rs.getString("diaChiNhaRieng") , 
 			           rs.getString("dienThoaiNhaRieng") ,
@@ -965,10 +963,10 @@ public boolean checkExistEmail(String email) {
 			ArrayList<User> listUser = new ArrayList<>();
 			conn = connectMySQLLibrary.getConnectMySQL();
 			
-			 String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocVi from user AS u "
+			 String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocViHocHam from user AS u "
 			       		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
 			       		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
-			       		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi where u.idUser in (select distinct idUser from detai)";
+			       		+ " INNER JOIN  hocvihocham AS hv ON hv.idHocViHocHam = u.idHocViHocHam where u.idUser in (select distinct idUser from detai)";
 			
 		    User objUser = null;
 			  
@@ -977,8 +975,8 @@ public boolean checkExistEmail(String email) {
 				rs = st.executeQuery(sql);
 				
 				while(rs.next()){
-					 objUser = new User(rs.getInt("idUser"),rs.getString("fullName"),rs.getString("chucDanhKhoaHoc") ,rs.getString("diaChiCoQuan") ,
-				             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocVi") ,rs.getString("tenHocVi"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
+					 objUser = new User(rs.getInt("idUser"),rs.getString("fullName") ,rs.getString("diaChiCoQuan") ,
+				             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocViHocHam") ,rs.getString("tenHocViHocHam"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
 				             rs.getString("dienThoaiNhaRieng") ,rs.getString("email") ,rs.getString("fax"),rs.getString("userName") , 
 				             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa") );
 				                        
@@ -1005,10 +1003,10 @@ public boolean checkExistEmail(String email) {
 			ArrayList<User> listUser = new ArrayList<>();
 			conn = connectMySQLLibrary.getConnectMySQL();
 			
-			String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocVi from user AS u "
+			String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocViHocHam from user AS u "
 		        		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
 		        		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
-		        		+ " INNER JOIN  hocvi AS hv ON hv.idHocVi = u.idHocVi where u.idLoaiTaiKhoan = 2";
+		        		+ " INNER JOIN  hocvihocham AS hv ON hv.idHocViHocHam = u.idHocViHocHam where u.idLoaiTaiKhoan = 2";
 			if(idFac != 0){
 				 sql += " AND k.idKhoa = "+idFac;
 			}
@@ -1024,8 +1022,8 @@ public boolean checkExistEmail(String email) {
 				rs = pst.executeQuery();
 				
 				while(rs.next()){
-					 objUser = new User(rs.getInt("idUser"),rs.getString("fullName"),rs.getString("chucDanhKhoaHoc") ,rs.getString("diaChiCoQuan") ,
-				             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocVi") ,rs.getString("tenHocVi"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
+					 objUser = new User(rs.getInt("idUser"),rs.getString("fullName") ,rs.getString("diaChiCoQuan") ,
+				             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocViHocHam") ,rs.getString("tenHocViHocHam"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
 				             rs.getString("dienThoaiNhaRieng") ,rs.getString("email") ,rs.getString("fax"),rs.getString("userName") , 
 				             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa") );
 				                        

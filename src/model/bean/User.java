@@ -4,7 +4,7 @@ public class User {
 	
 	private int idUser;
 	private String fullName;
-	private String chucDanhKhoaHoc;
+	//private String chucDanhKhoaHoc;
 	private String diaChiCoQuan;
 	private String dienThoaiCoQuan;
 	private int idHocVi;
@@ -25,16 +25,15 @@ public class User {
 		super();
 	}
 
-	public User(int idUser, String fullName, String chucDanhKhoaHoc,
-			String diaChiCoQuan, String dienThoaiCoQuan, int idHocVi,
-			String tenHocVi, String namSinh, String diaChiNhaRieng,
-			String dienThoaiNhaRieng, String email, String fax,
-			String userName, String matKhau, int idLoaiTaiKhoan,
-			String tenLoaiTaiKhoan, int idKhoa, String tenKhoa) {
+	public User(int idUser, String fullName, String diaChiCoQuan,
+			String dienThoaiCoQuan, int idHocVi, String tenHocVi,
+			String namSinh, String diaChiNhaRieng, String dienThoaiNhaRieng,
+			String email, String fax, String userName, String matKhau,
+			int idLoaiTaiKhoan, String tenLoaiTaiKhoan, int idKhoa,
+			String tenKhoa) {
 		super();
 		this.idUser = idUser;
 		this.fullName = fullName;
-		this.chucDanhKhoaHoc = chucDanhKhoaHoc;
 		this.diaChiCoQuan = diaChiCoQuan;
 		this.dienThoaiCoQuan = dienThoaiCoQuan;
 		this.idHocVi = idHocVi;
@@ -66,14 +65,6 @@ public class User {
 
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
-	}
-
-	public String getChucDanhKhoaHoc() {
-		return chucDanhKhoaHoc;
-	}
-
-	public void setChucDanhKhoaHoc(String chucDanhKhoaHoc) {
-		this.chucDanhKhoaHoc = chucDanhKhoaHoc;
 	}
 
 	public String getDiaChiCoQuan() {
@@ -199,15 +190,14 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [idUser=" + idUser + ", fullName=" + fullName
-				+ ", chucDanhKhoaHoc=" + chucDanhKhoaHoc + ", diaChiCoQuan="
-				+ diaChiCoQuan + ", dienThoaiCoQuan=" + dienThoaiCoQuan
-				+ ", idHocVi=" + idHocVi + ", tenHocVi=" + tenHocVi
-				+ ", namSinh=" + namSinh + ", diaChiNhaRieng=" + diaChiNhaRieng
-				+ ", dienThoaiNhaRieng=" + dienThoaiNhaRieng + ", email="
-				+ email + ", fax=" + fax + ", userName=" + userName
-				+ ", matKhau=" + matKhau + ", idLoaiTaiKhoan=" + idLoaiTaiKhoan
-				+ ", tenLoaiTaiKhoan=" + tenLoaiTaiKhoan + ", idKhoa=" + idKhoa
-				+ ", tenKhoa=" + tenKhoa + "]";
+				+ ", diaChiCoQuan=" + diaChiCoQuan + ", dienThoaiCoQuan="
+				+ dienThoaiCoQuan + ", idHocVi=" + idHocVi + ", tenHocVi="
+				+ tenHocVi + ", namSinh=" + namSinh + ", diaChiNhaRieng="
+				+ diaChiNhaRieng + ", dienThoaiNhaRieng=" + dienThoaiNhaRieng
+				+ ", email=" + email + ", fax=" + fax + ", userName="
+				+ userName + ", matKhau=" + matKhau + ", idLoaiTaiKhoan="
+				+ idLoaiTaiKhoan + ", tenLoaiTaiKhoan=" + tenLoaiTaiKhoan
+				+ ", idKhoa=" + idKhoa + ", tenKhoa=" + tenKhoa + "]";
 	}
 
 	

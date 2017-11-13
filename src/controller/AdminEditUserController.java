@@ -47,7 +47,7 @@ public class AdminEditUserController extends HttpServlet {
 	    
 	    
 		String fullName = request.getParameter("fullname");
-		String chucDanhKhoaHoc =  request.getParameter("chuc_danh_khoa_hoc");
+		//String chucDanhKhoaHoc =  request.getParameter("chuc_danh_khoa_hoc");
 		String diaChiCoQuan = request.getParameter("dia_chi_co_quan");
 		String dienThoaiCoQuan = request.getParameter("dien_thoai_co_quan");
 		int idHocVi = Integer.parseInt(request.getParameter("hoc_vi"));
@@ -61,7 +61,7 @@ public class AdminEditUserController extends HttpServlet {
 		int idLoaiTaiKhoan = Integer.parseInt(request.getParameter("loai_tai_khoan"));
 		int idKhoa =  Integer.parseInt(request.getParameter("khoa")) ;
 		
-		User objUser = new  User(idUser, fullName, chucDanhKhoaHoc,
+		User objUser = new  User(idUser, fullName,
 				diaChiCoQuan, dienThoaiCoQuan, idHocVi,
 				"", namSinh, diaChiNhaRieng,
 				dienThoaiNhaRieng, email, fax,

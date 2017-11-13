@@ -99,7 +99,7 @@ public class PublicUpdateInfoPersonController extends HttpServlet {
 		    matKhau =  st.MD5(matKhau) ;
 		}
 		
-		User objUser = new User(idUser, fullName, chucDanhKhoaHoc, diaChiCoQuan, dienThoaiCoQuan, 
+		User objUser = new User(idUser, fullName, diaChiCoQuan, dienThoaiCoQuan, 
 				                idHocVi, "", namSinh, diaChiNhaRieng, dienThoaiNhaRieng, email,
 				                fax, "" , matKhau, idLoaiTaiKhoan, "", idKhoa, "");
 		

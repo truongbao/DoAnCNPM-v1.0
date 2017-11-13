@@ -1,3 +1,5 @@
+<%@page import="model.bean.ThongBao"%>
+<%@page import="model.dao.ThongBaoDAO"%>
 <%@page import="library.LibraryConstant"%>
 <%@page import="model.dao.DetaiDAO"%>
 <%@page import="model.bean.DeTai"%>
@@ -129,11 +131,13 @@
 									  <%
 									    //viet phuong thuc lay ra trangThai mới cập nhật ứng vs idDeTai vừa dk
 									    DetaiDAO detaiDAO = new DetaiDAO();
+									    ThongBaoDAO tbDAO = new ThongBaoDAO();
 									    DeTai objDeTaiById =  detaiDAO.getTrangThaiUpdateUpdByIdDeTaiDK(objDT.getIdDeTai());
-									    if( objDeTaiById != null ){
+									    ThongBao objTB = tbDAO.getObjThongBao(objDT.getIdDeTai());
+									    if( objDeTaiById != null  && (objTB.getWasRead() == 0  )){
 									  
 									  %>
-										<a href="<%=request.getContextPath()%>/thong-bao?id_detai=<%=objDT.getIdDeTai() %>" class="btn btn-danger" style="">  Xem thông báo </a>
+										<a href="<%=request.getContextPath()%>/thong-bao?id_detai=<%=objDT.getIdDeTai() %>&idTB=<%=objTB.getIdThongBao() %>" class="btn btn-danger" style="">  Xem thông báo </a>
 									  <%}else{%>
 									  
 									  <%} %>

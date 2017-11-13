@@ -59,7 +59,7 @@ public class AdminAddUserController extends HttpServlet {
 		int idLoaiTaiKhoan = Integer.parseInt(request.getParameter("loai_tai_khoan"));
 		int idKhoa =  Integer.parseInt(request.getParameter("khoa")) ;
 		
-		User objUser = new  User(0, fullName, chucDanhKhoaHoc,
+		User objUser = new  User(0, fullName,
 				diaChiCoQuan, dienThoaiCoQuan, idHocVi,
 				"", namSinh, diaChiNhaRieng,
 				dienThoaiNhaRieng, email, fax,
