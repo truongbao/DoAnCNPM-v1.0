@@ -220,3 +220,17 @@ $('.edit-capdetai').click(function(event) {
 	var url = $('.edit-capdetai').data('url');
 	$("#" + idcdt).html('<td>'+idcdt+'</td><td colspan="2"><form action="' + url + '" method="post" style="display:inline;"> <input name = "name-cdt" value="'+ namecdt +'" style="margin-right:26%;"><button class="btn btn-info" type="submit">Save</button> </form></td>');
 });
+
+/**
+ * Show image when choose image
+ */
+$('#picture-avt').change( function(event) {
+    var select_input_file = $(this).val();
+    if (select_input_file) {
+        var imgpath = URL.createObjectURL(event.target.files[0]);
+        $("#preview-image").fadeIn("fast").attr('src',imgpath);
+    } else {
+        $("#preview-image").fadeOut("fast");
+    }
+});
+

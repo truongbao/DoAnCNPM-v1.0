@@ -88,7 +88,7 @@
                         	<%
                         		UserDAO userDao = new UserDAO();
                            	%>
-                            <form id="frmUser" action="<%=request.getContextPath() %>/admin/user/add" method="post">
+                            <form id="frmUser" action="<%=request.getContextPath() %>/admin/user/add" enctype = "multipart/form-data" method="post">
 		                         <div class="col-md-3">
 		                             <div class="form-group height-100">
 		                                 <label>Họ tên</label>
@@ -192,18 +192,18 @@
 		                             </div>
 		                         </div>
 		                         
-		                         <!--<div class="col-md-3">
+		                         <div class="col-md-3">
 		                             <div class="form-group height-100">
 		                                 <label>Hình ảnh</label>
-		                                 <input type="file" name="picture" class="form-control" placeholder="Chọn ảnh"/>
+		                                 <input type="file" id="picture-avt" name="picture" class="form-control" placeholder="Chọn ảnh"/>
 		                             </div>
 		                         </div>
 		                         <div class="col-md-3">
 		                             <div class="form-group height-100">
 		                                 <label> Xem ảnh</label>
-		                                 <div id="show-image" style="border-top: 0.5px solid #BFB8B8"></div>
+		                                  <img src="" alt="avatar" id="preview-image" style="border-top: 0.5px solid #BFB8B8;width: 150px;height: 90px;margin-left: 40%" />
 		                             </div>
-		                         </div> -->
+		                         </div>
 		                     
 		                         <div class="col-md-12">
 		                             <div class="text-center">

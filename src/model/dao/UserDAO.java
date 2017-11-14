@@ -48,7 +48,7 @@ public class UserDAO {
 				 objUser = new User(rs.getInt("idUser"),rs.getString("fullName"),rs.getString("diaChiCoQuan") ,
 			             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocViHocHam") ,rs.getString("tenHocViHocHam"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
 			             rs.getString("dienThoaiNhaRieng") ,rs.getString("email") ,rs.getString("fax"),rs.getString("userName") , 
-			             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa") );
+			             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa"), rs.getString("avt"));
 			                        
 				 listUser.add(objUser);
 			}
@@ -88,7 +88,7 @@ public class UserDAO {
 					 objUser = new User(rs.getInt("idUser"),rs.getString("fullName"),rs.getString("diaChiCoQuan") ,
 				             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocViHocHam") ,rs.getString("tenHocViHocHam"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
 				             rs.getString("dienThoaiNhaRieng") ,rs.getString("email") ,rs.getString("fax"),rs.getString("userName") , 
-				             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa") );
+				             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa"), rs.getString("avt") );
 				                        
 					 listUser.add(objUser);
 				}
@@ -286,7 +286,7 @@ public class UserDAO {
 			  objUser = new User(rs.getInt("idUser"),rs.getString("fullName") ,rs.getString("diaChiCoQuan") ,
 					             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocViHocHam") ,rs.getString("tenHocViHocHam"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
 					             rs.getString("dienThoaiNhaRieng") ,rs.getString("email") ,rs.getString("fax"),rs.getString("userName") , 
-					             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa") );
+					             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa"), rs.getString("avt") );
 			}
 			
 			
@@ -325,7 +325,7 @@ public class UserDAO {
 			  objUser = new User(rs.getInt("idUser"),rs.getString("fullName"), rs.getString("diaChiCoQuan") ,
 					             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocViHocHam") ,rs.getString("tenHocViHocHam"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
 					             rs.getString("dienThoaiNhaRieng") ,rs.getString("email") ,rs.getString("fax"),rs.getString("userName") , 
-					             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa") );
+					             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa") , rs.getString("avt"));
 			}
 			
 			
@@ -442,7 +442,7 @@ public class UserDAO {
         
         String sql = "UPDATE user SET fullname = ?, matKhau = ?, email = ?, idKhoa = ?,idHocViHocHam = ?, "
         		+ " idLoaiTaiKhoan = ?, diaChiCoQuan = ?,diaChiNhaRieng = ?,fax = ?, "
-        		+ " dienThoaiCoQuan = ?,dienThoaiNhaRieng = ?,namSinh = ? "
+        		+ " dienThoaiCoQuan = ?,dienThoaiNhaRieng = ?,namSinh = ? ,avt = ? "
         		+ " WHERE idUser = ?";
         
         try {
@@ -459,7 +459,8 @@ public class UserDAO {
 			pst.setString(10, objUser.getDienThoaiCoQuan());
 			pst.setString(11, objUser.getDienThoaiNhaRieng());
 			pst.setString(12, objUser.getNamSinh());
-			pst.setInt(13, objUser.getIdUser());
+			pst.setString(13, objUser.getAvt());
+			pst.setInt(14, objUser.getIdUser());
 			
 			result = pst.executeUpdate();
 		} catch (SQLException e) {
@@ -509,7 +510,8 @@ public class UserDAO {
 			           rs.getInt("idLoaiTaiKhoan"),
 			           rs.getString("tenLoaiTaiKhoan") ,
 			           rs.getInt("idKhoa"), 
-			           rs.getString("tenKhoa") );
+			           rs.getString("tenKhoa"),
+			           rs.getString("avt"));
 
                listUser.add(objUser);
 			}
@@ -544,7 +546,8 @@ public class UserDAO {
 				+ "userName,"
 				+ "matKhau,"
 				+ "idLoaiTaiKhoan,"
-				+ "idKhoa) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "idKhoa,"
+				+ "avt) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		
 		try {
@@ -563,6 +566,7 @@ public class UserDAO {
 			pst.setString(11, objUser.getMatKhau());
 			pst.setInt(12, objUser.getIdLoaiTaiKhoan());
 			pst.setInt(13, objUser.getIdKhoa());
+			pst.setString(14, objUser.getAvt());
 			
 			result = pst.executeUpdate();
 			
@@ -707,7 +711,8 @@ public class UserDAO {
 			           rs.getInt("idLoaiTaiKhoan"),
 			           rs.getString("tenLoaiTaiKhoan") ,
 			           rs.getInt("idKhoa"), 
-			           rs.getString("tenKhoa") );
+			           rs.getString("tenKhoa"),
+			           rs.getString("avt") );
                listUser.add(objUser);
 			}
 		} catch (SQLException e) {
@@ -774,7 +779,8 @@ public class UserDAO {
 			           rs.getInt("idLoaiTaiKhoan"),
 			           rs.getString("tenLoaiTaiKhoan") ,
 			           rs.getInt("idKhoa"), 
-			           rs.getString("tenKhoa") );
+			           rs.getString("tenKhoa"),
+			           rs.getString("avt") );
                listUser.add(objUser);
 			}
 		} catch (SQLException e) {
@@ -983,7 +989,7 @@ public boolean checkExistEmail(String email) {
 					 objUser = new User(rs.getInt("idUser"),rs.getString("fullName"),rs.getString("diaChiCoQuan") ,
 				             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocViHocHam") ,rs.getString("tenHocViHocHam"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
 				             rs.getString("dienThoaiNhaRieng") ,rs.getString("email") ,rs.getString("fax"),rs.getString("userName") , 
-				             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa") );
+				             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa") , rs.getString("avt"));
 				                        
 					 listUser.add(objUser);
 				}
@@ -1030,7 +1036,7 @@ public boolean checkExistEmail(String email) {
 					 objUser = new User(rs.getInt("idUser"),rs.getString("fullName"),rs.getString("diaChiCoQuan") ,
 				             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocViHocHam") ,rs.getString("tenHocViHocHam"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
 				             rs.getString("dienThoaiNhaRieng") ,rs.getString("email") ,rs.getString("fax"),rs.getString("userName") , 
-				             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa") );
+				             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa") , rs.getString("avt"));
 				                        
 					 listUser.add(objUser);
 				}
