@@ -94,9 +94,11 @@
 					<tr>
 						<td width="4%;">1</td> <td width="25%;" style="font-weight:bold;">Họ tên</td>  <td> <%=objUser.getFullName() %> </td>
 					</tr>
-					<tr>
+					
+					<%-- <tr>
 						<td width="4%;">2</td> <td width="25%;" style="font-weight:bold;">Chức danh khoa học</td>  <td> <%=objUser.getChucDanhKhoaHoc() %> </td>
-					</tr>
+					</tr> --%>
+					
 					<tr>
 						<td width="4%;">3</td> <td width="25%;" style="font-weight:bold;">Địa chỉ cơ quan</td>  <td> <%=objUser.getDiaChiCoQuan() %> </td>
 					</tr>
@@ -104,7 +106,7 @@
 						<td width="4%;">4</td> <td width="25%;" style="font-weight:bold;">Điện thoại cơ quan</td>  <td> <%=objUser.getDienThoaiCoQuan() %> </td>
 					</tr>
 					<tr>
-						<td width="4%;">5</td> <td width="25%;" style="font-weight:bold;">Học vị</td>  <td> <%=objUser.getTenHocVi() %> </td>
+						<td width="4%;">5</td> <td width="25%;" style="font-weight:bold;">Học vị</td>  <td> <%=objUser.getTenHocViHocHam() %> </td>
 					</tr>
 					<tr>
 						<td width="4%;">6</td> <td width="25%;" style="font-weight:bold;">Năm sinh</td>  <td> <%=objUser.getNamSinh() %> </td>

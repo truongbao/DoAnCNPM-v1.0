@@ -39,7 +39,7 @@ public class PublicUpdateInfoPersonController extends HttpServlet {
         }
         
 		//gui qua danh sach hoc vi
-        request.setAttribute("listHocVi", userDAO.getListHocVi());
+        request.setAttribute("listHocVi", userDAO.getListHocViHocHam());
         
         //gui qua jsp danh sach loai tai khoan
         request.setAttribute("listLoaiTK", userDAO.getListLoaiTK());
@@ -83,7 +83,7 @@ public class PublicUpdateInfoPersonController extends HttpServlet {
 		int idHocVi = Integer.parseInt(request.getParameter("idHocVi"));
 		int idLoaiTaiKhoan = Integer.parseInt(request.getParameter("idLoaiTaiKhoan"));
 		
-		String chucDanhKhoaHoc = request.getParameter("chucdanh_khoahoc");
+		//String chucDanhKhoaHoc = request.getParameter("chucdanh_khoahoc");
 		String diaChiCoQuan = request.getParameter("diachi_coquan");
 		String diaChiNhaRieng = request.getParameter("diachi_nharieng");
 		String fax = request.getParameter("fax");
@@ -99,7 +99,7 @@ public class PublicUpdateInfoPersonController extends HttpServlet {
 		    matKhau =  st.MD5(matKhau) ;
 		}
 		
-		User objUser = new User(idUser, fullName, chucDanhKhoaHoc, diaChiCoQuan, dienThoaiCoQuan, 
+		User objUser = new User(idUser, fullName, diaChiCoQuan, dienThoaiCoQuan, 
 				                idHocVi, "", namSinh, diaChiNhaRieng, dienThoaiNhaRieng, email,
 				                fax, "" , matKhau, idLoaiTaiKhoan, "", idKhoa, "");
 		

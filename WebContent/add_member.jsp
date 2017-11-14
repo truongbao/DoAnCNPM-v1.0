@@ -103,9 +103,16 @@
 									<label class="p-center">Nội dung nghiên cứu</label>
 								</div>
 								<div class="col-xs-9">
-									<textarea class="form-control" rows="5" name="noiDungNghienCuu">
+									<textarea id="cktext" class="form-control" rows="5" name="noiDungNghienCuu">
 										
 									</textarea>
+									
+									 <script type="text/javascript">
+							               var editor = CKEDITOR.replace('cktext');
+							               CKFinder.setupCKEditor(editor,'<%=request.getContextPath()%>/ckfinder/')
+							         </script>
+									
+									
 								</div>
 							</div>
 							

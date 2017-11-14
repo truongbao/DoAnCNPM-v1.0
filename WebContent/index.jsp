@@ -174,13 +174,13 @@
 								</a>
 							</div>
 							<a href="chuong-trinh-chat-luong-cao.html" class="std_ic_title">
-							     <% if(objUser.getIdHocVi() == 1) { %> 
+							     <% if(objUser.getIdHocViHocHam() == 1) { %> 
 							        GS. <%=objUser.getFullName() %>
-							     <%}else if(objUser.getIdHocVi() == 2){ %>   
+							     <%}else if(objUser.getIdHocViHocHam() == 2){ %>   
 							        PGS. <%=objUser.getFullName() %>
-							     <%}else if(objUser.getIdHocVi() == 3){ %>   
+							     <%}else if(objUser.getIdHocViHocHam() == 3){ %>   
 							        TS. <%=objUser.getFullName() %>
-							     <%}else if(objUser.getIdHocVi() == 4){ %>   
+							     <%}else if(objUser.getIdHocViHocHam() == 4){ %>   
 							        ThS. <%=objUser.getFullName() %>
 							     <%}else{ %>   
 							        GV. <%=objUser.getFullName() %>

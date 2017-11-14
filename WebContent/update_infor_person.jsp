@@ -1,3 +1,4 @@
+<%@page import="model.bean.HocViHocHam"%>
 <%@page import="model.bean.Khoa"%>
 <%@page import="model.bean.LoaiTaiKhoan"%>
 <%@page import="model.bean.HocVi"%>
@@ -125,17 +126,17 @@
 									 
 									  <%
 										if (request.getAttribute("listHocVi") != null){
-											ArrayList<HocVi> listHocVi = (ArrayList<HocVi>) request.getAttribute("listHocVi");
+											ArrayList<HocViHocHam> listHocVi = (ArrayList<HocViHocHam>) request.getAttribute("listHocVi");
 											String selected = "";
 											if (listHocVi.size() > 0){
-												for (HocVi objHocVi : listHocVi){
-													if (objUser.getIdHocVi() == objHocVi.getIdHocVi()){
+												for (HocViHocHam objHocViHocHam : listHocVi){
+													if (objUser.getIdHocViHocHam() == objHocViHocHam.getIdHocViHocHam()){
 														selected = "selected='selected'";
 													} else {
 														selected="";
 													}
 										%>
-										<option <%=selected %> value="<%=objHocVi.getIdHocVi()%>"><%=objHocVi.getTenHocVi() %></option>
+										<option <%=selected %> value="<%=objHocViHocHam.getIdHocViHocHam()%>"><%=objHocViHocHam.getTenHocViHocHam() %></option>
 										<%
 												}	
 											}
@@ -180,7 +181,7 @@
 								</div>
                             </div>
 							
-							<div class="form-group row">
+							<%-- <div class="form-group row">
 								<div class="col-xs-2">
 									<label class="p-center">Chức danh khoa học</label>
 								</div>
@@ -188,7 +189,7 @@
 									<input value="<%=objUser.getChucDanhKhoaHoc() %>" type="text" name="chucdanh_khoahoc" class="form-control" placeholder="Vui lòng nhập chức danh khoa học ...">
 								</div>
 								
-							</div>
+							</div> --%>
 							
 							<div class="form-group row">
 								<div class="col-xs-2">
