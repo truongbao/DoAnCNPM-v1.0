@@ -68,7 +68,9 @@ public class AdminEditUserController extends HttpServlet {
 
 						if(!nameImg.equals("")) {
 							avt = nameImg +"_"+ System.currentTimeMillis();
-	
+
+							File folder = new File(request.getServletContext().getRealPath("") +  "/WebContent/templates/admin/img/users");
+							folder.mkdirs();
 							item.write(new File(request.getServletContext().getRealPath("") +  "/WebContent/templates/admin/img/users/" + avt));
 						}
 					} else {

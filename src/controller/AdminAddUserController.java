@@ -62,7 +62,9 @@ public class AdminAddUserController extends HttpServlet {
 						String nameImg = new File(item.getName()).getName();
 						if(!nameImg.equals("")) {
 							avt = nameImg +"_"+ System.currentTimeMillis();
-	
+							File folder = new File(request.getServletContext().getRealPath("") +  "/WebContent/templates/admin/img/users");
+							folder.mkdirs();
+							// tao folder
 							item.write(new File(request.getServletContext().getRealPath("") +  "/WebContent/templates/admin/img/users/" + avt));
 						}
 					}else {
