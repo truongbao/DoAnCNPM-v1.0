@@ -295,13 +295,15 @@ a.std_ic_title:hover{color:#ffb933}
 .home_knh_items{margin-bottom:50px}
 @media(max-width:991px) {
 	.home_knh_items{display:none;margin-bottom:0}
-	.home_knh_items.first{display:block;overflow:hidden;float:left}
+	.home_knh_items.first{display:block;overflow:hidden;float:left} 
 }
 .plane_fly{height:60px;width:100%;background:url(fly_long-min.png);background-repeat:no-repeat;background-size:auto 55px;background-position:center right}
 .plane_fly_lg{height:60px;width:100%;background:url(fly_long-min.png);background-repeat:no-repeat;background-size:auto 55px;background-position:center right}
 .infomation li i{color:#fff;width:20px}
-footer#footer:before{content:"";position:absolute;top:-8px;left:0;width:100%;height:8px;background:url(polygon_color_2_from_bottom-mins.png)}
-footer#footer{background:url(footer_bgs.jpg) #f281a0;position:relative;background-position:top center}
+
+ /*  footer#footer:before{content:"";position:absolute;top:-8px;left:0;width:100%;height:8px;} */
+
+footer#footer{background:url(footer_thay.png) #f281a0;position:relative;background-position:top center}
 .footer-bottom ul li a:before{content:"";border-left:1px solid #885d0b;height:15px!important;overflow:hidden;width:1px;position:absolute;top:2px;left:0}
 .footer-bottom ul li:first-child a:before{content:"";border-left:0 solid #885d0b}
 .footer-bottom ul li a{text-decoration:none;padding:0;display:inline-block;position:relative;padding-left:20px}
@@ -803,8 +805,8 @@ p.dv_page_ct{font-size:15px;color:#666;line-height:30px}
 }
 
 .input-groups button, .input-groups button:hover, .input-groups button:focus{
-	border: 1px solid #f2819f;
-	background-color: #f2819f;
+	border: 1px solid #134486;
+	background-color: #134486;
 	color: #fff;
 	outline:none !important;
 	box-shadow: none;

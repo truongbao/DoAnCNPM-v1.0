@@ -1,8 +1,9 @@
+<%@page import="model.bean.DeTai"%>
+<%@page import="model.bean.LinhVucNC"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%@include file="/templates/public/inc/header.jsp"%>
-
 
 
 
@@ -18,7 +19,7 @@
 									
 				                    <li><a href="index.html">Trang chủ </a> </li>
 									
-										 <li class="active breadcrumb-title">Quản lý đề tài</li>
+										 <li class="active breadcrumb-title">Giới thiệu</li>
 									
 				                </ol>
 				            </div>
@@ -28,228 +29,202 @@
 			    <div class="container mb25">
 			    	<div>
 			    		<div class="col-xs-12">
-			    			<h1 class="default_title">Sửa đề tài</h1>
+			    			<h1 class="default_title"> Sửa đề tài</h1>
 			    		</div>
 			    	</div>
+			    	
+			    	<%
+			    	   User objUser = null;
+			    	   if(request.getAttribute("objUser") !=null){
+			    		   objUser =(User)request.getAttribute("objUser");
+			    	   }
+			    	
+			    	%>
 					
 		            <div class="page_content">
-						<form class="form">
+		                  <%
+					        if(request.getParameter("msg")!=null){
+					          int msg = Integer.parseInt( request.getParameter("msg") );
+					          switch(msg){
+					              case 0: out.print("<h4 style='color :red'>  Thất bại ! </h4> ");break; 
+					              case 1: out.print("<h4 style='color :red'> Thêm thành công ! </h4> ");break; 
+					             
+					           	 }
+					        }
+				          %>       
+		            
+		            
+						<form class="form" action="<%=request.getContextPath() %>/register-detai" method="post">
+						
+						
+						 <%
+						    if(request.getAttribute("objDeTaiByIdDeTaiDK") != null){
+						    	 DeTai objDeTaiByIdDeTaiDK =(DeTai)request.getAttribute("objDeTaiByIdDeTaiDK");
+						    	 
+						 %>
 						
 							<div class="form-group row">
-								<div class="col-xs-2">
+								<div class="col-xs-3">
 									<label class="p-center">Tên đề tài:</label>
 								</div>
-								<div class="col-xs-4">
-									<input type="text" name="" class="form-control">
-								</div>
-								
-								<div class="col-xs-2">
-									<label class="p-center">Mã đề tài:</label>
-								</div>
-								<div class="col-xs-4">
-									<input disabled="disabled" type="text" name="" class="form-control" value="MS-002">
+								<div class="col-xs-9">
+									<input value="<%=objDeTaiByIdDeTaiDK.getTenDeTai() %>" type="text" name="tenDeTai" class="form-control">
 								</div>
 							</div>
 							
 							<div class="form-group row">
-								<div class="col-xs-2">
+								<div class="col-xs-3">
 									<label class="p-center">Lĩnh vực nghiên cứu:</label>
 								</div>
-								<div class="col-xs-10">
-									<div class="col-xs-10">
-										<div class="col-xs-4">
-											<span class="col-xs-9 s20"> Tự nhiên</span>
-											<input type="checkbox" name="" class="" value="" style="height: 20px; width: 20px; margin-left: 10px">
-										</div>
-										<div class="col-xs-4">
-											<span class="col-xs-9 s20">Kỹ thuật</span>
-											<input type="checkbox" name="" class="" value="" style="height: 20px; width: 20px; margin-left: 10px">
-										</div>
-										<div class="col-xs-4">
-											<span class="col-xs-9 s20">Môi trường</span>
-											<input type="checkbox" name="" class="" value="" style="height: 20px; width: 20px; margin-left: 10px">
-										</div>
-									</div>
-									<div class="col-xs-10">
-										<div class="col-xs-4">
-											<span class="col-xs-9 s20">Kinh tế, XH-NV</span>
-											<input type="checkbox" name="" class="" value="" style="height: 20px; width: 20px; margin-left: 10px">
-										</div>
-										<div class="col-xs-4">
-											<span class="col-xs-9 s20">Nông Lâm</span>
-											<input type="checkbox" name="" class="" value="" style="height: 20px; width: 20px; margin-left: 10px">
-										</div>
-										<div class="col-xs-4">
-											<span class="col-xs-9 s20">ATLĐ</span>
-											<input type="checkbox" name="" class="" value="" style="height: 20px; width: 20px; margin-left: 10px">
-										</div>
-									</div>
-									<div class="col-xs-10">
-										<div class="col-xs-4">
-											<span class="col-xs-9 s20">Giáo Dục</span>
-											<input type="checkbox" name="" class="col-xs-3" value="" style="height: 20px; width: 20px; margin-left: 10px">
-										</div>
-										<div class="col-xs-4">
-											<span class="col-xs-9 s20">Y Dược</span>
-											<input type="checkbox" name="" class="" value="" style="height: 20px; width: 20px; margin-left: 10px">
-										</div>
-										<div class="col-xs-4">
-											<span class="col-xs-9 s20">Sở hửu trí tuệ</span>
-											<input type="checkbox" name="" class="" value="" style="height: 20px; width: 20px; margin-left: 10px">
-										</div>
-									</div>
-								</div>
-							</div>
-							
-							
-							<div class="form-group row">
-								<div class="col-xs-2">
-									<label class="p-center">Tính cấp thiết:</label>
-								</div>
-								<div class="col-xs-10">
-									<input type="text" name="" class="form-control">
-								</div>
-							</div>
-							
-							<div class="form-group row">
-								<div class="col-xs-2">
-									<label class="p-center">Loại hình nghiên cứu:</label>
-								</div>
-								<div class="col-xs-10">
-									<div class="col-xs-10">
-										<div class="col-xs-4">
-											<span class="col-xs-9 s20"> Cơ bản</span>
-											<input type="checkbox" name="" class="" value="" style="height: 20px; width: 20px; margin-left: 10px">
-										</div>
-										<div class="col-xs-4">
-											<span class="col-xs-9 s20">Ứng dụng </span>
-											<input type="checkbox" name="" class="" value="" style="height: 20px; width: 20px; margin-left: 10px">
-										</div>
-										<div class="col-xs-4">
-											<span class="col-xs-9 s20">Triển khai</span>
-											<input type="checkbox" name="" class="" value="" style="height: 20px; width: 20px; margin-left: 10px">
-										</div>
-									</div>
-									
-									
-								</div>
-							</div>
-							
-							
-							<div class="form-group row">
-								<div class="col-xs-2">
-									<label class="p-center">Mục tiêu:</label>
-								</div>
-								<div class="col-xs-10">
-									<textarea class="form-control" rows="5">
+								
+								<div class="col-xs-9">
+								    <select name="idLinhVucNghienCuu" class="form-control border-input">
+									    <option  value="0">--------------------------------------- Chọn -------------------------------------</option>
+									    
+									    <%
+										if (request.getAttribute("listLinhVucNC") != null){
+											ArrayList<LinhVucNC> listLinhVucNC = (ArrayList<LinhVucNC>) request.getAttribute("listLinhVucNC");
+											if (listLinhVucNC.size() > 0){
+												for (LinhVucNC objLVNC : listLinhVucNC){
+													 
+										%>
+										<option value="<%=objLVNC.getIdLinhVucNghienCuu()%>"> <%=objLVNC.getTenLinhVucNghienCuu() %>   </option>
 										
-									</textarea>
-								</div>
-							</div>
-							
-							<div class="form-group row">
-								<div class="col-xs-2">
-									<label class="p-center">Đơn vị chủ trì:</label>
-								</div>
-								<div class="col-xs-10">
-									<textarea class="form-control" rows="5">
-										
-									</textarea>
-								</div>
-							</div>
-							
-							
-							<div class="form-group row">
-								<div class="col-xs-2">
-									<label class="p-center">Nội dung chính:</label>
-								</div>
-								<div class="col-xs-10">
-									<textarea class="form-control" rows="5">
-										
-									</textarea>
-								</div>
-							</div>
-							
-							<div class="form-group row">
-								<div class="col-xs-2">
-									<label class="p-center">Đơn vị phối hợp chính:</label>
-								</div>
-								<div class="col-xs-10">
-									<textarea class="form-control" rows="5">
-										
-									</textarea>
-								</div>
-							</div>
-							
-							<div class="form-group row">
-								<div class="col-xs-2">
-									<label class="p-center">NHỮNG THÀNH VIÊN THAM GIA NGHIÊN CỨU ĐỀ TÀI:</label>
-								</div>
-								<div class="col-xs-10">
-									<textarea class="form-control" rows="5">
-										
-									</textarea>
-								</div>
-							</div>
-							
-							<div class="form-group row">
-								 <div class="col-xs-2">
-									  <label class="p-center">Cấp đề tài</label>
-								 </div>
-								 
-								 <div class="col-xs-10">
-									 <select name="friend_list" class="form-control border-input">
-									     <option>Cấp trường</option>
-										 <option>Cấp bộ</option>
-										 <option>Cấp sở</option>
-										 <option>Cấp thành phố</option>
-										 <option>Cấp quốc gia</option>
+										<%}}} %>
+									    
 									</select>
 								</div>
-                            </div>
+							</div>
+							
 							
 							<div class="form-group row">
-								<div class="col-xs-2">
-									<label class="p-center">Kết quả dự kiến:</label>
+								<div class="col-xs-3">
+									<label class="p-center">Tính cấp thiết:</label>
 								</div>
-								<div class="col-xs-10">
-									<textarea class="form-control" rows="5">
+								<div class="col-xs-9">
+									<input type="text" name="tinhCapThiet" class="form-control">
+								</div>
+							</div>
+							
+							
+							<div class="form-group row">
+								<div class="col-xs-3">
+									<label class="p-center">Mục tiêu:</label>
+								</div>
+								<div class="col-xs-9">
+									<textarea id="cktext1" name="mucTieu" class="form-control" rows="4">
 										
 									</textarea>
+									
+									 <script type="text/javascript">
+							               var editor = CKEDITOR.replace('cktext1');
+							               CKFinder.setupCKEditor(editor,'<%=request.getContextPath()%>/ckfinder/')
+							         </script>
+									
 								</div>
 							</div>
 							<div class="form-group row">
-								<div class="col-xs-2">
+								<div class="col-xs-3">
+									<label class="p-center">Nội dung chính:</label>
+								</div>
+								<div class="col-xs-9">
+									<textarea id="cktext2" name="noiDungChinh" class="form-control" rows="4">
+										
+									</textarea>
+									
+									 <script type="text/javascript">
+							               var editor = CKEDITOR.replace('cktext2');
+							               CKFinder.setupCKEditor(editor,'<%=request.getContextPath()%>/ckfinder/')
+							         </script>
+									
+								</div>
+							</div>
+							
+							<%-- <div class="form-group row">
+								<div class="col-xs-3">
+									<label class="p-center">Kết quả dự kiến:</label>
+								</div>
+								<div class="col-xs-9">
+									<textarea id="cktext3" name="ket" class="form-control" rows="4">
+										
+									</textarea>
+									
+									 <script type="text/javascript">
+							               var editor = CKEDITOR.replace('cktext3');
+							               CKFinder.setupCKEditor(editor,'<%=request.getContextPath()%>/ckfinder/')
+							         </script>
+									
+								</div>
+							</div> --%>
+							
+							<div class="form-group row">
+								<div class="col-xs-3">
+									<label class="p-center">Sản phẩm:</label>
+								</div>
+								<div class="col-xs-9">
+									<textarea id="cktext4" name="sanPham" class="form-control" rows="4">
+										
+									</textarea>
+									
+									  <script type="text/javascript">
+							               var editor = CKEDITOR.replace('cktext4');
+							               CKFinder.setupCKEditor(editor,'<%=request.getContextPath()%>/ckfinder/')
+							         </script>
+									
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								<div class="col-xs-3">
 									<label class="p-center">Hiệu quả dự kiến:</label>
 								</div>
-								<div class="col-xs-10">
-									<input type="text" name="" class="form-control">
+								<div class="col-xs-9">
+									<input type="text" name="hieuQuaDukien" class="form-control">
 								</div>
 							</div>
+							
 							<div class="form-group row">
-								<div class="col-xs-2">
-									<label class="p-center">Kinh phí dự kiến:</label>
+								<div class="col-xs-3">
+									<label class="p-center">Nhu cầu kinh phí dự kiến:</label>
 								</div>
-								<div class="col-xs-4">
-									<input type="number" name="" class="form-control">
+								<div class="col-xs-9">
+									<input type="number" name="kinhPhiThucHien" class="form-control">
 								</div>
-								<div class="col-xs-2">
-									<label class="p-center">Thời gian dự kiến:</label>
-								</div>
-								<div class="col-xs-4">
-									<input type="Date" name="" class="form-control">
-								</div>
+								
 							</div>	
+							
 							<div class="form-group row">
-								<div class="col-xs-2">
+								<div class="col-xs-3">
+									<label class="p-center">Thông tin liên lạc của người đề xuất (điện thoại/email):</label>
+								</div>
+								<div class="col-xs-9">
+									<textarea disabled="disabled" id="cktext5" name="thongTinLienHe" class="form-control ckeditor" rows="4">
+										Email :  <%=objUser.getEmail() %> </br>
+										Phone : <%=objUser.getDienThoaiNhaRieng() %>
+									</textarea>
+									
+									  <script type="text/javascript">
+							               var editor = CKEDITOR.replace('cktext5');
+							               CKFinder.setupCKEditor(editor,'<%=request.getContextPath()%>/ckfinder/')
+							         </script>
 									
 								</div>
-								<div class="col-xs-10 ">
+							</div>
+							
+							<div class="form-group row">
+								<div class="col-xs-3">
+									
+								</div>
+								<div class="col-xs-9 ">
 									
 									<a href="javascript:void()" class="btn btn-lg btn-primary pull-right ml10" >Hủy</a>
-									<a href="javascript:void()" class="btn btn-lg btn-primary pull-right" onclick="showMessage()">Sửa Đề Tài</a>
+									<!-- <a href="javascript:void()" class="btn btn-lg btn-primary pull-right" onclick="showMessage()">Đăng ký</a> -->
+									<button class="btn btn-lg btn-primary pull-right">  Cập nhật</button>
 								</div>
 							</div>
+							
+							<%} %>
+							
 						</form>
 					</div>
 				</div>
@@ -259,6 +234,6 @@
 	</div>
 
 
-      <%@include file="/templates/public/inc/footer.jsp" %> 
-
-
+		<%@include file="/templates/public/inc/footer.jsp" %> 
+		
+		
