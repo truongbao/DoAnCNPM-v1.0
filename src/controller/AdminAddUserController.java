@@ -60,10 +60,11 @@ public class AdminAddUserController extends HttpServlet {
 					if (!item.isFormField()) {
 
 						String nameImg = new File(item.getName()).getName();
-						
-						avt = nameImg +"_"+ System.currentTimeMillis();
-
-						item.write(new File(request.getServletContext().getRealPath("") +  "/WebContent/templates/admin/img/users/" + avt));
+						if(!nameImg.equals("")) {
+							avt = nameImg +"_"+ System.currentTimeMillis();
+	
+							item.write(new File(request.getServletContext().getRealPath("") +  "/WebContent/templates/admin/img/users/" + avt));
+						}
 					}else {
 						String fN = item.getFieldName();
 						if (fN.equals("fullname")) {
@@ -83,7 +84,8 @@ public class AdminAddUserController extends HttpServlet {
 						} else if (fN.equals("fax")) {
 							fax = item.getString();
 						} else if (fN.equals("mat_khau")) {
-							matKhau = item.getString();
+							if (!item.getString().equals(""))
+								matKhau = st.MD5(item.getString());
 						} else if (fN.equals("username")) {
 							username = item.getString();
 						} else if (fN.equals("hoc_vi_hoc_ham")) {

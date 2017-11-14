@@ -49,10 +49,14 @@ public class AdminEditUserController extends HttpServlet {
 
 		int idUser = Integer.parseInt(request.getParameter("uid"));
 		StringLibrary st = new StringLibrary();// tao doi tuong lop ma hóa
-		int idHocViHocHam = 0, idLoaiTaiKhoan = 0, idKhoa = 0;
-		String name = null, fullName = null, diaChiCoQuan = null, dienThoaiCoQuan = null, namSinh = null, avt = null,
-				diaChiNhaRieng = null, dienThoaiNhaRieng = null, email = null, fax = null, username = null,
-				matKhau = null;
+		User oldUser = objDAO.getObjUser(idUser);
+		int idHocViHocHam = oldUser.getIdHocViHocHam(), idLoaiTaiKhoan = oldUser.getIdLoaiTaiKhoan(), idKhoa = oldUser.getIdKhoa();
+		String fullName = oldUser.getFullName(), diaChiCoQuan = oldUser.getDiaChiCoQuan(),
+				dienThoaiCoQuan = oldUser.getDienThoaiCoQuan(), namSinh = oldUser.getNamSinh(), avt = oldUser.getAvt(),
+				diaChiNhaRieng = oldUser.getDiaChiNhaRieng(), dienThoaiNhaRieng = oldUser.getDienThoaiNhaRieng(),
+				email = oldUser.getEmail(), fax = oldUser.getFax(), username = oldUser.getUserName(),
+				matKhau = objDAO.getObjUser(idUser).getMatKhau();
+		System.out.println(matKhau);
 		if (ServletFileUpload.isMultipartContent(request)) {
 			try {
 				List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory())
@@ -62,11 +66,11 @@ public class AdminEditUserController extends HttpServlet {
 
 						String nameImg = new File(item.getName()).getName();
 
-						avt = nameImg + "_" + System.currentTimeMillis();
-
-						System.out.println("dsa"+avt);
-						item.write(new File(request.getServletContext().getRealPath("")
-								+ "/WebContent/templates/admin/img/users/" + avt));
+						if(!nameImg.equals("")) {
+							avt = nameImg +"_"+ System.currentTimeMillis();
+	
+							item.write(new File(request.getServletContext().getRealPath("") +  "/WebContent/templates/admin/img/users/" + avt));
+						}
 					} else {
 						String fN = item.getFieldName();
 						if (fN.equals("fullname")) {
@@ -86,13 +90,15 @@ public class AdminEditUserController extends HttpServlet {
 						} else if (fN.equals("fax")) {
 							fax = item.getString();
 						} else if (fN.equals("mat_khau")) {
-							matKhau = item.getString();
+							if (!item.getString().equals(""))
+								matKhau = st.MD5(item.getString());// truong hop k thay doi mat khau
 						} else if (fN.equals("username")) {
 							username = item.getString();
 						} else if (fN.equals("hoc_vi_hoc_ham")) {
 							idHocViHocHam = Integer.parseInt(item.getString());
 						} else if (fN.equals("loai_tai_khoan")) {
-							idLoaiTaiKhoan = Integer.parseInt(item.getString());
+							if (!item.getString().equals(""))// truong hop disable truong loai tai khoan
+								idLoaiTaiKhoan = Integer.parseInt(item.getString());
 						} else if (fN.equals("khoa")) {
 							idKhoa = Integer.parseInt(item.getString());
 						}
