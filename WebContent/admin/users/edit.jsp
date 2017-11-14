@@ -79,7 +79,7 @@
 								    User objUser =  (User)request.getAttribute("objUser");
                         			UserDAO userDao = new UserDAO();
                            	%>
-                            <form id="frmUser" action="<%=request.getContextPath() %>/admin/user/edit?uid=<%=objUser.getIdUser() %>" method="post">
+                            <form id="frmUser"  enctype = "multipart/form-data" action="<%=request.getContextPath() %>/admin/user/edit?uid=<%=objUser.getIdUser() %>" method="post">
 		                         <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group height-100">
@@ -201,18 +201,19 @@
                                             </div>
                                         </div>
                                        
-                                        <!--  <div class="col-md-3">
-                                            <div class="form-group height-100">
-                                                <label>Hình ảnh</label>
-                                                <input type="file" name="picture" class="form-control" placeholder="Chọn ảnh"/>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group height-100">
-                                                <label>Ảnh cũ</label>
-                                                <img src="<%=request.getContextPath() %>/templates/admin/img/faces/face-3.jpg" style="display:inline-block; width:130px;height:100px" alt="" /> Xóa <input type="checkbox" name="delete_picture" />
-                                            </div>
-                                        </div>
+                                       <div class="col-md-3">
+		                             <div class="form-group height-100">
+		                                 <label>Hình ảnh</label>
+		                                 <input type="file" id="picture-avt" name="picture" class="form-control" placeholder="Chọn ảnh"/>
+		                             </div>
+		                         </div>
+		                         <div class="col-md-3">
+		                             <div class="form-group height-100">
+		                                 <label> Ảnh cũ</label>
+		                                  <img src="<%=objUser.getAvt() != null? request.getContextPath() + "/templates/admin/img/users/" + objUser.getAvt() : request.getContextPath() + "/templates/admin/img/faces/face-3.jpg"%>"
+												alt="avatar" id="preview-image" style="border-top: 0.5px solid #BFB8B8;width: 150px;height: 90px;margin-left: 40%" />
+		                             </div>
+		                         </div>
                                       -->
                                         <div class="col-md-12">
                                             <div class="text-center">

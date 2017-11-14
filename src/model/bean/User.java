@@ -19,6 +19,7 @@ public class User {
 	private String tenLoaiTaiKhoan;
 	private int idKhoa;
 	private String tenKhoa;
+	private String avt;
 	
 	public User() {
 		super();
@@ -29,7 +30,7 @@ public class User {
 			String tenHocViHocHam, String namSinh, String diaChiNhaRieng,
 			String dienThoaiNhaRieng, String email, String fax,
 			String userName, String matKhau, int idLoaiTaiKhoan,
-			String tenLoaiTaiKhoan, int idKhoa, String tenKhoa) {
+			String tenLoaiTaiKhoan, int idKhoa, String tenKhoa, String avt) {
 		super();
 		this.idUser = idUser;
 		this.fullName = fullName;
@@ -48,6 +49,7 @@ public class User {
 		this.tenLoaiTaiKhoan = tenLoaiTaiKhoan;
 		this.idKhoa = idKhoa;
 		this.tenKhoa = tenKhoa;
+		this.avt = avt;
 	}
 
 	public int getIdUser() {
@@ -186,6 +188,14 @@ public class User {
 		this.tenKhoa = tenKhoa;
 	}
 
+
+	public String getAvt() {
+		return avt;
+	}
+
+	public void setAvt(String avt) {
+		this.avt = avt;
+	}
 	@Override
 	public String toString() {
 		return "User [idUser=" + idUser + ", fullName=" + fullName

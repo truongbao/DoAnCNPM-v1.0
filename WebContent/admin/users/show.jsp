@@ -81,7 +81,7 @@
 						<div class="col-md-5 mt-20">
 							<div class="col-md-12 text-center">
 								<img class="img-circle"
-									src="<%=request.getContextPath() %>/templates/admin/img/faces/face-3.jpg"
+									src="<%=objUser.getAvt() != null? request.getContextPath() + "/templates/admin/img/users/" + objUser.getAvt() : request.getContextPath() + "/templates/admin/img/faces/face-3.jpg"%>"
 									style="width: 300px; height: 300px; background-size: cover; margin-top: 20px;">
 							</div>
 							<div class="col-md-12">
