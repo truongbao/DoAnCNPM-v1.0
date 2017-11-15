@@ -68,6 +68,7 @@
 					          switch(msg){
 					              case 0: out.print("<h4 style='color :red'>  Thất bại ! </h4> ");break; 
 					              case 1: out.print("<h4 style='color :red'> Thêm thành công ! </h4> ");break; 
+					              case 2: out.print("<h4 style='color :red'> Sửa thành công ! </h4> ");break; 
 					             
 					           	 }
 					        }
@@ -81,9 +82,10 @@
 								<td>Chủ nhiệm đề tài</td>
 								<td>Thời gian đăng ký</td>
 								<td>Trạng thái</td>
-								<td><center> Sửa</center></td>
-								<td><center> Thông báo</center></td>
-							<!-- 	<td><center> Xóa</center></td> -->
+								<td><center> Sửa đề tài</center></td>
+							    <td><center> Tạo thuyết minh </center></td>
+							    <td><center> Sửa thuyết minh </center></td>
+							    <td><center> Thông báo</center></td>
 							</th>
 							</thead>
 							<tbody>
@@ -103,7 +105,7 @@
 									<a href="<%=request.getContextPath()%>/detail-dkdt?did=<%=objDT.getIdDeTai()%>"> <%=objDT.getTenDeTai() %> </a>
 								</td>
 								<td>
-									<a href="#"> <%=objDT.getFullName() %> </a>
+									 <%=objDT.getFullName() %>
 								</td>
 								<td> <%=objDT.getThoiGianDangKy() %> </td>
 								<td>
@@ -124,7 +126,19 @@
 									</center>
 								</td> -->
 								
-								 <td>
+								<td>
+									<center>
+										<a href="<%=request.getContextPath()%>/dangky-thuyetminh?did=<%=objDT.getIdDeTai()%>" class="btn btn-primary" style="">  Tạo </a>
+									</center>
+								</td>
+								
+								<td>
+									<center>
+										<a href="" class="btn btn-primary" style="">  Sửa </a>
+									</center>
+								</td>
+								
+								<td>
 									<center>
 									  <%
 									    //viet phuong thuc lay ra trangThai mới cập nhật ứng vs idDeTai vừa dk
