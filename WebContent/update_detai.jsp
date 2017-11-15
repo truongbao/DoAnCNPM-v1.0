@@ -54,14 +54,13 @@
 				          %>       
 		            
 		            
-						<form class="form" action="<%=request.getContextPath() %>/register-detai" method="post">
-						
-						
-						 <%
+		                 <%
 						    if(request.getAttribute("objDeTaiByIdDeTaiDK") != null){
 						    	 DeTai objDeTaiByIdDeTaiDK =(DeTai)request.getAttribute("objDeTaiByIdDeTaiDK");
 						    	 
 						 %>
+		            
+						<form class="form" action="<%=request.getContextPath() %>/update-detai?did=<%=objDeTaiByIdDeTaiDK.getIdDeTai()%>" method="post">
 						
 							<div class="form-group row">
 								<div class="col-xs-3">
@@ -84,11 +83,19 @@
 									    <%
 										if (request.getAttribute("listLinhVucNC") != null){
 											ArrayList<LinhVucNC> listLinhVucNC = (ArrayList<LinhVucNC>) request.getAttribute("listLinhVucNC");
+											String selected = "";
 											if (listLinhVucNC.size() > 0){
 												for (LinhVucNC objLVNC : listLinhVucNC){
+													
+													if (objLVNC.getIdLinhVucNghienCuu() == objDeTaiByIdDeTaiDK.getIdLinhVucNghienCuu() ){
+														selected = "selected='selected'";
+													} else {
+														selected="";
+													}
 													 
 										%>
-										<option value="<%=objLVNC.getIdLinhVucNghienCuu()%>"> <%=objLVNC.getTenLinhVucNghienCuu() %>   </option>
+										
+										<option <%=selected %> value="<%=objLVNC.getIdLinhVucNghienCuu()%>"> <%=objLVNC.getTenLinhVucNghienCuu() %>   </option>
 										
 										<%}}} %>
 									    
@@ -102,7 +109,7 @@
 									<label class="p-center">Tính cấp thiết:</label>
 								</div>
 								<div class="col-xs-9">
-									<input type="text" name="tinhCapThiet" class="form-control">
+									<input value="<%=objDeTaiByIdDeTaiDK.getTinhCapThiet() %>" type="text" name="tinhCapThiet" class="form-control">
 								</div>
 							</div>
 							
@@ -113,7 +120,7 @@
 								</div>
 								<div class="col-xs-9">
 									<textarea id="cktext1" name="mucTieu" class="form-control" rows="4">
-										
+										<%=objDeTaiByIdDeTaiDK.getMucTieu() %>
 									</textarea>
 									
 									 <script type="text/javascript">
@@ -129,7 +136,7 @@
 								</div>
 								<div class="col-xs-9">
 									<textarea id="cktext2" name="noiDungChinh" class="form-control" rows="4">
-										
+										<%=objDeTaiByIdDeTaiDK.getNoiDung() %>
 									</textarea>
 									
 									 <script type="text/javascript">
@@ -163,7 +170,7 @@
 								</div>
 								<div class="col-xs-9">
 									<textarea id="cktext4" name="sanPham" class="form-control" rows="4">
-										
+										<%=objDeTaiByIdDeTaiDK.getSanPham() %>
 									</textarea>
 									
 									  <script type="text/javascript">
@@ -179,7 +186,7 @@
 									<label class="p-center">Hiệu quả dự kiến:</label>
 								</div>
 								<div class="col-xs-9">
-									<input type="text" name="hieuQuaDukien" class="form-control">
+									<input value="<%=objDeTaiByIdDeTaiDK.getHieuQua() %>" type="text" name="hieuQuaDukien" class="form-control">
 								</div>
 							</div>
 							
@@ -188,7 +195,7 @@
 									<label class="p-center">Nhu cầu kinh phí dự kiến:</label>
 								</div>
 								<div class="col-xs-9">
-									<input type="number" name="kinhPhiThucHien" class="form-control">
+									<input value="<%=objDeTaiByIdDeTaiDK.getKinhPhiThucHien() %>" type="number" name="kinhPhiThucHien" class="form-control">
 								</div>
 								
 							</div>	
@@ -223,9 +230,10 @@
 								</div>
 							</div>
 							
-							<%} %>
-							
 						</form>
+						
+						<%} %>
+						
 					</div>
 				</div>
 			</div>

@@ -724,7 +724,14 @@
   </servlet-mapping>
   
   
-  
+  <servlet>
+     <servlet-name>PublicIndexDKThuyetMinhController</servlet-name>
+     <servlet-class>controller.PublicIndexDKThuyetMinhController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+     <servlet-name>PublicIndexDKThuyetMinhController</servlet-name>
+     <url-pattern>/dangky-thuyetminh</url-pattern>
+  </servlet-mapping>
   
   
   

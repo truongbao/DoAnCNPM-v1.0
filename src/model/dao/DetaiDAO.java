@@ -1202,12 +1202,79 @@ public class DetaiDAO {
 	}
 
 	
+	//sửa đề tài trong thời gian đăng ký
+	public int editDeTaiPublic(DeTai objDeTai) {
+         
+		int result = 0;
+		conn = connectMySQLLibrary.getConnectMySQL();
+
+		String sql="UPDATE detai SET tenDeTai = ? ,idLinhVucNghienCuu = ?,idUser = ?,tinhCapThiet = ?, "
+				+ " mucTieu = ?,noiDung = ?,sanPham = ? ,hieuQua = ?,kinhPhiThucHien = ? ,idKhoa = ? "
+				+ " where idDeTai = ? ";
+
+		try {
+            pst = conn.prepareStatement(sql);
+			
+			pst.setString(1, objDeTai.getTenDeTai());
+			pst.setInt(2, objDeTai.getIdLinhVucNghienCuu());
+			pst.setInt(3, objDeTai.getIdUser());
+			pst.setString(4, objDeTai.getTinhCapThiet());
+			pst.setString(5, objDeTai.getMucTieu());
+			pst.setString(6, objDeTai.getNoiDung());
+			pst.setString(7, objDeTai.getSanPham());
+			pst.setString(8, objDeTai.getHieuQua());
+			pst.setInt(9, objDeTai.getKinhPhiThucHien());
+			pst.setInt(10, objDeTai.getIdKhoa());
+			pst.setInt(11, objDeTai.getIdDeTai());
+			
+			result = pst.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return result;
+	}
 	
 	
 	
-	
-	
-	
+	public int UploadFileThuyetMinh(DeTai objDeTai) {
+        
+		int result = 0;
+		conn = connectMySQLLibrary.getConnectMySQL();
+
+		String sql="UPDATE detai SET linkUpload = ?  "
+				+ " where idDeTai = ? ";
+
+		try {
+            pst = conn.prepareStatement(sql);
+			
+			pst.setString(1, objDeTai.getLinkUpload());
+			
+			pst.setInt(2, objDeTai.getIdDeTai());
+			
+			result = pst.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return result;
+	}
 	
 
 	
