@@ -101,7 +101,7 @@ public class PublicUpdateInfoPersonController extends HttpServlet {
 		
 		User objUser = new User(idUser, fullName, diaChiCoQuan, dienThoaiCoQuan, 
 				                idHocVi, "", namSinh, diaChiNhaRieng, dienThoaiNhaRieng, email,
-				                fax, "" , matKhau, idLoaiTaiKhoan, "", idKhoa, "");
+				                fax, "" , matKhau, idLoaiTaiKhoan, "", idKhoa, "","");
 		
 		  
 		
