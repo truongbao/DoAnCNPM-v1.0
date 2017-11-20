@@ -22,66 +22,35 @@ public class ThoiGianDKDAO {
 	 }
      
      
-     public int changeThoiGianDangKy(Date thoiGianBatDau, Date thoiGianKetThuc) {
+     public int changeThoiGianDangKy(int idThoiGianDK, Date thoiGianBatDau, Date thoiGianKetThuc) {
 		   int result = 0;
 		  
 		  conn = connectMySQLLibrary.getConnectMySQL();
-		  if (!checkExistThoiGian(1)) {
-			  String sql = "UPDATE thoigiandk SET thoiGianBatDau = ?, thoiGianKetThuc = ? where idThoiGianDK = 1 ";
+		  if (!checkExistThoiGian(idThoiGianDK)) {
+			  String sql = "UPDATE thoigiandk SET thoiGianBatDau = ?, thoiGianKetThuc = ? where idThoiGianDK = ? ";
 			  
 			  try {
 				pst = conn.prepareStatement(sql);
 				
 				pst.setDate(1, thoiGianBatDau);
 				pst.setDate(2, thoiGianKetThuc);
-				
+				pst.setInt(3, idThoiGianDK);
 				result = pst.executeUpdate();
 			  } catch (SQLException e) {
 					e.printStackTrace();
-			  } finally{
-					try {
-						pst.close();
-						conn.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
+			  }
 		  } else {
-			addItem(1, new ThoiGianDK(1, thoiGianBatDau, thoiGianKetThuc));
+			addItem(idThoiGianDK, new ThoiGianDK(idThoiGianDK, thoiGianBatDau, thoiGianKetThuc));
 		  }	
+		  try {
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		return result;
 	}
 
-	
-     public int changeThoiGianThuyetMinh(Date thoiGianBatDau, Date thoiGianKetThuc) {
-		   int result = 0;
-			  
-		  conn = connectMySQLLibrary.getConnectMySQL();
-		  if (checkExistThoiGian(2)) {
-			  String sql = "UPDATE thoigiandk SET thoiGianBatDau = ?, thoiGianKetThuc = ? where idThoiGianDK = 2 ";
-			  
-			  try {
-				pst = conn.prepareStatement(sql);
-				
-				pst.setDate(1, thoiGianBatDau);
-				pst.setDate(2, thoiGianKetThuc);
-				
-				result = pst.executeUpdate();
-			  } catch (SQLException e) {
-					e.printStackTrace();
-			  } finally{
-					try {
-						pst.close();
-						conn.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
-		  } else {
-			addItem(2, new ThoiGianDK(1, thoiGianBatDau, thoiGianKetThuc));
-		  }	
-		return result;
-	}
      
      public boolean checkExistThoiGian(int idThoiGianDK) {
     	 String sql = "select * from thoigiandk where idThoiGianDK = ? ";
@@ -98,13 +67,6 @@ public class ThoiGianDKDAO {
  			
  		} catch (SQLException e) {
  			e.printStackTrace();
- 		}finally{
- 			try {
- 				pst.close();
- 				conn.close();
- 			} catch (SQLException e) {
- 				e.printStackTrace();
- 			}
  		}
  		
  		return true;
