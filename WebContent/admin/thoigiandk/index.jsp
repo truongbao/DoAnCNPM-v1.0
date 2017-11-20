@@ -33,25 +33,31 @@
 							      }
 		     			       	%>  
                             	</div>
+                            	<% ThoiGianDKDAO tgDAO = new ThoiGianDKDAO();
+                            		ThoiGianDK tgDangKi = tgDAO.getItem(1);
+                            		ThoiGianDK tgThuyetMinh = tgDAO.getItem(2);
+                            	%>
                             	<div class="row">
                             		<div class="col-md-6 text-center">
                             			<button data-action="<%=request.getContextPath() %>/admin/thoigiandk/edit?uid=1" class="change-time-action btn btn-info">Thay đổi thời gian đăng ký</button>
+                            			<h4>Bắt đầu từ <%= tgDangKi != null ? tgDangKi.getThoiGianBatDau() : "..." %> đến <%= tgDangKi != null ? tgDangKi.getThoiGianKetThuc() : "..." %> </h4>
                             		</div>
                             		
                             		<div class="col-md-6 text-center">
                             			<button data-action="<%=request.getContextPath() %>/admin/thoigiandk/edit?uid=2" class="change-time-action btn btn-info">Thay đổi thời gian thuyết minh</button>
+                            			<h4>Bắt đầu từ <%= tgThuyetMinh != null ? tgThuyetMinh.getThoiGianBatDau() : "..." %> đến <%= tgThuyetMinh != null ? tgThuyetMinh.getThoiGianKetThuc() : "..." %> </h4>
                             		</div>
                             	</div>
-                            	<form class="row" method="post" action="" id="change-time" hidden>
-                            		<div class="text-center col-md-8 col-md-offset-2" style="margin-top: 50px;">
-                            			Thời gian bắt đầu: <input type="text" class="form-control" style="border: 1px solid black;" />
+                            	<form class="row" method="post" action="" id="change-time" style="font-size: 18px" hidden>
+                            		<div class="text-center col-md-6 col-md-offset-3" style="margin-top: 50px;">
+                            			<b>Thời gian bắt đầu:</b> <input type="text" data-format="yyyy-MM-dd" name="tgbd" class="date-picker form-control" style="border: 1px solid black;color: black; background: #0FAB49; font-size: 18px; font-weight: bold;" placeholder="Nhập thời gian bắt đầu mới" />
                             		</div>
-                            		<div class="text-center col-md-8 col-md-offset-2" style="margin-top: 50px;">
-                            			Thời gian kết thúc: <input type="text" class="form-control" style="border: 1px solid black;" />
+                            		<div class="text-center col-md-6 col-md-offset-3" style="margin-top: 50px;">
+                            			<b>Thời gian kết thúc: </b><input type="text" data-format="yyyy-MM-dd" name="tgkt" class="date-picker form-control" style="border: 1px solid black;color: black; background: #0FAB49; font-size: 18px; font-weight: bold;" placeholder="Nhập thời gian kết thúc mới"/>
                             		</div>
                             		
                             		<div class="text-center col-md-12">
-                            			<button type="submit" class="btn btn-success">Lưu</button>
+                            			<button type="submit" class="btn btn-info">Lưu</button>
                             		</div>
                             	</form>
                             </div>

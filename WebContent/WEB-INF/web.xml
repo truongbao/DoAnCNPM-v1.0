@@ -529,7 +529,24 @@
     <servlet-name>AdminDelCapDeTaiController</servlet-name>
     <url-pattern>/admin/capdetai/del</url-pattern>
   </servlet-mapping>
+  <!--====== thời gian DK ==========  -->
+  <servlet>
+    <servlet-name>AdminIndexThoiGianDKController</servlet-name>
+    <servlet-class>controller.AdminIndexThoiGianDKController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminIndexThoiGianDKController</servlet-name>
+    <url-pattern>/admin/thoigiandk/index</url-pattern>
+  </servlet-mapping>
   
+   <servlet>
+    <servlet-name>AdminEditThoiGianDKController</servlet-name>
+    <servlet-class>controller.AdminEditThoiGianDKController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminEditThoiGianDKController</servlet-name>
+    <url-pattern>/admin/thoigiandk/edit</url-pattern>
+  </servlet-mapping>
  
   <!-- ========= Statistical ============= -->
   <servlet>
