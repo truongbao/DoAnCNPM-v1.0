@@ -233,4 +233,11 @@ $('#picture-avt').change( function(event) {
         $("#preview-image").fadeOut("fast");
     }
 });
-
+/**
+ * edit time dky ỏ thuyet minh
+ */
+$('.change-time-action').click(function(event) {
+	var action = $(this).data('action');
+	$("#change-time").show();
+	$("#change-time").attr('action', action);
+});
