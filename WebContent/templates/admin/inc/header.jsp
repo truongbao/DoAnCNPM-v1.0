@@ -113,6 +113,13 @@
                     </a>
                 </li>
                 <%} %>
+                <% if(isAdmin){ %>
+                 <li>
+                    <a href="<%= request.getContextPath() %>/admin/thoigiandk/index">
+                        <p>Quản lý thời gian đăng ký</p>
+                    </a>
+                </li>
+                <%} %>
                 <li>
                     <% if (isNhanVienQLNCKHTruong) {%>
                 			<a href="<%= request.getContextPath() %>/admin/qldetai/nhanvien/index_nhanvien">

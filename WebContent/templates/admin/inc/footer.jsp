@@ -40,6 +40,12 @@
                 format: 'dd/mm/yyyy',
                 autoclose: true,
             });
+            $('.date-picker').datetimepicker({
+                pickTime: false,
+                minView: 2,
+                format: 'dd/mm/yyyy',
+                autoclose: true,
+            });
     </script>
 
    
