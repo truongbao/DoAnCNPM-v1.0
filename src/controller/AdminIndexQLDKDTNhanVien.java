@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import library.LibraryAuth;
+import library.LibraryConstant;
 import model.bean.DeTai;
 import model.bean.User;
 import model.dao.DetaiDAO;
@@ -39,9 +40,45 @@ public class AdminIndexQLDKDTNhanVien extends HttpServlet {
 		 if(session.getAttribute("nhanVienQLNCKHTruong")!=null){
 			 objUserAdmin = (User)session.getAttribute("nhanVienQLNCKHTruong");
 		 }
+		 int khoa = 0;
+		 String key = "";
+		 if (request.getParameter("cancel") == null) {
+			 if (request.getParameter("key") != null) {
+				 key = request.getParameter("key");
+			 }
+			 if (request.getParameter("khoa") != null) {
+				 khoa = Integer.parseInt(request.getParameter("khoa"));
+			 }
+		 }
+		 //Xu ly chia trang
+		 int row_count = LibraryConstant.ROW_COUNT;
+ 		 int current_page = 1;
+ 		 
+ 		//tong so de tai
+ 		 int sumDeTai = detaiDAO.countListDKDeTai();
+ 		if (request.getParameter("search") != null){
+ 			sumDeTai = detaiDAO.countListDKDeTaiSearchWith(key, khoa);
+ 		}
+ 		// tong so trang
+ 		 int sumPage = (int)Math.ceil((float)sumDeTai/row_count);
+ 		 request.setAttribute("sumPage", sumPage);
+ 		
+ 		//lấy số trang hiện tại
+ 		if (request.getParameter("page") != null){
+ 			current_page = Integer.parseInt(request.getParameter("page"));
+ 		}
+  		 
+ 		// tính offset
+ 		int offset = (current_page - 1) * row_count;
+ 		request.setAttribute("current_page", current_page);
+ 		if (request.getParameter("search") == null){
+ 			ArrayList<DeTai> listDeTaiNhanVien = detaiDAO.getListDangKyDeTai(offset);
+ 			 request.setAttribute("listDeTaiNhanVien", listDeTaiNhanVien);
+ 		} else {
+ 			ArrayList<DeTai> listDeTaiNhanVien = detaiDAO.getListDangKyDeTaiSearch(offset, key, khoa);
+ 			 request.setAttribute("listDeTaiNhanVien", listDeTaiNhanVien);
+ 		}
 		 
-		 ArrayList<DeTai> listDeTaiNhanVien = detaiDAO.getListDangKyDeTai();
-		 request.setAttribute("listDeTaiNhanVien", listDeTaiNhanVien);
 		
 		 RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/nhanvien/index_nhanvien.jsp");
          rd.forward(request, response);

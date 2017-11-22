@@ -5,7 +5,6 @@ import java.sql.Timestamp;
 public class QuaTrinhThucHien {
 
 	private int idQuaTrinhThucHien;
-	private int idGiangVien;
 	private int idDeTai;
 	private String trangThai;
 	private Timestamp thoiGian;
@@ -16,12 +15,11 @@ public class QuaTrinhThucHien {
 		super();
 	}
 
-	public QuaTrinhThucHien(int idQuaTrinhThucHien, int idGiangVien,
+	public QuaTrinhThucHien(int idQuaTrinhThucHien,
 			int idDeTai, String trangThai, Timestamp thoiGian, String chuDe,
 			String noiDung) {
 		super();
 		this.idQuaTrinhThucHien = idQuaTrinhThucHien;
-		this.idGiangVien = idGiangVien;
 		this.idDeTai = idDeTai;
 		this.trangThai = trangThai;
 		this.thoiGian = thoiGian;
@@ -37,13 +35,6 @@ public class QuaTrinhThucHien {
 		this.idQuaTrinhThucHien = idQuaTrinhThucHien;
 	}
 
-	public int getIdGiangVien() {
-		return idGiangVien;
-	}
-
-	public void setIdGiangVien(int idGiangVien) {
-		this.idGiangVien = idGiangVien;
-	}
 
 	public int getIdDeTai() {
 		return idDeTai;
@@ -88,7 +79,7 @@ public class QuaTrinhThucHien {
 	@Override
 	public String toString() {
 		return "QuaTrinhThucHien [idQuaTrinhThucHien=" + idQuaTrinhThucHien
-				+ ", idGiangVien=" + idGiangVien + ", idDeTai=" + idDeTai
+				+ ", idDeTai=" + idDeTai
 				+ ", trangThai=" + trangThai + ", thoiGian=" + thoiGian
 				+ ", chuDe=" + chuDe + ", noiDung=" + noiDung + "]";
 	}

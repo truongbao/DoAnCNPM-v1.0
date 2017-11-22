@@ -36,20 +36,16 @@ public class AdminDanhGiaDXNhanVien extends HttpServlet {
       	
         DetaiDAO detaiDAO = new DetaiDAO();
 		  
-	    int idDeTai = Integer.parseInt(request.getParameter("did"));
+        if (request.getParameter("did") != null) {
+        	int idDeTai = Integer.parseInt(request.getParameter("did"));
+    		DeTai objDeTai = detaiDAO.getObjDeTai(idDeTai);
+    		System.out.println(objDeTai.getTenDeTai());
+    		request.setAttribute("objDeTai", objDeTai);
+    		
+    		 RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/nhanvien/danh_gia_dx_nv.jsp");
+             rd.forward(request, response);
+        } 
 	    
-	    //tu idDeTai => danh sach thanh vien lam de tai nay (o bang thanh vien)
-	    //send qua jsp
-	    
-	    	    
-		DeTai objDeTai = detaiDAO.getObjDeTai(idDeTai);
-		System.out.println(objDeTai.getTenDeTai());
-		request.setAttribute("objDeTai", objDeTai);
-		
-		 RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/nhanvien/danh_gia_dx_nv.jsp");
-         rd.forward(request, response);
-         
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

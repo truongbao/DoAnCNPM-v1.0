@@ -1,3 +1,4 @@
+<%@page import="model.bean.QuaTrinhThucHien"%>
 <%@page import="library.LibraryConstant"%>
 <%@page import="model.bean.DeTai"%>
 <%@page import="java.util.ArrayList"%>
@@ -16,9 +17,13 @@
                             <%
 					    		if(request.getAttribute("objDeTai") != null){
 					    		 DeTai objDeTai =(DeTai)request.getAttribute("objDeTai");
+					    		 QuaTrinhThucHien qtth = null;
+ 								if(request.getAttribute("qtThucHien") != null){
+ 		 						 qtth =(QuaTrinhThucHien)request.getAttribute("qtThucHien");
+ 								}
 							%>
                             <div class="content">
-                                <form action="" method="post">
+                                <form action="<%=request.getContextPath() %>/admin/qldangkydetai/admin/duyet_de_xuat_ad?did=<%=objDeTai.getIdDeTai() %>&qtthid=<%=qtth.getIdQuaTrinhThucHien() %>" method="post">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
@@ -135,12 +140,13 @@
                                             </div>
                                     </div>
                                     </div>
-                                    <div class="row">
+                                    
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Nội dung đánh giá</label>
-                                                <textarea id="cktext1" class="form-control border-input"></textarea>
+                                                
+                                                <textarea id="cktext1" class="form-control border-input" name="noidung" ><%=qtth.getNoiDung()%></textarea>
                                                  <script type="text/javascript">
 							               			var editor = CKEDITOR.replace('cktext1');
 							               			CKFinder.setupCKEditor(editor,'<%=request.getContextPath()%>/ckfinder/')
@@ -148,9 +154,10 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row">
                                     <div class="text-center">
-                                        <input class="btn btn-info btn-fill btn-wd" value="Huỷ đề xuất" />
-                                        <input class="btn btn-info btn-fill btn-wd" value="Duyệt đề xuất" />
+                                        <input type="submit" class="btn btn-info btn-fill btn-wd" value="Huỷ đề xuất" name="huyDeXuat"/>
+                                        <input type="submit" class="btn btn-info btn-fill btn-wd" value="Duyệt đề xuất" name="duyetDeXuat"/>
                                     </div>
                         				</div>
                                     <div class="clearfix"></div>
