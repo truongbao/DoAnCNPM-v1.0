@@ -11,10 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import library.LibraryAuth;
+import library.LibraryConstant;
 import model.bean.DeTai;
+import model.bean.QuaTrinhThucHien;
 import model.bean.ThanhVien;
 import model.bean.User;
 import model.dao.DetaiDAO;
+import model.dao.QuaTrinhThucHienDAO;
 import model.dao.UserDAO;
 
 public class AdminDetailDuyetThuyetMinhAdmin extends HttpServlet {
@@ -43,6 +46,11 @@ public class AdminDetailDuyetThuyetMinhAdmin extends HttpServlet {
 	    	    
 		DeTai objDeTai = detaiDAO.getObjDeTai(idDeTai);
 		request.setAttribute("objDeTai", objDeTai);
+		
+		QuaTrinhThucHienDAO qtthDAO = new QuaTrinhThucHienDAO();
+		QuaTrinhThucHien qtth = qtthDAO.getQuaTrinhThucHienWith(idDeTai, LibraryConstant.DangChoDuyetThuyetMinh);
+		System.out.println("QTTH: " + qtth);
+		request.setAttribute("qtThucHien", qtth);
 		
 		 RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/admin/detail_duyet_tm_ad.jsp");
          rd.forward(request, response);
