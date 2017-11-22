@@ -138,6 +138,7 @@
 						<div class="text-right pagination-div">
 							<ul class="pagination">
 								<%
+									String type =  (String) request.getParameter("type");
 									int page_sum = (Integer) request.getAttribute("page_sum");
 									int current_page = (Integer) request.getAttribute("current_page");
 									String active = "";
@@ -149,7 +150,7 @@
 										}
 								%>
 								<li><a <%=active%>
-									href="<%=request.getContextPath()%>/admin/faculty-statistical?type=load&page=<%=i%>"><%=i%></a><li>
+									href="<%=request.getContextPath()%>/admin/faculty-statistical?type=<%=type%>&page=<%=i%>"><%=i%></a><li>
 								<%
 									}
 									if (current_page == page_sum) {
@@ -159,7 +160,7 @@
 									}
 								%>
 								<li><a <%=active%>
-									href="<%=request.getContextPath()%>/admin/faculty-statistical?type=load&page=<%=page_sum%>"><%=page_sum%></a></li>
+									href="<%=request.getContextPath()%>/admin/faculty-statistical?type=<%=type%>&page=<%=page_sum%>"><%=page_sum%></a></li>
 							</ul>
 						</div>
 					</div>

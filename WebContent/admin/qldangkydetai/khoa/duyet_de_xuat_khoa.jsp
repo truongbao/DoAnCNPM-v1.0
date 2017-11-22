@@ -12,11 +12,11 @@
                         <div class="card">
                             <div class="header">
                                 <!-- <p class="category success">Thêm thành công</p> -->
-                                <form action="" method="post">
+                                <form action="<%=request.getContextPath()%>/admin/qldangkydetai/duyet-de-xuat-khoa?type=search" method="post">
                                 	<div class="row">
                                         <div class="col-md-8">
                                             <div class="form-group">
-                                                <input type="text" name="id" class="form-control border-input" value=""  placeholder="Nhập tên đề tài, tên chủ nhiệm cần tìm kiếm">
+                                                <input type="text" name="keyword" class="form-control border-input" value=""  placeholder="Nhập tên đề tài, tên chủ nhiệm cần tìm kiếm">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -56,12 +56,12 @@
                                     %>
                                         <tr>
                                         	<td><%=objDeTai.getIdDeTai() %></td>
-                                            <td><a href="<%=request.getContextPath()%>/admin/qldangkydetai/khoa/detail_duyet_dx_khoa?did=<%=objDeTai.getIdDeTai()%>"><%=objDeTai.getTenDeTai() %></a></td>
+                                            <td><a href="<%=request.getContextPath()%>/admin/qldangkydetai/detail_duyet_dx_khoa?did=<%=objDeTai.getIdDeTai()%>"><%=objDeTai.getTenDeTai() %></a></td>
                                             <td><%=objDeTai.getFullName() %></td>
                                         	<td><%=objDeTai.getCapDeTai() %></td>
                                         	<td><%=objDeTai.getTrangThai() %></td>
                                         	<td>
-                                        		<a href="<%=request.getContextPath()%>/admin/qldangkydetai/khoa/detail_duyet_dx_khoa?did=<%=objDeTai.getIdDeTai()%>"><img src="assets/img/edit.gif" alt="" /> Xem</a>
+                                        		<a href="<%=request.getContextPath()%>/admin/qldangkydetai/detail_duyet_dx_khoa?did=<%=objDeTai.getIdDeTai()%>"><img src="assets/img/edit.gif" alt="" /> Xem</a>
                                         	</td>
                                         </tr>
                                           
@@ -71,13 +71,33 @@
                                     </tbody>
                                 </table>
 
-								<div class="text-center">
-								    <ul class="pagination">
-								        <li><a href="?p=0" title="">1</a></li> 
-								        <li><a href="?p=1" title="">2</a></li> 
-								        <li><a href="?p=1" title="">3</a></li> 
-								        <li><a href="?p=1" title="">4</a></li> 
-								    </ul>
+								<div class="text-right pagination-div">
+									<ul class="pagination">
+										<%
+											String type = (String)request.getParameter("type");
+											int page_sum = (Integer) request.getAttribute("page_sum");
+											int current_page = (Integer) request.getAttribute("current_page");
+											String active = "";
+											for (int i = 1; i < page_sum; i++) {
+												if (i == current_page) {
+													active = "class=\"current\"";
+												} else {
+													active = "";
+												}
+										%>
+										<li><a <%=active%>
+											href="<%=request.getContextPath()%>/admin/qldangkydetai/duyet-de-xuat-khoa?type=<%=type%>&page=<%=i%>"><%=i%></a><li>
+										<%
+											}
+											if (current_page == page_sum) {
+												active = "class=\"current\"";
+											} else {
+												active = "";
+											}
+										%>
+										<li><a <%=active%>
+											href="<%=request.getContextPath()%>/admin/qldangkydetai/duyet-de-xuat-khoa?type=<%=type%>&page=<%=page_sum%>"><%=page_sum%></a></li>
+									</ul>
 								</div>
                             </div>
                         </div>
