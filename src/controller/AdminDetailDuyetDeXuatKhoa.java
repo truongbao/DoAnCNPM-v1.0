@@ -25,6 +25,10 @@ public class AdminDetailDuyetDeXuatKhoa extends HttpServlet {
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
@@ -49,13 +53,6 @@ public class AdminDetailDuyetDeXuatKhoa extends HttpServlet {
 		 RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/khoa/detail_duyet_dx_khoa.jsp");
          rd.forward(request, response);
          
-
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-         request.setCharacterEncoding("UTF-8");
-         response.setCharacterEncoding("UTF-8");
-         response.setContentType("text/html");
 	}
 
 }

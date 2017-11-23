@@ -57,8 +57,7 @@
 
 </head>
 <body>
-
-<div class="wrapper">
+<div class="wrapper"> 
     <div class="sidebar" data-background-color="white" data-active-color="danger">
         <div class="sidebar-wrapper" style="background: black; color: white;">
         	<%
@@ -124,23 +123,25 @@
                 <li>
                     <% if (isNhanVienQLNCKHTruong) {%>
                 			<a href="<%= request.getContextPath() %>/admin/qldetai/nhanvien/index_nhanvien">
-                 <%} else if (isAdmin) { %>
+                 	<%} else if (isAdmin) { %>
                 			<a href="<%= request.getContextPath() %>/admin/qldetai/admin/index_admin">
+                	<%} else if(isQuanLyNCKHKhoa){ %>
+               			<a href="<%= request.getContextPath() %>/admin/qldetai/admin/index_admin">
                 	<%} %> 
                         <!-- <i class="ti-panel"></i> -->
-                        <p>Quản lý đề tài</p>
-                    </a>
-                </li>
-                <li>
-                	<%if (isQuanLyNCKHKhoa) { %>
-                			<a href="<%= request.getContextPath() %>/admin/qldangkydetai/khoa/index_khoa">
-                	<%} else if (isNhanVienQLNCKHTruong) {%>
-                			<a href="<%= request.getContextPath() %>/admin/qldangkydetai/nhanvien/index_nhanvien">
-                 <%} else if (isAdmin) { %>
-                			<a href="<%= request.getContextPath() %>/admin/qldangkydetai/admin/index_admin">
-                	<%} %>   
+               				<p>Quản lý đề tài</p>
+           				</a>
+               </li>
+               <li>
+               	<%if (isQuanLyNCKHKhoa) { %>
+               			<a href="<%= request.getContextPath() %>/admin/qldangkydetai/index-khoa?type=load">
+               	<%} else if (isNhanVienQLNCKHTruong) {%>
+               			<a href="<%= request.getContextPath() %>/admin/qldangkydetai/nhanvien/index_nhanvien">
+                <%} else if (isAdmin) { %>
+               			<a href="<%= request.getContextPath() %>/admin/qldangkydetai/admin/index_admin">
+               	<%} %>   
                         <!-- <i class="ti-user"></i> -->
-                        <p>Quản lý đăng ký đề tài</p>
+                	<p>Quản lý đăng ký đề tài</p>
                     </a>
                 </li>
                 <li>
@@ -150,13 +151,13 @@
                 	<a href="<%=request.getContextPath() %>/admin/faculty-statistical?type=load">
                 <%} %>
                         <!-- <i class="ti-stats-up"></i> -->
-                        <p>Thống kê</p>
+                <p>Thống kê</p>
                     </a>
                 </li>
                 <li>
                     <a href="<%=request.getContextPath() %>/admin/notif?type=load">
                         <!-- <i class="ti-announcement"></i> -->
-                        <p>Thông báo</p>
+                <p>Thông báo</p>
                     </a>
                 </li>
                 <% if(isAdmin || isNhanVienQLNCKHTruong){ %>
@@ -170,7 +171,7 @@
                 
             </ul>
         </div>
-    </div>
+    </div> 
      <div class="main-panel">
         <nav class="navbar navbar-default">
             <div class="container-fluid" style="background: black">

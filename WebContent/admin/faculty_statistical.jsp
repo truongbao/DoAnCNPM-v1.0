@@ -1,3 +1,6 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.util.Date"%>
 <%@page import="library.LibraryConstant"%>
 <%@page import="model.bean.DeTai"%>
 <%@page import="java.util.Calendar"%>
@@ -25,7 +28,7 @@
 			<div class="col-md-12">
 				<div class="card">
 					<div class="header">
-						<form action="<%=request.getContextPath()%>/admin/faculty-statistical?type=search" method="post">
+						<form action="<%=request.getContextPath()%>/admin/faculty-statistical?type=search" method="post" onsubmit="return validateForm()">
 							<div class="row">
 								<div class="col-md-2">
 									<div class="form-group">
@@ -111,6 +114,7 @@
 								<th>Chủ nhiệm đề tài</th>
 								<th>Trạng thái</th>
 								<th>Cấp đề tài</th>
+								<th>Năm bắt đầu thực hiện</th>
 								<th>Ghi chú</th>
 							</thead>
 							<tbody>
@@ -122,7 +126,7 @@
 								int dt_BGD = (Integer)request.getAttribute("dt_BGD"); // so detai cap Bo GD
 								ArrayList<DeTai> alItem = (ArrayList<DeTai>)request.getAttribute("alItem");
 								for(DeTai obj:alItem){
-									 
+									String date = new SimpleDateFormat("dd-MM-yyyy").format(obj.getThoiGianBatDau());
 							%>
 								<tr>
 									<td><%=obj.getIdDeTai() %></td>
@@ -130,6 +134,7 @@
 									<td><%= obj.getFullName() %></td>
 									<td><%=obj.getTrangThai() %></td>
 									<td><%=obj.getCapDeTai() %></td>
+									<td><%= date%></td>
 									<td></td>
 								</tr>
 							<%} %>
@@ -138,6 +143,7 @@
 						<div class="text-right pagination-div">
 							<ul class="pagination">
 								<%
+									String type =  (String) request.getParameter("type");
 									int page_sum = (Integer) request.getAttribute("page_sum");
 									int current_page = (Integer) request.getAttribute("current_page");
 									String active = "";
@@ -149,7 +155,7 @@
 										}
 								%>
 								<li><a <%=active%>
-									href="<%=request.getContextPath()%>/admin/faculty-statistical?type=load&page=<%=i%>"><%=i%></a><li>
+									href="<%=request.getContextPath()%>/admin/faculty-statistical?type=<%=type%>&page=<%=i%>"><%=i%></a><li>
 								<%
 									}
 									if (current_page == page_sum) {
@@ -159,7 +165,7 @@
 									}
 								%>
 								<li><a <%=active%>
-									href="<%=request.getContextPath()%>/admin/faculty-statistical?type=load&page=<%=page_sum%>"><%=page_sum%></a></li>
+									href="<%=request.getContextPath()%>/admin/faculty-statistical?type=<%=type%>&page=<%=page_sum%>"><%=page_sum%></a></li>
 							</ul>
 						</div>
 					</div>

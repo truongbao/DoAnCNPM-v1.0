@@ -1,3 +1,4 @@
+<%@page import="library.LibraryConstant"%>
 <%@page import="model.bean.DeTai"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -22,7 +23,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Tên đề tài</label>
-                                                <input type="text" name="id" class="form-control border-input" disabled value="<%=objDeTai.getTenDeTai() %>">
+                                                <input type="text" name="id" class="form-control border-input" readonly value="<%=objDeTai.getTenDeTai() %>">
                                             </div>
                                         </div>
                                      </div>
@@ -30,7 +31,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Chủ nhiệm</label>
-                                                <input type="text" name="id" class="form-control border-input" disabled value="<%=objDeTai.getFullName() %>">
+                                                <input type="text" name="id" class="form-control border-input" readonly value="<%=objDeTai.getFullName() %>">
                                             </div>
                                         </div>
                                         </div>
@@ -38,13 +39,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Lĩnh vực nghiên cứu</label>
-                                                <input type="text" name="id" class="form-control border-input" disabled value="<%=objDeTai.getTenLinhVucNghienCuu()%>">
+                                                <input type="text" name="id" class="form-control border-input" readonly value="<%=objDeTai.getTenLinhVucNghienCuu()%>">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Loại hình nghiên cứu</label>
-                                                <input type="text" name="id" class="form-control border-input" disabled value="<%=objDeTai.getTenLoaiHinhNghienCuu() %>">
+                                                <input type="text" name="id" class="form-control border-input" readonly value="<%=objDeTai.getTenLoaiHinhNghienCuu() %>">
                                             </div>
                                         </div>
                                         </div>
@@ -52,13 +53,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Cấp đề tài</label>
-                                                <input type="text" name="id" class="form-control border-input" disabled value="<%=objDeTai.getCapDeTai()%>">
+                                                <input type="text" name="id" class="form-control border-input" readonly value="<%=objDeTai.getCapDeTai()%>">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Đơn vị chủ trì</label>
-                                                <input type="text" name="id" class="form-control border-input" disabled value="<%=objDeTai.getDonViChuTri() %>">
+                                                <input type="text" name="id" class="form-control border-input" readonly value="<%=objDeTai.getDonViChuTri() %>">
                                             </div>
                                         </div>
                                         </div>
@@ -66,7 +67,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Tính cấp thiết</label>
-                                                <input type="text" name="id" class="form-control border-input" disabled value="<%=objDeTai.getTinhCapThiet() %>">
+                                                <input type="text" name="id" class="form-control border-input" readonly value="<%=objDeTai.getTinhCapThiet() %>">
                                             </div>
                                         </div>
                                         </div>
@@ -74,7 +75,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Mục tiêu </label>
-                                                <input type="text" name="id" class="form-control border-input" disabled value="<%=objDeTai.getMucTieu() %>">
+                                                <input type="text" name="id" class="form-control border-input" readonly value="<%=objDeTai.getMucTieu() %>">
                                             </div>
                                         </div>
                                     		</div>
@@ -82,7 +83,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Nội dung chính</label>
-                                                <textarea rows="6" class="form-control border-input" disabled="" value="<%=objDeTai.getNoiDung() %> "></textarea>
+                                                <textarea rows="6" class="form-control border-input" readonly value="<%=objDeTai.getNoiDung() %> "></textarea>
                                             </div>
                                         </div>
                                         </div>
@@ -90,7 +91,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Tổng quan</label>
-                                                <textarea rows="3" class="form-control border-input" disabled="" value="<%=objDeTai.getTongQuan() %>"></textarea>
+                                                <textarea rows="3" class="form-control border-input" readonly value="<%=objDeTai.getTongQuan() %>"></textarea>
                                             </div>
                                         </div>
                                         </div>
@@ -98,7 +99,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Sản phẩm dự kiến</label>
-                                                <textarea rows="3" class="form-control border-input" disabled="" value="<%=objDeTai.getSanPham() %>"></textarea>
+                                                <textarea rows="3" class="form-control border-input" readonly value="<%=objDeTai.getSanPham() %>"></textarea>
                                             </div>
                                         </div>
                                         </div>
@@ -106,7 +107,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Hiệu quả dự kiến</label>
-                                                <textarea rows="3" class="form-control border-input" disabled=" " value="<%=objDeTai.getHieuQua() %>"></textarea>
+                                                <textarea rows="3" class="form-control border-input" readonly value="<%=objDeTai.getHieuQua() %>"></textarea>
                                             </div>
                                         </div>
                                         </div>
@@ -114,7 +115,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Kinh phí dự kiến </label>
-                                                <input type="text" name="id" class="form-control border-input" disabled value="<%=objDeTai.getKinhPhiThucHien() %>">
+                                                <input type="text" name="id" class="form-control border-input" readonly value="<%=objDeTai.getKinhPhiThucHien() %>">
                                             </div>
                                     	   </div>
                                     	   </div>
@@ -122,7 +123,7 @@
                                     <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Thời gian dự kiến </label>
-                                                <input type="text" name="id" class="form-control border-input" disabled value="1 năm">
+                                                <input type="text" name="id" class="form-control border-input" readonly value="1 năm">
                                             </div>
                                     </div>
                                     </div>
@@ -130,7 +131,7 @@
                                     <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Trạng thái </label>
-                                                <input type="text" name="id" class="form-control border-input" disabled value="<%= objDeTai.getTrangThai() %>">
+                                                <input type="text" name="id" class="form-control border-input" readonly value="<%= LibraryConstant.ConvertTrangThai(objDeTai.getTrangThai()) %>">
                                             </div>
                                     </div>
                                     </div>

@@ -10,12 +10,8 @@ import java.util.ArrayList;
 import library.ConnectMySQLLibrary;
 import library.LibraryConstant;
 import model.bean.DeTai;
-import model.bean.HocVi;
-import model.bean.Khoa;
 import model.bean.LinhVucNC;
-import model.bean.LoaiTaiKhoan;
 import model.bean.ThanhVien;
-import model.bean.User;
 
 public class DetaiDAO {
 	private ConnectMySQLLibrary connectMySQLLibrary;
@@ -323,25 +319,105 @@ public class DetaiDAO {
 	
 	/* ***** FUNTIONS OF RIN PHAM ****** */
 
-	public ArrayList<DeTai> getListDeTaiByIdKhoa(int idKhoa) {
+	public ArrayList<DeTai> getListDeTaiDangKy(int idKhoa, String keyword, int offset, int row_count) {
 
+		ArrayList<DeTai> listDeTai = new ArrayList<>();
+		conn = connectMySQLLibrary.getConnectMySQL();
+		String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu, cdt.tenCapDeTai  FROM detai AS dt "
+				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
+				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
+				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.capDeTai "
+				+ " where dt.trangThai NOT IN ('13','14','15','16','12')";
+		if(idKhoa > 0){
+			sql +=" AND dt.idKhoa = " + idKhoa;
+		}
+		if(!"".equals(keyword)){
+			sql+= " AND (u.fullname LIKE '%"+keyword+"%' OR dt.tenDeTai LIKE '%"+keyword+"%')";
+		}
+		sql +=" ORDER BY dt.idDeTai DESC LIMIT ?,?";
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, offset);
+			pst.setInt(2, row_count);
+			rs = pst.executeQuery();
+
+			while (rs.next()) {
+				DeTai objDeTai  = new DeTai(rs.getInt("idDeTai"), rs.getString("tenDeTai"), rs.getString("maSoDeTai"),
+						rs.getInt("idLinhVucNghienCuu"), rs.getString("tenLinhVucNghienCuu"),
+						rs.getInt("idLoaiHinhNghienCuu"), rs.getString("tenLoaiHinhNghienCuu"),
+						rs.getTimestamp("thoiGianBatDau"), rs.getTimestamp("thoiGianKetThuc"),
+						rs.getString("donViChuTri"), rs.getInt("idUser"), rs.getString("fullName"),
+						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
+						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
+						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
+						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("tenCapDeTai"),
+						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
+				listDeTai.add(objDeTai);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listDeTai;
+	}
+	
+	public int getSumDeTaiDangKy(int idKhoa, String keyword) {
+		int sum = 0;
+		conn = connectMySQLLibrary.getConnectMySQL();
+		String sql = "SELECT COUNT(idDeTai) AS soluong  FROM detai AS dt "
+				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
+				+ " where dt.trangThai NOT IN ('13','14','15','16','12')";
+		if(idKhoa > 0){
+			sql +=" AND dt.idKhoa = " + idKhoa;
+		}
+		if(!"".equals(keyword)){
+			sql+= " AND (u.fullname LIKE '%"+keyword+"%' OR dt.tenDeTai LIKE '%"+keyword+"%')";
+		}
+		try {
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			if (rs.next()) {
+				sum = rs.getInt("soluong");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return sum;
+	}
+	
+	
+	
+	public ArrayList<DeTai> getListDuyetDeTaiByIdKhoa(int idKhoa, int offset, int row_count) {
 		ArrayList<DeTai> listDeTai = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
 		String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
 				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
-				+ " where dt.idKhoa = ? ORDER BY dt.idDeTai ASC";
-		// String sql = "select * FROM detai WHERE idKhoa = ? ORDER BY idDeTai
-		// ASC";
-		DeTai objDeTai = null;
+				+ " where dt.idKhoa = ? and dt.trangThai = " + LibraryConstant.DangChoDuyetCapKhoa + " ORDER BY dt.idDeTai DESC LIMIT ?,?";
 		try {
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, idKhoa);
+			pst.setInt(2, offset);
+			pst.setInt(3, row_count);
 			rs = pst.executeQuery();
 
 			while (rs.next()) {
-				objDeTai = new DeTai(rs.getInt("idDeTai"), rs.getString("tenDeTai"), rs.getString("maSoDeTai"),
+				DeTai objDeTai = new DeTai(rs.getInt("idDeTai"), rs.getString("tenDeTai"), rs.getString("maSoDeTai"),
 						rs.getInt("idLinhVucNghienCuu"), rs.getString("tenLinhVucNghienCuu"),
 						rs.getInt("idLoaiHinhNghienCuu"), rs.getString("tenLoaiHinhNghienCuu"),
 						rs.getTimestamp("thoiGianBatDau"), rs.getTimestamp("thoiGianKetThuc"),
@@ -366,47 +442,43 @@ public class DetaiDAO {
 		return listDeTai;
 	}
 	
-	public ArrayList<DeTai> getListDuyetDeTaiByIdKhoa(int idKhoa) {
-
-		ArrayList<DeTai> listDeTai = new ArrayList<>();
+	public int getSumListDeTaiByStatus(int idFaculty, String status,String keyword, int idCDT) {
+		int sum = 0;
 		conn = connectMySQLLibrary.getConnectMySQL();
-		String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
+		String sql = "SELECT COUNT(idDeTai) AS soluong FROM detai AS dt"
 				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
-				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
-				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
-				+ " where dt.idKhoa = ? and dt.trangThai = " + LibraryConstant.DangChoDuyetCapKhoa + " ORDER BY dt.idDeTai ASC";
-		// String sql = "select * FROM detai WHERE idKhoa = ? ORDER BY idDeTai
-		// ASC";
-		DeTai objDeTai = null;
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.capDeTai "
+				+" WHERE dt.trangThai = ? ";
+		if (idFaculty > 0){
+			 sql += "AND dt.idKhoa = "+ idFaculty;
+		}
+		if(!"".equals(keyword)){
+			sql+= " AND (u.fullname LIKE '%"+keyword+"%' OR dt.tenDeTai LIKE '%"+keyword+"%')";
+		}
+		if(idCDT > 0){
+			sql += " AND dt.capDeTai = "+ idCDT;
+		}
 		try {
 			pst = conn.prepareStatement(sql);
-			pst.setInt(1, idKhoa);
+			pst.setString(1, status);
 			rs = pst.executeQuery();
-
 			while (rs.next()) {
-				objDeTai = new DeTai(rs.getInt("idDeTai"), rs.getString("tenDeTai"), rs.getString("maSoDeTai"),
-						rs.getInt("idLinhVucNghienCuu"), rs.getString("tenLinhVucNghienCuu"),
-						rs.getInt("idLoaiHinhNghienCuu"), rs.getString("tenLoaiHinhNghienCuu"),
-						rs.getTimestamp("thoiGianBatDau"), rs.getTimestamp("thoiGianKetThuc"),
-						rs.getString("donViChuTri"), rs.getInt("idUser"), rs.getString("fullName"),
-						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
-						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
-						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
-						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
-						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
-				listDeTai.add(objDeTai);
+				sum = rs.getInt("soluong");
 			}
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			try {
+			try {		
 				pst.close();
+				rs.close();
 				conn.close();
 			} catch (SQLException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		return listDeTai;
+		return sum;
 	}
 	
 	//Đếm tổng số đề tại trong 1 trạng thái nào đó 
@@ -478,7 +550,6 @@ public class DetaiDAO {
 	
 	//Get mảng đề tài với trạng thái nào đó 
 	public ArrayList<DeTai> getListDeTaiWith(String trangthai, int offset) {
-
 		ArrayList<DeTai> listDeTai = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
 		String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
@@ -978,6 +1049,27 @@ public class DetaiDAO {
 		int result = 0;
 		conn = connectMySQLLibrary.getConnectMySQL();
 		String sql = "update detai SET trangThai = " + trangthai + " WHERE idDeTai = " + id ;
+		try {
+			pst = conn.prepareStatement(sql);
+			result = pst.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	//Cap nhat trang thai cho nhiều de tai
+	public int updateToTrangThai(String trangthai, String strs) {
+		int result = 0;
+		conn = connectMySQLLibrary.getConnectMySQL();
+		String sql = "update detai SET trangThai = " + trangthai + " WHERE idDeTai IN ("+strs+")" ;
 		try {
 			pst = conn.prepareStatement(sql);
 			result = pst.executeUpdate();
@@ -1537,6 +1629,59 @@ public class DetaiDAO {
 		}
 
 		return result;
+	}
+
+	//get list detai by trangThai
+	public ArrayList<DeTai> getListDeTaiByStatus(int idKhoa, String status, String keyword,int idCDT, int offset, int row_count){
+		ArrayList<DeTai> listDeTai = new ArrayList<>();
+		conn = connectMySQLLibrary.getConnectMySQL();
+		String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu, cdt.tenCapDeTai  FROM detai AS dt "
+				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
+				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
+				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.capDeTai "
+				+ " where dt.trangThai = ? ";
+		if (idKhoa != 0){
+			sql += " AND dt.idKhoa = "+ idKhoa;
+		}
+		if(!"".equals(keyword)){
+			sql+= " AND (u.fullname LIKE '%"+keyword+"%' OR dt.tenDeTai LIKE '%"+keyword+"%')";
+		}
+		if(idCDT > 0){
+			sql += " AND dt.capDeTai = "+ idCDT;
+		}
+		sql += " ORDER BY dt.idDeTai DESC LIMIT ?,?";
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, status);
+			pst.setInt(2, offset);
+			pst.setInt(3, row_count);
+			rs = pst.executeQuery();
+
+			while (rs.next()) {
+				DeTai objDeTai = new DeTai(rs.getInt("idDeTai"), rs.getString("tenDeTai"), rs.getString("maSoDeTai"),
+						rs.getInt("idLinhVucNghienCuu"), rs.getString("tenLinhVucNghienCuu"),
+						rs.getInt("idLoaiHinhNghienCuu"), rs.getString("tenLoaiHinhNghienCuu"),
+						rs.getTimestamp("thoiGianBatDau"), rs.getTimestamp("thoiGianKetThuc"),
+						rs.getString("donViChuTri"), rs.getInt("idUser"), rs.getString("fullName"),
+						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
+						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
+						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
+						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("tenCapDeTai"),
+						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
+				listDeTai.add(objDeTai);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listDeTai;
 	}
 	
 
