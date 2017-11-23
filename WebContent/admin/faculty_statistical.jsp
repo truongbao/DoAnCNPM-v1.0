@@ -1,3 +1,6 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.util.Date"%>
 <%@page import="library.LibraryConstant"%>
 <%@page import="model.bean.DeTai"%>
 <%@page import="java.util.Calendar"%>
@@ -111,6 +114,7 @@
 								<th>Chủ nhiệm đề tài</th>
 								<th>Trạng thái</th>
 								<th>Cấp đề tài</th>
+								<th>Năm bắt đầu thực hiện</th>
 								<th>Ghi chú</th>
 							</thead>
 							<tbody>
@@ -122,7 +126,7 @@
 								int dt_BGD = (Integer)request.getAttribute("dt_BGD"); // so detai cap Bo GD
 								ArrayList<DeTai> alItem = (ArrayList<DeTai>)request.getAttribute("alItem");
 								for(DeTai obj:alItem){
-									 
+									String date = new SimpleDateFormat("dd-MM-yyyy").format(obj.getThoiGianBatDau());
 							%>
 								<tr>
 									<td><%=obj.getIdDeTai() %></td>
@@ -130,6 +134,7 @@
 									<td><%= obj.getFullName() %></td>
 									<td><%=obj.getTrangThai() %></td>
 									<td><%=obj.getCapDeTai() %></td>
+									<td><%= date%></td>
 									<td></td>
 								</tr>
 							<%} %>

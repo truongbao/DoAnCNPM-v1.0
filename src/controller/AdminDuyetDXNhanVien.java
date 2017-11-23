@@ -11,9 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import library.LibraryAuth;
+import library.LibraryConstant;
 import model.bean.DeTai;
+import model.bean.QuaTrinhThucHien;
 import model.bean.User;
 import model.dao.DetaiDAO;
+import model.dao.QuaTrinhThucHienDAO;
 import model.dao.UserDAO;
 
 public class AdminDuyetDXNhanVien extends HttpServlet {
@@ -39,13 +42,47 @@ public class AdminDuyetDXNhanVien extends HttpServlet {
 			 objUserAdmin = (User)session.getAttribute("nhanVienQLNCKHTruong");
 		 }
 		 
-		 ArrayList<DeTai> listDeTaiNhanVien = detaiDAO.getListDuyetDeTaiNhanVien();
-		 request.setAttribute("listDeTaiNhanVien", listDeTaiNhanVien);
-		 
-
-		 RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/nhanvien/duyet_de_xuat_nv.jsp");
+		 int khoa = 0;
+		 String key = "";
+		 if (request.getParameter("cancel") == null) {
+			 if (request.getParameter("key") != null) {
+				 key = request.getParameter("key");
+			 }
+			 if (request.getParameter("khoa") != null) {
+				 khoa = Integer.parseInt(request.getParameter("khoa"));
+			 }
+		 }
+		 //Xu ly chia trang
+		 int row_count = LibraryConstant.ROW_COUNT;
+ 		 int current_page = 1;
+ 		 
+ 		//tong so de tai
+ 		 int sumDeTai = detaiDAO.countListDeTaiWith(LibraryConstant.DangChoXetCapTruong);
+ 		if (request.getParameter("search") != null){
+ 			sumDeTai = detaiDAO.countListDeTaiSearchWith(key, khoa, LibraryConstant.DangChoXetCapTruong);
+ 		}
+ 		// tong so trang
+ 		 int sumPage = (int)Math.ceil((float)sumDeTai/row_count);
+ 		 request.setAttribute("sumPage", sumPage);
+ 		
+ 		//lấy số trang hiện tại
+ 		if (request.getParameter("page") != null){
+ 			current_page = Integer.parseInt(request.getParameter("page"));
+ 		}
+  		 
+ 		// tính offset
+ 		int offset = (current_page - 1) * row_count;
+ 		request.setAttribute("current_page", current_page);
+ 		if (request.getParameter("search") == null){
+ 			ArrayList<DeTai> listDeTaiNhanVien = detaiDAO.getListDeTaiWith(LibraryConstant.DangChoXetCapTruong, offset);
+ 			 request.setAttribute("listDeTaiNhanVien", listDeTaiNhanVien);
+ 		} else {
+ 			ArrayList<DeTai> listDeTaiNhanVien = detaiDAO.getListDeTaiSearchWith(offset, key, khoa, LibraryConstant.DangChoXetCapTruong);
+ 			 request.setAttribute("listDeTaiNhanVien", listDeTaiNhanVien);
+ 		}
+ 		
+ 		RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/nhanvien/duyet_de_xuat_nv.jsp");
          rd.forward(request, response);
-         
 
 	}
 
@@ -53,6 +90,28 @@ public class AdminDuyetDXNhanVien extends HttpServlet {
          request.setCharacterEncoding("UTF-8");
          response.setCharacterEncoding("UTF-8");
          response.setContentType("text/html");
+         
+         if (request.getParameter("did") != null) {
+    	 		int idDeTai = Integer.parseInt(request.getParameter("did"));
+    	 		if (request.getParameter("noidung") != null) {
+      	 		String noidung = request.getParameter("noidung");
+      	 		QuaTrinhThucHienDAO qtthDAO = new QuaTrinhThucHienDAO();
+      	 		QuaTrinhThucHien qtth = new QuaTrinhThucHien(0,idDeTai, LibraryConstant.DangChoDuyetCapTruong, null, "", noidung);
+      	 		qtthDAO.addItem(qtth);
+      	 	}
+ 	 		DetaiDAO detaiDAO = new DetaiDAO();
+ 	 		if (detaiDAO.updateToTrangThai(LibraryConstant.DangChoDuyetCapTruong, idDeTai) != 0) {
+ 	 			System.out.println("Update Success!");
+ 	 			response.sendRedirect(request.getContextPath() + "/admin/qldangkydetai/nhanvien/duyet_de_xuat_nv?msg=1");
+ 	 			
+ 				return; 
+ 	 		} else {
+ 	 			response.sendRedirect(request.getContextPath() + "/admin/qldangkydetai/nhanvien/duyet_de_xuat_nv?msg=0");
+ 				return; 
+ 	 		}
+ 	 		
+ 
+		}
 	}
 
 }

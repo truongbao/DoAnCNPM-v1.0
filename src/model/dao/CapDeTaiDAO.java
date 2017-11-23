@@ -196,6 +196,35 @@ public class CapDeTaiDAO {
      	 return listCapDeTai;
 	}
 	
+	public ArrayList<CapDeTai> getItemsByPage() {
+		ArrayList<CapDeTai> listCapDeTai = new ArrayList<>();
+
+   	    conn = connectMySQLLibrary.getConnectMySQL();
+   	 
+   	    String sql = "select * from capdetai ORDER BY idCapDeTai DESC";
+
+   	 try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			while(rs.next()){
+				CapDeTai objCapDeTai = new CapDeTai(rs.getInt("idCapDeTai"), rs.getString("tenCapDeTai"));
+				listCapDeTai.add(objCapDeTai);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				rs.close();
+				st.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+   	 
+     	 return listCapDeTai;
+	}
+	
 	public boolean checkExistCapDeTai(String name) {
 		
         conn = connectMySQLLibrary.getConnectMySQL();

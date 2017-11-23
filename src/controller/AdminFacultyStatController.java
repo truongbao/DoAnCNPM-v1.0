@@ -14,11 +14,15 @@ import library.LibraryAuth;
 import library.LibraryConstant;
 import model.bean.DeTai;
 import model.bean.User;
+import model.dao.CapDeTaiDAO;
 import model.dao.DetaiDAO;
 
 public class AdminFacultyStatController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	int year = 0;
+	String type_stat = null;
+	String type_detai = null;
+	
 	public AdminFacultyStatController() {
 		super();
 	}
@@ -51,8 +55,8 @@ public class AdminFacultyStatController extends HttpServlet {
 
 //		int idFaculty = 6;
 		DetaiDAO model = new DetaiDAO();
-		if ("load".equals(request.getParameter("type"))) {
-			
+		CapDeTaiDAO cdtModel  =  new CapDeTaiDAO();
+		if ("load".equals(request.getParameter("type"))) {		
 			int DT_sum = model.getSumWithIdFaculty(idFaculty);
 			int page_sum = (int) Math.ceil(((float) DT_sum / LibraryConstant.ROW_COUNT));
 			int current_page = 1;
@@ -62,6 +66,7 @@ public class AdminFacultyStatController extends HttpServlet {
 			int offset = (current_page - 1) * LibraryConstant.ROW_COUNT;
 			request.setAttribute("current_page", current_page);
 			request.setAttribute("page_sum", page_sum);
+			request.setAttribute("alCDT", cdtModel.getItemsByPage());
 			request.setAttribute("alItem",model.getListByFaculty(idFaculty, offset, LibraryConstant.ROW_COUNT));
 			ArrayList<DeTai> arrDT = (ArrayList<DeTai>)model.getListByFaculty(idFaculty, offset, DT_sum);
 			for (DeTai obj : arrDT) {
@@ -80,9 +85,9 @@ public class AdminFacultyStatController extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/admin/faculty_statistical.jsp");
 			rd.forward(request, response);
 		} else if ("search".equals(request.getParameter("type"))) {
-			int year = Integer.parseInt(request.getParameter("year_create"));
-			String type_stat = request.getParameter("type_stat");
-			String type_detai =(String) request.getParameter("type_detai");
+			year = Integer.parseInt(request.getParameter("year_create"));
+			type_stat = request.getParameter("type_stat");
+			type_detai =(String) request.getParameter("type_detai");
 			int DT_sum =  model.getSumWithIdFacultyAndSearch(idFaculty,year,type_detai,type_stat);
 			int page_sum = (int) Math.ceil(((float) DT_sum / LibraryConstant.ROW_COUNT));
 			int current_page = 1;

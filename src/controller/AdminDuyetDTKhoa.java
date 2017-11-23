@@ -19,7 +19,8 @@ import model.dao.UserDAO;
 
 public class AdminDuyetDTKhoa extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	String keyword = null;
+	
     public AdminDuyetDTKhoa() {
         super();
     }
@@ -61,8 +62,9 @@ public class AdminDuyetDTKhoa extends HttpServlet {
  			 RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/khoa/duyet_de_xuat_khoa.jsp");
  			 rd.forward(request, response);
  		}else if ("search".equals(request.getParameter("type"))){
- 			System.out.println("ok");
- 			String keyword = request.getParameter("keyword");
+ 			if (request.getParameter("keyword") != null) {
+ 				keyword = request.getParameter("keyword");
+ 			}
  			int DT_sum = detaiDAO.getSumListDeTaiByStatus(idFaculty, LibraryConstant.DangChoDuyetCapKhoa,keyword);
  			int page_sum = (int) Math.ceil(((float) DT_sum / LibraryConstant.ROW_COUNT));
  			int current_page = 1;

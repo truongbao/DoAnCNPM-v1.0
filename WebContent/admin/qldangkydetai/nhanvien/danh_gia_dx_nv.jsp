@@ -17,7 +17,7 @@
 					    		if(request.getAttribute("objDeTai") != null){
 					    		 DeTai objDeTai =(DeTai)request.getAttribute("objDeTai");
 							%>
-                                <form action="" method="post">
+                                <form action="<%=request.getContextPath() %>/admin/qldangkydetai/nhanvien/duyet_de_xuat_nv?did=<%=objDeTai.getIdDeTai() %>" method="post">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
@@ -40,7 +40,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Nội dung đánh giá</label>
-                                                <textarea id="cktext1" class="form-control border-input"></textarea>
+                                                <textarea id="cktext1" class="form-control border-input" name = "noidung"></textarea>
                                                  <script type="text/javascript">
 							               			var editor = CKEDITOR.replace('cktext1');
 							               			CKFinder.setupCKEditor(editor,'<%=request.getContextPath()%>/ckfinder/')
@@ -50,7 +50,7 @@
                                     </div>
                                     
                                     <div class="text-center">
-                                        <input type="submit" class="btn btn-info btn-fill btn-wd" value="Lưu" />
+                                        <input type="submit" name = "save" class="btn btn-info btn-fill btn-wd" value="Lưu" />
                                     </div>
                                     <div class="clearfix"></div>
                                 </form>

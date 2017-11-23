@@ -11,7 +11,6 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <!-- <p class="category success">Thêm thành công</p> -->
                                 <form action="<%=request.getContextPath()%>/admin/qldangkydetai/duyet-de-xuat-khoa?type=search" method="post">
                                 	<div class="row">
                                         <div class="col-md-8">
@@ -50,9 +49,6 @@
                                     	   ArrayList<DeTai> listDeTaiByIdKhoa = (ArrayList<DeTai>)request.getAttribute("listDuyetDeTaiByIdKhoa");
                                     	   if (listDeTaiByIdKhoa.size() > 0) {
                                     		   for (DeTai objDeTai : listDeTaiByIdKhoa){
-                                    			   
-                                    		  
-                                    
                                     %>
                                         <tr>
                                         	<td><%=objDeTai.getIdDeTai() %></td>
@@ -62,6 +58,7 @@
                                         	<td><%=objDeTai.getTrangThai() %></td>
                                         	<td>
                                         		<a href="<%=request.getContextPath()%>/admin/qldangkydetai/detail_duyet_dx_khoa?did=<%=objDeTai.getIdDeTai()%>"><img src="assets/img/edit.gif" alt="" /> Xem</a>
+                                        		<a href="<%=request.getContextPath()%>/admin/qldangkydetai/detail_duyet_dx_khoa?did=<%=objDeTai.getIdDeTai()%>"><img src="assets/img/edit.gif" alt="" /> Duyệt</a>
                                         	</td>
                                         </tr>
                                           
