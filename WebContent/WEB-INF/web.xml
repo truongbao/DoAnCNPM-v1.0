@@ -72,10 +72,9 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>AdminIndexQLDKDTKhoa</servlet-name>
-    <url-pattern>/admin/qldangkydetai/index_khoa</url-pattern>
+    <url-pattern>/admin/qldangkydetai/index-khoa</url-pattern>
   </servlet-mapping>
-  
-  <!-- ============== RIN QL duyet de xuat cua Khoa ==================== -->
+
    <servlet>
     <servlet-name>AdminDuyetDTKhoa</servlet-name>
     <servlet-class>controller.AdminDuyetDTKhoa</servlet-class>
@@ -85,7 +84,6 @@
     <url-pattern>/admin/qldangkydetai/duyet-de-xuat-khoa</url-pattern>
   </servlet-mapping>
   
-  <!-- ============== RIN QL duyet de xuat cua Khoa ==================== -->
    <servlet>
     <servlet-name>AdminXemDeTai</servlet-name>
     <servlet-class>controller.AdminXemDeTai</servlet-class>
@@ -95,7 +93,6 @@
     <url-pattern>/admin/qldangkydetai/xem_de_tai</url-pattern>
   </servlet-mapping>
   
-  <!-- ============== RIN QL duyet de xuat cua Khoa ==================== -->
    <servlet>
     <servlet-name>AdminDetailDuyetDeXuatKhoa</servlet-name>
     <servlet-class>controller.AdminDetailDuyetDeXuatKhoa</servlet-class>
@@ -105,8 +102,6 @@
     <url-pattern>/admin/qldangkydetai/detail_duyet_dx_khoa</url-pattern>
   </servlet-mapping>
   
-  
-   <!-- ============== RIN QL duyet de xuat cua Khoa ==================== -->
    <servlet>
     <servlet-name>AdminDanhGiaDXKhoa</servlet-name>
     <servlet-class>controller.AdminDanhGiaDXKhoa</servlet-class>

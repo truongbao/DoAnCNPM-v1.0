@@ -134,7 +134,7 @@
                </li>
                <li>
                	<%if (isQuanLyNCKHKhoa) { %>
-               			<a href="<%= request.getContextPath() %>/admin/qldangkydetai/khoa/index_khoa">
+               			<a href="<%= request.getContextPath() %>/admin/qldangkydetai/index-khoa?type=load">
                	<%} else if (isNhanVienQLNCKHTruong) {%>
                			<a href="<%= request.getContextPath() %>/admin/qldangkydetai/nhanvien/index_nhanvien">
                 <%} else if (isAdmin) { %>

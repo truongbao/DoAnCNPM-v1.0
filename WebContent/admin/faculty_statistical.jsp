@@ -28,7 +28,7 @@
 			<div class="col-md-12">
 				<div class="card">
 					<div class="header">
-						<form action="<%=request.getContextPath()%>/admin/faculty-statistical?type=search" method="post">
+						<form action="<%=request.getContextPath()%>/admin/faculty-statistical?type=search" method="post" onsubmit="return validateForm()">
 							<div class="row">
 								<div class="col-md-2">
 									<div class="form-group">
