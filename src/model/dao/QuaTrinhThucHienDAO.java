@@ -36,7 +36,6 @@ public class QuaTrinhThucHienDAO {
 			pst.setString(3, item.getChuDe());
 			pst.setString(4, item.getNoiDung());
 			result = pst.executeUpdate();
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally{

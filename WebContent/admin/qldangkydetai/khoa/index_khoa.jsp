@@ -31,7 +31,17 @@
                                 </form>
                                 
                             </div>
-                            
+                            <div class="text-center text-danger col-md-12" style="font-size: 18px;font-weight: bold;">
+                            	 <%
+							      if(request.getParameter("msg")!=null){
+							          int msg = Integer.parseInt( request.getParameter("msg"));
+							          switch(msg){
+							            case 1: out.print("Xử lý thành công !!");break;
+							            case 0: out.print("Không thành công vui lòng thử lại !!");break;
+								        }
+							      }
+		     			       	%>  
+                           	</div>
                             <div class="content table-responsive table-full-width">
 	                            <div class="row"> 
 	                            		<div class="col-md-8"><h3>DANH SÁCH ĐỀ TÀI ĐĂNG KÝ</h3></div>

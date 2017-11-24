@@ -117,7 +117,7 @@ public class AdminDuyetDXAdmin extends HttpServlet {
    	 		
    	 		//Tao moi thong bao cho giang vien
    	 		ThongBaoDAO tbDAO = new ThongBaoDAO();
-   	 		ThongBao tb = new ThongBao(0, objUserAdmin.getIdUser(), detaiDAO.getIdUserWith(idDeTai), noiDung, idqtth, null, idDeTai, null, null, null, 0);
+   	 		ThongBao tb = new ThongBao(0, objUserAdmin.getIdUser(), detaiDAO.getIdUserWith(idDeTai), noiDung,  null, idDeTai, null, null, null, 0);
    	 		tbDAO.addItem(tb);
  	 	}
 	 		
