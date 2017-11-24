@@ -40,7 +40,7 @@ public class ThongBaoDAO {
 
 			while (rs.next()) {
 				objTB = new ThongBao(rs.getInt("idThongBao"), rs.getInt("idUserThongBao"), rs.getInt("idUserDen"),
-						rs.getString("noiDung"), rs.getInt("idQuaTrinhThucHien"), rs.getTimestamp("thoiGian"),
+						rs.getString("noiDung"), rs.getTimestamp("thoiGian"),
 						rs.getInt("idDeTai"), rs.getString("tenDeTai"), rs.getString("userDen.fullName"),
 						rs.getString("userTB.fullName"),rs.getInt("tb.wasRead"));
 				listDeTai.add(objTB);
@@ -67,16 +67,15 @@ public class ThongBaoDAO {
 	public int  addItem(ThongBao objItem) {
 		int result = 0;
 		conn = connectMySQLLibrary.getConnectMySQL();
-		String sql = "INSERT INTO thongbao(idUserThongBao,idUserDen,noiDung,idQuaTrinhThucHien,thoiGian,idDeTai,wasRead) VALUES (?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO thongbao(idUserThongBao,idUserDen,noiDung,thoiGian,idDeTai,wasRead) VALUES (?,?,?,?,?,?)";
 		try {
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1,objItem.getIdUserThongBao());
 			pst.setInt(2, objItem.getIdUserDen());
 			pst.setString(3, objItem.getNoiDung());
-			pst.setInt(4, objItem.getIdQuaTrinhThucHien());
-			pst.setTimestamp(5, objItem.getThoiGian());
-			pst.setInt(6, objItem.getIdDeTai());
-			pst.setInt(7, objItem.getWasRead());
+			pst.setTimestamp(4, objItem.getThoiGian());
+			pst.setInt(5, objItem.getIdDeTai());
+			pst.setInt(6, objItem.getWasRead());
 			pst.executeUpdate();
 			result=1;
 		} catch (SQLException e) {
@@ -114,7 +113,7 @@ public class ThongBaoDAO {
 
 			while (rs.next()) {
 				objTB = new ThongBao(rs.getInt("idThongBao"), rs.getInt("idUserThongBao"), rs.getInt("idUserDen"),
-						rs.getString("noiDung"), rs.getInt("idQuaTrinhThucHien"), rs.getTimestamp("thoiGian"),
+						rs.getString("noiDung"), rs.getTimestamp("thoiGian"),
 						rs.getInt("idDeTai"), rs.getString("tenDeTai"), rs.getString("userDen.fullName"),
 						rs.getString("userTB.fullName"),rs.getInt("tb.wasRead"));
 				listDeTai.add(objTB);
@@ -153,7 +152,7 @@ public class ThongBaoDAO {
 
 			while (rs.next()) {
 				objTB = new ThongBao(rs.getInt("idThongBao"), rs.getInt("idUserThongBao"), rs.getInt("idUserDen"),
-						rs.getString("noiDung"), rs.getInt("idQuaTrinhThucHien"), rs.getTimestamp("thoiGian"),
+						rs.getString("noiDung"), rs.getTimestamp("thoiGian"),
 						rs.getInt("idDeTai"), rs.getString("tenDeTai"), rs.getString("userDen.fullName"),
 						rs.getString("userTB.fullName"),rs.getInt("tb.wasRead"));
 				listDeTai.add(objTB);
@@ -195,7 +194,7 @@ public class ThongBaoDAO {
 
 			while (rs.next()) {
 				objTB = new ThongBao(rs.getInt("idThongBao"), rs.getInt("idUserThongBao"), rs.getInt("idUserDen"),
-						rs.getString("noiDung"), rs.getInt("idQuaTrinhThucHien"), rs.getTimestamp("thoiGian"),
+						rs.getString("noiDung"), rs.getTimestamp("thoiGian"),
 						rs.getInt("idDeTai"), rs.getString("tenDeTai"), rs.getString("userDen.fullName"),
 						rs.getString("userTB.fullName"),rs.getInt("tb.wasRead"));
 				listDeTai.add(objTB);
@@ -234,7 +233,7 @@ public class ThongBaoDAO {
 
 			while (rs.next()) {
 				objTB = new ThongBao(rs.getInt("idThongBao"), rs.getInt("idUserThongBao"), rs.getInt("idUserDen"),
-						rs.getString("noiDung"), rs.getInt("idQuaTrinhThucHien"), rs.getTimestamp("thoiGian"),
+						rs.getString("noiDung"), rs.getTimestamp("thoiGian"),
 						rs.getInt("idDeTai"), rs.getString("tenDeTai"), rs.getString("userDen.fullName"),
 						rs.getString("userTB.fullName"),rs.getInt("tb.wasRead"));
 				listDeTai.add(objTB);

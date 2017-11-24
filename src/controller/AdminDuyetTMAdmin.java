@@ -103,23 +103,23 @@ public class AdminDuyetTMAdmin extends HttpServlet {
          if (request.getParameter("did") != null) {
         	 int idDeTai = Integer.parseInt(request.getParameter("did"));
         	 DetaiDAO detaiDAO = new DetaiDAO();
- 	 	if (request.getParameter("qtthid") != null) {
- 	 		//Cap nhat lai quatrinhthuchien
-   	 		int idqtth = Integer.parseInt(request.getParameter("qtthid"));
-   	 		
-   	 		String noiDung = request.getParameter("noidung");
-   	 		System.out.println("NOI DUNG : " + noiDung);
-   	 		QuaTrinhThucHienDAO qtthDAO = new QuaTrinhThucHienDAO();
-   	 		QuaTrinhThucHien qtth = new QuaTrinhThucHien(idqtth, 0, LibraryConstant.TruongDeXuatChinhSuaThuyetMinh, null, "", noiDung);
-   	 		if (qtthDAO.updateIemWith(qtth) >0) {
-   	 			System.out.println("Update QTTH OK");
-   	 		}
-   	 		
-   	 		//Tao moi thong bao cho giang vien
-   	 		ThongBaoDAO tbDAO = new ThongBaoDAO();
-   	 		ThongBao tb = new ThongBao(0, objUserAdmin.getIdUser(), detaiDAO.getIdUserWith(idDeTai), noiDung, idqtth, null, idDeTai, null, null, null, 0);
-   	 		tbDAO.addItem(tb);
- 	 	}
+	 	 	if (request.getParameter("qtthid") != null) {
+	 	 		//Cap nhat lai quatrinhthuchien
+	   	 		int idqtth = Integer.parseInt(request.getParameter("qtthid"));
+	   	 		
+	   	 		String noiDung = request.getParameter("noidung");
+	   	 		System.out.println("NOI DUNG : " + noiDung);
+	   	 		QuaTrinhThucHienDAO qtthDAO = new QuaTrinhThucHienDAO();
+	   	 		QuaTrinhThucHien qtth = new QuaTrinhThucHien(idqtth, 0, LibraryConstant.TruongDeXuatChinhSuaThuyetMinh, null, "", noiDung);
+	   	 		if (qtthDAO.updateIemWith(qtth) >0) {
+	   	 			System.out.println("Update QTTH OK");
+	   	 		}
+	   	 		
+	   	 		//Tao moi thong bao cho giang vien
+	   	 		ThongBaoDAO tbDAO = new ThongBaoDAO();
+	   	 		ThongBao tb = new ThongBao(0, objUserAdmin.getIdUser(), detaiDAO.getIdUserWith(idDeTai), noiDung, null, idDeTai, null, null, null, 0);
+	   	 		tbDAO.addItem(tb);
+	 	 	}
 	 		
 	 		if (request.getParameter("duyet") != null) {
 	 			if (detaiDAO.updateToTrangThai(LibraryConstant.TruongDeXuatChinhSuaThuyetMinh, idDeTai) != 0) {

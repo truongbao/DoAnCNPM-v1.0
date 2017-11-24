@@ -16,6 +16,7 @@
                             <%
 					    		if(request.getAttribute("objDeTai") != null){
 					    		 DeTai objDeTai =(DeTai)request.getAttribute("objDeTai");
+					    		 String tenCDTQly = (String) request.getAttribute("tenCapDeTaiQly");
 							%>
                             <div class="content">
                                 <form action="" method="post">
@@ -135,14 +136,17 @@
                                             </div>
                                     </div>
                                     </div>
+                                    <% if(LibraryConstant.DangChoDuyetCapKhoa.equals(objDeTai.getTrangThai()) && tenCDTQly.equals(objDeTai.getCapDeTai())){ %>
                                     <div class="row">
-                                    <div class="text-center">
-                                        <input type="submit" class="btn btn-info btn-fill btn-wd" value="Huỷ đề xuất" />
-                                        <a href="<%=request.getContextPath()%>/admin/qldangkydetai/khoa/danh_gia_dx_khoa?did=<%=objDeTai.getIdDeTai()%>">
-                                        <input class="btn btn-info btn-fill btn-wd" value="Duyệt đề xuất" />
-                                        </a>
-                                    </div>
-                        				</div>
+	                                    <div class="text-center">
+	                                    	<input type="submit" class="btn btn-info btn-fill btn-wd" name="submit" value="Duyệt đề xuất" />
+	                                        <input type="submit" class="btn btn-info btn-fill btn-wd" name="cancel" value="Huỷ đề xuất" />
+	                                        <button class="btn btn-info btn-fill btn-wd" ><a href="<%=request.getContextPath()%>/admin/qldangkydetai/danh_gia_dx_khoa?did=<%=objDeTai.getIdDeTai()%>" style="color:#FFFFFF;">
+	                                        Yêu cầu chỉnh sửa
+	                                        </a></button>
+	                                    </div>
+                       				</div>
+                       				<%} %>
                                     <div class="clearfix"></div>
                                 </form>
                             </div>
