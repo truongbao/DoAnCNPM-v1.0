@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.FileItem;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
@@ -15,6 +16,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext;
 
 import library.LibraryAuth;
+import library.LibraryConstant;
 import library.StringLibrary;
 import model.bean.User;
 import model.dao.UserDAO;
@@ -30,7 +32,7 @@ public class AdminEditUserController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// kiểm tra đã đăng nhập chưa
-		if (LibraryAuth.CheckAdmin(request, response) == false) {
+		if (LibraryAuth.CheckLogin(request, response) == false) {
 			return;
 		}
 	}
@@ -56,7 +58,7 @@ public class AdminEditUserController extends HttpServlet {
 				diaChiNhaRieng = oldUser.getDiaChiNhaRieng(), dienThoaiNhaRieng = oldUser.getDienThoaiNhaRieng(),
 				email = oldUser.getEmail(), fax = oldUser.getFax(), username = oldUser.getUserName(),
 				matKhau = objDAO.getObjUser(idUser).getMatKhau();
-		System.out.println(matKhau);
+		boolean changeAvt = false;
 		if (ServletFileUpload.isMultipartContent(request)) {
 			try {
 				List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory())
@@ -69,9 +71,10 @@ public class AdminEditUserController extends HttpServlet {
 						if(!nameImg.equals("")) {
 							avt = nameImg +"_"+ System.currentTimeMillis();
 
-							File folder = new File(request.getServletContext().getRealPath("") +  "/WebContent/templates/admin/img/users");
+							File folder = new File(LibraryConstant.pathAvt);
 							folder.mkdirs();
-							item.write(new File(request.getServletContext().getRealPath("") +  "/WebContent/templates/admin/img/users/" + avt));
+							item.write(new File(LibraryConstant.pathAvt+ "/" + avt));
+							changeAvt = true;
 						}
 					} else {
 						String fN = item.getFieldName();
@@ -115,6 +118,27 @@ public class AdminEditUserController extends HttpServlet {
 					avt);
 			if (objDAO.editItem(objUser) > 0) {
 				// them thanh cong
+				if (changeAvt) {
+					HttpSession session = request.getSession();
+					String permission = "null";
+					User userLogin = null;
+					if (session.getAttribute("admin") != null) {
+						permission = "admin";
+						userLogin = (User) session.getAttribute("admin");
+					}
+					if (session.getAttribute("quanLyNCKHKhoa") != null) {
+						permission = "quanLyNCKHKhoa";
+						userLogin = (User) session.getAttribute("quanLyNCKHKhoa");
+					}
+					if (session.getAttribute("nhanVienQLNCKHTruong") != null) {
+						permission = "nhanVienQLNCKHTruong";
+						userLogin = (User) session.getAttribute("nhanVienQLNCKHTruong");
+					}
+					if (userLogin.getIdUser() == objUser.getIdUser()) {
+						session.setAttribute(permission, objUser);
+					}
+					
+				}
 				response.sendRedirect(request.getContextPath() + "/admin/user/index?msg=1");
 				return;
 			} else {
