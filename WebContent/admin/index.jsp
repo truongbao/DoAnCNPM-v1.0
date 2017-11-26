@@ -2,7 +2,6 @@
 <%@page import="model.bean.User"%>
 <%@page import="model.bean.LoaiTaiKhoan"%>
 <%@page import="model.bean.Khoa"%>
-<%@page import="model.bean.HocVi"%>
 <%@page import="model.dao.UserDAO"%>
 
 <%@page import="java.util.ArrayList"%>

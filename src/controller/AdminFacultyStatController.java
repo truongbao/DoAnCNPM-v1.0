@@ -70,9 +70,9 @@ public class AdminFacultyStatController extends HttpServlet {
 			request.setAttribute("alItem",model.getListByFaculty(idFaculty, offset, LibraryConstant.ROW_COUNT));
 			ArrayList<DeTai> arrDT = (ArrayList<DeTai>)model.getListByFaculty(idFaculty, offset, DT_sum);
 			for (DeTai obj : arrDT) {
-				if( LibraryConstant.TOPICTYPE_CAPCOSO.equals(obj.getCapDeTai())) dt_CCS++;
-				else if (LibraryConstant.TOPICTYPE_CAPDHDN.equals(obj.getCapDeTai())) dt_DHDN++;
-				else if (LibraryConstant.TOPICTYPE_CAPBGD.equals(obj.getCapDeTai())) dt_BGD++;
+				if( LibraryConstant.TOPICTYPE_CAPCOSO.equals(obj.getTenCapDeTai())) dt_CCS++;
+				else if (LibraryConstant.TOPICTYPE_CAPDHDN.equals(obj.getTenCapDeTai())) dt_DHDN++;
+				else if (LibraryConstant.TOPICTYPE_CAPBGD.equals(obj.getTenCapDeTai())) dt_BGD++;
 				
 				if(LibraryConstant.DaHoanThanh.equals(obj.getTrangThai())) dt_hoanthanh++;
 				else if(LibraryConstant.DangThucHien.equals(obj.getTrangThai())) dt_dangthuchien++;
@@ -100,9 +100,9 @@ public class AdminFacultyStatController extends HttpServlet {
 			request.setAttribute("alItem",model.getSearchListByFaculty(idFaculty,year,type_detai, type_stat, offset, LibraryConstant.ROW_COUNT));
 			ArrayList<DeTai> arrDT = (ArrayList<DeTai>)model.getSearchListByFaculty(idFaculty,year,type_detai, type_stat, offset, DT_sum);
 			for (DeTai obj : arrDT) {
-				if( LibraryConstant.TOPICTYPE_CAPCOSO.equals(obj.getCapDeTai())) dt_CCS++;
-				else if (LibraryConstant.TOPICTYPE_CAPDHDN.equals(obj.getCapDeTai())) dt_DHDN++;
-				else if (LibraryConstant.TOPICTYPE_CAPBGD.equals(obj.getCapDeTai())) dt_BGD++;
+				if( LibraryConstant.TOPICTYPE_CAPCOSO.equals(obj.getTenCapDeTai())) dt_CCS++;
+				else if (LibraryConstant.TOPICTYPE_CAPDHDN.equals(obj.getTenCapDeTai())) dt_DHDN++;
+				else if (LibraryConstant.TOPICTYPE_CAPBGD.equals(obj.getTenCapDeTai())) dt_BGD++;
 				
 				if(LibraryConstant.DaHoanThanh.equals(obj.getTrangThai())) dt_hoanthanh++;
 				else if(LibraryConstant.DangThucHien.equals(obj.getTrangThai())) dt_dangthuchien++;

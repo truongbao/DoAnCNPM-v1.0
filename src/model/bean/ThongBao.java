@@ -19,9 +19,9 @@ public class ThongBao {
 		super();
 	}
 
-
-	public ThongBao(int idThongBao, int idUserThongBao, int idUserDen, String noiDung,
-			Timestamp thoiGian, int idDeTai, String tenDeTai, String tenCNDT, String tenNguoiGui, int wasRead) {
+	public ThongBao(int idThongBao, int idUserThongBao, int idUserDen,
+			String noiDung, Timestamp thoiGian, int idDeTai, String tenDeTai,
+			String tenCNDT, String tenNguoiGui, int wasRead) {
 		super();
 		this.idThongBao = idThongBao;
 		this.idUserThongBao = idUserThongBao;
@@ -33,43 +33,6 @@ public class ThongBao {
 		this.tenCNDT = tenCNDT;
 		this.tenNguoiGui = tenNguoiGui;
 		this.wasRead = wasRead;
-	}
-
-
-	public String getTenNguoiGui() {
-		return tenNguoiGui;
-	}
-
-
-	public void setTenNguoiGui(String tenNguoiGui) {
-		this.tenNguoiGui = tenNguoiGui;
-	}
-
-
-	public int getWasRead() {
-		return wasRead;
-	}
-
-
-	public void setWasRead(int wasRead) {
-		this.wasRead = wasRead;
-	}
-
-
-	public String getTenDeTai() {
-		return tenDeTai;
-	}
-
-	public void setTenDeTai(String tenDeTai) {
-		this.tenDeTai = tenDeTai;
-	}
-
-	public String getTenCNDT() {
-		return tenCNDT;
-	}
-
-	public void setTenCNDT(String tenCNDT) {
-		this.tenCNDT = tenCNDT;
 	}
 
 	public int getIdThongBao() {
@@ -120,14 +83,48 @@ public class ThongBao {
 		this.idDeTai = idDeTai;
 	}
 
+	public String getTenDeTai() {
+		return tenDeTai;
+	}
+
+	public void setTenDeTai(String tenDeTai) {
+		this.tenDeTai = tenDeTai;
+	}
+
+	public String getTenCNDT() {
+		return tenCNDT;
+	}
+
+	public void setTenCNDT(String tenCNDT) {
+		this.tenCNDT = tenCNDT;
+	}
+
+	public String getTenNguoiGui() {
+		return tenNguoiGui;
+	}
+
+	public void setTenNguoiGui(String tenNguoiGui) {
+		this.tenNguoiGui = tenNguoiGui;
+	}
+
+	public int getWasRead() {
+		return wasRead;
+	}
+
+	public void setWasRead(int wasRead) {
+		this.wasRead = wasRead;
+	}
+
 	@Override
 	public String toString() {
 		return "ThongBao [idThongBao=" + idThongBao + ", idUserThongBao="
 				+ idUserThongBao + ", idUserDen=" + idUserDen + ", noiDung="
-				+ noiDung 
-				+ ", thoiGian=" + thoiGian + ", idDeTai=" + idDeTai + "]";
+				+ noiDung + ", thoiGian=" + thoiGian + ", idDeTai=" + idDeTai
+				+ ", tenDeTai=" + tenDeTai + ", tenCNDT=" + tenCNDT
+				+ ", tenNguoiGui=" + tenNguoiGui + ", wasRead=" + wasRead + "]";
 	}
 
+    
 	
 
 	

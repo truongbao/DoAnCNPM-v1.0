@@ -91,7 +91,7 @@ public class PublicRegisterDeTaiController extends HttpServlet {
 									"", 0, "", null, null, "", idUser, "", "", "",
 									tinhCapThiet, mucTieu, "", "",
 									noiDung, sanPham, hieuQua, kinhPhiThucHien, 
-									LibraryConstant.DangChoXetDeTai, "", null, objUser.getIdKhoa(), "");
+									LibraryConstant.DangChoXetDeTai, 0,"", null, objUser.getIdKhoa(), "");
         
 		 if(detaiDAO.addDeTaiPublic(objDeTai) >  0){
 				response.sendRedirect(request.getContextPath()+"/list-register-detai?msg=1");
