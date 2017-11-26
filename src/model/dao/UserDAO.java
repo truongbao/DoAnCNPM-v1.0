@@ -158,7 +158,7 @@ public class UserDAO {
 			
 			while(rs.next()){
 				DeTai objDeTai = new DeTai(rs.getInt("idDeTai"), "", rs.getString("maSoDeTai"),
-					    0, "",0, "",null, null,"", 0, "","", "", "","", "", "","", "", "",0, "", "",null, 0, "");
+					    0, "",0, "",null, null,"", 0, "","", "", "","", "", "","", "", "",0, "", 0,"",null, 0, "");
 
 				listDeTai.add(objDeTai);
 			}
@@ -179,10 +179,11 @@ public class UserDAO {
 
 		ArrayList<DeTai> listDeTai = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
-		String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
+		String sql = "select dt.*,cdt.tenCapDeTai,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
 				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " where dt.idUser = ? ORDER BY idDeTai ASC";
 		// String sql = "select * FROM detai WHERE idKhoa = ? ORDER BY idDeTai
 		// ASC";
@@ -201,7 +202,7 @@ public class UserDAO {
 						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
-						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
 						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
 				listDeTai.add(objDeTai);
 			}
@@ -222,10 +223,11 @@ public class UserDAO {
 
 		ArrayList<DeTai> listDeTai = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
-		String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
+		String sql = "select dt.*,cdt.tenCapDeTai,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
 				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " where dt.idUser = ? and trangThai = '11' ORDER BY idDeTai ASC";
 		// String sql = "select * FROM detai WHERE idKhoa = ? ORDER BY idDeTai
 		// ASC";
@@ -244,7 +246,7 @@ public class UserDAO {
 						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
-						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
 						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
 				listDeTai.add(objDeTai);
 			}

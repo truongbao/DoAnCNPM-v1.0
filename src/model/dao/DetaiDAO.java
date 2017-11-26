@@ -10,12 +10,8 @@ import java.util.ArrayList;
 import library.ConnectMySQLLibrary;
 import library.LibraryConstant;
 import model.bean.DeTai;
-import model.bean.HocVi;
-import model.bean.Khoa;
 import model.bean.LinhVucNC;
-import model.bean.LoaiTaiKhoan;
 import model.bean.ThanhVien;
-import model.bean.User;
 
 public class DetaiDAO {
 	private ConnectMySQLLibrary connectMySQLLibrary;
@@ -33,10 +29,11 @@ public class DetaiDAO {
 		ArrayList<DeTai> listDeTai = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
 
-		String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu FROM detai AS dt "
+		String sql = "select dt.*,cdt.tenCapDeTai,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu FROM detai AS dt "
 				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " order by dt.idDeTai DESC";
 		try {
 			st = conn.createStatement();
@@ -51,7 +48,7 @@ public class DetaiDAO {
 						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
-						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
 						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
 
 				listDeTai.add(objDeTai);
@@ -76,9 +73,10 @@ public class DetaiDAO {
 			ArrayList<DeTai> listDeTai = new ArrayList<>();
 			conn = connectMySQLLibrary.getConnectMySQL();
 
-			String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu FROM detai AS dt "
+			String sql = "select dt.*,cdt.tenCapDeTai,u.fullName, lvnc.tenLinhVucNghienCuu FROM detai AS dt "
 					+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 					+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
+					+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 					+ "  WHERE  dt.maSoDeTai = 'no' ";
 			
 			try {
@@ -94,7 +92,7 @@ public class DetaiDAO {
 							rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
 							rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 							rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
-							rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+							rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
 							rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
 
 					listDeTai.add(objDeTai);
@@ -118,9 +116,10 @@ public class DetaiDAO {
 		public DeTai getObjectDeTaiByIdDeTaiDK(int idDeTai) {
 			conn = connectMySQLLibrary.getConnectMySQL();
 
-			String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu FROM detai AS dt "
+			String sql = "select dt.*,cdt.tenCapDeTai,u.fullName, lvnc.tenLinhVucNghienCuu FROM detai AS dt "
 					+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 					+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
+					+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 					+ "  WHERE dt.trangThai = "+LibraryConstant.DangChoXetDeTai+"  and  dt.idDeTai = "+idDeTai;
 
 			DeTai objDeTai =null;
@@ -137,7 +136,7 @@ public class DetaiDAO {
 							rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
 							rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 							rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
-							rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+							rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
 							rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
 
 				}
@@ -161,9 +160,10 @@ public class DetaiDAO {
 		public DeTai getTrangThaiUpdateUpdByIdDeTaiDK(int idDeTai) {
 			conn = connectMySQLLibrary.getConnectMySQL();
 
-			String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu FROM detai AS dt "
+			String sql = "select dt.*,cdt.tenCapDeTai,u.fullName, lvnc.tenLinhVucNghienCuu FROM detai AS dt "
 					+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 					+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
+					+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 					+ "  WHERE  dt.trangThai IN ('3','7','10','11')  and  dt.idDeTai = "+idDeTai;
 
 			DeTai objDeTai =null;
@@ -180,7 +180,7 @@ public class DetaiDAO {
 							rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
 							rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 							rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
-							rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+							rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
 							rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
 
 				}
@@ -204,10 +204,11 @@ public class DetaiDAO {
 		ArrayList<DeTai> listDeTai = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
 
-		String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu FROM detai AS dt "
+		String sql = "select dt.*,cdt.tenCapDeTai,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu FROM detai AS dt "
 				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " order by dt.idDeTai DESC LIMIT ?,?";
 
 		try {
@@ -224,7 +225,7 @@ public class DetaiDAO {
 						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
-						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
 						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload") );
 
 				listDeTai.add(objDeTai);
@@ -283,10 +284,11 @@ public class DetaiDAO {
 
 		conn = connectMySQLLibrary.getConnectMySQL();
 
-		String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
+		String sql = "select dt.*,cdt.tenCapDeTai,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
 				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " where dt.idDeTai = " + iDeTai;
 
 		DeTai objDeTai = null;
@@ -303,7 +305,7 @@ public class DetaiDAO {
 						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
-						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
 						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
 			}
 
@@ -327,10 +329,11 @@ public class DetaiDAO {
 
 		ArrayList<DeTai> listDeTai = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
-		String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
+		String sql = "select dt.*,cdt.tenCapDeTai,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
 				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " where dt.idKhoa = ? ORDER BY dt.idDeTai ASC";
 		// String sql = "select * FROM detai WHERE idKhoa = ? ORDER BY idDeTai
 		// ASC";
@@ -349,7 +352,7 @@ public class DetaiDAO {
 						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
-						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
 						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
 				listDeTai.add(objDeTai);
 			}
@@ -370,10 +373,11 @@ public class DetaiDAO {
 
 		ArrayList<DeTai> listDeTai = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
-		String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
+		String sql = "select dt.*,cdt.tenCapDeTai,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
 				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " where dt.idKhoa = ? and dt.trangThai = " + LibraryConstant.DangChoDuyetCapKhoa + " ORDER BY dt.idDeTai ASC";
 		// String sql = "select * FROM detai WHERE idKhoa = ? ORDER BY idDeTai
 		// ASC";
@@ -392,7 +396,7 @@ public class DetaiDAO {
 						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
-						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"),rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
 						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
 				listDeTai.add(objDeTai);
 			}
@@ -413,10 +417,11 @@ public class DetaiDAO {
 
 		ArrayList<DeTai> listDeTai = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
-		String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
+		String sql = "select dt.*,cdt.tenCapDeTai,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
 				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " where dt.trangThai = " + LibraryConstant.DangChoXetCapTruong + " ORDER BY dt.idDeTai ASC";
 		// String sql = "select * FROM detai WHERE idKhoa = ? ORDER BY idDeTai
 		// ASC";
@@ -434,7 +439,7 @@ public class DetaiDAO {
 						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
-						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
 						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
 				listDeTai.add(objDeTai);
 			}
@@ -455,10 +460,11 @@ public class DetaiDAO {
 
 		ArrayList<DeTai> listDeTai = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
-		String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
+		String sql = "select dt.*,cdt.tenCapDeTai ,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
 				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " where dt.trangThai = " + LibraryConstant.DangChoXetThuyetMinh + " ORDER BY dt.idDeTai ASC";
 		// String sql = "select * FROM detai WHERE idKhoa = ? ORDER BY idDeTai
 		// ASC";
@@ -476,7 +482,7 @@ public class DetaiDAO {
 						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
-						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
 						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
 				listDeTai.add(objDeTai);
 			}
@@ -497,10 +503,11 @@ public class DetaiDAO {
 
 		ArrayList<DeTai> listDeTai = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
-		String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
+		String sql = "select dt.*,cdt.tenCapDeTai,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
 				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " where dt.trangThai = " + LibraryConstant.DangChoXetCapTruong 
 				+ " or dt.trangThai = " + LibraryConstant.DangChoDuyetCapTruong
 				+ " or dt.trangThai = " + LibraryConstant.TruongDeXuatChinhSua
@@ -523,7 +530,7 @@ public class DetaiDAO {
 						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
-						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
 						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
 				listDeTai.add(objDeTai);
 			}
@@ -544,10 +551,11 @@ public class DetaiDAO {
 
 		ArrayList<DeTai> listDeTai = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
-		String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
+		String sql = "select dt.*,cdt.tenCapDeTai,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
 				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " where dt.trangThai = " + LibraryConstant.DangChoDuyetCapTruong + " ORDER BY dt.idDeTai ASC";
 		// String sql = "select * FROM detai WHERE idKhoa = ? ORDER BY idDeTai
 		// ASC";
@@ -565,7 +573,7 @@ public class DetaiDAO {
 						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
-						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
 						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
 				listDeTai.add(objDeTai);
 			}
@@ -586,10 +594,11 @@ public class DetaiDAO {
 
 		ArrayList<DeTai> listDeTai = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
-		String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
+		String sql = "select dt.*,cdt.tenCapDeTai,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
 				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " where dt.trangThai = " + LibraryConstant.DangChoDuyetThuyetMinh + " ORDER BY dt.idDeTai ASC";
 		// String sql = "select * FROM detai WHERE idKhoa = ? ORDER BY idDeTai
 		// ASC";
@@ -607,7 +616,7 @@ public class DetaiDAO {
 						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
-						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
 						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
 				listDeTai.add(objDeTai);
 			}
@@ -628,10 +637,11 @@ public class DetaiDAO {
 
 		ArrayList<DeTai> listDeTai = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
-		String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
+		String sql = "select dt.*,cdt.tenCapDeTai,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
 				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " where dt.trangThai = " + LibraryConstant.DangThucHien 
 				+ " or dt.trangThai = " + LibraryConstant.DangChoXetNghiemThu
 				+ " or dt.trangThai = " + LibraryConstant.DangChoDuyetNghiemThu
@@ -654,7 +664,7 @@ public class DetaiDAO {
 						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
-						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
 						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
 				listDeTai.add(objDeTai);
 			}
@@ -675,10 +685,11 @@ public class DetaiDAO {
 
 		ArrayList<DeTai> listDeTai = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
-		String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
+		String sql = "select dt.*,cdt.tenCapDeTai,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
 				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " where dt.trangThai = " + LibraryConstant.DangChoXetNghiemThu + " ORDER BY dt.idDeTai ASC";
 		// String sql = "select * FROM detai WHERE idKhoa = ? ORDER BY idDeTai
 		// ASC";
@@ -696,7 +707,7 @@ public class DetaiDAO {
 						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
-						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
 						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
 				listDeTai.add(objDeTai);
 			}
@@ -717,10 +728,11 @@ public class DetaiDAO {
 
 		ArrayList<DeTai> listDeTai = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
-		String sql = "select dt.*,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
+		String sql = "select dt.*,cdt.tenCapDeTai,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
 				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " where dt.trangThai = " + LibraryConstant.DangChoDuyetNghiemThu + " ORDER BY dt.idDeTai ASC";
 		// String sql = "select * FROM detai WHERE idKhoa = ? ORDER BY idDeTai
 		// ASC";
@@ -738,7 +750,7 @@ public class DetaiDAO {
 						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
-						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
 						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
 				listDeTai.add(objDeTai);
 			}
@@ -898,7 +910,11 @@ public class DetaiDAO {
 		ArrayList<DeTai> listObj = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
 
-		String sql = "SELECT * FROM detai AS dt JOIN linhvucnghiencuu AS lvnc ON dt.idLinhVucNghienCuu = lvnc.idLinhVucNghienCuu JOIN loaihinhnghiencuu AS lhnc ON dt.idLoaiHinhNghienCuu = lhnc.idLoaiHinhNghienCuu JOIN user ON dt.idUser = user.idUser WHERE dt.idKhoa = ? ORDER BY dt.idDeTai DESC LIMIT ?, ?";
+		String sql = "SELECT *,cdt.tenCapDeTai FROM detai AS dt "
+				+ " JOIN linhvucnghiencuu AS lvnc ON dt.idLinhVucNghienCuu = lvnc.idLinhVucNghienCuu "
+				+ " JOIN loaihinhnghiencuu AS lhnc ON dt.idLoaiHinhNghienCuu = lhnc.idLoaiHinhNghienCuu "
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
+				+ " JOIN user ON dt.idUser = user.idUser WHERE dt.idKhoa = ? ORDER BY dt.idDeTai DESC LIMIT ?, ?";
 
 		try {
 			pst = conn.prepareStatement(sql);
@@ -915,7 +931,7 @@ public class DetaiDAO {
 						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
-						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
 						rs.getTimestamp("thoiGianDangKy"), idKhoa, rs.getString("linkUpload"));
 				listObj.add(objDetai);
 			}
@@ -937,8 +953,9 @@ public class DetaiDAO {
 		ArrayList<DeTai> listObj = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
 
-		String sql = "SELECT * FROM detai AS dt JOIN linhvucnghiencuu AS lvnc ON dt.idLinhVucNghienCuu = lvnc.idLinhVucNghienCuu"
+		String sql = "SELECT *,cdt.tenCapDeTai FROM detai AS dt JOIN linhvucnghiencuu AS lvnc ON dt.idLinhVucNghienCuu = lvnc.idLinhVucNghienCuu"
 				+ " JOIN loaihinhnghiencuu AS lhnc ON dt.idLoaiHinhNghienCuu = lhnc.idLoaiHinhNghienCuu JOIN user ON dt.idUser"
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " = user.idUser WHERE";
 		sql = getSqlWithSearch(sql, year, type_detai, type_stat) + " ORDER BY dt.idDeTai DESC LIMIT ?, ?";
 		System.out.println(sql);
@@ -956,7 +973,7 @@ public class DetaiDAO {
 						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
-						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
 						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
 				listObj.add(objDetai);
 			}
@@ -1008,8 +1025,9 @@ public class DetaiDAO {
 		ArrayList<DeTai> listObj = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
 
-		String sql = "SELECT * FROM detai AS dt JOIN linhvucnghiencuu AS lvnc ON dt.idLinhVucNghienCuu = lvnc.idLinhVucNghienCuu"
+		String sql = "SELECT *,cdt.tenCapDeTai FROM detai AS dt JOIN linhvucnghiencuu AS lvnc ON dt.idLinhVucNghienCuu = lvnc.idLinhVucNghienCuu"
 				+ " JOIN loaihinhnghiencuu AS lhnc ON dt.idLoaiHinhNghienCuu = lhnc.idLoaiHinhNghienCuu JOIN user ON dt.idUser"
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " = user.idUser WHERE dt.idKhoa = ?  AND";
 		sql = getSqlWithSearch(sql, year, type_detai, type_stat) + " ORDER BY dt.idDeTai DESC LIMIT ?, ?";
 		try {
@@ -1027,7 +1045,7 @@ public class DetaiDAO {
 						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
-						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getString("capDeTai"),
+						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
 						rs.getTimestamp("thoiGianDangKy"), idFaculty, rs.getString("linkUpload"));
 				listObj.add(objDetai);
 			}

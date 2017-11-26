@@ -120,8 +120,10 @@ public class PublicIndexDKThuyetMinhController extends HttpServlet {
 							        		0, "", "", 
 							        		"", "", "", "",
 							        		"", "", "", "", 
-							        		0, "", "",
+							        		0, "", 0,"",
 							        		null, 0, linkUpload);
+		        
+		        
 		        
 				 if(detaiDAO.UploadFileThuyetMinh(objDeTai) > 0){
 					//up thanh cong

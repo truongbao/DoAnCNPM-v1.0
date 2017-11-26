@@ -101,7 +101,7 @@ public class PublicUpdateDetaiController extends HttpServlet {
 										"", 0, "", null, null, "", idUser, "", "", "",
 										tinhCapThiet, mucTieu, "", "",
 										noiDung, sanPham, hieuQua, kinhPhiThucHien, 
-										"", "", null, objUser.getIdKhoa(), "");
+										"", 0,"", null, objUser.getIdKhoa(), "");
 			
 			objDeTai.setIdDeTai(idDeTai); //set lại idDeTai lấy dc
 

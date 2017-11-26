@@ -27,7 +27,8 @@ public class DeTai {
 	private String hieuQua;
 	private int kinhPhiThucHien;
 	private String trangThai;
-	private String capDeTai;
+	private int idCapDeTai;
+	private String tenCapDeTai;
 	private Timestamp thoiGianDangKy;
     private int idKhoa;
     private String linkUpload;
@@ -46,8 +47,9 @@ public class DeTai {
 			String donViPhoiHopChinh, String tongQuan, String tinhCapThiet,
 			String mucTieu, String phamViNghienCuu, String phuongPhapNghienCuu,
 			String noiDung, String sanPham, String hieuQua,
-			int kinhPhiThucHien, String trangThai, String capDeTai,
-			Timestamp thoiGianDangKy, int idKhoa, String linkUpload) {
+			int kinhPhiThucHien, String trangThai, int idCapDeTai,
+			String tenCapDeTai, Timestamp thoiGianDangKy, int idKhoa,
+			String linkUpload) {
 		super();
 		this.idDeTai = idDeTai;
 		this.tenDeTai = tenDeTai;
@@ -72,7 +74,8 @@ public class DeTai {
 		this.hieuQua = hieuQua;
 		this.kinhPhiThucHien = kinhPhiThucHien;
 		this.trangThai = trangThai;
-		this.capDeTai = capDeTai;
+		this.idCapDeTai = idCapDeTai;
+		this.tenCapDeTai = tenCapDeTai;
 		this.thoiGianDangKy = thoiGianDangKy;
 		this.idKhoa = idKhoa;
 		this.linkUpload = linkUpload;
@@ -309,13 +312,23 @@ public class DeTai {
 	}
 
 
-	public String getCapDeTai() {
-		return capDeTai;
+	public int getIdCapDeTai() {
+		return idCapDeTai;
 	}
 
 
-	public void setCapDeTai(String capDeTai) {
-		this.capDeTai = capDeTai;
+	public void setIdCapDeTai(int idCapDeTai) {
+		this.idCapDeTai = idCapDeTai;
+	}
+
+
+	public String getTenCapDeTai() {
+		return tenCapDeTai;
+	}
+
+
+	public void setTenCapDeTai(String tenCapDeTai) {
+		this.tenCapDeTai = tenCapDeTai;
 	}
 
 
@@ -348,10 +361,6 @@ public class DeTai {
 		this.linkUpload = linkUpload;
 	}
 
-
-	
-	
-	
 	
 	
 }

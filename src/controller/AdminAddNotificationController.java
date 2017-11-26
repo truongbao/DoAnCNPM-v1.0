@@ -95,7 +95,7 @@ public class AdminAddNotificationController extends HttpServlet {
 	  			int id_deTai = Integer.parseInt((String)request.getParameter("deTai"));
 	  			DeTai objDT = modelDT.getObjDeTai(id_deTai);
 	  			Date date = new Date();
-	  			ThongBao objTB = new ThongBao(0, objUser.getIdUser(), id_userDen, noiDung, Integer.parseInt(objDT.getTrangThai()), new Timestamp(date.getTime()), id_deTai, "", "", "", 0);
+	  			ThongBao objTB = new ThongBao(0, objUser.getIdUser(), id_userDen, noiDung, new Timestamp(date.getTime()), id_deTai, "", "", "", 0);
 	  			if(modelTB.addItem(objTB) > 0){ // thêm thành công
 					response.sendRedirect(request.getContextPath()+"/admin/add-notif?type=load&msg=add1");
 					return;
