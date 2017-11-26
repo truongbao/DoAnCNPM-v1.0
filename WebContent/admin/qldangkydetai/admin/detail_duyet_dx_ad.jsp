@@ -58,7 +58,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Cấp đề tài</label>
-                                                <input type="text" name="id" class="form-control border-input" disabled value="<%=objDeTai.getCapDeTai()%>">
+                                                <input type="text" name="id" class="form-control border-input" disabled value="<%=objDeTai.getTenCapDeTai()%>">
                                             </div>
                                         </div>
                                         <div class="col-md-6">

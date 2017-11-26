@@ -99,7 +99,7 @@
                                         	<td><%=objDeTai.getIdDeTai() %></td>
                                             <td><a href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/detail_duyet_tm_nv?did=<%=objDeTai.getIdDeTai()%>"><%=objDeTai.getTenDeTai() %></a></td>
                                             <td><%=objDeTai.getFullName() %></td>
-                                        	<td><%=objDeTai.getCapDeTai() %></td>
+                                        	<td><%=objDeTai.getTenCapDeTai() %></td>
                                         	<td><%=LibraryConstant.ConvertTrangThai(objDeTai.getTrangThai()) %></td>
                                         	<td>
                                         		<a href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/detail_duyet_tm_nv?did=<%=objDeTai.getIdDeTai()%>"><img src="assets/img/edit.gif" alt="" /> Xem</a>

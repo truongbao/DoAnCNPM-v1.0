@@ -1,5 +1,6 @@
 <%@page import="model.bean.DeTai"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="library.LibraryConstant"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -46,7 +47,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Cấp đề tài</label>
-                                                <input type="text" name="id" class="form-control border-input" disabled value="<%=objDeTai.getCapDeTai()%>">
+                                                <input type="text" name="id" class="form-control border-input" disabled value="<%=objDeTai.getTenCapDeTai()%>">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -108,7 +109,7 @@
                                     <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Trạng thái </label>
-                                                <input type="text" name="id" class="form-control border-input" disabled value="<%= objDeTai.getTrangThai() %>">
+                                                <input type="text" name="id" class="form-control border-input" disabled value="<%=LibraryConstant.ConvertTrangThai(objDeTai.getTrangThai()) %>">
                                             </div>
                                     </div>
                                     </div>
