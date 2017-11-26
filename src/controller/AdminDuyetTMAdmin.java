@@ -111,8 +111,8 @@ public class AdminDuyetTMAdmin extends HttpServlet {
 	   	 		System.out.println("NOI DUNG : " + noiDung);
 	   	 		QuaTrinhThucHienDAO qtthDAO = new QuaTrinhThucHienDAO();
 	   	 		QuaTrinhThucHien qtth = new QuaTrinhThucHien(idqtth, 0, LibraryConstant.TruongDeXuatChinhSuaThuyetMinh, null, "", noiDung);
-	   	 		if (qtthDAO.updateIemWith(qtth) >0) {
-	   	 			System.out.println("Update QTTH OK");
+	   	 		if (qtthDAO.addItem(qtth) >0) {
+	   	 			System.out.println("Add new QTTH OK");
 	   	 		}
 	   	 		
 	   	 		//Tao moi thong bao cho giang vien

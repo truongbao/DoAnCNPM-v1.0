@@ -16,7 +16,7 @@
                             <div class="header">
                                
                                 <div class="col-md-12">
-                                    <form action=""<%=request.getContextPath() %>" method="get">
+                                    <form action="<%=request.getContextPath() %>/admin/qldangkydetai/nhanvien/index_nhanvien" method="get">
                                     	<div class="row">
                                     		
                                             <div class="col-md-6">
@@ -66,10 +66,9 @@
                             
                             <div class="content table-responsive table-full-width">
                             <div class="row"> 
-                            		<div class="col-md-4"><h3>DANH SÁCH ĐỀ TÀI</h3></div>
-                            		<div class="col-md-4"><a class="btn btn-info btn-fill btn-wd" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/duyet_de_xuat_nv">Xem danh sách duyệt đề xuất</a>
-                            		</div>
-                            		<div class="col-md-4"><a class="btn btn-info btn-fill btn-wd" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/duyet_thuyet_minh_nv">Xem danh sách duyệt thuyết minh</a>
+                            		<div class="col-md-7"><h3>DANH SÁCH ĐỀ TÀI</h3></div>
+                            		<div class="col-md-5"><a class="btn btn-info btn-fill btn-wd" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/duyet_de_xuat_nv">Xem danh sách duyệt đề xuất</a>
+                            		<a class="btn btn-info btn-fill btn-wd" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/duyet_thuyet_minh_nv">Xem danh sách duyệt thuyết minh</a>
                             		</div>
                             	</div>
                             
@@ -91,12 +90,12 @@
                                     %>
                                         <tr>
                                         	<td><%=objDeTai.getIdDeTai() %></td>
-                                            <td><a href="<%=request.getContextPath()%>/admin/qldangkydetai/khoa/xem_de_tai?did=<%=objDeTai.getIdDeTai()%>"><%=objDeTai.getTenDeTai() %></a></td>
+                                            <td><a href="<%=request.getContextPath()%>/admin/qldangkydetai/xem_de_tai?did=<%=objDeTai.getIdDeTai()%>"><%=objDeTai.getTenDeTai() %></a></td>
                                             <td><%=objDeTai.getFullName() %></td>
                                         	<td><%=objDeTai.getTenCapDeTai() %></td>
                                         	<td><%=LibraryConstant.ConvertTrangThai(objDeTai.getTrangThai()) %></td>
                                         	<td>
-                                        		<a href="<%=request.getContextPath()%>/admin/qldangkydetai/khoa/xem_de_tai?did=<%=objDeTai.getIdDeTai()%>"><img src="assets/img/edit.gif" alt="" /> Xem</a>
+                                        		<a href="<%=request.getContextPath()%>/admin/qldangkydetai/xem_de_tai?did=<%=objDeTai.getIdDeTai()%>"><img src="assets/img/edit.gif" alt="" /> Xem</a>
                                         	</td>
                                         </tr>  
                                       <%}}} %>  
@@ -107,11 +106,67 @@
                                 </table>
 
 								<div class="text-center">
-								    <ul class="pagination">
-								        <li><a href="?p=0" title="">1</a></li> 
-								        <li><a href="?p=1" title="">2</a></li> 
-								        <li><a href="?p=1" title="">3</a></li> 
-								        <li><a href="?p=1" title="">4</a></li> 
+								   <ul class="pagination">
+								       <li>
+								    	<%
+											int sumPage = (Integer) request.getAttribute("sumPage");
+										    int current_page = (Integer) request.getAttribute("current_page");
+										    int pageFirst = 0;
+										    int pageEnd = 0;
+										    int numFix = 5;
+										    int move = (int)Math.ceil( (float)numFix / 2);
+										    //nếu current_page > 1 và sumPage > 1 thì thêm nút back
+										    if(current_page > 1 && sumPage > 1){
+										 %>  
+										   <a href="<%=request.getContextPath() %>/admin/qldangkydetai/nhanvien/index_nhanvien?page=<%=current_page-1%>">Back</a> 
+										 <%} %>  	
+										    	
+										    	
+										 <%
+										     //fix lại trang đầu và cuối
+										     if(current_page >=numFix){
+										    	 pageFirst = current_page-move;
+										    	 if(sumPage > (current_page+move) ){
+										    		 pageEnd = current_page+move;
+										    	 }else if(current_page < sumPage && current_page > (sumPage-(numFix-1) ) ){
+										    		 pageFirst = sumPage-(numFix-1);
+										    		 pageEnd = sumPage;
+										    	 }else{
+										    		 pageEnd = sumPage;
+										    	 }
+										     }else{
+												pageFirst=1;
+												if(sumPage > numFix){
+													pageEnd = numFix;
+												}else{
+													pageEnd = sumPage;
+												}
+										     }
+										    //lặp khoản giữa và active trang người dùng click
+										    String active="";
+											for (int i = pageFirst; i <= pageEnd; i++){
+												if(current_page==i){
+													active=" style='color :red; font-weight: bold' ";
+												}else{
+													active="";
+												}
+										 
+										 %>   	
+										   <a <%=active %> href="<%=request.getContextPath() %>/admin/qldangkydetai/nhanvien/index_nhanvien?page=<%=i%>"><%=i %></a>
+										     	
+										   <%}//for %> 	
+										    	
+										
+										  <%
+										    //nếu curren_Page  <sumPage và sumPage > 1 thì thêm Next
+										    if(current_page < sumPage && sumPage > 1){
+										  %>
+										  
+										 	 <a href="<%=request.getContextPath() %>/admin/qldangkydetai/admin/index_admin?page=<%=current_page+1%>">Next</a> 
+										 	
+										  <%} %>
+								        
+								        </li> 
 								    </ul>
 								</div>
                             </div>

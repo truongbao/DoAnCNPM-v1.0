@@ -187,6 +187,15 @@
     <url-pattern>/admin/qldangkydetai/nhanvien/danh_gia_tm_nv</url-pattern>
    </servlet-mapping>
    
+   <!-- ============== RIN QL xuat file nhan vien ==================== -->
+   <servlet>
+    <servlet-name>AdminExportDSDeXuat</servlet-name>
+    <servlet-class>controller.AdminExportDSDeXuat</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminExportDSDeXuat</servlet-name>
+    <url-pattern>/admin/qldangkydetai/nhanvien/export</url-pattern>
+    </servlet-mapping>
    
    <!-- ============== RIN QL duyet de xuat cua Admin ==================== -->
    <servlet>
@@ -274,6 +283,7 @@
     <servlet-name>AdminDetailDuyetNghiemThuNhanVien</servlet-name>
     <url-pattern>/admin/qldetai/nhanvien/detail_duyet_nt_nv</url-pattern>
     </servlet-mapping>
+    
     
     
     <!-- ============== RIN QL de tai admin ==================== -->

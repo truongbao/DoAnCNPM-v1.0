@@ -52,7 +52,7 @@ public class QuaTrinhThucHienDAO {
     
     public QuaTrinhThucHien getQuaTrinhThucHienWith(int idDeTai, String trangthai) {
     		conn = connectMySQLLibrary.getConnectMySQL();
-		String sql = "select * from quatrinhthuchien where idDeTai = ? and trangThai = ?";
+		String sql = "select * from quatrinhthuchien where idDeTai = ? and trangThai = ? ORDER By thoiGian DESC LIMIT 1";
 		
 		QuaTrinhThucHien item = null;
 		try {

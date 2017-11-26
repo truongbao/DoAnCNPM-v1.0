@@ -77,7 +77,14 @@
 		     			       	%>  
                             	</div>
                             <div class="content table-responsive table-full-width">
-                            <h3>DANH SÁCH ĐỀ XUẤT CẦN DUYỆT</h3>
+                            <div class="row">
+                            		<div class="col-md-8"><h3>DANH SÁCH ĐỀ XUẤT CẦN DUYỆT</h3></div>
+                   
+                            		<div class="col-md-4"><a class="btn btn-info btn-fill btn-wd" target="_blank" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/export">
+                            		Xuất danh sách đề xuất cần duyệt</a>
+                            		</div>
+                            </div>
+                            
                                 <table class="table table-striped" id="table-contain">
                                     <thead>
                                         <th>ID</th>

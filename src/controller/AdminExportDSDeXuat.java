@@ -11,16 +11,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import library.LibraryAuth;
+import library.LibraryConstant;
 import model.bean.DeTai;
-import model.bean.ThanhVien;
+import model.bean.QuaTrinhThucHien;
 import model.bean.User;
 import model.dao.DetaiDAO;
+import model.dao.QuaTrinhThucHienDAO;
 import model.dao.UserDAO;
 
-public class AdminXemDeTai extends HttpServlet {
+public class AdminExportDSDeXuat extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AdminXemDeTai() {
+    public AdminExportDSDeXuat() {
         super();
     }
     
@@ -29,21 +31,7 @@ public class AdminXemDeTai extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
         
-        DetaiDAO detaiDAO = new DetaiDAO();
-		  
-	    int idDeTai = Integer.parseInt(request.getParameter("did"));
-	    
-	    //tu idDeTai => danh sach thanh vien lam de tai nay (o bang thanh vien)
-	    //send qua jsp
-	    System.out.println("IDDDD: "+idDeTai);
-	    	    
-		DeTai objDeTai = detaiDAO.getObjDeTai(idDeTai);
-		
-		request.setAttribute("objDeTai", objDeTai);
-		
-		 RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/khoa/xem_de_tai.jsp");
-         rd.forward(request, response);
-         
+      doPost(request, response);
 
 	}
 
@@ -51,6 +39,19 @@ public class AdminXemDeTai extends HttpServlet {
          request.setCharacterEncoding("UTF-8");
          response.setCharacterEncoding("UTF-8");
          response.setContentType("text/html");
+         
+       //kiểm tra đã đăng nhập chưa
+       	if(  LibraryAuth.CheckNhanVienTruong(request, response)==false){
+       		return;
+       	}
+       	
+       	DetaiDAO detaiDAO = new DetaiDAO();
+       	
+       	ArrayList<DeTai> listDeTai = detaiDAO.getListDeTaiWith(LibraryConstant.DangChoXetCapTruong);
+ 		 request.setAttribute("listDeTai", listDeTai);
+ 		 System.out.println("XUAT FILE DS: "+listDeTai.size());
+  		RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/nhanvien/export.jsp");
+          rd.forward(request, response);
 	}
 
 }

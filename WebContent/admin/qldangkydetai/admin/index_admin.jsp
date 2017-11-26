@@ -67,10 +67,9 @@
                             
                             <div class="content table-responsive table-full-width">
                             <div class="row"> 
-                            		<div class="col-md-4"><h3>DANH SÁCH ĐỀ TÀI</h3></div>
-                            		<div class="col-md-4"><a class="btn btn-info btn-fill btn-wd" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldangkydetai/admin/duyet_de_xuat_ad">Xem danh sách duyệt đề xuất</a>
-                            		</div>
-                            		<div class="col-md-4"><a class="btn btn-info btn-fill btn-wd" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldangkydetai/admin/duyet_thuyet_minh_ad">Xem danh sách duyệt thuyết minh</a>
+                            		<div class="col-md-7"><h3>DANH SÁCH ĐỀ TÀI</h3></div>
+                            		<div class="col-md-5"><a class="btn btn-info btn-fill btn-wd" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldangkydetai/admin/duyet_de_xuat_ad">Xem danh sách duyệt đề xuất</a>
+                            		<a class="btn btn-info btn-fill btn-wd" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldangkydetai/admin/duyet_thuyet_minh_ad">Xem danh sách duyệt thuyết minh</a>
                             		</div>
                             	</div>
                             
@@ -95,12 +94,12 @@
                                     %>
                                         <tr>
                                         	<td><%=objDeTai.getIdDeTai() %></td>
-                                            <td><a href="<%=request.getContextPath()%>/admin/qldangkydetai/khoa/xem_de_tai?did=<%=objDeTai.getIdDeTai()%>"><%=objDeTai.getTenDeTai() %></a></td>
+                                            <td><a href="<%=request.getContextPath()%>/admin/qldangkydetai/xem_de_tai?did=<%=objDeTai.getIdDeTai()%>"><%=objDeTai.getTenDeTai() %></a></td>
                                             <td><%=objDeTai.getFullName() %></td>
                                         	<td><%=objDeTai.getTenCapDeTai() %></td>
                                         	<td><%=LibraryConstant.ConvertTrangThai(objDeTai.getTrangThai()) %></td>
                                         	<td>
-                                        		<a href="<%=request.getContextPath()%>/admin/qldangkydetai/khoa/xem_de_tai?did=<%=objDeTai.getIdDeTai()%>"><img src="assets/img/edit.gif" alt="" /> Xem</a>
+                                        		<a href="<%=request.getContextPath()%>/admin/qldangkydetai/xem_de_tai?did=<%=objDeTai.getIdDeTai()%>"><img src="assets/img/edit.gif" alt="" /> Xem</a>
                                         	</td>
                                         </tr>
                                       <%}}} %>    
