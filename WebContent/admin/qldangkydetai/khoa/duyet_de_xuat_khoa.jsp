@@ -76,7 +76,7 @@
 		                                        	<td><%=objDeTai.getIdDeTai() %></td>
 		                                            <td><a href="<%=request.getContextPath()%>/admin/qldangkydetai/detail_duyet_dx_khoa?did=<%=objDeTai.getIdDeTai()%>"><%=objDeTai.getTenDeTai() %></a></td>
 		                                            <td><%=objDeTai.getFullName() %></td>
-		                                        	<td><%=objDeTai.getCapDeTai() %></td>
+		                                        	<td><%=objDeTai.getTenCapDeTai() %></td>
 		                                        	<td><%=LibraryConstant.ConvertTrangThai(objDeTai.getTrangThai()) %></td>
 		                                        	<td>
 		                                        		<input type="checkbox" class="checkbox-action" name="idDeTai" value="<%=objDeTai.getIdDeTai() %>"> 

@@ -54,7 +54,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Cấp đề tài</label>
-                                                <input type="text" name="id" class="form-control border-input" readonly value="<%=objDeTai.getCapDeTai()%>">
+                                                <input type="text" name="id" class="form-control border-input" readonly value="<%=objDeTai.getTenCapDeTai()%>">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -136,7 +136,7 @@
                                             </div>
                                     </div>
                                     </div>
-                                    <% if(LibraryConstant.DangChoDuyetCapKhoa.equals(objDeTai.getTrangThai()) && tenCDTQly.equals(objDeTai.getCapDeTai())){ %>
+                                    <% if(LibraryConstant.DangChoDuyetCapKhoa.equals(objDeTai.getTrangThai()) && tenCDTQly.equals(objDeTai.getTenCapDeTai())){ %>
                                     <div class="row">
 	                                    <div class="text-center">
 	                                    	<input type="submit" class="btn btn-info btn-fill btn-wd" name="submit" value="Duyệt đề xuất" />
