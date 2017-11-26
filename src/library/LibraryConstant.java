@@ -28,6 +28,9 @@ public class LibraryConstant {
 	  public final static String DangChoDuyetNghiemThu = "14" ;
 	  public final static String DaHoanThanh = "15" ;
 	  public final static String KhongHoanThanh = "16" ;
+	  
+	  public final static String pathAvt = "/home/yenhot/web/DoAnCNPM_SE03/WebContent/templates/admin/img/users" ;
+
 
 	  
 	  

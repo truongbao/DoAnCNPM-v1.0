@@ -2,6 +2,7 @@
 <%@page import="model.bean.LoaiTaiKhoan"%>
 <%@page import="model.bean.Khoa"%>
 <%@page import="model.bean.HocViHocHam"%>
+<%@page import="library. LibraryConstant"%>
 <%@page import="model.dao.UserDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -120,7 +121,7 @@
 	                                                User userLogin = (User) request.getSession().getAttribute("admin");
 	                                                if (userLogin != null) idLogin = userLogin.getIdUser();
                                                 %>
-                                                <select name="loai_tai_khoan" class="form-control border-input" <%=idLogin == objUser.getIdUser() ? "disabled" : ""%>>
+                                                <select name="loai_tai_khoan" class="form-control border-input" <%=((idLogin == objUser.getIdUser()) || (request.getSession().getAttribute("admin") == null))? "disabled" : ""%>>
                                                     <%
 				                                    	ArrayList<LoaiTaiKhoan> listLoaiTaiKhoan = userDao.getListLoaiTK();
 				                                    	for(int i = 0; i < listLoaiTaiKhoan.size(); i++) {

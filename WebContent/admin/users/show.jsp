@@ -1,6 +1,7 @@
 <%@page import="model.bean.DeTai"%>
 <%@page import="model.bean.User"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="library. LibraryConstant"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -109,13 +110,23 @@
 											value="<%= objUser.getEmail() %>" readonly>
 									</div>
 								</div>
-
+						<%
+                            int idLogin = 0;
+							User userLogin = null;
+							if (request.getSession().getAttribute("admin") != null)
+                                 userLogin = (User) request.getSession().getAttribute("admin");
+							if (request.getSession().getAttribute("quanLyNCKHKhoa") != null)
+                                userLogin = (User) request.getSession().getAttribute("quanLyNCKHKhoa");
+							if (request.getSession().getAttribute("nhanVienQLNCKHTruong") != null)
+                                userLogin = (User) request.getSession().getAttribute("nhanVienQLNCKHTruong");
+                            if (userLogin != null) idLogin = userLogin.getIdUser();
+                         %>
 								<div class="text-center">
 									<a href="<%=request.getContextPath() %>/admin/user/index">
 										<button type="button" class="btn btn-warning mt-10">Trở
 											về</button>
 									</a> 
-									<div style="display: inline;" class='<%=request.getSession().getAttribute("admin") == null? "disabled" : "" %>'>
+									<div style="display: inline;" class='<%=request.getSession().getAttribute("admin") == null && objUser.getIdUser() != idLogin? "disabled" : "" %>'>
 										<a
 											href="<%=request.getContextPath() %>/admin/user/form-edit?uid=<%=objUser.getIdUser() %>">
 											<button type="button" class="btn btn-primary mt-10">Sửa</button>

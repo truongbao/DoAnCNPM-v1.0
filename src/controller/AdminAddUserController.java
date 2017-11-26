@@ -17,6 +17,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext;
 
 import library.LibraryAuth;
 import library.StringLibrary;
+import library.LibraryConstant;
 import model.bean.User;
 import model.dao.UserDAO;
 
@@ -62,10 +63,10 @@ public class AdminAddUserController extends HttpServlet {
 						String nameImg = new File(item.getName()).getName();
 						if(!nameImg.equals("")) {
 							avt = nameImg +"_"+ System.currentTimeMillis();
-							File folder = new File(request.getServletContext().getRealPath("") +  "/WebContent/templates/admin/img/users");
+							File folder = new File(LibraryConstant.pathAvt);
 							folder.mkdirs();
 							// tao folder
-							item.write(new File(request.getServletContext().getRealPath("") +  "/WebContent/templates/admin/img/users/" + avt));
+							item.write(new File(LibraryConstant.pathAvt + "/" + avt));
 						}
 					}else {
 						String fN = item.getFieldName();

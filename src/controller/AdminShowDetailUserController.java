@@ -32,7 +32,7 @@ public class AdminShowDetailUserController extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//kiểm tra đã đăng nhập chưa
-				if(  LibraryAuth.CheckAdmin(request, response)==false){
+				if(  LibraryAuth.CheckLogin(request, response)==false){
 					return;
 				}
 		UserDAO objDAO = new UserDAO();
