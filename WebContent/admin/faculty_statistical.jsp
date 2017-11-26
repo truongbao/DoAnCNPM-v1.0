@@ -133,7 +133,7 @@
 									<td><a href="#"><%= obj.getTenDeTai() %></a></td>
 									<td><%= obj.getFullName() %></td>
 									<td><%=obj.getTrangThai() %></td>
-									<td><%=obj.getCapDeTai() %></td>
+									<td><%=obj.getTenCapDeTai() %></td>
 									<td><%= date%></td>
 									<td></td>
 								</tr>
