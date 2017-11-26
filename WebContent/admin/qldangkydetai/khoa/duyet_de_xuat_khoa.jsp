@@ -14,6 +14,9 @@
 			    return false;
 			}
 		}
+		if ($(#check-all)){
+			
+		}
   	</script>
         <div class="content">
             <div class="container-fluid">
@@ -60,7 +63,7 @@
                                     	<th>Chủ nhiệm</th>
                                     	<th>Cấp đề tài</th>
                                     	<th>Trạng thái</th>
-                                    	<th>Chọn</th>
+                                    	<th>Chọn <input type="checkbox" id="check-all" name="check-all" value=""></th>
                                     </thead>
                                     <tbody>
                                     <%
@@ -89,6 +92,7 @@
                                         </tr>                                 
                                     </tbody>
                                 </table>
+                                <div class="btn-form-action">
                             		<div class="col-md-2 col-offset-8">
                             			<div class="form-group">
                             				<select name="action">
@@ -102,6 +106,7 @@
                                        		<input type="submit" name="submit" value="Thực hiện" class="btn btn-primary btn-search" />
                                       	</div>
                                     </div>
+                                </div>
                       		   	</form>
 								<%	
 									int page_sum = (Integer) request.getAttribute("page_sum"); 

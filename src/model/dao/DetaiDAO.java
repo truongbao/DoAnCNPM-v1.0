@@ -331,11 +331,11 @@ public class DetaiDAO {
 
 		ArrayList<DeTai> listDeTai = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
-		String sql = "select dt.*,,cdt.tenCapDeTai,,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu, cdt.tenCapDeTai  FROM detai AS dt "
+		String sql = "select dt.*,cdt.tenCapDeTai,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu, cdt.tenCapDeTai  FROM detai AS dt "
 				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
-				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.capDeTai "
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDeTai "
 				+ " where dt.trangThai NOT IN ('13','14','15','16','12')";
 		if(idKhoa > 0){
 			sql +=" AND dt.idKhoa = " + idKhoa;
@@ -457,7 +457,7 @@ public class DetaiDAO {
 		conn = connectMySQLLibrary.getConnectMySQL();
 		String sql = "SELECT COUNT(idDeTai) AS soluong FROM detai AS dt"
 				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
-				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.capDeTai "
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDeTai "
 				+" WHERE dt.trangThai = ? ";
 		if (idFaculty > 0){
 			 sql += "AND dt.idKhoa = "+ idFaculty;
@@ -466,7 +466,7 @@ public class DetaiDAO {
 			sql+= " AND (u.fullname LIKE '%"+keyword+"%' OR dt.tenDeTai LIKE '%"+keyword+"%')";
 		}
 		if(idCDT > 0){
-			sql += " AND dt.capDeTai = "+ idCDT;
+			sql += " AND dt.idCapDeTai = "+ idCDT;
 		}
 		try {
 			pst = conn.prepareStatement(sql);
@@ -1712,7 +1712,7 @@ public class DetaiDAO {
 				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
-				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.capDeTai "
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDeTai "
 				+ " where dt.trangThai = ? ";
 		if (idKhoa != 0){
 			sql += " AND dt.idKhoa = "+ idKhoa;
@@ -1721,7 +1721,7 @@ public class DetaiDAO {
 			sql+= " AND (u.fullname LIKE '%"+keyword+"%' OR dt.tenDeTai LIKE '%"+keyword+"%')";
 		}
 		if(idCDT > 0){
-			sql += " AND dt.capDeTai = "+ idCDT;
+			sql += " AND dt.idCapDeTai = "+ idCDT;
 		}
 		sql += " ORDER BY dt.idDeTai DESC LIMIT ?,?";
 		try {
