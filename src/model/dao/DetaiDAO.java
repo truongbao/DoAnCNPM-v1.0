@@ -291,7 +291,7 @@ public class DetaiDAO {
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
 				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " where dt.idDeTai = " + iDeTai;
-
+		System.out.println(sql);
 		DeTai objDeTai = null;
 		try {
 			pst = conn.prepareStatement(sql);
@@ -558,6 +558,51 @@ public class DetaiDAO {
 		return total;
 	}
 	
+	//Get mảng đề tài với trạng thái nào đó 
+		public ArrayList<DeTai> getListDeTaiWith(String trangthai) {
+			ArrayList<DeTai> listDeTai = new ArrayList<>();
+			conn = connectMySQLLibrary.getConnectMySQL();
+			String sql = "select dt.*,cdt.tenCapDeTai,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
+					+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
+					+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
+					+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
+					+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
+					+ " where dt.trangThai = " + trangthai + " ORDER BY dt.idDeTai ASC ";
+
+			// String sql = "select * FROM detai WHERE idKhoa = ? ORDER BY idDeTai
+			// ASC";
+			System.out.println(sql);
+			DeTai objDeTai = null;
+			try {
+				pst = conn.prepareStatement(sql);
+				rs = pst.executeQuery();
+
+				while (rs.next()) {
+					objDeTai = new DeTai(rs.getInt("idDeTai"), rs.getString("tenDeTai"), rs.getString("maSoDeTai"),
+							rs.getInt("idLinhVucNghienCuu"), rs.getString("tenLinhVucNghienCuu"),
+							rs.getInt("idLoaiHinhNghienCuu"), rs.getString("tenLoaiHinhNghienCuu"),
+							rs.getTimestamp("thoiGianBatDau"), rs.getTimestamp("thoiGianKetThuc"),
+							rs.getString("donViChuTri"), rs.getInt("idUser"), rs.getString("fullName"),
+							rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
+							rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
+							rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
+							rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"),rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
+							rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
+					listDeTai.add(objDeTai);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					pst.close();
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return listDeTai;
+		}
+		
 	//Get mảng đề tài với trạng thái nào đó 
 	public ArrayList<DeTai> getListDeTaiWith(String trangthai, int offset) {
 		ArrayList<DeTai> listDeTai = new ArrayList<>();
