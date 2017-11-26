@@ -163,8 +163,98 @@
 							</tbody>
 						</table>
 					</div>
+					
+					
+					<div class="col-xs-12">
+						<div class="blog-info-page text-right">
+							<div class="filter-right">
+		     
+		                           <div class="collection-pagination pull-right pagination-wrapper">
+		                               <ul class="pagination">
+		                               
+		                               
+		                                   <%
+											int sumPage = (Integer) request.getAttribute("sumPage");
+										    int current_page = (Integer) request.getAttribute("current_page");
+										    int pageFirst = 0;
+										    int pageEnd = 0;
+										    int numFix = 5;
+										    int move = (int)Math.ceil( (float)numFix / 2);
+										    //nếu current_page > 1 và sumPage > 1 thì thêm nút back
+										    if(current_page > 1 && sumPage > 1){
+										 %>  
+										  <%--  <a href="<%=request.getContextPath() %>/admin/cat/index?page=<%=current_page-1%>">Back</a>  --%>
+										    <li> <a class="last " aria-label="previous" href="<%=request.getContextPath() %>/list-register-detai?page=<%=current_page-1%>"></a> </li>
+										   
+										 <%} %>  	
+		                               
+		                               
+		                                   <%
+										     //fix lại trang đầu và cuối
+										     if(current_page >=numFix){
+										    	 pageFirst = current_page-move;
+										    	 if(sumPage > (current_page+move) ){
+										    		 pageEnd = current_page+move;
+										    	 }else if(current_page < sumPage && current_page > (sumPage-(numFix-1) ) ){
+										    		 pageFirst = sumPage-(numFix-1);
+										    		 pageEnd = sumPage;
+										    	 }else{
+										    		 pageEnd = sumPage;
+										    	 }
+										     }else{
+												pageFirst=1;
+												if(sumPage > numFix){
+													pageEnd = numFix;
+												}else{
+													pageEnd = sumPage;
+												}
+										     }
+										    //lặp khoản giữa và active trang người dùng click
+										    String active="";
+											for (int i = pageFirst; i <= pageEnd; i++){
+												if(current_page==i){
+													active=" class='active' ";
+												}else{
+													active="";
+												}
+										 
+										   %>  
+										    	
+										  
+										  
+										   <a  href="<%=request.getContextPath()%>/list-register-detai?page=<%=i%>"> <span style="background-color: blue; width: 50px; height: 50px;"><%=i %></span> </a> 
+										     	
+										   <%}//for %> 	
+										    	
+			                               <!-- <li class="active"><span>1</span></li>
+		                                   <li><a href="tin-tuc4658.html?page=2">2</a></li> -->
+		                                   
+		                                   
+		                                   <%
+										    //nếu curren_Page  <sumPage và sumPage > 1 thì thêm Next
+										    if(current_page < sumPage && sumPage > 1){
+										   %>
+										  
+										 	<%--  <a href="<%=request.getContextPath() %>/admin/cat/index?page=<%=current_page+1%>">Next</a>  --%>
+										 	 
+										 	  <li> <a class="last " aria-label="Next" href="<%=request.getContextPath() %>/list-register-detai?page=<%=current_page+1%>"></a>  </li>
+										 	
+										  <%} %>
+		                                  
+		                                  
+		                                   
+		                               </ul>
+		                           </div>
+		                           
+		                       </div>
+							
+						</div>
+					</div>
+					
+					
 			</div>
 			<!-- /SITE CONTENT -->
+			
 		</div>
 	</div>
 

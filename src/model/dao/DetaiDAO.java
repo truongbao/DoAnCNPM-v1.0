@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import library.ConnectMySQLLibrary;
 import library.LibraryConstant;
+import model.bean.CapDeTai;
 import model.bean.DeTai;
 import model.bean.LinhVucNC;
 import model.bean.ThanhVien;
@@ -34,7 +35,8 @@ public class DetaiDAO {
 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
 				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
-				+ " order by dt.idDeTai DESC";
+	            + "  WHERE  dt.maSoDeTai != 'no' "
+				+ "  order by dt.idDeTai DESC";
 		try {
 			st = conn.createStatement();
 			rs = st.executeQuery(sql);
@@ -68,8 +70,8 @@ public class DetaiDAO {
 	}
 	
 	
-	// lay ra danh sach de tai ko phan trang (public)
-		public ArrayList<DeTai> getListDeTaiDK() {
+	// lay ra danh sach de tai ko phan trang (public) ứng vs user đang login
+		public ArrayList<DeTai> getListDeTaiDK(int idUserLogin, int offset, int row_count) {
 			ArrayList<DeTai> listDeTai = new ArrayList<>();
 			conn = connectMySQLLibrary.getConnectMySQL();
 
@@ -77,7 +79,8 @@ public class DetaiDAO {
 					+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 					+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 					+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
-					+ "  WHERE  dt.maSoDeTai = 'no' ";
+					+ "  WHERE  dt.maSoDeTai = 'no' and u.idUser = "+idUserLogin
+			        + " ORDER BY dt.idDeTai ASC  LIMIT "+offset+", "+row_count;
 			
 			try {
 				st = conn.createStatement();
@@ -1164,6 +1167,36 @@ public class DetaiDAO {
 	}
 	
 	
+	//lay ra danh sách cap de tai ko phan trang (public)
+	public ArrayList<CapDeTai> getListCapDeTai(){
+			ArrayList<CapDeTai> listCapDeTai = new ArrayList<>();
+			conn = connectMySQLLibrary.getConnectMySQL();
+			
+			String sql = "select * FROM capdetai ORDER BY idCapDeTai DESC";
+			
+			try {
+				st = conn.createStatement();
+				rs = st.executeQuery(sql);
+				
+				while(rs.next()){
+					CapDeTai objCapDeTai = new CapDeTai(rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"));
+					listCapDeTai.add(objCapDeTai);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally{
+				try {
+					st.close();
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return listCapDeTai;
+			
+		}
+	
+	
 	
 
 	/*
@@ -1550,7 +1583,7 @@ public class DetaiDAO {
 		
 		
 		String sql="insert into detai (tenDeTai,idLinhVucNghienCuu,idUser,tinhCapThiet,"
-				+ " mucTieu,noiDung,sanPham,hieuQua,kinhPhiThucHien,trangThai,idKhoa ) values(?,?,?,?,?,?,?,?,?,?,?)";
+				+ " mucTieu,noiDung,sanPham,hieuQua,kinhPhiThucHien,trangThai,idCapDeTai,idKhoa ) values(?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		try {
 			pst = conn.prepareStatement(sql);
@@ -1565,7 +1598,8 @@ public class DetaiDAO {
 			pst.setString(8, objDeTai.getHieuQua());
 			pst.setInt(9, objDeTai.getKinhPhiThucHien());
 			pst.setString(10, objDeTai.getTrangThai());
-			pst.setInt(11, objDeTai.getIdKhoa());
+			pst.setInt(11, objDeTai.getIdCapDeTai());
+			pst.setInt(12, objDeTai.getIdKhoa());
 			
 			
 			result = pst.executeUpdate();
@@ -1592,7 +1626,7 @@ public class DetaiDAO {
 		conn = connectMySQLLibrary.getConnectMySQL();
 
 		String sql="UPDATE detai SET tenDeTai = ? ,idLinhVucNghienCuu = ?,idUser = ?,tinhCapThiet = ?, "
-				+ " mucTieu = ?,noiDung = ?,sanPham = ? ,hieuQua = ?,kinhPhiThucHien = ? ,idKhoa = ? "
+				+ " mucTieu = ?,noiDung = ?,sanPham = ? ,hieuQua = ?,kinhPhiThucHien = ? ,idKhoa = ? , idCapDeTai = ? "
 				+ " where idDeTai = ? ";
 
 		try {
@@ -1608,7 +1642,9 @@ public class DetaiDAO {
 			pst.setString(8, objDeTai.getHieuQua());
 			pst.setInt(9, objDeTai.getKinhPhiThucHien());
 			pst.setInt(10, objDeTai.getIdKhoa());
-			pst.setInt(11, objDeTai.getIdDeTai());
+			pst.setInt(11, objDeTai.getIdCapDeTai());
+			pst.setInt(12, objDeTai.getIdDeTai());
+			
 			
 			result = pst.executeUpdate();
 			
@@ -1711,6 +1747,40 @@ public class DetaiDAO {
 		}
 		return listDeTai;
 	}
+	
+	
+	//đếm số đề tài đã đăng ký (nghĩa là maSoDeTai = 'no' )
+     public int countDeTaiDKPublic(int idUserLogin) {
+		
+		int total = 0;
+		conn = connectMySQLLibrary.getConnectMySQL();
+		
+		String sql = "SELECT COUNT(*) AS Total FROM detai AS dt "
+				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
+				+ " where dt.maSoDeTai = 'no' and u.idUser = "+idUserLogin;
+		
+		try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			if (rs.next()){
+				total = rs.getInt("Total");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			try {
+				rs.close();
+				st.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return total;
+		
+	}
+	
+	
 	
 
 	
