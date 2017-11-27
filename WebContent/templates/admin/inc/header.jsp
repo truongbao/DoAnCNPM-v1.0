@@ -123,7 +123,7 @@
                 <%} %>
                 <li>
                     <% if (isNhanVienQLNCKHTruong) {%>
-                			<a href="<%= request.getContextPath() %>/admin/qldetai/nhanvien/index_nhanvien">
+                			<a href="<%= request.getContextPath() %>/admin/qldetai/index_nhanvien?type=load">
                  	<%} else if (isAdmin) { %>
                 			<a href="<%= request.getContextPath() %>/admin/qldetai/admin/index_admin">
                 	<%} else if(isQuanLyNCKHKhoa){ %>

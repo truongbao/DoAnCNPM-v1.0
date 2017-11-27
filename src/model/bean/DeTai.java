@@ -31,25 +31,21 @@ public class DeTai {
 	private String tenCapDeTai;
 	private Timestamp thoiGianDangKy;
     private int idKhoa;
-    private String linkUpload;
+    private String danhGiaNghiemThu;
+    private float diem;
+    private String xepLoai;
 	
 	
 	public DeTai() {
 		super();
 	}
-
-
-	public DeTai(int idDeTai, String tenDeTai, String maSoDeTai,
-			int idLinhVucNghienCuu, String tenLinhVucNghienCuu,
-			int idLoaiHinhNghienCuu, String tenLoaiHinhNghienCuu,
-			Timestamp thoiGianBatDau, Timestamp thoiGianKetThuc,
-			String donViChuTri, int idUser, String fullName,
-			String donViPhoiHopChinh, String tongQuan, String tinhCapThiet,
-			String mucTieu, String phamViNghienCuu, String phuongPhapNghienCuu,
-			String noiDung, String sanPham, String hieuQua,
-			int kinhPhiThucHien, String trangThai, int idCapDeTai,
-			String tenCapDeTai, Timestamp thoiGianDangKy, int idKhoa,
-			String linkUpload) {
+	
+	public DeTai(int idDeTai, String tenDeTai, String maSoDeTai, int idLinhVucNghienCuu, String tenLinhVucNghienCuu,
+			int idLoaiHinhNghienCuu, String tenLoaiHinhNghienCuu, Timestamp thoiGianBatDau, Timestamp thoiGianKetThuc,
+			String donViChuTri, int idUser, String fullName, String donViPhoiHopChinh, String tongQuan,
+			String tinhCapThiet, String mucTieu, String phamViNghienCuu, String phuongPhapNghienCuu, String noiDung,
+			String sanPham, String hieuQua, int kinhPhiThucHien, String trangThai, int idCapDeTai, String tenCapDeTai,
+			Timestamp thoiGianDangKy, int idKhoa) {
 		super();
 		this.idDeTai = idDeTai;
 		this.tenDeTai = tenDeTai;
@@ -78,9 +74,71 @@ public class DeTai {
 		this.tenCapDeTai = tenCapDeTai;
 		this.thoiGianDangKy = thoiGianDangKy;
 		this.idKhoa = idKhoa;
-		this.linkUpload = linkUpload;
 	}
 
+	public DeTai(int idDeTai, String tenDeTai, String maSoDeTai, int idLinhVucNghienCuu, String tenLinhVucNghienCuu,
+			int idLoaiHinhNghienCuu, String tenLoaiHinhNghienCuu, Timestamp thoiGianBatDau, Timestamp thoiGianKetThuc,
+			String donViChuTri, int idUser, String fullName, String donViPhoiHopChinh, String tongQuan,
+			String tinhCapThiet, String mucTieu, String phamViNghienCuu, String phuongPhapNghienCuu, String noiDung,
+			String sanPham, String hieuQua, int kinhPhiThucHien, String trangThai, int idCapDeTai, String tenCapDeTai,
+			Timestamp thoiGianDangKy, int idKhoa, String danhGiaNghiemThu,float diem, String xepLoai) {
+		super();
+		this.idDeTai = idDeTai;
+		this.tenDeTai = tenDeTai;
+		this.maSoDeTai = maSoDeTai;
+		this.idLinhVucNghienCuu = idLinhVucNghienCuu;
+		this.tenLinhVucNghienCuu = tenLinhVucNghienCuu;
+		this.idLoaiHinhNghienCuu = idLoaiHinhNghienCuu;
+		this.tenLoaiHinhNghienCuu = tenLoaiHinhNghienCuu;
+		this.thoiGianBatDau = thoiGianBatDau;
+		this.thoiGianKetThuc = thoiGianKetThuc;
+		this.donViChuTri = donViChuTri;
+		this.idUser = idUser;
+		this.fullName = fullName;
+		this.donViPhoiHopChinh = donViPhoiHopChinh;
+		this.tongQuan = tongQuan;
+		this.tinhCapThiet = tinhCapThiet;
+		this.mucTieu = mucTieu;
+		this.phamViNghienCuu = phamViNghienCuu;
+		this.phuongPhapNghienCuu = phuongPhapNghienCuu;
+		this.noiDung = noiDung;
+		this.sanPham = sanPham;
+		this.hieuQua = hieuQua;
+		this.kinhPhiThucHien = kinhPhiThucHien;
+		this.trangThai = trangThai;
+		this.idCapDeTai = idCapDeTai;
+		this.tenCapDeTai = tenCapDeTai;
+		this.thoiGianDangKy = thoiGianDangKy;
+		this.idKhoa = idKhoa;
+		this.danhGiaNghiemThu = danhGiaNghiemThu;
+		this.diem = diem;
+		this.xepLoai = xepLoai;
+	}
+
+
+	public String getKetQuaNghiemThu() {
+		return danhGiaNghiemThu;
+	}
+
+	public void setKetQuaNghiemThu(String danhGiaNghiemThu) {
+		this.danhGiaNghiemThu = danhGiaNghiemThu;
+	}
+
+	public float getDiem() {
+		return diem;
+	}
+
+	public void setDiem(float diem) {
+		this.diem = diem;
+	}
+
+	public String getXepLoai() {
+		return xepLoai;
+	}
+
+	public void setXepLoai(String xepLoai) {
+		this.xepLoai = xepLoai;
+	}
 
 	public int getIdDeTai() {
 		return idDeTai;
@@ -351,16 +409,5 @@ public class DeTai {
 		this.idKhoa = idKhoa;
 	}
 
-
-	public String getLinkUpload() {
-		return linkUpload;
-	}
-
-
-	public void setLinkUpload(String linkUpload) {
-		this.linkUpload = linkUpload;
-	}
-
-	
 	
 }

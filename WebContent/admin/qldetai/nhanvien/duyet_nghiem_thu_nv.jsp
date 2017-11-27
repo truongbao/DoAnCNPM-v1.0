@@ -13,11 +13,11 @@
                         <div class="card">
                             <div class="header">
                                 <!-- <p class="category success">Thêm thành công</p> -->
-                                <form action="" method="post">
+                                <form action="<%=request.getContextPath()%>/admin/qldetai/duyet_nghiem_thu_nv?type=search" method="post">
                                 	<div class="row">
                                         <div class="col-md-8">
                                             <div class="form-group">
-                                                <input type="text" name="id" class="form-control border-input" value=""  placeholder="Nhập tên đề tài, tên chủ nhiệm cần tìm kiếm">
+                                                <input type="text" name="keyword" class="form-control border-input" value=""  placeholder="Nhập tên đề tài, tên chủ nhiệm cần tìm kiếm">
                                             </div>
                                         </div>
                                         <div class="col-md-4">

@@ -17,6 +17,7 @@ import javax.servlet.http.Part;
 
 import library.LibraryAuth;
 import library.RenameFileLibrary;
+import model.bean.BieuMau;
 import model.bean.DeTai;
 import model.dao.DetaiDAO;
 
@@ -114,18 +115,21 @@ public class PublicIndexDKThuyetMinhController extends HttpServlet {
 		      	}
 		      }
 				
-		        DeTai objDeTai = new DeTai(idDeTai, "", "", 0,
+		        /*DeTai objDeTai = new DeTai(idDeTai, "", "", 0,
 							        		"", 0, "", 
 							        		null, null, "", 
 							        		0, "", "", 
 							        		"", "", "", "",
 							        		"", "", "", "", 
 							        		0, "", 0,"",
-							        		null, 0, linkUpload);
+							        		null, 0, linkUpload);*/
+		        
+		        
+		        BieuMau objBM  =new BieuMau(0, idDeTai, 0, "", linkUpload);
 		        
 		        
 		        
-				 if(detaiDAO.UploadFileThuyetMinh(objDeTai) > 0){
+				 if(detaiDAO.UploadFileThuyetMinh(objBM) > 0){
 					//up thanh cong
 					response.sendRedirect(request.getContextPath()+"/dangky-thuyetminh?msg=1&did="+this.idDeTai);
 					 return;

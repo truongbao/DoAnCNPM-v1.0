@@ -259,7 +259,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>AdminIndexQLDTNhanVien</servlet-name>
-    <url-pattern>/admin/qldetai/nhanvien/index_nhanvien</url-pattern>
+    <url-pattern>/admin/qldetai/index_nhanvien</url-pattern>
     </servlet-mapping>
     
     
@@ -270,7 +270,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>AdminDuyetNTNhanVien</servlet-name>
-    <url-pattern>/admin/qldetai/nhanvien/duyet_nghiem_thu_nv</url-pattern>
+    <url-pattern>/admin/qldetai/duyet_nghiem_thu_nv</url-pattern>
     </servlet-mapping>
     
     

@@ -29,9 +29,9 @@ public class AdminDuyetNTNhanVien extends HttpServlet {
         response.setContentType("text/html");
         
       //kiểm tra đã đăng nhập chưa
-      	if(  LibraryAuth.CheckNhanVienTruong(request, response)==false){
-      		return;
-      	}
+        if(  LibraryAuth.CheckNhanVienTruong(request, response)==false){
+       		return;
+       	}
       	HttpSession session = request.getSession();
         DetaiDAO detaiDAO = new DetaiDAO();
 		User objUserAdmin = null;

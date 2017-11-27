@@ -34,7 +34,10 @@
 	%>
 
 	<div class="row" style="font-size: 16px">
-			&emsp;&emsp;&emsp;ĐẠI HỌC ĐÀ NẴNG&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM&emsp;TRƯỜNG ĐẠI HỌC BÁCH KHOA&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Độc lập - Tự do - Hạnh phúc&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+			<div>
+				ĐẠI HỌC ĐÀ NẴNG
+			</div>
+			<!--  &emsp;&emsp;&emsp;ĐẠI HỌC ĐÀ NẴNG&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM&emsp;TRƯỜNG ĐẠI HỌC BÁCH KHOA&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Độc lập - Tự do - Hạnh phúc&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-->
 	</div>
 	<br>
 	<div>
