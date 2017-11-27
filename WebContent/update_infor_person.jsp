@@ -1,7 +1,6 @@
 <%@page import="model.bean.HocViHocHam"%>
 <%@page import="model.bean.Khoa"%>
 <%@page import="model.bean.LoaiTaiKhoan"%>
-<%@page import="model.bean.HocVi"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 

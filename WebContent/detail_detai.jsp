@@ -131,7 +131,7 @@
 					</tr>
 					
 					<tr>
-						<td width="4%;">11</td> <td width="25%;" style="font-weight:bold;">Cấp đề tài</td>  <td> <%=objDeTai.getCapDeTai() %> </td>
+						<td width="4%;">11</td> <td width="25%;" style="font-weight:bold;">Cấp đề tài</td>  <td> <%=objDeTai.getTenCapDeTai() %> </td>
 					</tr>
 					
 					<!-- <tr>

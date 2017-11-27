@@ -40,7 +40,7 @@ public class PublicRegisterDeTaiController extends HttpServlet {
 	    
 	    request.setAttribute("listLinhVucNC", detaiDAO.getListLinhVucNC());
 	    
-	    //hien thi thong tin so dien thoai va email
+	    request.setAttribute("listCapDeTai", detaiDAO.getListCapDeTai());
         
 	    
 		//lấy thông tin đối tượng sobjUserPublic 
@@ -79,6 +79,7 @@ public class PublicRegisterDeTaiController extends HttpServlet {
 		
 		String tenDeTai = request.getParameter("tenDeTai");
 		int idLinhVucNghienCuu = Integer.parseInt(request.getParameter("idLinhVucNghienCuu"));
+		int idCapDeTai = Integer.parseInt(request.getParameter("idCapDeTai"));
 		String tinhCapThiet = request.getParameter("tinhCapThiet");
 		String mucTieu = request.getParameter("mucTieu");
 		String noiDung = request.getParameter("noiDungChinh");
@@ -91,7 +92,7 @@ public class PublicRegisterDeTaiController extends HttpServlet {
 									"", 0, "", null, null, "", idUser, "", "", "",
 									tinhCapThiet, mucTieu, "", "",
 									noiDung, sanPham, hieuQua, kinhPhiThucHien, 
-									LibraryConstant.DangChoXetDeTai, 0,"", null, objUser.getIdKhoa(), "");
+									LibraryConstant.DangChoXetDeTai, idCapDeTai,"", null, objUser.getIdKhoa(), "");
         
 		 if(detaiDAO.addDeTaiPublic(objDeTai) >  0){
 				response.sendRedirect(request.getContextPath()+"/list-register-detai?msg=1");
