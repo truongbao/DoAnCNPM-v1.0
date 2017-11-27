@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
-  <display-name>CNEWS</display-name>
+  <display-name>DoAnCNPM_SE03</display-name>
+  
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -9,6 +10,8 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  
   
   <!-- ============== Auth ==================== -->
   
@@ -753,6 +756,16 @@
   <servlet-mapping>
      <servlet-name>PublicIndexDKThuyetMinhController</servlet-name>
      <url-pattern>/dangky-thuyetminh</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+     <servlet-name>PublicDownloadThuyetMinhController</servlet-name>
+     <servlet-class>controller.PublicDownloadThuyetMinhController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+     <servlet-name>PublicDownloadThuyetMinhController</servlet-name>
+     <url-pattern>/download-tm</url-pattern>
   </servlet-mapping>
   
   
