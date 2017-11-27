@@ -46,10 +46,9 @@ public class PublicListRegisterDetaiController extends HttpServlet {
             objUser = (User)session.getAttribute("sobjUserPublic");
         }
         
-        
         //phân trang
          int current_page = 1;		
-		 int row_count = LibraryConstant.ROW_PUBLIC_COUNT; //7 tin trên 1 page
+		 int row_count = LibraryConstant.ROW_COUNT; //5 tin trên 1 page
 		
 		 
 		 //tong so danh muc
@@ -68,13 +67,9 @@ public class PublicListRegisterDetaiController extends HttpServlet {
 		int offset = (current_page - 1) * row_count;
 		request.setAttribute("current_page", current_page);
 		
-		
-		
-		    
+
 		//lấy danh sach đề tai do user đang login đăng ký
 		request.setAttribute("listDeTaiDK", detaiDAO.getListDeTaiDK( objUser.getIdUser(), offset,row_count ) );
-		//request.setAttribute("objUser", userDAO.getObjUser(objUser.getIdUser()));
-		
 		
 		
 		 RequestDispatcher rd = request.getRequestDispatcher("/list_register_detai.jsp");

@@ -183,12 +183,14 @@
 										    //nếu current_page > 1 và sumPage > 1 thì thêm nút back
 										    if(current_page > 1 && sumPage > 1){
 										 %>  
-										  <%--  <a href="<%=request.getContextPath() %>/admin/cat/index?page=<%=current_page-1%>">Back</a>  --%>
-										    <li> <a class="last " aria-label="previous" href="<%=request.getContextPath() %>/list-register-detai?page=<%=current_page-1%>"></a> </li>
+										 
+										   <a class="last" href="<%=request.getContextPath() %>/list-register-detai?page=<%=current_page-1%>"> 
+										       <span style="font-size: 20px;">  Back </span>
+										    </a>
 										   
 										 <%} %>  	
 		                               
-		                               
+		                                
 		                                   <%
 										     //fix lại trang đầu và cuối
 										     if(current_page >=numFix){
@@ -213,31 +215,28 @@
 										    String active="";
 											for (int i = pageFirst; i <= pageEnd; i++){
 												if(current_page==i){
-													active=" class='active' ";
+													active=" style='color :red; font-size: 20px; '  ";
 												}else{
 													active="";
 												}
 										 
 										   %>  
-										    	
 										  
-										  
-										   <a  href="<%=request.getContextPath()%>/list-register-detai?page=<%=i%>"> <span style="background-color: blue; width: 50px; height: 50px;"><%=i %></span> </a> 
+										   <a  href="<%=request.getContextPath()%>/list-register-detai?page=<%=i%>"> 
+										       <span <%=active %> style="font-size: 20px;"> [<%=i %>] </span>
+										    </a>  
 										     	
 										   <%}//for %> 	
 										    	
-			                               <!-- <li class="active"><span>1</span></li>
-		                                   <li><a href="tin-tuc4658.html?page=2">2</a></li> -->
-		                                   
-		                                   
+			                             
 		                                   <%
 										    //nếu curren_Page  <sumPage và sumPage > 1 thì thêm Next
-										    if(current_page < sumPage && sumPage > 1){
+										    if(current_page < sumPage && sumPage >= 1){
 										   %>
 										  
-										 	<%--  <a href="<%=request.getContextPath() %>/admin/cat/index?page=<%=current_page+1%>">Next</a>  --%>
-										 	 
-										 	  <li> <a class="last " aria-label="Next" href="<%=request.getContextPath() %>/list-register-detai?page=<%=current_page+1%>"></a>  </li>
+										   <a class="last" href="<%=request.getContextPath() %>/list-register-detai?page=<%=current_page+1%>"> 
+										      <span style="font-size: 20px;">  Next  </span> 
+										   </a> 
 										 	
 										  <%} %>
 		                                  

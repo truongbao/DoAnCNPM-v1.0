@@ -70,6 +70,10 @@ public class DetaiDAO {
 	}
 	
 	
+	
+	
+	
+	
 	// lay ra danh sach de tai ko phan trang (public) ứng vs user đang login
 		public ArrayList<DeTai> getListDeTaiDK(int idUserLogin, int offset, int row_count) {
 			ArrayList<DeTai> listDeTai = new ArrayList<>();
@@ -1824,7 +1828,84 @@ public class DetaiDAO {
 		return total;
 		
 	}
-	
+     
+     
+   //đếm số đề tài đã co ma so (nghĩa là da duyet thuyet minh )
+     public int countDeTaiCoMaSoPublic(int idUserLogin) {
+		
+		int total = 0;
+		conn = connectMySQLLibrary.getConnectMySQL();
+		
+		String sql = "SELECT COUNT(*) AS Total FROM detai AS dt "
+				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
+				+ " where dt.maSoDeTai != 'no' and u.idUser = "+idUserLogin;
+		
+		try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			if (rs.next()){
+				total = rs.getInt("Total");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			try {
+				rs.close();
+				st.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return total;
+		
+	}
+      
+     
+     
+  // lay ra danh sach de tai co phan trang (public) khi da co ma so
+ 	public ArrayList<DeTai> getListDeTaiPagingPublic(int idUserLogin, int offset,int row_count ) {
+ 		ArrayList<DeTai> listDeTai = new ArrayList<>();
+ 		conn = connectMySQLLibrary.getConnectMySQL();
+
+ 		String sql = "select dt.*,cdt.tenCapDeTai,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu FROM detai AS dt "
+ 				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
+ 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
+ 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
+ 				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
+ 	            + "  WHERE  dt.maSoDeTai != 'no' and u.idUser = "+idUserLogin
+ 				+ "  order by dt.idDeTai DESC  LIMIT "+offset+", "+row_count;
+ 		try {
+ 			st = conn.createStatement();
+ 			rs = st.executeQuery(sql);
+
+ 			while (rs.next()) {
+ 				DeTai objDeTai = new DeTai(rs.getInt("idDeTai"), rs.getString("tenDeTai"), rs.getString("maSoDeTai"),
+ 						rs.getInt("idLinhVucNghienCuu"), rs.getString("tenLinhVucNghienCuu"),
+ 						rs.getInt("idLoaiHinhNghienCuu"), rs.getString("tenLoaiHinhNghienCuu"),
+ 						rs.getTimestamp("thoiGianBatDau"), rs.getTimestamp("thoiGianKetThuc"),
+ 						rs.getString("donViChuTri"), rs.getInt("idUser"), rs.getString("fullName"),
+ 						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
+ 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
+ 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
+ 						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
+ 						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("linkUpload"));
+
+ 				listDeTai.add(objDeTai);
+ 			}
+ 		} catch (SQLException e) {
+ 			e.printStackTrace();
+ 		} finally {
+ 			try {
+ 				st.close();
+ 				conn.close();
+ 			} catch (SQLException e) {
+ 				e.printStackTrace();
+ 			}
+ 		}
+ 		return listDeTai;
+
+ 	}
 	
 	
 
