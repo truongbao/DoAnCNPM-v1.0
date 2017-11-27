@@ -46,6 +46,8 @@ public class PublicUpdateDetaiController extends HttpServlet {
 	    //lay danh sach linh vuc nghien cuu
 	    request.setAttribute("listLinhVucNC", detaiDAO.getListLinhVucNC());
 	    
+	    request.setAttribute("listCapDeTai", detaiDAO.getListCapDeTai());
+	    
 	    
 	    //lấy thông tin đối tượng sobjUserPublic 
 	    User objUser = null;
@@ -87,6 +89,7 @@ public class PublicUpdateDetaiController extends HttpServlet {
 			
 			String tenDeTai = request.getParameter("tenDeTai");
 			int idLinhVucNghienCuu = Integer.parseInt(request.getParameter("idLinhVucNghienCuu"));
+			int idCapDeTai = Integer.parseInt(request.getParameter("idCapDeTai"));
 			String tinhCapThiet = request.getParameter("tinhCapThiet");
 			String mucTieu = request.getParameter("mucTieu");
 			String noiDung = request.getParameter("noiDungChinh");
@@ -101,7 +104,7 @@ public class PublicUpdateDetaiController extends HttpServlet {
 										"", 0, "", null, null, "", idUser, "", "", "",
 										tinhCapThiet, mucTieu, "", "",
 										noiDung, sanPham, hieuQua, kinhPhiThucHien, 
-										"", 0,"", null, objUser.getIdKhoa(), "");
+										"", idCapDeTai,"", null, objUser.getIdKhoa(), "");
 			
 			objDeTai.setIdDeTai(idDeTai); //set lại idDeTai lấy dc
 

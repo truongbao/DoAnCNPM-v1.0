@@ -1,3 +1,4 @@
+<%@page import="model.bean.CapDeTai"%>
 <%@page import="model.bean.LinhVucNC"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -70,7 +71,7 @@
 								
 								<div class="col-xs-9">
 								    <select name="idLinhVucNghienCuu" class="form-control border-input">
-									    <option  value="0">--------------------------------------- Chọn -------------------------------------</option>
+									    <option  value="0">-------------------------------- Chọn lĩnh vực nghiên cứu --------------------------------</option>
 									    
 									    <%
 										if (request.getAttribute("listLinhVucNC") != null){
@@ -80,6 +81,30 @@
 													 
 										%>
 										<option value="<%=objLVNC.getIdLinhVucNghienCuu()%>"> <%=objLVNC.getTenLinhVucNghienCuu() %>   </option>
+										
+										<%}}} %>
+									    
+									</select>
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								<div class="col-xs-3">
+									<label class="p-center">Cấp đề tài:</label>
+								</div>
+								
+								<div class="col-xs-9">
+								    <select name="idCapDeTai" class="form-control border-input">
+									    <option  value="0">-------------------------------- Chọn cấp đề tài  ---------------------------------------------</option>
+									    
+									    <%
+										if (request.getAttribute("listCapDeTai") != null){
+											ArrayList<CapDeTai> listCapDeTai = (ArrayList<CapDeTai>) request.getAttribute("listCapDeTai");
+											if (listCapDeTai.size() > 0){
+												for (CapDeTai objCDT : listCapDeTai){
+													 
+										%>
+										<option value="<%=objCDT.getIdCapDeTai()%>"> <%=objCDT.getTenCapDeTai() %>   </option>
 										
 										<%}}} %>
 									    

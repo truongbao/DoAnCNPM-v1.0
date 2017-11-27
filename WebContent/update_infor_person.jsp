@@ -1,7 +1,6 @@
 <%@page import="model.bean.HocViHocHam"%>
 <%@page import="model.bean.Khoa"%>
 <%@page import="model.bean.LoaiTaiKhoan"%>
-<%@page import="model.bean.HocVi"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -122,7 +121,7 @@
 								 </div>
 								 
 								 <div class="col-xs-10">
-									 <select name="idHocVi" class="form-control border-input">
+									 <select name="idHocViHocHam" class="form-control border-input">
 									 
 									  <%
 										if (request.getAttribute("listHocVi") != null){
