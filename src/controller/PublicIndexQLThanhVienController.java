@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import library.LibraryAuth;
+import library.LibraryConstant;
 import model.bean.User;
 import model.dao.DetaiDAO;
 import model.dao.UserDAO;
@@ -39,8 +40,32 @@ public class PublicIndexQLThanhVienController extends HttpServlet {
          if(session.getAttribute("sobjUserPublic") != null){ 
         	 objUser =  (User) session.getAttribute("sobjUserPublic");
          }
-        	     
-	     request.setAttribute("ListThanhVienByIdUser", userDAO.getListThanhVienByIdUser(objUser.getIdUser() ) );
+         
+         
+         //phân trang
+         int current_page = 1;		
+		 int row_count = LibraryConstant.ROW_COUNT; //5 tin trên 1 page
+		
+		 
+		 //tong so member ứng vs idUser đang login
+		 int sumMember = userDAO.countMemberPublic(objUser.getIdUser());
+		 
+		 //tong so trang
+		int sumPage = (int) Math.ceil((float)sumMember / row_count) ;
+		request.setAttribute("sumPage", sumPage);
+		
+		//lấy số trang hiện tại
+		if (request.getParameter("page") != null){
+			current_page = Integer.parseInt(request.getParameter("page"));
+		}
+		 
+		// tính offset
+		int offset = (current_page - 1) * row_count;
+		request.setAttribute("current_page", current_page);
+         
+		
+        //lay danh sach thanh vien co phan trang 
+	    request.setAttribute("ListThanhVienByIdUser", userDAO.getListThanhVienByIdUser(objUser.getIdUser(),offset,row_count ) );
 		
 		
 		 RequestDispatcher rd = request.getRequestDispatcher("/quanly_thanhvien.jsp");

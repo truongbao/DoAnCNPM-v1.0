@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import library.LibraryConstant;
 import model.bean.User;
 import model.dao.UserDAO;
 
@@ -26,13 +27,38 @@ public class PublicIndexController extends HttpServlet {
 		
 		UserDAO userDAO = new UserDAO();
 		
-		ArrayList<User> listUser = new ArrayList<User>();
+		//phân trang
+        int current_page = 1;		
+		int row_count = LibraryConstant.ROW_COUNT_GV; //8 tin trên 1 page
 		
-		if(listUser != null){
-			  listUser = userDAO.getListGiangVien();
+		 
+		//tong so giang vien
+		int sumGV = userDAO.countGiangVienPublic();
+		 
+		//tong so trang
+		int sumPage = (int) Math.ceil((float)sumGV / row_count) ;
+		request.setAttribute("sumPage", sumPage);
+		
+		//lấy số trang hiện tại
+		if (request.getParameter("page") != null){
+			current_page = Integer.parseInt(request.getParameter("page"));
+		}
+		 
+		// tính offset
+		int offset = (current_page - 1) * row_count;
+		request.setAttribute("current_page", current_page);
+		
+		
+		
+		//lay danh sach giang vien
+        ArrayList<User> listGiangVienPublic = new ArrayList<User>();
+		
+		if(listGiangVienPublic != null){
+			  listGiangVienPublic = userDAO.getListGiangVienPaging(offset,row_count);
 		}
 		
-		request.setAttribute("listUser", listUser);
+		
+		 request.setAttribute("listGiangVienPublic", listGiangVienPublic);
 		
 		 RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
          rd.forward(request, response);

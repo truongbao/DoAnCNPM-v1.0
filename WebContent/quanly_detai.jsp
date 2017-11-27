@@ -127,7 +127,7 @@
 										    if(current_page > 1 && sumPage > 1){
 										 %>  
 										 
-										   <a class="last" href="<%=request.getContextPath() %>/list-register-detai?page=<%=current_page-1%>"> 
+										   <a class="last" href="<%=request.getContextPath() %>/quanly-detai?page=<%=current_page-1%>"> 
 										       <span style="font-size: 20px;">  Back </span>
 										    </a>
 										   
@@ -165,7 +165,7 @@
 										 
 										   %>  
 										  
-										   <a  href="<%=request.getContextPath()%>/list-register-detai?page=<%=i%>"> 
+										   <a  href="<%=request.getContextPath()%>/quanly-detai?page=<%=i%>"> 
 										       <span <%=active %> style="font-size: 20px;"> [<%=i %>] </span>
 										    </a>  
 										     	
@@ -177,7 +177,7 @@
 										    if(current_page < sumPage && sumPage >= 1){
 										   %>
 										  
-										   <a class="last" href="<%=request.getContextPath() %>/list-register-detai?page=<%=current_page+1%>"> 
+										   <a class="last" href="<%=request.getContextPath() %>/quanly-detai?page=<%=current_page+1%>"> 
 										      <span style="font-size: 20px;">  Next  </span> 
 										   </a> 
 										 	

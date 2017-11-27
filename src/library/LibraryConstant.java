@@ -7,6 +7,7 @@ public class LibraryConstant {
 	  public final static int ROW_COUNT_NEWS=6;
 	  public final static int ROW_COUNT_BaiVietMoi=3;
 	  public static final int ROW_PUBLIC_COUNT = 7; 
+	  public final static int ROW_COUNT_GV=8;
 	  
 	  public final static String TOPICTYPE_CAPCOSO = "Cấp cơ sở" ;
 	  public final static String TOPICTYPE_CAPDHDN = "Cấp Đại học Đà Nẵng" ;

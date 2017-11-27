@@ -185,7 +185,7 @@
 										 %>  
 										 
 										   <a class="last" href="<%=request.getContextPath() %>/list-register-detai?page=<%=current_page-1%>"> 
-										       <span style="font-size: 20px;">  Back </span>
+										       <span style="font-size: 20px;">  [Back] </span>
 										    </a>
 										   
 										 <%} %>  	
@@ -235,7 +235,7 @@
 										   %>
 										  
 										   <a class="last" href="<%=request.getContextPath() %>/list-register-detai?page=<%=current_page+1%>"> 
-										      <span style="font-size: 20px;">  Next  </span> 
+										      <span style="font-size: 20px;">  [Next]  </span> 
 										   </a> 
 										 	
 										  <%} %>
