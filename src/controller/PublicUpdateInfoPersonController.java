@@ -80,7 +80,7 @@ public class PublicUpdateInfoPersonController extends HttpServlet {
 		String email = request.getParameter("email");
 		
 		int idKhoa = Integer.parseInt(request.getParameter("idKhoa"));
-		int idHocVi = Integer.parseInt(request.getParameter("idHocVi"));
+		int idHocViHocHam = Integer.parseInt(request.getParameter("idHocViHocHam"));
 		int idLoaiTaiKhoan = Integer.parseInt(request.getParameter("idLoaiTaiKhoan"));
 		
 		//String chucDanhKhoaHoc = request.getParameter("chucdanh_khoahoc");
@@ -100,7 +100,7 @@ public class PublicUpdateInfoPersonController extends HttpServlet {
 		}
 		
 		User objUser = new User(idUser, fullName, diaChiCoQuan, dienThoaiCoQuan, 
-				                idHocVi, "", namSinh, diaChiNhaRieng, dienThoaiNhaRieng, email,
+				                idHocViHocHam, "", namSinh, diaChiNhaRieng, dienThoaiNhaRieng, email,
 				                fax, "" , matKhau, idLoaiTaiKhoan, "", idKhoa, "","");
 		
 		  

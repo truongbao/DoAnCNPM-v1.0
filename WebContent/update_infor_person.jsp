@@ -121,7 +121,7 @@
 								 </div>
 								 
 								 <div class="col-xs-10">
-									 <select name="idHocVi" class="form-control border-input">
+									 <select name="idHocViHocHam" class="form-control border-input">
 									 
 									  <%
 										if (request.getAttribute("listHocVi") != null){
