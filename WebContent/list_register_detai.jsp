@@ -143,7 +143,7 @@
 									  <%
 									    //viet phuong thuc lay ra trangThai mới cập nhật ứng vs idDeTai vừa dk
 									    DetaiDAO detaiDAO = new DetaiDAO();
-									    DeTai objDeTaiById =  detaiDAO.getTrangThaiUpdateUpdByIdDeTaiDK(objDT.getIdDeTai());
+									    DeTai objDeTaiById =  detaiDAO.getTrangThaiUpdateByIdDeTaiDK(objDT.getIdDeTai());
 									    if( objDeTaiById != null ){
 									  
 									  %>

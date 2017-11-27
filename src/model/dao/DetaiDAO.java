@@ -75,7 +75,7 @@ public class DetaiDAO {
 	
 	
 	
-	// lay ra danh sach de tai ko phan trang (public) ứng vs user đang login
+	// lay ra danh sach de tai phan trang (public) ứng vs user đang login
 		public ArrayList<DeTai> getListDeTaiDK(int idUserLogin, int offset, int row_count) {
 			ArrayList<DeTai> listDeTai = new ArrayList<>();
 			conn = connectMySQLLibrary.getConnectMySQL();
@@ -164,8 +164,8 @@ public class DetaiDAO {
 		
 		
 		
-		//Lay ra lay ra trangThai mới cập nhật ứng vs idDeTai vừa dk (public)
-		public DeTai getTrangThaiUpdateUpdByIdDeTaiDK(int idDeTai) {
+		//Lay ra trangThai mới cập nhật ứng vs idDeTai vừa dk (public)
+		public DeTai getTrangThaiUpdateByIdDeTaiDK(int idDeTai) {
 			conn = connectMySQLLibrary.getConnectMySQL();
 
 			String sql = "select dt.*,cdt.tenCapDeTai,u.fullName, lvnc.tenLinhVucNghienCuu FROM detai AS dt "
@@ -189,7 +189,7 @@ public class DetaiDAO {
 							rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 							rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
 							rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
-							rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"),  rs.getString("danhGiaNghiemThu"),rs.getFloat("diem"),rs.getString("xepLoai"));
+							rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa") );
 
 				}
 			} catch (SQLException e) {
