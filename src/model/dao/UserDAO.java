@@ -27,8 +27,7 @@ public class UserDAO {
 		  connectMySQLLibrary = new ConnectMySQLLibrary();
 	}
 	
-	//lây danh sach giang vien với idLoaiTaiKhoan  = 2 
-	
+	//lây danh sach giang vien với idLoaiTaiKhoan  = 2 ko phan trang
 	public ArrayList<User> getListGiangVien(){
 		ArrayList<User> listUser = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
@@ -65,6 +64,49 @@ public class UserDAO {
 		return listUser;
 		
 	}
+	
+	
+	
+	//lây danh sach giang vien với idLoaiTaiKhoan  = 2 có phân trang
+	public ArrayList<User> getListGiangVienPaging(int offset,int row_count){
+		ArrayList<User> listUser = new ArrayList<>();
+		conn = connectMySQLLibrary.getConnectMySQL();
+		
+		 String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocViHocHam from user AS u "
+	        		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
+	        		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
+	        		+ " INNER JOIN  hocvihocham AS hv ON hv.idHocViHocHam = u.idHocViHocHam "
+	        		+ " where u.idLoaiTaiKhoan = 2 "
+		            + " ORDER BY u.idUser DESC  LIMIT "+offset+", "+row_count;
+		
+	    User objUser = null;
+		  
+		try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			
+			while(rs.next()){
+				 objUser = new User(rs.getInt("idUser"),rs.getString("fullName"),rs.getString("diaChiCoQuan") ,
+			             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocViHocHam") ,rs.getString("tenHocViHocHam"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
+			             rs.getString("dienThoaiNhaRieng") ,rs.getString("email") ,rs.getString("fax"),rs.getString("userName") , 
+			             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa"), rs.getString("avt"));
+			                        
+				 listUser.add(objUser);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				st.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listUser;
+		
+	}
+	
 	
 	
 	//lây danh sach giao vien trong trường (trong bảng user)
@@ -112,14 +154,15 @@ public class UserDAO {
 
 	//Hien thi danh sach thanh vien có phân trang ứng vs id chủ nhiệm đề tài (thèn đang login)
 	
-	public ArrayList<ThanhVien> getListThanhVienByIdUser(int idUser){
+	public ArrayList<ThanhVien> getListThanhVienByIdUser(int idUser, int offset,int row_count){
 		ArrayList<ThanhVien> listTV = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
 		
 		String sql = "select tv.idThanhVien, tv.tenThanhVien,tv.donVi, tv.noiDungNghienCuu, dt.idDeTai, dt.maSoDeTai FROM thanhvien AS tv"
 				+ " INNER JOIN  detai AS dt ON dt.idDeTai = tv.idDeTai"
-				+ " INNER JOIN  user AS u ON u.idUser = dt.idUser WHERE u.idUser = "+idUser+" and u.idUser != tv.idThanhVien ";
-		
+				+ " INNER JOIN  user AS u ON u.idUser = dt.idUser "
+				+ " WHERE u.idUser = "+idUser+" and u.idUser != tv.idThanhVien "
+		        + " ORDER BY tv.tenThanhVien DESC  LIMIT "+offset+", "+row_count;
 		try {
 			st = conn.createStatement();
 			rs = st.executeQuery(sql);
@@ -203,7 +246,7 @@ public class UserDAO {
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
 						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
-						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"),  rs.getString("danhGiaNghiemThu"),rs.getFloat("diem"),rs.getString("xepLoai"));
+						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("danhGiaNghiemThu"),rs.getFloat("diem"),rs.getString("xepLoai"));
 				listDeTai.add(objDeTai);
 			}
 		} catch (SQLException e) {
@@ -1088,8 +1131,70 @@ public boolean checkExistEmail(String email) {
 		return sum;
 	}
 	
+    
+    //đếm tong thanh viên ứng vs user đang login public
+	public int countMemberPublic(int idUserLogin) {
+		int total = 0;
+		conn = connectMySQLLibrary.getConnectMySQL();
+		String sql = "select count(*) AS total FROM thanhvien AS tv"
+				+ " INNER JOIN  detai AS dt ON dt.idDeTai = tv.idDeTai"
+				+ " INNER JOIN  user AS u ON u.idUser = dt.idUser WHERE u.idUser = "+idUserLogin+" and u.idUser != tv.idThanhVien ";
+		
+        try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			if(rs.next()){
+				total = rs.getInt("total");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			 try {
+				rs.close();
+				st.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return total;
 
+	}
+	
+	
+	//đếm tong thanh viên ứng vs user đang login public
+	public int countGiangVienPublic() {
+		int total = 0;
+		conn = connectMySQLLibrary.getConnectMySQL();
+		String sql = "select count(*) AS total from user AS u "
+        		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
+        		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
+        		+ " INNER JOIN  hocvihocham AS hv ON hv.idHocViHocHam = u.idHocViHocHam where u.idLoaiTaiKhoan = 2 ";
+		
+        try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			if(rs.next()){
+				total = rs.getInt("total");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			 try {
+				rs.close();
+				st.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return total;
 
+	}
 
 
 	

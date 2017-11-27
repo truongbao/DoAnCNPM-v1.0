@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import library.ConnectMySQLLibrary;
 import library.LibraryConstant;
+import model.bean.BieuMau;
 import model.bean.CapDeTai;
 import model.bean.DeTai;
 import model.bean.LinhVucNC;
@@ -1712,36 +1713,38 @@ public class DetaiDAO {
 	
 	
 	
-//	public int UploadFileThuyetMinh(DeTai objDeTai) {
-//        
-//		int result = 0;
-//		conn = connectMySQLLibrary.getConnectMySQL();
-//
-//		String sql="UPDATE detai SET linkUpload = ?  "
-//				+ " where idDeTai = ? ";
-//
-//		try {
-//            pst = conn.prepareStatement(sql);
-//			
-//			pst.setString(1, objDeTai.getLinkUpload());
-//			
-//			pst.setInt(2, objDeTai.getIdDeTai());
-//			
-//			result = pst.executeUpdate();
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				pst.close();
-//				conn.close();
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//
-//		return result;
-//	}
+	public int UploadFileThuyetMinh(BieuMau objBM) {
+        
+		int result = 0;
+		conn = connectMySQLLibrary.getConnectMySQL();
+
+		
+		
+		String sql="insert into uploadbieumau(idDeTai, linkBieuMau ) values(?,?) ";
+				
+
+		try {
+            pst = conn.prepareStatement(sql);
+			
+			pst.setInt(1, objBM.getIdDeTai());
+			
+			pst.setString(2, objBM.getLinkBieuMau());
+			
+			result = pst.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return result;
+	}
 
 	//get list detai by trangThai
 	public ArrayList<DeTai> getListDeTaiByStatus(int idKhoa, String status, String keyword,int idCDT, int offset, int row_count){
