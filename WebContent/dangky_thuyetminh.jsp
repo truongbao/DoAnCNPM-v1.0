@@ -136,7 +136,7 @@
 			</table>
 			
 			<h3 style="margin-top: 15px;font-size: 18px;"> Tải mẫu đăng ký thuyết minh 
-			   <a href="">:  Tại đây </a> 
+			   <a href="<%=request.getContextPath() %>/download-tm">:  Tại đây </a> 
 			</h3>
 			
 			<form class="form"  action="<%=request.getContextPath() %>/dangky-thuyetminh?did=<%=objDeTaiByIdDeTaiDK.getIdDeTai()%>" method="post"  enctype="multipart/form-data">

@@ -79,7 +79,7 @@ public class PublicIndexDKThuyetMinhController extends HttpServlet {
 		        
 		      //file 
 		      final String path = request.getServletContext().getRealPath("files_thuyetminh"); //duong dan den thu muc chua hinhanh
-		      System.out.println(path);
+		      System.out.println("cukiko : "+path);
 		      File dirFile = new File(path);
 		      if(!dirFile.exists()){
 		      	dirFile.mkdir(); //neu file chua ton tai thi tao file
