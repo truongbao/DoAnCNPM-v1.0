@@ -111,21 +111,23 @@
 						<td width="4%;">6</td> <td width="25%;" style="font-weight:bold;">Nội dung chính</td>  <td> <%=objDeTaiByIdDeTaiDK.getNoiDung() %>  </td>
 					</tr>
 					
-					<!-- <tr>
-						<td width="4%;">7</td> <td width="25%;" style="font-weight:bold;">Cấp đề tài</td>  <td> Cấp trường </td>
+					 <tr>
+						<td width="4%;">7</td> <td width="25%;" style="font-weight:bold;">Cấp đề tài</td>  <td>  <%=objDeTaiByIdDeTaiDK.getTenCapDeTai() %> </td>
 					</tr>
+					
+					<!--
 					<tr>
 						<td width="4%;">8</td> <td width="25%;" style="font-weight:bold;">Kết quả dự kiến</td>  <td>  </td>
 					</tr> -->
 					
 					<tr>
-						<td width="4%;">9</td> <td width="25%;" style="font-weight:bold;">Hiệu quả dự kiến</td>  <td> <%=objDeTaiByIdDeTaiDK.getHieuQua() %> </td>
+						<td width="4%;">8</td> <td width="25%;" style="font-weight:bold;">Hiệu quả dự kiến</td>  <td> <%=objDeTaiByIdDeTaiDK.getHieuQua() %> </td>
 					</tr>
 					<tr>
-						<td width="4%;">10</td> <td width="25%;" style="font-weight:bold;">Kinh phí dự kiếm</td>  <td>  <%=objDeTaiByIdDeTaiDK.getKinhPhiThucHien() %> Đồng </td>
+						<td width="4%;">9</td> <td width="25%;" style="font-weight:bold;">Kinh phí dự kiếm</td>  <td>  <%=objDeTaiByIdDeTaiDK.getKinhPhiThucHien() %> Đồng </td>
 					</tr>
 					<tr>
-						<td width="4%;">11</td> <td width="25%;" style="font-weight:bold;">Thời gian dư kiến</td>  <td> 1 năm</td>
+						<td width="4%;">10</td> <td width="25%;" style="font-weight:bold;">Thời gian dư kiến</td>  <td> 1 năm</td>
 					</tr>
 					
 					
@@ -150,7 +152,7 @@
 				</div>
 				
 				<div style="float: left;padding-top: 41px;">
-					<button class="btn btn-lg btn-primary pull-right"> Upload </button>
+					<button class="btn btn-lg btn-primary pull-right"> Tạo thuyết minh </button>
 				</div>
 				
 			</form>
@@ -159,14 +161,14 @@
 			
 			<%} %>
 			
-			<div class="form-group row"> 
+			<!-- <div class="form-group row"> 
 				<div class="col-xs-2">
-					
+					 
 				</div>
 				<div class="col-xs-10 ">
 					<a href="" class="btn btn-lg btn-primary pull-right">Tạo thuyết minh</a>
 				</div>
-			</div>
+			</div> -->
 
 
 

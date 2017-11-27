@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import library.ConnectMySQLLibrary;
 import library.LibraryConstant;
+import model.bean.BieuMau;
 import model.bean.CapDeTai;
 import model.bean.DeTai;
 import model.bean.LinhVucNC;
@@ -1713,20 +1714,22 @@ public class DetaiDAO {
 	
 	
 	
-	public int UploadFileThuyetMinh(DeTai objDeTai) {
+	public int UploadFileThuyetMinh(BieuMau objBM) {
         
 		int result = 0;
 		conn = connectMySQLLibrary.getConnectMySQL();
 
-		String sql="UPDATE detai SET linkUpload = ?  "
-				+ " where idDeTai = ? ";
+		
+		
+		String sql="insert into uploadbieumau(idDeTai, linkBieuMau ) values(?,?) ";
+				
 
 		try {
             pst = conn.prepareStatement(sql);
 			
-			pst.setString(1, objDeTai.getLinkUpload());
+			pst.setInt(1, objBM.getIdDeTai());
 			
-			pst.setInt(2, objDeTai.getIdDeTai());
+			pst.setString(2, objBM.getLinkBieuMau());
 			
 			result = pst.executeUpdate();
 			
