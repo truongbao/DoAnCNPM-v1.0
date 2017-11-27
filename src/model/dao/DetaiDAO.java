@@ -101,7 +101,7 @@ public class DetaiDAO {
 							rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 							rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
 							rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
-							rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"),  rs.getString("danhGiaNghiemThu"),rs.getFloat("diem"),rs.getString("xepLoai"));
+							rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa") );
 
 					listDeTai.add(objDeTai);
 				}
@@ -145,7 +145,7 @@ public class DetaiDAO {
 							rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 							rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
 							rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
-							rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"),  rs.getString("danhGiaNghiemThu"),rs.getFloat("diem"),rs.getString("xepLoai"));
+							rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa") );
 
 				}
 			} catch (SQLException e) {
@@ -315,7 +315,7 @@ public class DetaiDAO {
 						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
 						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
 						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
-						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"),  rs.getString("danhGiaNghiemThu"),rs.getFloat("diem"),rs.getString("xepLoai"));
+						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"));
 			}
 
 		} catch (SQLException e) {
@@ -1891,7 +1891,7 @@ public class DetaiDAO {
  						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
  						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
  						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
- 						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("danhGiaNghiemThu"),rs.getFloat("diem"),rs.getString("xepLoai"));
+ 						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa") );
 
  				listDeTai.add(objDeTai);
  			}
