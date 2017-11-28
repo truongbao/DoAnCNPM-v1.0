@@ -103,6 +103,18 @@ public class LibraryConstant {
 		  
 	  }
 	  
-	  
+	  public static String getXepLoai(float score){
+		  String result = "";
+		  if(score >= 8.0){
+			  result = "Xuất sắc";
+		  }else if (score >= 6.5){
+			  result = "Khá";
+		  }else if(score >= 5.0){
+			  result = "Trung bình";
+		  }else{
+			  result = "Yếu";
+		  }
+		  return result;
+	  }
 	  
 }

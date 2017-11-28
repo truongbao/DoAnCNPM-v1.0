@@ -76,7 +76,7 @@ public class AdminDanhGiaDXKhoa extends HttpServlet {
          
  	    int idDeTai = Integer.parseInt(request.getParameter("did"));
  	    DeTai objDT = detaiDAO.getObjDeTai(idDeTai);
- 	    if( request.getParameter("noidung") != null){
+ 	    if( request.getParameter("noidung") != ""){
  	    	String noidung = request.getParameter("noidung");
  	    	int result = detaiDAO.updateToTrangThai(LibraryConstant.KhoaDeXuatChinhSua, idDeTai);
  	    	if(result > 0){

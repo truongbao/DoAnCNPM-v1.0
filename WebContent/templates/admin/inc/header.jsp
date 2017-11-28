@@ -122,16 +122,9 @@
                 </li>
                 <%} %>
                 <li>
-                    <% if (isNhanVienQLNCKHTruong) {%>
-                			<a href="<%= request.getContextPath() %>/admin/qldetai/index_nhanvien?type=load">
-                 	<%} else if (isAdmin) { %>
-                			<a href="<%= request.getContextPath() %>/admin/qldetai/admin/index_admin">
-                	<%} else if(isQuanLyNCKHKhoa){ %>
-               			<a href="<%= request.getContextPath() %>/admin/qldetai/admin/index_admin">
-                	<%} %> 
-                        <!-- <i class="ti-panel"></i> -->
-               				<p>Quản lý đề tài</p>
-           				</a>
+             			<a href="<%= request.getContextPath() %>/admin/qldetai/index_nhanvien?type=load">
+             				<p>Quản lý đề tài</p>
+         				</a>
                </li>
                <li>
                	<%if (isQuanLyNCKHKhoa) { %>

@@ -257,11 +257,11 @@
     
     <!-- ============== RIN QL de tai nhan vien ==================== -->
    <servlet>
-    <servlet-name>AdminIndexQLDTNhanVien</servlet-name>
-    <servlet-class>controller.AdminIndexQLDTNhanVien</servlet-class>
+    <servlet-name>AdminIndexQLDT</servlet-name>
+    <servlet-class>controller.AdminIndexQLDT</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>AdminIndexQLDTNhanVien</servlet-name>
+    <servlet-name>AdminIndexQLDT</servlet-name>
     <url-pattern>/admin/qldetai/index_nhanvien</url-pattern>
     </servlet-mapping>
     
@@ -288,18 +288,6 @@
     </servlet-mapping>
     
     
-    
-    <!-- ============== RIN QL de tai admin ==================== -->
-   <servlet>
-    <servlet-name>AdminIndexQLDTAdmin</servlet-name>
-    <servlet-class>controller.AdminIndexQLDTAdmin</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AdminIndexQLDTAdmin</servlet-name>
-    <url-pattern>/admin/qldetai/admin/index_admin</url-pattern>
-    </servlet-mapping>
-    
-    
     <!-- ============== RIN QL de tai admin ==================== -->
    <servlet>
     <servlet-name>AdminDuyetNTAdmin</servlet-name>
@@ -307,7 +295,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>AdminDuyetNTAdmin</servlet-name>
-    <url-pattern>/admin/qldetai/admin/duyet_nghiem_thu_ad</url-pattern>
+    <url-pattern>/admin/qldetai/duyet_nghiem_thu_ad</url-pattern>
     </servlet-mapping>
     
     

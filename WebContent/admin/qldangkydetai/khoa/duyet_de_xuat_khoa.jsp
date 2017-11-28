@@ -14,9 +14,6 @@
 			    return false;
 			}
 		}
-		if ($(#check-all)){
-			
-		}
   	</script>
         <div class="content">
             <div class="container-fluid">
