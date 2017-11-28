@@ -4,21 +4,19 @@ public class BieuMau {
 
 	private int idBieuMau;
 	private int idDeTai;
-	private int idLoaiBieuMau;
-	private String tenLoaiBieuMau;
+	private String maBieuMau;
 	private String linkBieuMau;
 	
 	public BieuMau() {
 		super();
 	}
 
-	public BieuMau(int idBieuMau, int idDeTai, int idLoaiBieuMau,
-			String tenLoaiBieuMau, String linkBieuMau) {
+	public BieuMau(int idBieuMau, int idDeTai, String maBieuMau,
+			String linkBieuMau) {
 		super();
 		this.idBieuMau = idBieuMau;
 		this.idDeTai = idDeTai;
-		this.idLoaiBieuMau = idLoaiBieuMau;
-		this.tenLoaiBieuMau = tenLoaiBieuMau;
+		this.maBieuMau = maBieuMau;
 		this.linkBieuMau = linkBieuMau;
 	}
 
@@ -38,20 +36,12 @@ public class BieuMau {
 		this.idDeTai = idDeTai;
 	}
 
-	public int getIdLoaiBieuMau() {
-		return idLoaiBieuMau;
+	public String getMaBieuMau() {
+		return maBieuMau;
 	}
 
-	public void setIdLoaiBieuMau(int idLoaiBieuMau) {
-		this.idLoaiBieuMau = idLoaiBieuMau;
-	}
-
-	public String getTenLoaiBieuMau() {
-		return tenLoaiBieuMau;
-	}
-
-	public void setTenLoaiBieuMau(String tenLoaiBieuMau) {
-		this.tenLoaiBieuMau = tenLoaiBieuMau;
+	public void setMaBieuMau(String maBieuMau) {
+		this.maBieuMau = maBieuMau;
 	}
 
 	public String getLinkBieuMau() {
@@ -61,6 +51,9 @@ public class BieuMau {
 	public void setLinkBieuMau(String linkBieuMau) {
 		this.linkBieuMau = linkBieuMau;
 	}
+
+	
+	
 	
 	
 	

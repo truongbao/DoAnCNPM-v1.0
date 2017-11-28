@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import library.LibraryAuth;
+import model.dao.DetaiDAO;
 
 
 @MultipartConfig
@@ -35,6 +36,16 @@ public class PublicDownloadTMToEditController extends HttpServlet {
 		
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
+		
+		
+		//lay idDeTai 
+		DetaiDAO detaiDAO =new DetaiDAO();
+		int idDeTai = Integer.parseInt(request.getParameter("did"));
+		
+		
+		System.out.println("lay id dc roi : "+idDeTai);
+		
+		
 		
 	    //file 
         final String filepath = request.getServletContext().getRealPath("files_thuyetminh"); //duong dan den thu muc chua hinhanh

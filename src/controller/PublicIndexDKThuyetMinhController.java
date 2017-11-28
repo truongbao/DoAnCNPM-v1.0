@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import library.LibraryAuth;
+import library.LibraryConstant;
 import library.RenameFileLibrary;
 import model.bean.BieuMau;
 import model.bean.DeTai;
@@ -120,17 +121,7 @@ public class PublicIndexDKThuyetMinhController extends HttpServlet {
 		      	}
 		      }
 				
-		        /*DeTai objDeTai = new DeTai(idDeTai, "", "", 0,
-							        		"", 0, "", 
-							        		null, null, "", 
-							        		0, "", "", 
-							        		"", "", "", "",
-							        		"", "", "", "", 
-							        		0, "", 0,"",
-							        		null, 0, linkUpload);*/
-		        
-		        
-		        BieuMau objBM  =new BieuMau(0, idDeTai, 0, "", linkUpload);
+		        BieuMau objBM  =new BieuMau(0, idDeTai, LibraryConstant.BieuMauThuyetMinh, linkUpload);
 		        
 		        
 		        
