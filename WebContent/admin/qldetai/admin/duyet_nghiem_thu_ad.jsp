@@ -5,7 +5,15 @@
     pageEncoding="UTF-8"%>
 
    <%@include file="/templates/admin/inc/header.jsp" %>
-
+	<script type="text/javascript">
+		function validateForm() {
+			var inputElements = $('.checkbox-action:checked');
+			if (inputElements.length == 0) {
+			    alert("Chọn ít nhất 1 đề tài để thực hiện!");
+			    return false;
+			}
+		}
+	</script>
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -13,11 +21,11 @@
                         <div class="card">
                             <div class="header">
                                 <!-- <p class="category success">Thêm thành công</p> -->
-                                <form action="" method="post">
+                                <form action="<%=request.getContextPath()%>/admin/qldetai/duyet_nghiem_thu_ad?type=search" method="post">
                                 	<div class="row">
                                         <div class="col-md-8">
                                             <div class="form-group">
-                                                <input type="text" name="id" class="form-control border-input" value=""  placeholder="Nhập tên đề tài, tên chủ nhiệm cần tìm kiếm">
+                                                <input type="text" name="keyword" class="form-control border-input" value=""  placeholder="Nhập tên đề tài, tên chủ nhiệm cần tìm kiếm">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -31,11 +39,20 @@
                                 </form>
                                 
                             </div>
-                            
+                             <div class="text-center text-danger col-md-12" style="font-size: 18px;font-weight: bold;">
+                            	 <%
+							      if(request.getParameter("msg")!=null){
+							          int msg = Integer.parseInt( request.getParameter("msg"));
+							          switch(msg){
+							            case 1: out.print("Xử lý thành công !!");break;
+							            case 0: out.print("Không thành công vui lòng thử lại !!");break;
+								        }
+							      }
+		     			       	%>  
+                           	</div>
                             <div class="content table-responsive table-full-width">
                             <h3>DANH SÁCH ĐỀ TÀI CẦN DUYỆT</h3>
-                            		
-                            
+                            <form method="post" action="<%=request.getContextPath()%>/admin/qldetai/duyet_nghiem_thu_ad?type=action" onsubmit="return validateForm()">
                                 <table class="table table-striped">
                                     <thead>
                                         <th>ID</th>
@@ -43,7 +60,8 @@
                                     	<th>Chủ nhiệm</th>
                                     	<th>Cấp đề tài</th>
                                     	<th>Trạng thái</th>
-                                    	<th>Chức năng</th>
+                                    	<th>Kết quả nghiệm thu</th>
+                                    	<th>Chọn</th>
                                     </thead>
                                     <tbody>
                                     <%
@@ -51,35 +69,72 @@
                                     	   ArrayList<DeTai> listDeTaiByIdKhoa = (ArrayList<DeTai>)request.getAttribute("listDeTaiAdmin");
                                     	   if (listDeTaiByIdKhoa.size() > 0) {
                                     		   for (DeTai objDeTai : listDeTaiByIdKhoa){
-                                    			   
-                                    		  
-                                    
                                     %>
                                         <tr>
                                         	<td><%=objDeTai.getIdDeTai() %></td>
-                                            <td><a href="<%=request.getContextPath()%>/admin/qldetai/admin/detail_duyet_nt_ad?did=<%=objDeTai.getIdDeTai()%>"><%=objDeTai.getTenDeTai() %></a></td>
+                                            <td><a href="<%=request.getContextPath()%>/admin/qldetai/nhanvien/detail_duyet_nt_nv?did=<%=objDeTai.getIdDeTai()%>"><%=objDeTai.getTenDeTai() %></a></td>
                                             <td><%=objDeTai.getFullName() %></td>
                                         	<td><%=objDeTai.getTenCapDeTai() %></td>
                                         	<td><%=LibraryConstant.ConvertTrangThai(objDeTai.getTrangThai()) %></td>
                                         	<td>
-                                        		<a href="<%=request.getContextPath()%>/admin/qldetai/admin/detail_duyet_nt_ad?did=<%=objDeTai.getIdDeTai()%>"><img src="assets/img/edit.gif" alt="" /> Xem</a>
+                                        		Điểm: <%=objDeTai.getDiem() %><br>
+                                        		Xếp loại: <%=objDeTai.getXepLoai() %><br>
+                                        		<a href="<%=request.getContextPath()%>/admin/qldetai/nhanvien/detail_duyet_nt_nv?did=<%=objDeTai.getIdDeTai()%>"><img src="assets/img/edit.gif" alt="" />Xem chi tiết</a>
                                         	</td>
+                                        	<td><input type="checkbox" class="checkbox-action" name="idDeTai" value="<%=objDeTai.getIdDeTai() %>"></td>
                                         </tr>
-                                          
-                                          
-                                          
                                       <%}}} %>                               
                                     </tbody>
                                 </table>
-
-								<div class="text-center">
-								    <ul class="pagination">
-								        <li><a href="?p=0" title="">1</a></li> 
-								        <li><a href="?p=1" title="">2</a></li> 
-								        <li><a href="?p=1" title="">3</a></li> 
-								        <li><a href="?p=1" title="">4</a></li> 
-								    </ul>
+                                <div class="btn-form-action">
+                            		<div class="col-md-2 col-offset-8">
+                            			<div class="form-group">
+                            				<select name="action">
+                            					<option value="0">Không duyệt</option>
+                            					<option value="1" selected="selected">Duyệt</option>
+	                                        </select>
+	                                    </div>
+                                    </div>
+                                    <div class="col-md-2 col-offset-10">
+                                    	<div class="form-group">
+                                       		<input type="submit" name="submit" value="Thực hiện" class="btn btn-primary btn-search" />
+                                      	</div>
+                                    </div>
+                                </div>
+								</form>
+								<%	
+									int page_sum = (Integer) request.getAttribute("page_sum"); 
+									if(page_sum > 1){
+								%>
+								<div class="text-right pagination-div">
+									<ul class="pagination">
+										<%
+											String type = (String)request.getParameter("type");
+											
+											int current_page = (Integer) request.getAttribute("current_page");
+											String active = "";
+											for (int i = 1; i < page_sum; i++) {
+												if (i == current_page) {
+													active = "class=\"current\"";
+												} else {
+													active = "";
+												}
+										%>
+										<li><a <%=active%>
+											href="<%=request.getContextPath()%>/admin/qldetai/duyet_nghiem_thu_ad?type=<%=type%>&page=<%=i%>"><%=i%></a><li>
+											<%
+												}
+												if (current_page == page_sum) {
+													active = "class=\"current\"";
+												} else {
+													active = "";
+												}
+											%>
+										<li><a <%=active%>
+											href="<%=request.getContextPath()%>/admin/qldetai/duyet_nghiem_thu_ad?type=<%=type%>&page=<%=page_sum%>"><%=page_sum%></a></li>
+									</ul>
 								</div>
+								<%} %>
                             </div>
                         </div>
                     </div>

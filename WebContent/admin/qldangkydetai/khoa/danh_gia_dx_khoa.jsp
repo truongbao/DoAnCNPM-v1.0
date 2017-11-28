@@ -5,20 +5,13 @@
 
    <%@include file="/templates/admin/inc/header.jsp" %>
    <script type="text/javascript">
-	   $(document).ready(function(){
-			$("#formDanhGia").validate({
-				rules:{
-					"noidung":{
-						required: true,
-					},
-				},
-				messages:{
-					"noidung":{
-						required: "<p> <span style='color:red' > Vui lòng nhập nội dung đánh giá</span> </p>",
-					},
-				}
-			});// ham tren
-		});
+	   function validateForm(){
+		   var content = document.forms["formDanhGia"]["noidung"].value;;
+		   if(content == ""){
+			   $("#alert").html( "<p> <span style='color:red' > Vui lòng nhập nhập nội dung đánh giá</span> </p>" );
+		        return false;
+		   }
+	   }
 </script>
         <div class="content">
             <div class="container-fluid">
@@ -33,7 +26,7 @@
 					    		if(request.getAttribute("objDeTai") != null){
 					    		 DeTai objDeTai =(DeTai)request.getAttribute("objDeTai");
 							%>
-                                <form action="" method="post" id="formDanhGia">
+                                <form action="<%=request.getContextPath()%>/admin/qldangkydetai/danh_gia_dx_khoa?did=<%=objDeTai.getIdDeTai() %>" method="post" id="formDanhGia"  name="formDanhGia" onsubmit="return validateForm()">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
@@ -61,9 +54,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+                                    <div class="form-group" id="alert">
+                                    	
+                                    </div>
                                     <div class="text-center">
-                                        <input type="submit" class="btn btn-info btn-fill btn-wd" value="Gửi đánh giá cho chủ nhiệm đề tài" />
+                                        <input type="submit" class="btn btn-info btn-fill btn-wd" name="submit" value="Gửi đánh giá cho chủ nhiệm đề tài" />
                                     </div>
                                     <div class="clearfix"></div>
                                 </form>

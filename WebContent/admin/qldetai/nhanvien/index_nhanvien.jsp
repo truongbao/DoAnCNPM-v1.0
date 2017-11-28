@@ -5,7 +5,7 @@
     pageEncoding="UTF-8"%>
 
    <%@include file="/templates/admin/inc/header.jsp" %>
-
+	
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -30,9 +30,22 @@
                                     
                                 </form>
                                 
+	                       		<div class="row">
+	                       			<div class="col-md-8">
+	                       				<%
+		                    			if(isNhanVienQLNCKHTruong){
+			                        	%>
+	                        			<a class="btn btn-info btn-fill btn-wd" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldetai/duyet_nghiem_thu_nv?type=load">Xem danh sách duyệt nghiệm thu</a>
+	                            		<%	}else if(isAdmin){ %>
+	                            		<a class="btn btn-info btn-fill btn-wd" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldetai/duyet_nghiem_thu_ad?type=load">Xem danh sách duyệt nghiệm thu</a>
+	                            		<%	} %>
+	                            	</div>
+	                       		</div>
+	                       		
                             </div>
+                            
                             <div class="text-center text-danger col-md-12" style="font-size: 18px;font-weight: bold;">
-                            	 <%
+                            	<%
 							      if(request.getParameter("msg")!=null){
 							          int msg = Integer.parseInt( request.getParameter("msg"));
 							          switch(msg){
@@ -43,11 +56,8 @@
 		     			       	%>  
                            	</div>
                             <div class="content table-responsive table-full-width">
-                            <div class="row"> 
-                            		<div class="col-md-4"><h3>DANH SÁCH ĐỀ TÀI</h3></div>
-                            		<div class="col-md-8"><a class="btn btn-info btn-fill btn-wd" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldetai/nhanvien/duyet_nghiem_thu_nv">Xem danh sách duyệt nghiệm thu</a>
-                            		</div>
-                            		
+                            	<div class="row"> 
+                            		<div class="col-md-4 col-md-offset-4"><h3>DANH SÁCH ĐỀ TÀI</h3></div>
                             	</div>
                             
                                 <table class="table table-striped">
@@ -64,9 +74,6 @@
                                     	   ArrayList<DeTai> listDeTaiByIdKhoa = (ArrayList<DeTai>)request.getAttribute("listDeTaiNhanVien");
                                     	   if (listDeTaiByIdKhoa.size() > 0) {
                                     		   for (DeTai objDeTai : listDeTaiByIdKhoa){
-                                    			   
-                                    		  
-                                    
                                     %>
                                         <tr>
                                         	<td><%=objDeTai.getIdDeTai() %></td>

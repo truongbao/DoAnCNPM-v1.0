@@ -128,18 +128,26 @@
                                     </div>
                                     </div>
                                     <div class="row">
-                                    <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Trạng thái </label>
-                                                <input type="text" name="id" class="form-control border-input" disabled value="<%= LibraryConstant.ConvertTrangThai(objDeTai.getTrangThai()) %>">
-                                            </div>
+	                                    <div class="col-md-12">
+	                                            <div class="form-group">
+	                                                <label>Trạng thái </label>
+	                                                <input type="text" name="id" class="form-control border-input" disabled value="<%= LibraryConstant.ConvertTrangThai(objDeTai.getTrangThai()) %>">
+	                                            </div>
+	                                    </div>
                                     </div>
+                                    <div class="row">
+	                                    <div class="col-md-12">
+	                                            <div class="form-group">
+	                                                <label>Điểm </label>
+	                                                <input type="text" name="score" class="form-control border-input" value="<% if (objDeTai.getDiem() != 0){ %><%=objDeTai.getDiem() %><%} %>">
+	                                            </div>
+	                                    </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Nội dung đánh giá</label>
-                                                <textarea id="cktext1" class="form-control border-input"></textarea>
+                                                <textarea id="cktext1" name="content" class="form-control border-input"><% if (objDeTai.getKetQuaNghiemThu() != null){ %><%=objDeTai.getKetQuaNghiemThu() %><%} %></textarea>
                                                  <script type="text/javascript">
 							               			var editor = CKEDITOR.replace('cktext1');
 							               			CKFinder.setupCKEditor(editor,'<%=request.getContextPath()%>/ckfinder/')
@@ -148,12 +156,19 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                    <div class="text-center">
-                                        <a href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/danh_gia_tm_nv?did=<%=objDeTai.getIdDeTai()%>">
-                                        <input class="btn btn-info btn-fill btn-wd" value="Nhập kết quả đánh giá nghiệm thu" />
-                                        </a>
-                                    </div>
-                        				</div>
+	                                    <div class="text-center">
+	                                    <%
+	                                    	if(isNhanVienQLNCKHTruong){
+	                                    %>
+	                                        <input type="submit" class="btn btn-info btn-fill btn-wd" name="update" value="Cập nhật"/>
+	                                    <%
+	                                    	}else if(isAdmin){
+	                                    %>
+	                                    	 <input type="submit" class="btn btn-info btn-fill btn-wd" name="confirm" value="Duyệt"/>
+	                                    	 <input type="submit" class="btn btn-info btn-fill btn-wd" name="cancel" value="Không duyệt"/>
+	                                    <%	} %>
+	                                    </div>
+                       				</div>
                                     <div class="clearfix"></div>
                                 </form>
                             </div>

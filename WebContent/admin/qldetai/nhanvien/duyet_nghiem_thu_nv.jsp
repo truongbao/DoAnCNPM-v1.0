@@ -31,11 +31,19 @@
                                 </form>
                                 
                             </div>
-                            
+                            <div class="text-center text-danger col-md-12" style="font-size: 18px;font-weight: bold;">
+                            	 <%
+							      if(request.getParameter("msg")!=null){
+							          int msg = Integer.parseInt( request.getParameter("msg"));
+							          switch(msg){
+							            case 1: out.print("Xử lý thành công !!");break;
+							            case 0: out.print("Không thành công vui lòng thử lại !!");break;
+								        }
+							      }
+		     			       	%>  
+                           	</div>
                             <div class="content table-responsive table-full-width">
                             <h3>DANH SÁCH THUYẾT MINH CẦN DUYỆT</h3>
-                            		
-                            
                                 <table class="table table-striped">
                                     <thead>
                                         <th>ID</th>
@@ -62,24 +70,46 @@
                                         	<td><%=objDeTai.getTenCapDeTai() %></td>
                                         	<td><%=LibraryConstant.ConvertTrangThai(objDeTai.getTrangThai()) %></td>
                                         	<td>
-                                        		<a href="<%=request.getContextPath()%>/admin/qldetai/nhanvien/detail_duyet_nt_nv?did=<%=objDeTai.getIdDeTai()%>"><img src="assets/img/edit.gif" alt="" /> Xem</a>
+                                        		<a href="<%=request.getContextPath()%>/admin/qldetai/nhanvien/detail_duyet_nt_nv?did=<%=objDeTai.getIdDeTai()%>"><img src="assets/img/edit.gif" alt="" />Cập nhật kết quả</a>
                                         	</td>
                                         </tr>
-                                          
-                                          
-                                          
                                       <%}}} %>                               
                                     </tbody>
                                 </table>
 
-								<div class="text-center">
-								    <ul class="pagination">
-								        <li><a href="?p=0" title="">1</a></li> 
-								        <li><a href="?p=1" title="">2</a></li> 
-								        <li><a href="?p=1" title="">3</a></li> 
-								        <li><a href="?p=1" title="">4</a></li> 
-								    </ul>
+								<%	
+									int page_sum = (Integer) request.getAttribute("page_sum"); 
+									if(page_sum > 1){
+								%>
+								<div class="text-right pagination-div">
+									<ul class="pagination">
+										<%
+											String type = (String)request.getParameter("type");
+											
+											int current_page = (Integer) request.getAttribute("current_page");
+											String active = "";
+											for (int i = 1; i < page_sum; i++) {
+												if (i == current_page) {
+													active = "class=\"current\"";
+												} else {
+													active = "";
+												}
+										%>
+										<li><a <%=active%>
+											href="<%=request.getContextPath()%>/admin/qldetai/duyet_nghiem_thu_nv?type=<%=type%>&page=<%=i%>"><%=i%></a><li>
+											<%
+												}
+												if (current_page == page_sum) {
+													active = "class=\"current\"";
+												} else {
+													active = "";
+												}
+											%>
+										<li><a <%=active%>
+											href="<%=request.getContextPath()%>/admin/qldetai/duyet_nghiem_thu_nv?type=<%=type%>&page=<%=page_sum%>"><%=page_sum%></a></li>
+									</ul>
 								</div>
+								<%} %>
                             </div>
                         </div>
                     </div>
