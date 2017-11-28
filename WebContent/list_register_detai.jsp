@@ -134,7 +134,7 @@
 								
 								<td>
 									<center>
-										<a href="" class="btn btn-primary" style="">  Sửa </a>
+										<a href="<%=request.getContextPath()%>/edit-thuyetminh?did=<%=objDT.getIdDeTai()%>" class="btn btn-primary" style="">  Sửa </a>
 									</center>
 								</td>
 								
@@ -143,7 +143,7 @@
 									  <%
 									    //viet phuong thuc lay ra trangThai mới cập nhật ứng vs idDeTai vừa dk
 									    DetaiDAO detaiDAO = new DetaiDAO();
-									    DeTai objDeTaiById =  detaiDAO.getTrangThaiUpdateUpdByIdDeTaiDK(objDT.getIdDeTai());
+									    DeTai objDeTaiById =  detaiDAO.getTrangThaiUpdateByIdDeTaiDK(objDT.getIdDeTai());
 									    if( objDeTaiById != null ){
 									  
 									  %>

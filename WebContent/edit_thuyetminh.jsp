@@ -36,7 +36,7 @@
 			
 				 <div>
 					<div class="col-xs-6">
-						<h1 class="default_title"><a href="#">Đăng ký thuyết minh đề tài</a></h1>
+						<h1 class="default_title"><a href="#">Sửa thuyết minh đề tài</a></h1>
 					</div>
 					<div class="col-xs-6">
 						
@@ -135,8 +135,8 @@
 				</tbody>
 			</table>
 			
-			<h3 style="margin-top: 15px;font-size: 18px;"> Tải mẫu đăng ký thuyết minh 
-			   <a  href="<%=request.getContextPath() %>/download-bieumau-thuyetminh">:  Tại đây </a> 
+			<h3 style="margin-top: 15px;font-size: 18px;"> Tải xuống file thuyết minh để chỉnh sửa  
+			   <a href="<%=request.getContextPath() %>/download-thuyetminh-to-edit?did=<%=objDeTaiByIdDeTaiDK.getIdDeTai()%>">:  tại đây </a> 
 			</h3>
 			
 			<form class="form"  action="<%=request.getContextPath() %>/dangky-thuyetminh?did=<%=objDeTaiByIdDeTaiDK.getIdDeTai()%>" method="post"  enctype="multipart/form-data">
@@ -152,7 +152,7 @@
 				</div>
 				
 				<div style="float: left;padding-top: 41px;">
-					<button class="btn btn-lg btn-primary pull-right"> Tạo thuyết minh </button>
+					<button class="btn btn-lg btn-primary pull-right"> Sửa thuyết minh </button>
 				</div>
 				
 			</form>

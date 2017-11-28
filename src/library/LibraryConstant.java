@@ -31,8 +31,16 @@ public class LibraryConstant {
 	  public final static String KhongHoanThanh = "16" ;
 	  
 	  public final static String pathAvt = "/home/yenhot/web/DoAnCNPM_SE03/WebContent/templates/admin/img/users" ;
+	  
+	  
+	  
+	  //Mã biểu mẫu
+	  public final static String BieuMauThuyetMinh = "BM_TM" ;
+	  public final static String BieuMauDeXuatDeTai = "BM_DXDT" ;
+	  public final static String BieuMauBoSungThuyetMinh = "BM_BSTM" ;
+	  
 
-
+ 
 	  
 	  
 	  public static String ConvertTrangThai(String soDangChuoi){

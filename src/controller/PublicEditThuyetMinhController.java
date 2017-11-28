@@ -24,12 +24,12 @@ import model.dao.DetaiDAO;
 
 
 @MultipartConfig
-public class PublicIndexDKThuyetMinhController extends HttpServlet {
+public class PublicEditThuyetMinhController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private int idDeTai;
 	
-    public PublicIndexDKThuyetMinhController() {
+    public PublicEditThuyetMinhController() {
         super();
     }
     
@@ -60,8 +60,8 @@ public class PublicIndexDKThuyetMinhController extends HttpServlet {
 		
 		
 		
-		 RequestDispatcher rd = request.getRequestDispatcher("/dangky_thuyetminh.jsp");
-         rd.forward(request, response);
+		 RequestDispatcher rd = request.getRequestDispatcher("/edit_thuyetminh.jsp");
+         rd.forward(request, response); 
 	}
 
 	 //Xử lý upload file tạo thuyết minh đề tài
@@ -121,7 +121,17 @@ public class PublicIndexDKThuyetMinhController extends HttpServlet {
 		      	}
 		      }
 				
-		        BieuMau objBM  =new BieuMau(0, idDeTai, LibraryConstant.BieuMauThuyetMinh, linkUpload);
+		        /*DeTai objDeTai = new DeTai(idDeTai, "", "", 0,
+							        		"", 0, "", 
+							        		null, null, "", 
+							        		0, "", "", 
+							        		"", "", "", "",
+							        		"", "", "", "", 
+							        		0, "", 0,"",
+							        		null, 0, linkUpload);*/
+		        
+		        
+		      BieuMau objBM  =new BieuMau(0, idDeTai, LibraryConstant.BieuMauThuyetMinh, linkUpload);
 		        
 		        
 		        
