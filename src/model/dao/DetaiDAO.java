@@ -299,7 +299,7 @@ public class DetaiDAO {
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
 				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " where dt.idDeTai = " + iDeTai;
-		System.out.println(sql);
+		
 		DeTai objDeTai = null;
 		try {
 			pst = conn.prepareStatement(sql);
@@ -576,9 +576,6 @@ public class DetaiDAO {
 					+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 					+ " where dt.trangThai = " + trangthai + " ORDER BY dt.idDeTai ASC ";
 
-			// String sql = "select * FROM detai WHERE idKhoa = ? ORDER BY idDeTai
-			// ASC";
-			System.out.println(sql);
 			DeTai objDeTai = null;
 			try {
 				pst = conn.prepareStatement(sql);
@@ -621,9 +618,6 @@ public class DetaiDAO {
 				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " where dt.trangThai = " + trangthai + " ORDER BY dt.idDeTai ASC LIMIT "+offset+","+LibraryConstant.ROW_COUNT;
 
-		// String sql = "select * FROM detai WHERE idKhoa = ? ORDER BY idDeTai
-		// ASC";
-		System.out.println(sql);
 		DeTai objDeTai = null;
 		try {
 			pst = conn.prepareStatement(sql);
@@ -666,8 +660,6 @@ public class DetaiDAO {
 				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " where dt.trangThai = " + trangthai ;
 
-		// String sql = "select * FROM detai WHERE idKhoa = ? ORDER BY idDeTai
-		// ASC";
 		if (key != "") {
 			sql += " and ((tenDeTai like '%" 
 				+ key 
@@ -908,8 +900,7 @@ public class DetaiDAO {
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
 				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " where dt.trangThai = " + LibraryConstant.DangChoDuyetCapTruong + " ORDER BY dt.idDeTai ASC";
-		// String sql = "select * FROM detai WHERE idKhoa = ? ORDER BY idDeTai
-		// ASC";
+		
 		DeTai objDeTai = null;
 		try {
 			pst = conn.prepareStatement(sql);
@@ -951,8 +942,7 @@ public class DetaiDAO {
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
 				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " where dt.trangThai = " + LibraryConstant.DangChoDuyetThuyetMinh + " ORDER BY dt.idDeTai ASC";
-		// String sql = "select * FROM detai WHERE idKhoa = ? ORDER BY idDeTai
-		// ASC";
+		
 		DeTai objDeTai = null;
 		try {
 			pst = conn.prepareStatement(sql);
@@ -1001,6 +991,7 @@ public class DetaiDAO {
 			sql+= " AND (u.fullname LIKE '%"+keyword+"%' OR dt.tenDeTai LIKE '%"+keyword+"%')";
 		}
 		sql +=" ORDER BY dt.idDeTai DESC LIMIT ?,?";
+
 		try {
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, offset);
@@ -1045,6 +1036,7 @@ public class DetaiDAO {
 		if(!"".equals(keyword)){
 			sql+= " AND (u.fullname LIKE '%"+keyword+"%' OR dt.tenDeTai LIKE '%"+keyword+"%')";
 		}
+
 		try {
 			pst = conn.prepareStatement(sql);
 			rs = pst.executeQuery();
@@ -1075,8 +1067,7 @@ public class DetaiDAO {
 				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
 				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " where dt.trangThai = " + LibraryConstant.DangChoDuyetNghiemThu + " ORDER BY dt.idDeTai ASC";
-		// String sql = "select * FROM detai WHERE idKhoa = ? ORDER BY idDeTai
-		// ASC";
+		
 		DeTai objDeTai = null;
 		try {
 			pst = conn.prepareStatement(sql);
@@ -1395,7 +1386,7 @@ public class DetaiDAO {
 				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " = user.idUser WHERE";
 		sql = getSqlWithSearch(sql, year, type_detai, type_stat) + " ORDER BY dt.idDeTai DESC LIMIT ?, ?";
-		System.out.println(sql);
+		
 		try {
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, offset);
@@ -1703,38 +1694,7 @@ public class DetaiDAO {
 	
 	
 	
-	public int UploadFileThuyetMinh(BieuMau objBM) {
-        
-		int result = 0;
-		conn = connectMySQLLibrary.getConnectMySQL();
-
-		
-		
-		String sql="insert into uploadbieumau(idDeTai, linkBieuMau ) values(?,?) ";
-				
-
-		try {
-            pst = conn.prepareStatement(sql);
-			
-			pst.setInt(1, objBM.getIdDeTai());
-			
-			pst.setString(2, objBM.getLinkBieuMau());
-			
-			result = pst.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				pst.close();
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-
-		return result;
-	}
+	
 
 	//get list detai by trangThai
 	public ArrayList<DeTai> getListDeTaiByStatus(int idKhoa, String status, String keyword,int idCDT, int offset, int row_count){

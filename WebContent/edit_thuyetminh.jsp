@@ -71,8 +71,8 @@
 			        if(request.getParameter("msg")!=null){
 			          int msg = Integer.parseInt( request.getParameter("msg") );
 			          switch(msg){
-			              case 0: out.print("<h3 style='color :red;'> Upload file thất bại </h3> ");break; 
-			              case 1: out.print("<h3 style='color :red;'> Upload file thành công </h3> ");break; 
+			              case 0: out.print("<h3 style='color :red;'> Upload file đã chỉnh sửa thất bại </h3> ");break; 
+			              case 1: out.print("<h3 style='color :red;'> Upload file đã chỉnh sửa thành công </h3> ");break; 
 			           	     }
 			           }
 		          %>      	
@@ -139,12 +139,10 @@
 			   <a href="<%=request.getContextPath() %>/download-thuyetminh-to-edit?did=<%=objDeTaiByIdDeTaiDK.getIdDeTai()%>">:  tại đây </a> 
 			</h3>
 			
-			<form class="form"  action="<%=request.getContextPath() %>/dangky-thuyetminh?did=<%=objDeTaiByIdDeTaiDK.getIdDeTai()%>" method="post"  enctype="multipart/form-data">
-					
-				
+			<form class="form"  action="<%=request.getContextPath() %>/edit-thuyetminh?did=<%=objDeTaiByIdDeTaiDK.getIdDeTai()%>" method="post"  enctype="multipart/form-data">
 							
 				<div>
-						<label> Upload file thuyết minh (Sau khi đã điền đầy đủ thông tin theo mẫu trên)</label>
+				    <label> Upload file thuyết minh (Sau khi đã chỉnh sửa đầy đủ thông tin)</label>
 				</div>
 							
 				<div style="padding-top: 5px;">
