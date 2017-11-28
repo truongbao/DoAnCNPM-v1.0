@@ -52,6 +52,13 @@ public class BieuMau {
 		this.linkBieuMau = linkBieuMau;
 	}
 
+	@Override
+	public String toString() {
+		return "BieuMau [idBieuMau=" + idBieuMau + ", idDeTai=" + idDeTai
+				+ ", maBieuMau=" + maBieuMau + ", linkBieuMau=" + linkBieuMau
+				+ "]";
+	}
+
 	
 	
 	

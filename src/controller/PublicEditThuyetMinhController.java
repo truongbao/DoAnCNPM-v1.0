@@ -15,11 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import library.ConvertStringLibrary;
 import library.LibraryAuth;
 import library.LibraryConstant;
 import library.RenameFileLibrary;
 import model.bean.BieuMau;
 import model.bean.DeTai;
+import model.dao.BieuMauDAO;
 import model.dao.DetaiDAO;
 
 
@@ -72,35 +74,63 @@ public class PublicEditThuyetMinhController extends HttpServlet {
 			  response.setContentType("text/html");
 		
 			  DetaiDAO detaiDAO = new DetaiDAO();
+			  BieuMauDAO bieuMauDAO =new BieuMauDAO();
 			  
 			  int idDeTai = Integer.parseInt(request.getParameter("did"));
+			  
+			  BieuMau objBieuMau = bieuMauDAO.getObjectBieuMau(LibraryConstant.BieuMauThuyetMinh,idDeTai);
+
+			  String filenameDB = "";
+			  if(objBieuMau != null){
+				  filenameDB = objBieuMau.getLinkBieuMau(); //filename trên DB
+			  }
         
 			  //xu ly hinh anh
 		      String linkUpload = ""; //ko up load
 		        
 		      //file 
 		      final String path = request.getServletContext().getRealPath("files_thuyetminh"); //duong dan den thu muc chua hinhanh
-		      System.out.println("cukiko : "+path+"--het--");
-		      
-		      //D:\workspacejava12EE\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\DoAnCNPM_SE03\files_thuyetminh
+		     
 		      
 		      File dirFile = new File(path);
 		      if(!dirFile.exists()){
 		      	dirFile.mkdir(); //neu file chua ton tai thi tao file
 		      }
+		      
+		      
+		      File[] children = dirFile.listFiles();
+			  String nameFileInForder = null;
+			    
+		      for (File file : children) {
+		        	nameFileInForder = file.getName();
+		      }
+		      
 
 		      final Part filePart = request.getPart("upfiles");
 		      final String fileName = RenameFileLibrary.getName(filePart);//lay ra ten anh trong đường dẫn
+		      String SluglinkUpload = null;
+		      
+		      
 
-		      if(!"".equals(fileName)){ // có chọn ảnh
+		      if(!"".equals(fileName)){ // có chọn file
+		    	  
+		    	  if(!"".equals(filenameDB) && filenameDB.equals(nameFileInForder) ){//ten file cũ khác rỗng
+		    		  //xóa file củ đi=> trỏ dúng dương dẫn file đó
+		    		  String urlFileDel = path + File.separator + filenameDB;
+		    		  File delFile = new File(urlFileDel);
+		    		  delFile.delete();
+		    	  }
+		    	  
+		    	  
 		      	OutputStream out = null;
 		      	InputStream filecontent = null;
 		      	linkUpload = RenameFileLibrary.renameFile(fileName) ;
 		      	
-		      	System.out.println("ten file : "+linkUpload);
+		        //slug linkUpload : convert tieng viet ko dau
+		        SluglinkUpload = ConvertStringLibrary.SlugFileUpload(linkUpload);
 		      	
 		      	try {
-		      		out = new FileOutputStream(new File(path + File.separator + linkUpload));
+		      		out = new FileOutputStream(new File(path + File.separator + SluglinkUpload));
 		      		filecontent = filePart.getInputStream();
 
 		      		int read = 0;
@@ -121,31 +151,19 @@ public class PublicEditThuyetMinhController extends HttpServlet {
 		      	}
 		      }
 				
-		        /*DeTai objDeTai = new DeTai(idDeTai, "", "", 0,
-							        		"", 0, "", 
-							        		null, null, "", 
-							        		0, "", "", 
-							        		"", "", "", "",
-							        		"", "", "", "", 
-							        		0, "", 0,"",
-							        		null, 0, linkUpload);*/
+		      BieuMau objBM  =new BieuMau(0, idDeTai, LibraryConstant.BieuMauThuyetMinh, SluglinkUpload);
 		        
-		        
-		      BieuMau objBM  =new BieuMau(0, idDeTai, LibraryConstant.BieuMauThuyetMinh, linkUpload);
-		        
-		        
-		        
-				 if(detaiDAO.UploadFileThuyetMinh(objBM) > 0){
-					//up thanh cong
-					response.sendRedirect(request.getContextPath()+"/dangky-thuyetminh?msg=1&did="+this.idDeTai);
-					 return;
-				}else{
-					//that bai
-				    response.sendRedirect(request.getContextPath()+"/dangky-thuyetminh?msg=0&did="+this.idDeTai);
-				    return;
+			 if(bieuMauDAO.UploadFileThuyetMinhDaChinhSua(objBM) > 0){
+				//up thanh cong
+				response.sendRedirect(request.getContextPath()+"/edit-thuyetminh?msg=1&did="+this.idDeTai);
+				return;
+			 }else{
+				//that bai
+				response.sendRedirect(request.getContextPath()+"/edit-thuyetminh?msg=0&did="+this.idDeTai);
+				return;
 					
-				}	
-				
+			 }	
+			 	
 				
 	}
 	

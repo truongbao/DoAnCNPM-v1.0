@@ -15,11 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import library.ConvertStringLibrary;
 import library.LibraryAuth;
 import library.LibraryConstant;
 import library.RenameFileLibrary;
 import model.bean.BieuMau;
 import model.bean.DeTai;
+import model.dao.BieuMauDAO;
 import model.dao.DetaiDAO;
 
 
@@ -72,17 +74,21 @@ public class PublicIndexDKThuyetMinhController extends HttpServlet {
 			  response.setContentType("text/html");
 		
 			  DetaiDAO detaiDAO = new DetaiDAO();
+			  BieuMauDAO bieuMauDAO =new BieuMauDAO();
 			  
 			  int idDeTai = Integer.parseInt(request.getParameter("did"));
-        
-			  //xu ly hinh anh
+			  
+			  //kiểm tra xem có bị trùng file thuyết minh khi lỡ up nhiều lần ko ?
+			  //lấy ra đối tượng ứng vs idDeTai này và maBieuMau = BM_TM , Nếu có -> ko up nữa...còn nếu ko thì mới up
+			  BieuMau objBieuMau = bieuMauDAO.getObjectBieuMau(LibraryConstant.BieuMauThuyetMinh,idDeTai);
+			  
+			  if(objBieuMau == null){
+			  
+			  //xu ly upload file
 		      String linkUpload = ""; //ko up load
 		        
 		      //file 
 		      final String path = request.getServletContext().getRealPath("files_thuyetminh"); //duong dan den thu muc chua hinhanh
-		      System.out.println("cukiko : "+path+"--het--");
-		      
-		      //D:\workspacejava12EE\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\DoAnCNPM_SE03\files_thuyetminh
 		      
 		      File dirFile = new File(path);
 		      if(!dirFile.exists()){
@@ -91,16 +97,18 @@ public class PublicIndexDKThuyetMinhController extends HttpServlet {
 
 		      final Part filePart = request.getPart("upfiles");
 		      final String fileName = RenameFileLibrary.getName(filePart);//lay ra ten anh trong đường dẫn
+		      String SluglinkUpload = null;
 
-		      if(!"".equals(fileName)){ // có chọn ảnh
+		      if(!"".equals(fileName)){ // có chọn file
 		      	OutputStream out = null;
 		      	InputStream filecontent = null;
 		      	linkUpload = RenameFileLibrary.renameFile(fileName) ;
 		      	
-		      	System.out.println("ten file : "+linkUpload);
-		      	
+		      	//slug linkUpload : convert tieng viet ko dau
+		         SluglinkUpload = ConvertStringLibrary.SlugFileUpload(linkUpload);
+		         
 		      	try {
-		      		out = new FileOutputStream(new File(path + File.separator + linkUpload));
+		      		out = new FileOutputStream(new File(path + File.separator + SluglinkUpload));
 		      		filecontent = filePart.getInputStream();
 
 		      		int read = 0;
@@ -121,20 +129,29 @@ public class PublicIndexDKThuyetMinhController extends HttpServlet {
 		      	}
 		      }
 				
-		        BieuMau objBM  =new BieuMau(0, idDeTai, LibraryConstant.BieuMauThuyetMinh, linkUpload);
+		        BieuMau objBM  =new BieuMau(0, idDeTai, LibraryConstant.BieuMauThuyetMinh, SluglinkUpload);
 		        
-		        
-		        
-				 if(detaiDAO.UploadFileThuyetMinh(objBM) > 0){
+			   if(bieuMauDAO.UploadFileThuyetMinh(objBM) > 0){
 					//up thanh cong
 					response.sendRedirect(request.getContextPath()+"/dangky-thuyetminh?msg=1&did="+this.idDeTai);
-					 return;
-				}else{
+					return;
+			   }else{
 					//that bai
 				    response.sendRedirect(request.getContextPath()+"/dangky-thuyetminh?msg=0&did="+this.idDeTai);
 				    return;
 					
-				}	
+			   }	
+			   
+			   
+			  }else{
+				  response.sendRedirect(request.getContextPath()+"/dangky-thuyetminh?msg=2&did="+this.idDeTai);
+				  return;
+			  }
+			   
+			   
+			   
+			   
+			   
 				
 				
 	}
