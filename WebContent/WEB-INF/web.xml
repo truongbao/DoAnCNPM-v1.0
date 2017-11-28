@@ -760,16 +760,32 @@
   
   
   <servlet>
-     <servlet-name>PublicDownloadThuyetMinhController</servlet-name>
-     <servlet-class>controller.PublicDownloadThuyetMinhController</servlet-class>
+     <servlet-name>PublicDownloadTMController</servlet-name>
+     <servlet-class>controller.PublicDownloadTMController</servlet-class>
   </servlet>
   <servlet-mapping>
-     <servlet-name>PublicDownloadThuyetMinhController</servlet-name>
-     <url-pattern>/download-tm</url-pattern>
+     <servlet-name>PublicDownloadTMController</servlet-name>
+     <url-pattern>/download-bieumau-thuyetminh</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <servlet-name>PublicEditThuyetMinhController</servlet-name>
+     <servlet-class>controller.PublicEditThuyetMinhController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+     <servlet-name>PublicEditThuyetMinhController</servlet-name>
+     <url-pattern>/edit-thuyetminh</url-pattern>
   </servlet-mapping>
   
   
-  
+  <servlet>
+     <servlet-name>PublicDownloadTMToEditController</servlet-name>
+     <servlet-class>controller.PublicDownloadTMToEditController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+     <servlet-name>PublicDownloadTMToEditController</servlet-name>
+     <url-pattern>/download-thuyetminh-to-edit</url-pattern>
+  </servlet-mapping>
   
     <servlet>
 		<servlet-name>ConnectorServlet</servlet-name>

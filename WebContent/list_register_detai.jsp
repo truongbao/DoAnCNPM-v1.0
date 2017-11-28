@@ -134,7 +134,7 @@
 								
 								<td>
 									<center>
-										<a href="" class="btn btn-primary" style="">  Sửa </a>
+										<a href="<%=request.getContextPath()%>/edit-thuyetminh?did=<%=objDT.getIdDeTai()%>" class="btn btn-primary" style="">  Sửa </a>
 									</center>
 								</td>
 								

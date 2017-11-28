@@ -23,12 +23,12 @@ import model.dao.DetaiDAO;
 
 
 @MultipartConfig
-public class PublicIndexDKThuyetMinhController extends HttpServlet {
+public class PublicEditThuyetMinhController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private int idDeTai;
 	
-    public PublicIndexDKThuyetMinhController() {
+    public PublicEditThuyetMinhController() {
         super();
     }
     
@@ -59,8 +59,8 @@ public class PublicIndexDKThuyetMinhController extends HttpServlet {
 		
 		
 		
-		 RequestDispatcher rd = request.getRequestDispatcher("/dangky_thuyetminh.jsp");
-         rd.forward(request, response);
+		 RequestDispatcher rd = request.getRequestDispatcher("/edit_thuyetminh.jsp");
+         rd.forward(request, response); 
 	}
 
 	 //Xử lý upload file tạo thuyết minh đề tài

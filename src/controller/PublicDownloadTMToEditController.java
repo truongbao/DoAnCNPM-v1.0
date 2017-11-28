@@ -15,11 +15,11 @@ import library.LibraryAuth;
 
 
 @MultipartConfig
-public class PublicDownloadTMController extends HttpServlet {
+public class PublicDownloadTMToEditController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	
-    public PublicDownloadTMController() {
+    public PublicDownloadTMToEditController() {
         super();
     }
     
@@ -37,7 +37,7 @@ public class PublicDownloadTMController extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 	    //file 
-        final String filepath = request.getServletContext().getRealPath("files_bieumau"); //duong dan den thu muc chua hinhanh
+        final String filepath = request.getServletContext().getRealPath("files_thuyetminh"); //duong dan den thu muc chua hinhanh
       
         File dirFile = new File(filepath);
         if(!dirFile.exists()){
