@@ -23,7 +23,7 @@
  								}
 							%>
                             <div class="content">
-                                <form action="<%=request.getContextPath() %>/admin/qldangkydetai/admin/duyet_de_xuat_ad?did=<%=objDeTai.getIdDeTai() %>&qtthid=<%=qtth.getIdQuaTrinhThucHien() %>" method="post">
+                                <form action="<%=request.getContextPath() %>/admin/qldangkydetai/admin/duyet_de_xuat_ad?did=<%=objDeTai.getIdDeTai() %>" method="post">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
@@ -156,8 +156,8 @@
                                     </div>
                                     <div class="row">
                                     <div class="text-center">
-                                        <input type="submit" class="btn btn-info btn-fill btn-wd" value="Huỷ đề xuất" name="huyDeXuat"/>
-                                        <input type="submit" class="btn btn-info btn-fill btn-wd" value="Duyệt đề xuất" name="duyetDeXuat"/>
+                                    	<input type="submit" class="btn btn-info btn-fill btn-wd" value="Huỷ kết quả" name="huy"/>
+                                        <input type="submit" class="btn btn-info btn-fill btn-wd" value="Duyệt kết quả" name="duyet"/>
                                     </div>
                         				</div>
                                     <div class="clearfix"></div>

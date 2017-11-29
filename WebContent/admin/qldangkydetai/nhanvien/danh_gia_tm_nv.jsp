@@ -49,9 +49,16 @@
                                         </div>
                                     </div>
                                     
-                                    <div class="text-center">
-                                        <input type="submit" name="save" class="btn btn-info btn-fill btn-wd" value="Lưu" />
-                                    </div>
+                                    <div class="row">
+								<div class="text-center">
+									<input type="submit" name="huy"
+										class="btn btn-info btn-fill btn-wd" value="Huỷ thuyết minh" />
+									<input type="submit" name="duyet"
+										class="btn btn-info btn-fill btn-wd" value="Duyệt thuyết minh" />
+									<input type="submit" name="chinhsua"
+										class="btn btn-info btn-fill btn-wd" value="Đề nghị chỉnh sửa thuyết minh" />
+								</div>
+								</div>
                                     <div class="clearfix"></div>
                                 </form>
                             </div>

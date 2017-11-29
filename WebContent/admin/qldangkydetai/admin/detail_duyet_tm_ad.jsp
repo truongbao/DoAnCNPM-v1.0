@@ -153,8 +153,8 @@
                                         </div>
                                     </div>
                                     <div class="text-center">
-                                        <input type="submit" class="btn btn-info btn-fill btn-wd" value="Huỷ thuyết minh" name="huy"/>
-                                        <input type="submit" class="btn btn-info btn-fill btn-wd" value="Duyệt thuyết minh" name="duyet"/>
+                                        <input type="submit" class="btn btn-info btn-fill btn-wd" value="Huỷ kết quả" name="huy"/>
+                                        <input type="submit" class="btn btn-info btn-fill btn-wd" value="Duyệt kết quả" name="duyet"/>
                                     </div>
                                     
                                     <div class="clearfix"></div>

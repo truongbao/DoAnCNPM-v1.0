@@ -71,11 +71,13 @@
 							          switch(msg){
 							            case 1: out.print("Xử lý thành công !!");break;
 							            case 0: out.print("Không thành công vui lòng thử lại !!");break;
+							            case 3: out.print("Vui lòng chọn ít nhất 1 đề tài để thao tác!!");break;
 								        }
 							      }
 		     			       	%>  
                             	</div>
                             <div class="content table-responsive table-full-width">
+                            <form method="post" action="<%=request.getContextPath()%>/admin/qldangkydetai/admin/duyet_thuyet_minh_ad?type=action">
                             <h3>DANH SÁCH THUYẾT MINH CẦN DUYỆT</h3>
                             		 <table class="table table-striped" id="table-contain">
                                     <thead>
@@ -84,7 +86,8 @@
                                     	<th>Chủ nhiệm</th>
                                     	<th>Cấp đề tài</th>
                                     	<th>Trạng thái</th>
-                                    	<th>Chức năng</th>
+                                    	<th class="text-center">Chức năng</th>
+                                    	<th>Chọn</th>
                                     </thead>
                                     <tbody>
                                     <%
@@ -101,8 +104,28 @@
                                         	<td><%=objDeTai.getTenCapDeTai() %></td>
                                         	<td><%=LibraryConstant.ConvertTrangThai(objDeTai.getTrangThai()) %></td>
                                         	<td>
-                                        		<a href="<%=request.getContextPath()%>/admin/qldangkydetai/admin/detail_duyet_tm_ad?did=<%=objDeTai.getIdDeTai()%>"><img src="assets/img/edit.gif" alt="" /> Xem</a>
-                                        	</td>
+										<div style="display: inline; text-align: center">
+												<a
+													href="<%=request.getContextPath()%>/admin/qldangkydetai/admin/detail_duyet_tm_ad?did=<%=objDeTai.getIdDeTai()%>">
+													<input style="width: 70px;" class="btn btn-info"
+													value="Xem" />
+												</a> &nbsp;||&nbsp;
+												<a 
+													href="<%=request.getContextPath()%>/admin/qldangkydetai/admin/duyet_thuyet_minh_ad?did=<%=objDeTai.getIdDeTai()%>&duyet=ok">
+													<input style="width: 80px;" class="btn btn-info"
+													value="Duyệt"/>
+												</a> &nbsp;||&nbsp;
+												<a 
+													href="<%=request.getContextPath()%>/admin/qldangkydetai/admin/duyet_thuyet_minh_ad?did=<%=objDeTai.getIdDeTai()%>&huy=ok">
+													<input style="width: 70px;" class="btn btn-info"
+													value="Huỷ"/>
+												</a>
+									
+										</div>
+									</td>
+									<td>
+		                                 <input type="checkbox" class="checkbox-action" name="idDeTai" value="<%=objDeTai.getIdDeTai() %>"> 
+		                             </td>
                                         </tr>
                                           
                                       <%}}} %> 
@@ -112,7 +135,8 @@
                                     </tbody>
                                 </table>
 
-								<div class="text-center">
+								<div class="row">
+								<div class="text-center col-md-9">
 								     <ul class="pagination">
 								       <li>
 								    	<%
@@ -176,6 +200,23 @@
 								        </li> 
 								    </ul>
 								</div>
+								<div class="col-md-1">
+								<div class="form-group">
+									<select name="action" class="form-control border-input"
+										style="width: 100px">
+										<option value="0">Huỷ</option>
+										<option value="1" selected="selected">Duyệt</option>
+									</select>
+								</div>
+								</div>
+								<div class="col-md-1">
+								<div class="form-group">
+									<input type="submit" name="submit" value="Thực hiện"
+										class="btn btn-primary btn-search" />
+										</form>
+								</div>
+							</div>
+							</div>
                             </div>
                         </div>
                     </div>

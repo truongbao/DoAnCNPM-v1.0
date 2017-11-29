@@ -103,6 +103,9 @@
                                         	<td><%=LibraryConstant.ConvertTrangThai(objDeTai.getTrangThai()) %></td>
                                         	<td>
                                         		<a href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/detail_duyet_tm_nv?did=<%=objDeTai.getIdDeTai()%>"><img src="assets/img/edit.gif" alt="" /> Xem</a>
+                                        		 &nbsp;||&nbsp;<a href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/danh_gia_tm_nv?did=<%=objDeTai.getIdDeTai()%>">
+                                        Nhập kết quả đánh giá thuyết minh
+                                        </a>
                                         	</td>
                                         </tr>
                                         
