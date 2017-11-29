@@ -93,7 +93,7 @@
 								<td>
 									<center>
 										<div class="pull-right" >
-											<a href="<%=request.getContextPath()%>/update-detai" class="btn btn-default" style=""> Cập nhật </a>
+											<a href="<%=request.getContextPath()%>/update-detai?did=<%=objDetai.getIdDeTai()%>" class="btn btn-default" style=""> Sửa đề tài </a>
 										</div>
 									</center>
 								</td>

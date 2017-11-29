@@ -56,19 +56,19 @@
 		            
 		            
 		                 <%
-						    if(request.getAttribute("objDeTaiByIdDeTai") != null){
-						    	 DeTai objDeTaiByIdDeTai =(DeTai)request.getAttribute("objDeTaiByIdDeTai");
+						    if(request.getAttribute("objDeTaiByIdDeTaiDK") != null){
+						    	 DeTai objDeTaiByIdDeTaiDK =(DeTai)request.getAttribute("objDeTaiByIdDeTaiDK");
 						    	 
 						 %>
 		            
-						<form class="form" action="<%=request.getContextPath() %>/update-detai-dk?did=<%=objDeTaiByIdDeTai.getIdDeTai()%>" method="post">
+						<form class="form" action="<%=request.getContextPath() %>/update-detai-dk?did=<%=objDeTaiByIdDeTaiDK.getIdDeTai()%>" method="post">
 						
 							<div class="form-group row">
 								<div class="col-xs-3">
 									<label class="p-center">Tên đề tài:</label>
 								</div>
 								<div class="col-xs-9">
-									<input value="<%=objDeTaiByIdDeTai.getTenDeTai() %>" type="text" name="tenDeTai" class="form-control">
+									<input value="<%=objDeTaiByIdDeTaiDK.getTenDeTai() %>" type="text" name="tenDeTai" class="form-control">
 								</div>
 							</div>
 							
@@ -88,7 +88,7 @@
 											if (listLinhVucNC.size() > 0){
 												for (LinhVucNC objLVNC : listLinhVucNC){
 													
-													if (objLVNC.getIdLinhVucNghienCuu() == objDeTaiByIdDeTai.getIdLinhVucNghienCuu() ){
+													if (objLVNC.getIdLinhVucNghienCuu() == objDeTaiByIdDeTaiDK.getIdLinhVucNghienCuu() ){
 														selected = "selected='selected'";
 													} else {
 														selected="";
@@ -121,7 +121,7 @@
 											if (listCapDeTai.size() > 0){
 												for (CapDeTai objCDT : listCapDeTai){
 													
-													if (objCDT.getIdCapDeTai() == objDeTaiByIdDeTai.getIdCapDeTai() ){
+													if (objCDT.getIdCapDeTai() == objDeTaiByIdDeTaiDK.getIdCapDeTai() ){
 														selected = "selected='selected'";
 													} else {
 														selected="";
@@ -143,7 +143,7 @@
 									<label class="p-center">Tính cấp thiết:</label>
 								</div>
 								<div class="col-xs-9">
-									<input value="<%=objDeTaiByIdDeTai.getTinhCapThiet() %>" type="text" name="tinhCapThiet" class="form-control">
+									<input value="<%=objDeTaiByIdDeTaiDK.getTinhCapThiet() %>" type="text" name="tinhCapThiet" class="form-control">
 								</div>
 							</div>
 							
@@ -154,7 +154,7 @@
 								</div>
 								<div class="col-xs-9">
 									<textarea id="cktext1" name="mucTieu" class="form-control" rows="4">
-										<%=objDeTaiByIdDeTai.getMucTieu() %>
+										<%=objDeTaiByIdDeTaiDK.getMucTieu() %>
 									</textarea>
 									
 									 <script type="text/javascript">
@@ -170,7 +170,7 @@
 								</div>
 								<div class="col-xs-9">
 									<textarea id="cktext2" name="noiDungChinh" class="form-control" rows="4">
-										<%=objDeTaiByIdDeTai.getNoiDung() %>
+										<%=objDeTaiByIdDeTaiDK.getNoiDung() %>
 									</textarea>
 									
 									 <script type="text/javascript">
@@ -204,7 +204,7 @@
 								</div>
 								<div class="col-xs-9">
 									<textarea id="cktext4" name="sanPham" class="form-control" rows="4">
-										<%=objDeTaiByIdDeTai.getSanPham() %>
+										<%=objDeTaiByIdDeTaiDK.getSanPham() %>
 									</textarea>
 									
 									  <script type="text/javascript">
@@ -220,7 +220,7 @@
 									<label class="p-center">Hiệu quả dự kiến:</label>
 								</div>
 								<div class="col-xs-9">
-									<input value="<%=objDeTaiByIdDeTai.getHieuQua() %>" type="text" name="hieuQuaDukien" class="form-control">
+									<input value="<%=objDeTaiByIdDeTaiDK.getHieuQua() %>" type="text" name="hieuQuaDukien" class="form-control">
 								</div>
 							</div>
 							
@@ -229,7 +229,7 @@
 									<label class="p-center">Nhu cầu kinh phí dự kiến:</label>
 								</div>
 								<div class="col-xs-9">
-									<input value="<%=objDeTaiByIdDeTai.getKinhPhiThucHien() %>" type="number" name="kinhPhiThucHien" class="form-control">
+									<input value="<%=objDeTaiByIdDeTaiDK.getKinhPhiThucHien() %>" type="number" name="kinhPhiThucHien" class="form-control">
 								</div>
 								
 							</div>	

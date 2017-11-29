@@ -16,10 +16,10 @@ import model.bean.User;
 import model.dao.DetaiDAO;
 import model.dao.UserDAO;
 
-public class PublicUpdateDetaiController extends HttpServlet {
+public class PublicUpdateDetaiDKController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public PublicUpdateDetaiController() {
+    public PublicUpdateDetaiDKController() {
         super();
     }
     
@@ -39,9 +39,9 @@ public class PublicUpdateDetaiController extends HttpServlet {
 	    
 	    int idDeTai = Integer.parseInt(request.getParameter("did"));
 	    
-        DeTai objDeTaiByIdDeTai = detaiDAO.getObjectDeTaiByIdDeTai(idDeTai);
+        DeTai objDeTaiByIdDeTaiDK = detaiDAO.getObjectDeTaiByIdDeTaiDK(idDeTai);
 	    
-	    request.setAttribute("objDeTaiByIdDeTai", objDeTaiByIdDeTai);
+	    request.setAttribute("objDeTaiByIdDeTaiDK", objDeTaiByIdDeTaiDK);
 	    
 	    //lay danh sach linh vuc nghien cuu
 	    request.setAttribute("listLinhVucNC", detaiDAO.getListLinhVucNC());
@@ -60,7 +60,7 @@ public class PublicUpdateDetaiController extends HttpServlet {
         request.setAttribute("objUser", objUser);
 		
 		
-		 RequestDispatcher rd = request.getRequestDispatcher("/update_detai.jsp");
+		 RequestDispatcher rd = request.getRequestDispatcher("/update_detai_dk.jsp");
          rd.forward(request, response);
          
 	}

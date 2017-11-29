@@ -47,7 +47,8 @@
 							<div class="topbar">
 								
 								<div class="sub-menu-search hidden-xs hidden-sm pull-right col-xs-8">
-										<form action="http://www.mamnonnumberone.edu.vn/search" method="get">
+								
+										<!-- <form action="http://www.mamnonnumberone.edu.vn/search" method="get">
 
 											<div class="input-group search_form_action">
 												<input type="text" class="form-control" maxlength="70" name="query" id="search" placeholder="Tìm kiếm tài khoản..." autocomplete="off">
@@ -55,8 +56,9 @@
 													<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
 												</span>
 											</div>
-											<!-- /input-group -->
-										</form>
+											/input-group
+										</form> -->
+										
 								</div>									
 								<div class="sub-menu-account hidden-xs hidden-sm">
 									

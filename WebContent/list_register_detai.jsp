@@ -114,7 +114,7 @@
 							    
 								<td>
 									<center>
-										<a href="<%=request.getContextPath()%>/update-detai?did=<%=objDT.getIdDeTai()%>" class="btn btn-primary" style="">  Sửa </a>
+										<a href="<%=request.getContextPath()%>/update-detai-dk?did=<%=objDT.getIdDeTai()%>" class="btn btn-primary" style="">  Sửa </a>
 									</center>
 								</td>
 								

@@ -728,12 +728,12 @@
   </servlet-mapping>
   
    <servlet>
-    <servlet-name>PublicUpdateDetaiController</servlet-name>
-    <servlet-class>controller.PublicUpdateDetaiController</servlet-class>
+    <servlet-name>PublicUpdateDetaiDKController</servlet-name>
+    <servlet-class>controller.PublicUpdateDetaiDKController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>PublicUpdateDetaiController</servlet-name>
-    <url-pattern>/update-detai</url-pattern>
+    <servlet-name>PublicUpdateDetaiDKController</servlet-name>
+    <url-pattern>/update-detai-dk</url-pattern>
   </servlet-mapping>
   
   
@@ -796,11 +796,14 @@
   </servlet-mapping>
   
   
-  
-  
-  
-  
-  
+  <servlet>
+     <servlet-name>PublicUpdateDetaiController</servlet-name>
+     <servlet-class>controller.PublicUpdateDetaiController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+     <servlet-name>PublicUpdateDetaiController</servlet-name>
+     <url-pattern>/update-detai</url-pattern>
+  </servlet-mapping>
   
   
   
