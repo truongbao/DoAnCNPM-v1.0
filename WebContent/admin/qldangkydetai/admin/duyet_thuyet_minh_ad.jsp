@@ -77,8 +77,19 @@
 		     			       	%>  
                             	</div>
                             <div class="content table-responsive table-full-width">
-                            <form method="post" action="<%=request.getContextPath()%>/admin/qldangkydetai/admin/duyet_thuyet_minh_ad?type=action">
                             <h3>DANH SÁCH THUYẾT MINH CẦN DUYỆT</h3>
+                            <form method="post" action="<%=request.getContextPath()%>/admin/qldangkydetai/admin/duyet_thuyet_minh_ad?type=action">
+                            	<div class="row">
+                                 	<div class="btn-action">
+                                     		<input type="submit" name="submit" value="Thực hiện" class="btn btn-primary btn-search" />
+                                    </div>
+                            		<div class="btn-action" style="margin-right: 7px;width: 95px;margin-top: 5px;" >
+                           				<select name="action" class="form-control border-input" style="font-size: 12px; padding: 0px; height: 24px;width: 95px;">
+                           					<option value="0">Không duyệt</option>
+                           					<option value="1" selected="selected">Duyệt</option>
+                                        </select>
+                                    </div>
+                                </div>
                             		 <table class="table table-striped" id="table-contain">
                                     <thead>
                                         <th>ID</th>
@@ -134,7 +145,7 @@
                                         </tr>                              
                                     </tbody>
                                 </table>
-
+								</form>
 								<div class="row">
 								<div class="text-center col-md-9">
 								     <ul class="pagination">
@@ -199,29 +210,11 @@
 								        
 								        </li> 
 								    </ul>
-								</div>
-								<div class="col-md-1">
-								<div class="form-group">
-									<select name="action" class="form-control border-input"
-										style="width: 100px">
-										<option value="0">Huỷ</option>
-										<option value="1" selected="selected">Duyệt</option>
-									</select>
-								</div>
-								</div>
-								<div class="col-md-1">
-								<div class="form-group">
-									<input type="submit" name="submit" value="Thực hiện"
-										class="btn btn-primary btn-search" />
-										</form>
-								</div>
 							</div>
 							</div>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>

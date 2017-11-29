@@ -122,9 +122,15 @@
                 </li>
                 <%} %>
                 <li>
-             			<a href="<%= request.getContextPath() %>/admin/qldetai/index_nhanvien?type=load">
+                <% if (isQuanLyNCKHKhoa) {%> 
+         				<a href="<%= request.getContextPath() %>/admin/qldetai/index-khoa?type=load">
              				<p>Quản lý đề tài</p>
          				</a>
+    			<%} else{ %> 
+    					<a href="<%= request.getContextPath() %>/admin/qldetai/index_nhanvien?type=load">
+             				<p>Quản lý đề tài</p>
+         				</a>
+    			<%} %>
                </li>
                <li>
                	<%if (isQuanLyNCKHKhoa) { %>

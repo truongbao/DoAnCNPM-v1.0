@@ -13,16 +13,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link
-	href="<%=request.getContextPath()%>/templates/admin/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet" />
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>File hợp đồng</title>
 <style type="text/css">
 	html{
 		width: 100%;
 		margin-left: 0.5%
+	}
+	.header{
+		width: 100%;
+		float: left;
+		/*text-align:center;*/
+		margin-left: 23%;
+	}
+	.cls{
+		clear:both;
 	}
 </style>
 </head>
@@ -37,16 +42,22 @@
 	%>
 
 	<div class="row" style="font-size: 16px">
-			&emsp;&emsp;&emsp;ĐẠI HỌC ĐÀ NẴNG&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM&emsp;TRƯỜNG ĐẠI HỌC BÁCH KHOA&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Độc lập - Tự do - Hạnh phúc&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-	</div><br>
-	________________________________________________________________________________<br><br>
-	<div class="row" style="font-size: 17px;">
-		&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Đà Nẵng, ngày&emsp;&emsp;tháng&emsp;&emsp;năm&emsp;&emsp; 
+			<div class="header">
+				&emsp;&emsp;&emsp;ĐẠI HỌC ĐÀ NẴNG&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+				<span style="margin-left: 10%; display: inline; fon">CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM</span>
+			</div>
+			<div class="header" >
+				&emsp;TRƯỜNG ĐẠI HỌC BÁCH KHOA&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+				<span style="margin-left: 11%; display: inline;">Độc lập - Tự do - Hạnh phúc</span>
+			</div>
+			<div class="cls"></div>
+	</div>
+	<div class="row">
+		<div style="margin: auto; width: 50%;"><hr style=""></hr></div>
 	</div>
 	<br>
-	<div class="col-md-12" style="font-weight: bold; font-size: 22px;">
-		HỢP ĐỒNG THỰC HIỆN ĐỀ TÀI KHOA HỌC VÀ CÔNG NGHỆ
-		<br>&emsp;CẤP TRƯỜNG CỦA ĐẠI HỌC BÁCH KHOA ĐÀ NẴNG
+	<div class="col-md-12" style="font-weight: bold; font-size: 22px; text-align:center;">
+		HỢP ĐỒNG THỰC HIỆN ĐỀ TÀI KHOA HỌC VÀ CÔNG NGHỆ CẤP TRƯỜNG CỦA ĐẠI HỌC BÁCH KHOA ĐÀ NẴNG
 </div>
 	<br>
 		<div class="row" style="font-size: 17px;">

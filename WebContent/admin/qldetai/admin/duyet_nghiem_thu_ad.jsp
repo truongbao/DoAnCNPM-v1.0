@@ -53,7 +53,18 @@
                             <div class="content table-responsive table-full-width">
                             <h3>DANH SÁCH ĐỀ TÀI CẦN DUYỆT</h3>
                             <form method="post" action="<%=request.getContextPath()%>/admin/qldetai/duyet_nghiem_thu_ad?type=action" onsubmit="return validateForm()">
-                                <table class="table table-striped">
+                                <div class="row">
+                                 	<div class="btn-action">
+                                     		<input type="submit" name="submit" value="Thực hiện" class="btn btn-primary btn-search" />
+                                    </div>
+                            		<div class="btn-action" style="margin-right: 7px;width: 95px;margin-top: 5px;" >
+                           				<select name="action" class="form-control border-input" style="font-size: 12px; padding: 0px; height: 24px;width: 95px;">
+                           					<option value="0">Không duyệt</option>
+                           					<option value="1" selected="selected">Duyệt</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <table class="table table-striped" id="table-contain">
                                     <thead>
                                         <th>ID</th>
                                     	<th>Tên đề tài</th>
@@ -72,35 +83,24 @@
                                     %>
                                         <tr>
                                         	<td><%=objDeTai.getIdDeTai() %></td>
-                                            <td><a href="<%=request.getContextPath()%>/admin/qldetai/nhanvien/detail_duyet_nt_nv?did=<%=objDeTai.getIdDeTai()%>"><%=objDeTai.getTenDeTai() %></a></td>
+                                            <td><a href="<%=request.getContextPath()%>/admin/qldetai/chi-tiet-nghiem-thu?did=<%=objDeTai.getIdDeTai()%>"><%=objDeTai.getTenDeTai() %></a></td>
                                             <td><%=objDeTai.getFullName() %></td>
                                         	<td><%=objDeTai.getTenCapDeTai() %></td>
                                         	<td><%=LibraryConstant.ConvertTrangThai(objDeTai.getTrangThai()) %></td>
                                         	<td>
                                         		Điểm: <%=objDeTai.getDiem() %><br>
                                         		Xếp loại: <%=objDeTai.getXepLoai() %><br>
-                                        		<a href="<%=request.getContextPath()%>/admin/qldetai/nhanvien/detail_duyet_nt_nv?did=<%=objDeTai.getIdDeTai()%>"><img src="assets/img/edit.gif" alt="" />Xem chi tiết</a>
+                                        		<a href="<%=request.getContextPath()%>/admin/qldetai/chi-tiet-nghiem-thu?did=<%=objDeTai.getIdDeTai()%>"><img src="assets/img/edit.gif" alt="" />Xem chi tiết</a>
                                         	</td>
                                         	<td><input type="checkbox" class="checkbox-action" name="idDeTai" value="<%=objDeTai.getIdDeTai() %>"></td>
                                         </tr>
-                                      <%}}} %>                               
+                                      <%}}} %>
+                                      <tr class="text-center text-danger mt-20 no-result-search"
+											hidden>
+											<td colspan="7"><h5>Không tìm thấy kết quả</h5></td>
+										</tr>                               
                                     </tbody>
                                 </table>
-                                <div class="btn-form-action">
-                            		<div class="col-md-2 col-offset-8">
-                            			<div class="form-group">
-                            				<select name="action">
-                            					<option value="0">Không duyệt</option>
-                            					<option value="1" selected="selected">Duyệt</option>
-	                                        </select>
-	                                    </div>
-                                    </div>
-                                    <div class="col-md-2 col-offset-10">
-                                    	<div class="form-group">
-                                       		<input type="submit" name="submit" value="Thực hiện" class="btn btn-primary btn-search" />
-                                      	</div>
-                                    </div>
-                                </div>
 								</form>
 								<%	
 									int page_sum = (Integer) request.getAttribute("page_sum"); 

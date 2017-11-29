@@ -48,7 +48,7 @@
 	                            		<div class="col-md-4"><a class="btn btn-info btn-fill btn-wd" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldangkydetai/duyet-de-xuat-khoa?type=load">Xem danh sách duyệt đề xuất</a>
 	                            		</div>
 	                            </div>
-                                <table class="table table-striped">
+                                <table class="table table-striped" id="table-contain">
                                     <thead>
                                         <th>ID</th>
                                     	<th>Tên đề tài</th>

@@ -13,7 +13,7 @@
                         <div class="card">
                             <div class="header">
                                 <!-- <p class="category success">Thêm thành công</p> -->
-                                <form action="<%=request.getContextPath()%>/admin/qldetai/index_nhanvien?type=search" method="post">
+                                <form action="<%=request.getContextPath()%>/admin/qldetai/index-khoa?type=search" method="post">
                                 	<div class="row">
                                         <div class="col-md-8">
                                             <div class="form-group">
@@ -29,19 +29,6 @@
                                     </div>
                                     
                                 </form>
-                                
-	                       		<div class="row">
-	                       			<div class="col-md-8">
-	                       				<%
-		                    			if(isNhanVienQLNCKHTruong){
-			                        	%>
-	                        			<a class="btn btn-info btn-fill btn-wd" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldetai/duyet_nghiem_thu_nv?type=load">Xem danh sách duyệt nghiệm thu</a>
-	                            		<%	}else if(isAdmin){ %>
-	                            		<a class="btn btn-info btn-fill btn-wd" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldetai/duyet_nghiem_thu_ad?type=load">Xem danh sách duyệt nghiệm thu</a>
-	                            		<%	} %>
-	                            	</div>
-	                       		</div>
-	                       		
                             </div>
                             
                             <div class="text-center text-danger col-md-12" style="font-size: 18px;font-weight: bold;">
@@ -67,7 +54,6 @@
                                     	<th>Chủ nhiệm</th>
                                     	<th>Cấp đề tài</th>
                                     	<th>Trạng thái</th>
-                                    	<th>Chức năng</th>
                                     </thead>
                                     <tbody>
                                     <%
@@ -82,17 +68,12 @@
                                             <td><%=objDeTai.getFullName() %></td>
                                         	<td><%=objDeTai.getTenCapDeTai() %></td>
                                         	<td><%=LibraryConstant.ConvertTrangThai(objDeTai.getTrangThai()) %></td>
-                                        	<td>
-                                        	<% if(LibraryConstant.DaDuyet.equals(objDeTai.getTrangThai())){ %>
-                                        	<button class="btn btn-info"><a href="<%=request.getContextPath()%>/admin/hopdong/export?uid=<%=objDeTai.getIdDeTai()%>">In hợp đồng</a></button>
-                                        	<%} %>
-                                        	</td>
                                         </tr>
                                       <%}}} %>
                                       <tr class="text-center text-danger mt-20 no-result-search"
-											hidden>
+									hidden>
 											<td colspan="7"><h5>Không tìm thấy kết quả</h5></td>
-										</tr>                                    
+										</tr>                               
                                     </tbody>
                                 </table>
 
@@ -115,7 +96,7 @@
 												}
 										%>
 										<li><a <%=active%>
-											href="<%=request.getContextPath()%>/admin/qldetai/index_nhanvien?type=<%=type%>&page=<%=i%>"><%=i%></a><li>
+											href="<%=request.getContextPath()%>/admin/qldetai/index-khoa?type=<%=type%>&page=<%=i%>"><%=i%></a><li>
 											<%
 												}
 												if (current_page == page_sum) {
@@ -125,7 +106,7 @@
 												}
 											%>
 										<li><a <%=active%>
-											href="<%=request.getContextPath()%>/admin/qldetai/index_nhanvien?type=<%=type%>&page=<%=page_sum%>"><%=page_sum%></a></li>
+											href="<%=request.getContextPath()%>/admin/qldetai/index-khoa?type=<%=type%>&page=<%=page_sum%>"><%=page_sum%></a></li>
 									</ul>
 								</div>
 								<%} %>

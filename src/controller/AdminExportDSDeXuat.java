@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import library.LibraryAuth;
 import library.LibraryConstant;
+import model.bean.CapDeTai;
 import model.bean.DeTai;
+import model.dao.CapDeTaiDAO;
 import model.dao.DetaiDAO;
 
 public class AdminExportDSDeXuat extends HttpServlet {
@@ -41,11 +43,15 @@ public class AdminExportDSDeXuat extends HttpServlet {
        	}
        	
        	DetaiDAO detaiDAO = new DetaiDAO();
+       	CapDeTaiDAO cdtDAO = new CapDeTaiDAO();
+       	int idcapDeTai = 0;
+       	CapDeTai cdt = cdtDAO.getItem(idcapDeTai);
        	
-       	ArrayList<DeTai> listDeTai = detaiDAO.getListDeTaiWith(LibraryConstant.DangChoXetCapTruong);
+       	ArrayList<DeTai> listDeTai = detaiDAO.getListDeTaiWithCapDeTai(LibraryConstant.DangChoXetCapTruong,idcapDeTai);
+       	request.setAttribute("capDeTai", cdt.getTenCapDeTai());
  		 request.setAttribute("listDeTai", listDeTai);
  		 System.out.println("XUAT FILE DS: "+listDeTai.size());
-  		RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/nhanvien/ds.jsp");
+  		RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/nhanvien/export.jsp");
           rd.forward(request, response);
 	}
 

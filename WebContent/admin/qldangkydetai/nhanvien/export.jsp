@@ -1,5 +1,6 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@page import="java.security.Timestamp"%>
-<%@page import="java.sql.Date"%>
 <%@page import="model.bean.HopDong"%>
 <%@page import="model.bean.User"%>
 <%@page import="model.bean.DeTai"%>
@@ -16,7 +17,21 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>File Danh sách đề xuất</title>
-
+<style type="text/css">
+	html{
+		width: 100%;
+		margin-left: 0.5%
+	}
+	.header{
+		width: 100%;
+		float: left;
+		/*text-align:center;*/
+		margin-left: 23%;
+	}
+	.cls{
+		clear:both;
+	}
+</style>
 <style>
    table {border-collapse:collapse; table-layout:fixed; width:100%;}
    table td, th {border:solid 1px black; width:100px; word-wrap:break-word;}
@@ -34,19 +49,22 @@
 	%>
 
 	<div class="row" style="font-size: 16px">
-			&emsp;&emsp;&emsp;ĐẠI HỌC ĐÀ NẴNG&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM&emsp;TRƯỜNG ĐẠI HỌC BÁCH KHOA&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Độc lập - Tự do - Hạnh phúc&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+			<div class="header">
+				&emsp;&emsp;&emsp;ĐẠI HỌC ĐÀ NẴNG&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+				<span style="margin-left: 10%; display: inline; fon">CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM</span>
+			</div>
+			<div class="header" >
+				&emsp;TRƯỜNG ĐẠI HỌC BÁCH KHOA&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+				<span style="margin-left: 11%; display: inline;">Độc lập - Tự do - Hạnh phúc</span>
+			</div>
+			<div class="cls"></div>
 	</div>
-	<br>
-	<div>
-		<p style="margin: auto; width: 47%;">______________________________________________________________________________</p>
-	</div>
-	<br><br>
-	<div class="row" style="font-size: 17px;">
-		&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Đà Nẵng, ngày&emsp;&emsp;tháng&emsp;&emsp;năm&emsp;&emsp; 
+	<div class="row">
+		<div style="margin: auto; width: 50%;"><hr style=""></hr></div>
 	</div>
 	<br>
 	<div class="col-md-12" style="font-weight: bold; font-size: 22px; text-align: center;">
-		DANH MỤC ĐỀ XUẤT KH&CN CẤP CƠ SỞ NĂM 2017
+		DANH MỤC ĐỀ XUẤT KH&CN CẤP <span style="text-transform:uppercase;"><%= request.getParameter("capDeTai") %></span> NĂM <%= new SimpleDateFormat("yyyy").format(new Date()) %>
 </div>
 	<br><br><br>
 	 <table>
@@ -88,11 +106,21 @@
         <b>Danh sách này có <%=listDeTai.size()%> đề tài</b>
         <%} %>
         <br><br><br>
-        <div>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-			<b>TRƯỞNG PHÒNG KHCN & HTQT</b><br>
+        <div class="row" style="font-size: 17px;">
+			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+			<span style="float: right; margin-right: 10%">Đà Nẵng, ngày&emsp;&emsp;tháng&emsp;&emsp;năm&emsp;&emsp; </span>
+			<div class="cls"></div>
+			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+			<span style="float: right; margin-right: 11%"><b>TRƯỞNG PHÒNG KHCN & HTQT</b></span>
+			<div class="cls"></div>
+			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+			<span style="float: right; margin-right: 17%">(Chữ ký, họ và tên)</span>
+		</div>
+        <div>
+			<br>
 			</div>
 			
-			<div>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(Chữ ký, họ và tên)
+			<div>
 			</div>
         <br><br><br><br>
         <%
