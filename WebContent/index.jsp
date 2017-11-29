@@ -191,11 +191,11 @@
 					
 						<div class="col-sm-6 col-xs-6 col-md-3 std_ic_ct_pr no-padding-lr">
 							<div class="">
-								<a href="chuong-trinh-chat-luong-cao.html"> <img
+								<a href="<%=request.getContextPath()%>/thongtin-giangvien?uid=<%=objUser.getIdUser() %>"> <img
 									src="<%=request.getContextPath()%>/templates/public/images/thanhViet.jpg" alt="">
 								</a>
 							</div>
-							<a href="chuong-trinh-chat-luong-cao.html" class="std_ic_title">
+							<a href="<%=request.getContextPath()%>/thongtin-giangvien?uid=<%=objUser.getIdUser() %>" class="std_ic_title">
 							     <% if(objUser.getIdHocViHocHam() == 1) { %> 
 							        GS. <%=objUser.getFullName() %>
 							     <%}else if(objUser.getIdHocViHocHam() == 2){ %>   
@@ -208,17 +208,19 @@
 							        GV. <%=objUser.getFullName() %>
 							      <%} %>  
 						     </a><br> 
-						    <a href="">
-								<p>Khoa Cơ Khí</p>
-								<p>Trường Đại học Bách khoa</p>
-							</a>
+						    <a>
+								<p> Khoa : <%=objUser.getTenKhoa() %> </p>
+								<p> <%=objUser.getDiaChiCoQuan() %> </p>
+							</a></br>
 						</div>
 						
 						<!-- hôi lỗi thì thêm vao 3 tên nữa -->
 						<%}}} %>
 					</div>
+					 
 					
 				</div>
+				
 				
 				
 				<div class="col-xs-12">   <!-- phân trang  -->

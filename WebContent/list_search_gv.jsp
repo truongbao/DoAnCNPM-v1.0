@@ -217,10 +217,10 @@
 							        GV. <%=objUser.getFullName() %>
 							      <%} %>  
 						     </a><br> 
-						    <a href="">
-								<p>Khoa Cơ Khí</p>
-								<p>Trường Đại học Bách khoa</p>
-							</a>
+						     <a>
+								<p> Khoa : <%=objUser.getTenKhoa() %> </p>
+								<p> <%=objUser.getDiaChiCoQuan() %> </p>
+							</a></br>
 						</div>
 						
 						<!-- hôi lỗi thì thêm vao 3 tên nữa -->

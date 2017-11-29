@@ -786,7 +786,14 @@
   </servlet-mapping>
   
   
-  
+  <servlet>
+     <servlet-name>PublicThongTinGVController</servlet-name>
+     <servlet-class>controller.PublicThongTinGVController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+     <servlet-name>PublicThongTinGVController</servlet-name>
+     <url-pattern>/thongtin-giangvien</url-pattern>
+  </servlet-mapping>
   
   
   
