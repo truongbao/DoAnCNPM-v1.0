@@ -1195,6 +1195,101 @@ public boolean checkExistEmail(String email) {
 		return total;
 
 	}
+	
+	
+	//tim kiem giang vien ko phan trang và ko có idKhoa
+	public ArrayList<User> searchByNameGiangVien(String txtSearch) {
+		ArrayList<User> listUser = new ArrayList<>();
+		conn = connectMySQLLibrary.getConnectMySQL();
+		
+		 String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocViHocHam from user AS u "
+	        		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
+	        		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
+	        		+ " INNER JOIN  hocvihocham AS hv ON hv.idHocViHocHam = u.idHocViHocHam "
+	        		+ " where u.idLoaiTaiKhoan = 2 and ( u.fullName LIKE'%"+txtSearch+"%' || u.fullName  LIKE'"+txtSearch+"%"+txtSearch+"' ) order by  u.idUser DESC ";
+		         
+		
+		User objUser = null;
+		
+		try {
+			st = conn.createStatement();
+			
+			
+			rs = st.executeQuery(sql);
+			while(rs.next()){
+				 objUser = new User(rs.getInt("idUser"),rs.getString("fullName"),rs.getString("diaChiCoQuan") ,
+			             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocViHocHam") ,rs.getString("tenHocViHocHam"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
+			             rs.getString("dienThoaiNhaRieng") ,rs.getString("email") ,rs.getString("fax"),rs.getString("userName") , 
+			             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa"), rs.getString("avt"));
+			                        
+				 listUser.add(objUser);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				rs.close();
+				st.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return listUser ;
+	}
+	
+	
+	
+	//tim kiem giang vien ko phan trang và có idKhoa
+		public ArrayList<User> searchByNameGiangVienByIdKhoa(String txtSearch, int idKhoa) {
+			ArrayList<User> listUser = new ArrayList<>();
+			conn = connectMySQLLibrary.getConnectMySQL();
+			
+			 String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocViHocHam from user AS u "
+		        		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
+		        		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
+		        		+ " INNER JOIN  hocvihocham AS hv ON hv.idHocViHocHam = u.idHocViHocHam "
+		        		+ " where  u.idKhoa = "+idKhoa+" and u.idLoaiTaiKhoan = 2  and ( u.fullName LIKE'%"+txtSearch+"%' || u.fullName  LIKE'"+txtSearch+"%"+txtSearch+"' ) order by  u.idUser DESC ";
+			         
+			
+			User objUser = null;
+			
+			try {
+				st = conn.createStatement();
+				
+				
+				rs = st.executeQuery(sql);
+				while(rs.next()){
+					 objUser = new User(rs.getInt("idUser"),rs.getString("fullName"),rs.getString("diaChiCoQuan") ,
+				             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocViHocHam") ,rs.getString("tenHocViHocHam"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
+				             rs.getString("dienThoaiNhaRieng") ,rs.getString("email") ,rs.getString("fax"),rs.getString("userName") , 
+				             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa"), rs.getString("avt"));
+				                        
+					 listUser.add(objUser);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally{
+				try {
+					rs.close();
+					st.close();
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			
+			return listUser ;
+		}
+	
+	
+	
+	
+	
+	
 
 
 	

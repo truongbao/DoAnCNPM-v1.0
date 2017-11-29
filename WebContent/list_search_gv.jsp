@@ -140,7 +140,7 @@
 						class="col-xs-12 col-sm-12 col-md-8 col-md-offset-3 no-padding-lr">
 						<p class="text-center">
 						   
-							<form action="<%=request.getContextPath()%>/search-giangvien"  method="get">
+							<form  action="<%=request.getContextPath()%>/search-giangvien"  method="get">
 									
 								<div class="col-md-4">
 									<input type="text" name="txtSearch" class="form-control"  placeholder="Tên giảng viên">
@@ -181,13 +181,22 @@
 					
 					<div class="col-xs-12 col-sm-12 col-md-12 col-md-offset-0 std_icon text-center">
 					
-					<%
-					 if(request.getAttribute("listGiangVienPublic")!=null){
-					    	ArrayList<User> listGiangVienPublic = (ArrayList<User>)request.getAttribute("listGiangVienPublic");
-					    	if(listGiangVienPublic.size() > 0){
-					    		for(User objUser : listGiangVienPublic){
 					
-					%>
+					
+					<% 
+					 if(request.getAttribute("listSearchGiangVien")!=null){
+					 %>
+					 
+					 <h3 style="text-align: center; color:#0080FF; margin-bottom: 30px;"> Tìm thấy kết quả sau :  </h3> 
+					 
+				     <%  
+					    	ArrayList<User> listSearchGiangVien = (ArrayList<User>)request.getAttribute("listSearchGiangVien");
+					    	if(listSearchGiangVien.size() > 0){
+					    		for(User objUser : listSearchGiangVien){
+					
+					 %>
+					
+					 
 					
 						<div class="col-sm-6 col-xs-6 col-md-3 std_ic_ct_pr no-padding-lr">
 							<div class="">
@@ -215,12 +224,17 @@
 						</div>
 						
 						<!-- hôi lỗi thì thêm vao 3 tên nữa -->
-						<%}}} %>
+						<%}}} else{%>
+						
+						   <h3 style="text-align: center; color:#0080FF; margin-bottom: 30px;"> Không tìm thấy kết quả nào !  </h3> 
+						 
+					    <%} %>  
+						
 					</div>
 					
 				</div>
 				
-				
+				<%-- 
 				<div class="col-xs-12">   <!-- phân trang  -->
 						<div class="blog-info-page text-right">
 							<div class="filter-right">
@@ -305,7 +319,7 @@
 							
 						</div>
 					</div>   <!-- phân trang  -->
-				
+				 --%>
 				
 			</div>
 		</section>

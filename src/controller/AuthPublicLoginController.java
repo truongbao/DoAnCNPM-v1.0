@@ -48,7 +48,7 @@ public class AuthPublicLoginController extends HttpServlet {
 				HttpSession session = request.getSession();
 				//System.out.println(objUserLogin.toString());
 				session.setAttribute("sobjUserPublic", objUserLogin );//gán đối tuong tra về cho session=> tâ có đoi tuong user lưu trong sesion
-				response.sendRedirect(request.getContextPath() + "/home");
+				response.sendRedirect(request.getContextPath() + "/");
 				return; 
 			}else{
 				//that bai

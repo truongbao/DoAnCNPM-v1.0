@@ -35,7 +35,7 @@ public class AuthPublicLogoutController extends HttpServlet {
 			//xóa session
 			session.removeAttribute("sobjUserPublic");
 		}
-		response.sendRedirect(request.getContextPath()+"/home");//chuyen sang trang public
+		response.sendRedirect(request.getContextPath()+"/");//chuyen sang trang public
 		
 		
 	}

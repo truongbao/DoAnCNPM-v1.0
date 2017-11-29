@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import library.LibraryConstant;
+import model.bean.Khoa;
 import model.bean.User;
 import model.dao.UserDAO;
 
@@ -57,8 +58,16 @@ public class PublicIndexController extends HttpServlet {
 			  listGiangVienPublic = userDAO.getListGiangVienPaging(offset,row_count);
 		}
 		
+		request.setAttribute("listGiangVienPublic", listGiangVienPublic);
+		 
+		//Gửi qua jsp danh sach các khoa
+	     ArrayList<Khoa> listKhoa = new ArrayList<Khoa>();
 		
-		 request.setAttribute("listGiangVienPublic", listGiangVienPublic);
+		 if(listKhoa != null){
+			 listKhoa = userDAO.getListKhoa();
+		 }
+		 
+		 request.setAttribute("listKhoa", listKhoa);
 		
 		 RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
          rd.forward(request, response);

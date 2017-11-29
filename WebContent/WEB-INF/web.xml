@@ -599,7 +599,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>PublicIndexController</servlet-name>
-    <url-pattern>/home</url-pattern>
+    <url-pattern></url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -774,6 +774,28 @@
      <servlet-name>PublicDownloadTMToEditController</servlet-name>
      <url-pattern>/download-thuyetminh-to-edit</url-pattern>
   </servlet-mapping>
+  
+  
+  <servlet>
+     <servlet-name>PublicSearchGiangVienController</servlet-name>
+     <servlet-class>controller.PublicSearchGiangVienController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+     <servlet-name>PublicSearchGiangVienController</servlet-name>
+     <url-pattern>/search-giangvien</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
     <servlet>
 		<servlet-name>ConnectorServlet</servlet-name>

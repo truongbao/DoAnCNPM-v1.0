@@ -47,8 +47,6 @@ public class PublicDownloadTMToEditController extends HttpServlet {
 		
 		int idDeTai = Integer.parseInt(request.getParameter("did"));
 		
-		System.out.println("lay id dc roi : "+idDeTai);
-      
 		//kết hợp maBieuMau vs idDeTai lấy ra linkBieuMau của de tai đó 
 		//viet method truyen vao 2 tham số maBieuMau vs idDeTai và ham này sẽ trả về Kiêu String chinh la linkBieuMau
 		
@@ -56,7 +54,6 @@ public class PublicDownloadTMToEditController extends HttpServlet {
 
 		String filenameDB = "";
 		if(objBieuMau != null){
-			System.out.println("Đối tượng BieuMau : "+objBieuMau.toString());
 			filenameDB = objBieuMau.getLinkBieuMau(); //filename trên DB
 		}
 	   

@@ -17,6 +17,16 @@ public class ConnectMySQLLibrary {
 		this.pass = "";
 	}
 	
+	
+	/*public ConnectMySQLLibrary(){
+		this.url = "jdbc:mysql://node184350-quanlynckh.jelastic.servint.net/nckhbachkhoa?useUnicode=true&characterEncoding=UTF-8";
+		this.user  = "root";
+		this.pass = "ZTAeqo40123";
+	}*/
+	
+	
+	
+	
     public Connection getConnectMySQL(){
     	try {
 			Class.forName("com.mysql.jdbc.Driver");

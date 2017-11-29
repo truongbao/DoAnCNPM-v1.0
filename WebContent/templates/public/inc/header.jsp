@@ -159,17 +159,20 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; 
 								<div class="hidden-xs hidden-sm col-xs-12 col-sm-12 pull-right col-md-10 no-padding-l">
 									<div class="col-xs-12 no-padding-lr">
 										<div class="topbar">
-											<div class="sub-menu-search hidden-xs hidden-sm pull-right">
-												<form action="http://www.mamnonnumberone.edu.vn/search" method="get">
+										
+											<div class="sub-menu-search hidden-xs hidden-sm pull-right">   <!-- tìm kiếm -->
+												<form action="<%=request.getContextPath()%>/search-giangvien" method="get">
 													<div class="input-group search_form_action">
-														<input type="text" class="form-control" maxlength="70" name="query" id="search" placeholder="Tìm kiếm..." autocomplete="off">
+														<input type="text" class="form-control" maxlength="70" name="txtSearch" id="" placeholder="Tìm kiếm giảng viên ..." autocomplete="off">
+														<input style="display: none" type="text" name="idKhoa" value="0">
 														<span class="input-group-btn">
 															<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
 														</span>
-													</div>
+													</div> 
 													<!-- /input-group -->
 												</form>
-											</div>									
+											</div>		
+																		
 											<div class="sub-menu-account hidden-xs hidden-sm"> 
 												
 											</div>
@@ -186,7 +189,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; 
 													
 													
 													<li class="first ">
-														<a href="<%=request.getContextPath()%>/home" class="menu_active"><span>Trang chủ</span></a>
+														<a href="<%=request.getContextPath()%>/" class="menu_active"><span>Trang chủ</span></a>
 													</li>
 													
 													<li class=" sub-menu"><a href="<%=request.getContextPath()%>/gioi-thieu" class=""><span>Giới thiệu</span></a>
@@ -276,65 +279,104 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; 
 								<div class="col-xs-12 col-sm-12 hidden-md hidden-lg mobile-menu">
 									<div class="no-padding-l mb-menu-title hidden-md hidden-lg">
 										<a href="javascript:void(0);" class="bars-navigation"><i class="fa fa-bars"></i></a>
-
 									</div>
+									
 									<div class="no-padding-r hidden-md hidden-lg tablet_search">
 										<div class="sub-menu-search pull-right">
-											<form action="http://www.google.com" method="get">
+										
+											<form action="<%=request.getContextPath()%>/search-giangvien" method="get">   <!-- tìm kiếm trên mobile  -->
 												<div class="input-group search_form_action">
-													<input type="text" class="form-control" maxlength="70" name="query" id="search" placeholder="Tìm kiếm..." autocomplete="off">
+													<input type="text" class="form-control" maxlength="70" name="txtSearch" id="" placeholder="Tìm kiếm giảng viên ..." autocomplete="off">
+													<input style="display: none" type="text" name="idKhoa" value="0">
+													
 													<span class="input-group-btn">
 														<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
 													</span>
 												</div>
-												<!-- /input-group -->
 											</form>
+											
 										</div>
 									</div>
-									<div class="col-xs-12 col-sm-12">
+									
+									
+									<div class="col-xs-12 col-sm-12">   <!-- Giao dien di dong  -->
 										<ul class="list-unstyled mobimenu" style="display: none">
+											<!--   style="display: none" -->
 											
-											
-											<li class="first ">
-												<a href="index.html"><span>Trang chủ</span></a>
-											</li>
-											
-											
-											
-											<li class=" sub-menu"><a href="gioi-thieu.html"><span>Giới thiệu</span></a>
-												<ul class="list-unstyled" style="display: none">
-													
-													
-													<li class="first ">
-														<a href="gioi-thieu.html"><span>Giới thiệu về trường</span></a>	
+											        <li class="first ">
+														<a href="<%=request.getContextPath()%>/" class="menu_active"><span>Trang chủ</span></a>
 													</li>
 													
-												</ul>
-											</li>
-											
-											
-											
-											<li class="">
-												<a href="tin-tuc.html"><span>Tin tức sự kiện</span></a>
-											</li>
-											
-											
-											
-											<li class=" sub-menu"><a href="tuyen-dung.html"><span>Tuyển Sinh</span></a>
-												<ul class="list-unstyled" style="display: none">
-													
-													
-													<li class="first ">
-														<a href="tuyen-dung.html"><span>Thông tin tuyển sinh</span></a>	
+													<li class=" sub-menu"><a href="<%=request.getContextPath()%>/gioi-thieu" class=""><span>Giới thiệu</span></a>
+														<ul class="list-unstyled" style="display: none">
+															
+															
+															<li class="first ">
+																<a href="<%=request.getContextPath()%>/gioi-thieu"><span>Giới thiệu về trường</span></a>	
+															</li>
+															
+														</ul>
+
 													</li>
 													
-												</ul>
-											</li>
-											
-											<li class="last ">
-												<a href="lien-he.html"><span>Liên Hệ</span></a>
-											</li>
-											
+												
+													<%  
+													  if(session.getAttribute("sobjUserPublic") != null ){
+													 %>
+													 
+													<%-- <li class="">
+														<a href="<%=request.getContextPath()%>/thong-bao" class=""><span>Thông báo</span></a>
+													</li> --%>
+													
+													
+													<li class=" sub-menu"><a href="" class=""><span>Quản Lý</span></a>
+														<ul class="list-unstyled"  style="display: none">
+															
+															<li class="first ">
+																<a href="<%=request.getContextPath()%>/list-register-detai"><span>Quản lý đăng ký đề tài</span></a>	
+															</li>
+															
+															<li class="">
+																<a href="<%=request.getContextPath()%>/quanly-taikhoan"><span>Quản lý tài khoản</span></a>	
+															</li>
+															
+															<li class="last ">
+																<a href="<%=request.getContextPath()%>/quanly-detai"><span>Quản lý đề tài</span></a>	
+															</li>
+															
+															<li class="last ">
+																<a href="<%=request.getContextPath()%>/quanly-thanhvien"><span>Quản lý thành viên</span></a>	
+															</li>
+															
+														</ul>
+
+													</li>
+													
+													<%}%>
+													
+													<li class="last ">
+														<a href="<%=request.getContextPath()%>/lien-he" class=""><span>Liên Hệ</span></a>
+													</li>
+													
+													
+													<%
+													if(session.getAttribute("sobjUserPublic") != null ){
+														 User sobjUserPublic = (User)session.getAttribute("sobjUserPublic");
+													%>
+													<li class="last ">
+														 <a href="<%=request.getContextPath()%>/auth/public/logout" class=""><span>Đăng Xuất</span></a>
+													</li>
+													
+													<li class="last ">
+													   <a href="<%=request.getContextPath()%>/quanly-taikhoan"> <span> <%=sobjUserPublic.getFullName() %> </span></a>
+													</li>
+													<%}else{ %>
+													
+													<li class="last ">
+														<a href="<%=request.getContextPath()%>/auth/public/login" class=""><span>Đăng nhập</span></a>
+													</li>
+													<%} %>
+													
 											
 
 										</ul>
