@@ -59,9 +59,9 @@ public class AdminDuyetTMAdmin extends HttpServlet {
  		 int current_page = 1;
  		 
  		//tong so de tai
- 		 int sumDeTai = detaiDAO.countListDeTaiWith(LibraryConstant.DangChoDuyetThuyetMinh);
+ 		 int sumDeTai = detaiDAO.countListDeTaiAdmin(LibraryConstant.ChoHuyThuyetMinh, LibraryConstant.ChoDeNghiChinhSuaThuyetMinh,LibraryConstant.DangChoDuyetThuyetMinh);
  		if (request.getParameter("search") != null){
- 			sumDeTai = detaiDAO.countListDeTaiSearchWith(key, khoa, LibraryConstant.DangChoDuyetThuyetMinh);
+ 			sumDeTai = detaiDAO.countListDeTaiSearchAdmin(key, khoa, LibraryConstant.ChoHuyThuyetMinh, LibraryConstant.ChoDeNghiChinhSuaThuyetMinh,LibraryConstant.DangChoDuyetThuyetMinh);
  		}
  		// tong so trang
  		 int sumPage = (int)Math.ceil((float)sumDeTai/row_count);
@@ -76,17 +76,16 @@ public class AdminDuyetTMAdmin extends HttpServlet {
  		int offset = (current_page - 1) * row_count;
  		request.setAttribute("current_page", current_page);
  		if (request.getParameter("search") == null){
- 			ArrayList<DeTai> listDeTaiAdmin = detaiDAO.getListDeTaiWith(LibraryConstant.DangChoDuyetThuyetMinh, offset);
+ 			ArrayList<DeTai> listDeTaiAdmin = detaiDAO.getListDeTaiAdmin(LibraryConstant.ChoHuyThuyetMinh, LibraryConstant.ChoDeNghiChinhSuaThuyetMinh,LibraryConstant.DangChoDuyetThuyetMinh, offset);
  			 request.setAttribute("listDeTaiAdmin", listDeTaiAdmin);
  		} else {
- 			ArrayList<DeTai> listDeTaiAdmin = detaiDAO.getListDeTaiSearchWith(offset, key, khoa, LibraryConstant.DangChoDuyetThuyetMinh);
+ 			ArrayList<DeTai> listDeTaiAdmin = detaiDAO.getListDeTaiSearchAdmin(offset, key, khoa, LibraryConstant.ChoHuyThuyetMinh, LibraryConstant.ChoDeNghiChinhSuaThuyetMinh,LibraryConstant.DangChoDuyetThuyetMinh);
  			 request.setAttribute("listDeTaiAdmin", listDeTaiAdmin);
  		}
 
-		 RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/admin/duyet_thuyet_minh_ad.jsp");
-         rd.forward(request, response);
-         
-
+ 		doPost(request, response);
+ 		
+		 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -110,7 +109,7 @@ public class AdminDuyetTMAdmin extends HttpServlet {
 	   	 		String noiDung = request.getParameter("noidung");
 	   	 		System.out.println("NOI DUNG : " + noiDung);
 	   	 		QuaTrinhThucHienDAO qtthDAO = new QuaTrinhThucHienDAO();
-	   	 		QuaTrinhThucHien qtth = new QuaTrinhThucHien(idqtth, 0, LibraryConstant.TruongDeXuatChinhSuaThuyetMinh, null, "", noiDung);
+	   	 		QuaTrinhThucHien qtth = new QuaTrinhThucHien(idqtth, 0, LibraryConstant.DaDuyet, null, "", noiDung);
 	   	 		if (qtthDAO.addItem(qtth) >0) {
 	   	 			System.out.println("Add new QTTH OK");
 	   	 		}
@@ -122,7 +121,17 @@ public class AdminDuyetTMAdmin extends HttpServlet {
 	 	 	}
 	 		
 	 		if (request.getParameter("duyet") != null) {
-	 			if (detaiDAO.updateToTrangThai(LibraryConstant.TruongDeXuatChinhSuaThuyetMinh, idDeTai) != 0) {
+	 			System.out.println("DUYET KET QUA CUA NV!");
+				DeTai detai = detaiDAO.getObjDeTai(idDeTai);
+				String newTrangthai = LibraryConstant.DangChoXetThuyetMinh;
+				if (detai.getTrangThai().equals(LibraryConstant.ChoHuyThuyetMinh)) {
+					newTrangthai = LibraryConstant.Huy;
+				} else if (detai.getTrangThai().equals(LibraryConstant.ChoDeNghiChinhSuaThuyetMinh)) {
+					newTrangthai = LibraryConstant.TruongDeXuatChinhSuaThuyetMinh;
+				} else if (detai.getTrangThai().equals(LibraryConstant.DangChoDuyetThuyetMinh)) {
+					newTrangthai = LibraryConstant.DaDuyet;
+				}
+	 			if (detaiDAO.updateToTrangThai(newTrangthai, idDeTai) != 0) {
 		 			System.out.println("Update Success!");
 		 			response.sendRedirect(request.getContextPath() + "/admin/qldangkydetai/admin/duyet_thuyet_minh_ad?msg=1");
 					return; 
@@ -131,8 +140,8 @@ public class AdminDuyetTMAdmin extends HttpServlet {
 					return; 
 		 		}
 	 		} else if (request.getParameter("huy") != null) {
-	 			if (detaiDAO.updateToTrangThai(LibraryConstant.Huy, idDeTai) != 0) {
-		 			System.out.println("Update Success!");
+	 			if (detaiDAO.updateToTrangThai(LibraryConstant.DangChoXetThuyetMinh, idDeTai) != 0) {
+		 			System.out.println("Huy Success!");
 		 			response.sendRedirect(request.getContextPath() + "/admin/qldangkydetai/admin/duyet_thuyet_minh_ad?msg=1");
 					return; 
 		 		} else {
@@ -143,6 +152,74 @@ public class AdminDuyetTMAdmin extends HttpServlet {
 	 		
 	 		
          }
+         
+         if (request.getParameter("type") != null) {
+ 			if (request.getParameter("type").equals("action")) {
+ 				System.out.println("DUYET NHIEU DE XUAT");
+ 				if (request.getParameter("idDeTai") != null) {
+ 					String[] checkedId_str = request.getParameterValues("idDeTai");
+ 					System.out.println("DUYET NHIEU ID DE TAI");
+ 					int action = Integer.parseInt(request.getParameter("action"));
+ 					DetaiDAO detaiDAO = new DetaiDAO();
+ 					if (action == 1) {
+ 						System.out.println("DUYET KET QUA CUA NV!");
+ 						int result = 0;
+ 						for (String string : checkedId_str) {
+ 							System.out.println(string);
+ 							int idDeTai = Integer.parseInt(string);
+ 							DeTai detai = detaiDAO.getObjDeTai(idDeTai);
+ 							String newTrangthai = LibraryConstant.DangChoXetThuyetMinh;
+ 							if (detai.getTrangThai().equals(LibraryConstant.ChoHuyThuyetMinh)) {
+ 								newTrangthai = LibraryConstant.Huy;
+ 							} else if (detai.getTrangThai().equals(LibraryConstant.ChoDeNghiChinhSuaThuyetMinh)) {
+ 								newTrangthai = LibraryConstant.TruongDeXuatChinhSuaThuyetMinh;
+ 							} else if (detai.getTrangThai().equals(LibraryConstant.DangChoDuyetThuyetMinh)) {
+ 								newTrangthai = LibraryConstant.DaDuyet;
+ 							}
+ 							result = detaiDAO.updateToTrangThai(newTrangthai, idDeTai);
+ 							
+ 						}
+ 						if (result != 0) {
+ 							System.out.println("Update Success!");
+ 							response.sendRedirect(
+ 									request.getContextPath() + "/admin/qldangkydetai/admin/duyet_thuyet_minh_ad?msg=1");
+ 							return;
+ 						} else {
+ 							response.sendRedirect(
+ 									request.getContextPath() + "/admin/qldangkydetai/admin/duyet_thuyet_minh_ad?msg=0");
+ 							return;
+ 						}
+ 					} else {
+ 						System.out.println("HUY KET QUA CUA NV!");
+ 						int result = 0;
+ 						for (String string : checkedId_str) {
+ 							System.out.println(string);
+ 							int idDeTai = Integer.parseInt(string);
+ 							result = detaiDAO.updateToTrangThai(LibraryConstant.DangChoXetThuyetMinh, idDeTai);
+ 						}
+ 						if (result != 0) {
+ 							System.out.println("Update Success!");
+ 							response.sendRedirect(
+ 									request.getContextPath() + "/admin/qldangkydetai/admin/duyet_thuyet_minh_ad?msg=1");
+ 							return;
+ 						} else {
+ 							response.sendRedirect(
+ 									request.getContextPath() + "/admin/qldangkydetai/admin/duyet_thuyet_minh_ad?msg=0");
+ 							return;
+ 						}
+ 					}
+ 					
+ 				} else {
+ 					response.sendRedirect(
+ 	 						request.getContextPath() + "/admin/qldangkydetai/admin/duyet_thuyet_minh_ad?msg=3");
+ 	 				return;
+ 				}
+ 				
+ 			}
+ 		}
+         
+         RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/admin/duyet_thuyet_minh_ad.jsp");
+         rd.forward(request, response);
 	}
 
 }

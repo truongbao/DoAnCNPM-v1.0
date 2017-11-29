@@ -100,17 +100,35 @@ public class AdminDuyetDXNhanVien extends HttpServlet {
       	 		qtthDAO.addItem(qtth);
       	 	}
  	 		DetaiDAO detaiDAO = new DetaiDAO();
- 	 		if (detaiDAO.updateToTrangThai(LibraryConstant.DangChoDuyetCapTruong, idDeTai) != 0) {
- 	 			System.out.println("Update Success!");
- 	 			response.sendRedirect(request.getContextPath() + "/admin/qldangkydetai/nhanvien/duyet_de_xuat_nv?msg=1");
- 	 			
- 				return; 
- 	 		} else {
- 	 			response.sendRedirect(request.getContextPath() + "/admin/qldangkydetai/nhanvien/duyet_de_xuat_nv?msg=0");
- 				return; 
+ 	 		if (request.getParameter("huy") != null) {
+ 	 			if (detaiDAO.updateToTrangThai(LibraryConstant.ChoHuy, idDeTai) != 0) {
+ 	 	 			System.out.println("Xet cho huy!");
+ 	 	 			response.sendRedirect(request.getContextPath() + "/admin/qldangkydetai/nhanvien/duyet_de_xuat_nv?msg=1");
+ 	 				return; 
+ 	 	 		} else {
+ 	 	 			response.sendRedirect(request.getContextPath() + "/admin/qldangkydetai/nhanvien/duyet_de_xuat_nv?msg=0");
+ 	 				return; 
+ 	 	 		}
+ 	 		} else if (request.getParameter("duyet") != null) {
+ 	 			if (detaiDAO.updateToTrangThai(LibraryConstant.DangChoDuyetCapTruong, idDeTai) != 0) {
+ 	 	 			System.out.println("Xet cho duyet de xuat!");
+ 	 	 			response.sendRedirect(request.getContextPath() + "/admin/qldangkydetai/nhanvien/duyet_de_xuat_nv?msg=1");
+ 	 				return; 
+ 	 	 		} else {
+ 	 	 			response.sendRedirect(request.getContextPath() + "/admin/qldangkydetai/nhanvien/duyet_de_xuat_nv?msg=0");
+ 	 				return; 
+ 	 	 		}
+ 	 		} else if (request.getParameter("chinhsua") != null) {
+ 	 			if (detaiDAO.updateToTrangThai(LibraryConstant.ChoDeNghiChinhSuaDeXuat, idDeTai) != 0) {
+ 	 	 			System.out.println("De nghi chinh sua de xuat!");
+ 	 	 			response.sendRedirect(request.getContextPath() + "/admin/qldangkydetai/nhanvien/duyet_de_xuat_nv?msg=1");
+ 	 				return; 
+ 	 	 		} else {
+ 	 	 			response.sendRedirect(request.getContextPath() + "/admin/qldangkydetai/nhanvien/duyet_de_xuat_nv?msg=0");
+ 	 				return; 
+ 	 	 		}
  	 		}
  	 		
- 
 		}
 	}
 

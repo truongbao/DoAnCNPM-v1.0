@@ -29,6 +29,10 @@ public class LibraryConstant {
 	  public final static String DangChoDuyetNghiemThu = "14" ;
 	  public final static String DaHoanThanh = "15" ;
 	  public final static String KhongHoanThanh = "16" ;
+	  public final static String ChoHuy = "17";
+	  public final static String ChoDeNghiChinhSuaDeXuat = "18";
+	  public final static String ChoHuyThuyetMinh = "19";
+	  public final static String ChoDeNghiChinhSuaThuyetMinh = "20";
 	  
 	  public final static String pathAvt = "/home/yenhot/web/DoAnCNPM_SE03/WebContent/templates/admin/img/users" ;
 	  
@@ -47,34 +51,34 @@ public class LibraryConstant {
 		  String ketQua = null;
 		  switch(soDangChuoi){
 		  case "1":
-			    ketQua = "Đang chờ duyệt cấp khoa";
+			    ketQua = "Đang chờ duyệt đề xuất cấp khoa";
 			    break;
 		  case "2":
 			    ketQua = "Đang chờ xét đề tài";
 			    break;
 		  case "3":
-			    ketQua = "Khoa đề xuất chỉnh sửa";
+			    ketQua = "Khoa đề nghị chỉnh sửa đề xuất";
 			    break;
 		  case "4":
-			    ketQua = "Đang chờ xét cấp trường ";
+			    ketQua = "Đang chờ xét đề xuất cấp trường";
 			    break;
 		  case "5":
 			    ketQua = "Hủy";
 			    break;
 		  case "6":
-			    ketQua = "Đang chờ duyệt cấp trường";
+			    ketQua = "Đang chờ duyệt đề xuất cấp trường";
 			    break;
 		  case "7":
-			    ketQua = "Trường đề xuất chỉnh sửa";
+			    ketQua = "Trường đề nghị chỉnh sửa đề xuất";
 			    break;
 		  case "8":
-			    ketQua = "Đang chờ xét thuyết minh ";
+			    ketQua = "Đang chờ xét thuyết minh";
 			    break;
 		  case "9":
-			    ketQua = "Đang chờ duyệt thuyết minh  ";
+			    ketQua = "Đang chờ duyệt thuyết minh";
 			    break;
 		  case "10":
-			    ketQua = "Trường đề xuất chỉnh sửa thuyết minh ";
+			    ketQua = "Trường đề nghị chỉnh sửa thuyết minh";
 			    break;
 		  case "11":
 			    ketQua = "Đã duyệt ";
@@ -93,6 +97,18 @@ public class LibraryConstant {
 			    break;
 		  case "16":
 			    ketQua = "Không hoàn thành ";
+			    break;
+		  case "17":
+			    ketQua = "Đang chờ huỷ đề xuất";
+			    break;
+		  case "18":
+			    ketQua = "Đang chờ duyệt đề nghị chỉnh sửa đề xuất";
+			    break;
+		  case "19":
+			    ketQua = "Đang chờ huỷ thuyết minh";
+			    break;
+		  case "20":
+			    ketQua = "Đang chờ duyệt đề nghị chỉnh sửa thuyết minh";
 			    break;
 		  default:
 			    break;
