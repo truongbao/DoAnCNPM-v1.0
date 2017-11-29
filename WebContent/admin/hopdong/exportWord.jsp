@@ -21,8 +21,8 @@
 <title>File hợp đồng</title>
 <style type="text/css">
 	html{
-		width: 700px;
-		margin-left: 350px;
+		width: 100%;
+		margin-left: 0.5%
 	}
 </style>
 </head>
