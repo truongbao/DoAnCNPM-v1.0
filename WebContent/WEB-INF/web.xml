@@ -414,62 +414,7 @@
     <url-pattern>/admin/user/show</url-pattern>
   </servlet-mapping>
   
-  <!--====== Hop dong ==========  -->
-  <servlet>
-    <servlet-name>AdminIndexHopDongController</servlet-name>
-    <servlet-class>controller.AdminIndexHopDongController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AdminIndexHopDongController</servlet-name>
-    <url-pattern>/admin/hopdong/index</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>AdminShowAddHopDongController</servlet-name>
-    <servlet-class>controller.AdminShowAddHopDongController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AdminShowAddHopDongController</servlet-name>
-    <url-pattern>/admin/hopdong/form-add</url-pattern>
-  </servlet-mapping>
-  
-   <servlet>
-    <servlet-name>AdminAddHopDongController</servlet-name>
-    <servlet-class>controller.AdminAddHopDongController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AdminAddHopDongController</servlet-name>
-    <url-pattern>/admin/hopdong/add</url-pattern>
-  </servlet-mapping>
-  
-   <servlet>
-    <servlet-name>AdminShowEditHopDongController</servlet-name>
-    <servlet-class>controller.AdminShowEditHopDongController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AdminShowEditHopDongController</servlet-name>
-    <url-pattern>/admin/hopdong/form-edit</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>AdminEditHopDongController</servlet-name>
-    <servlet-class>controller.AdminEditHopDongController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AdminEditHopDongController</servlet-name>
-    <url-pattern>/admin/hopdong/edit</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>AdminDelHopDongController</servlet-name>
-    <servlet-class>controller.AdminDelHopDongController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AdminDelHopDongController</servlet-name>
-    <url-pattern>/admin/hopdong/del</url-pattern>
-  </servlet-mapping>
-  
-  
+  <!--====== Hop dong ==========  -->  
    <servlet>
     <servlet-name>AdminExportHopDongController</servlet-name>
     <servlet-class>controller.AdminExportHopDongController</servlet-class>
@@ -477,15 +422,6 @@
   <servlet-mapping>
     <servlet-name>AdminExportHopDongController</servlet-name>
     <url-pattern>/admin/hopdong/export</url-pattern>
-  </servlet-mapping>
-  
-    <servlet>
-    <servlet-name>ListDeTaiFollowGiangVienController</servlet-name>
-    <servlet-class>controller.ListDeTaiFollowGiangVienController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ListDeTaiFollowGiangVienController</servlet-name>
-    <url-pattern>/admin/hopdong/detai-follow-giangvien</url-pattern>
   </servlet-mapping>
   
   <!--====== Cấp đề tài ==========  -->

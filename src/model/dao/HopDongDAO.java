@@ -65,6 +65,49 @@ public class HopDongDAO {
 		
 		return objHopDong;
 	}
+   
+   public HopDong getObjHopDongByIdDeTai(int idDeTai) {
+		
+       conn = connectMySQLLibrary.getConnectMySQL();
+       
+       String sql = "select * from hopdong where idDeTai = "+idDeTai ;
+       	
+       
+       HopDong objHopDong = null;
+       try {
+			pst = conn.prepareStatement(sql);
+			
+			rs = pst.executeQuery();
+			if(rs.next()){
+			  objHopDong = new HopDong(rs.getInt("idHopDong"),
+					  				   rs.getString("tenKhachHang"),
+					  				   rs.getString("chucVuKH") ,
+					  				   rs.getString("diaChiKH"),
+					  				   rs.getString("emailKH") ,
+					  				   rs.getInt("idGiangVien") ,
+					  				   rs.getInt("idDeTai") , 
+					  				   rs.getTimestamp("thoiGianBatDau") ,
+					  				   rs.getTimestamp("thoiGianKetThuc") ,
+					  				   rs.getInt("kinhPhi"),
+					  				   rs.getTimestamp("thoiGianKyHopDong") , 
+					  				   rs.getString("dienThoaiKH"),
+					  				   rs.getString("trangThaiHopDong"));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return objHopDong;
+	}
 
    
 	
