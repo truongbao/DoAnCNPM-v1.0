@@ -106,7 +106,7 @@ public class AdminDuyetDXAdmin extends HttpServlet {
 				String noiDung = request.getParameter("noidung");
 				System.out.println("NOI DUNG : " + noiDung);
 				QuaTrinhThucHienDAO qtthDAO = new QuaTrinhThucHienDAO();
-				QuaTrinhThucHien qtth = new QuaTrinhThucHien(0, 0, LibraryConstant.DangChoDuyetThuyetMinh, null, "",
+				QuaTrinhThucHien qtth = new QuaTrinhThucHien(0, 0, LibraryConstant.DangChoDuyetCapTruong, null, "",
 						noiDung);
 				if (qtthDAO.addItem(qtth) > 0) {
 					System.out.println("Add new QTTH OK");
@@ -115,6 +115,15 @@ public class AdminDuyetDXAdmin extends HttpServlet {
 				// Tao moi thong bao cho giang vien
 				ThongBaoDAO tbDAO = new ThongBaoDAO();
 				ThongBao tb = new ThongBao(0, objUserAdmin.getIdUser(), detaiDAO.getIdUserWith(idDeTai), noiDung, null,
+						idDeTai, null, null, null, 0);
+				tbDAO.addItem(tb);
+			} 
+			else {
+				QuaTrinhThucHienDAO qtthDAO = new QuaTrinhThucHienDAO();
+				QuaTrinhThucHien qtth = qtthDAO.getQuaTrinhThucHienWith(idDeTai, LibraryConstant.DangChoDuyetCapTruong);
+				// Tao moi thong bao cho giang vien
+				ThongBaoDAO tbDAO = new ThongBaoDAO();
+				ThongBao tb = new ThongBao(0, objUserAdmin.getIdUser(), detaiDAO.getIdUserWith(idDeTai), qtth.getNoiDung(), null,
 						idDeTai, null, null, null, 0);
 				tbDAO.addItem(tb);
 			}
@@ -130,6 +139,7 @@ public class AdminDuyetDXAdmin extends HttpServlet {
 				} else if (detai.getTrangThai().equals(LibraryConstant.DangChoDuyetCapTruong)) {
 					newTrangthai = LibraryConstant.DangChoXetThuyetMinh;
 				}
+				
 				if (detaiDAO.updateToTrangThai(newTrangthai, idDeTai) != 0) {
 					System.out.println("Update Success!");
 					response.sendRedirect(
