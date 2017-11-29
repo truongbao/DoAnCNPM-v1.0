@@ -53,7 +53,18 @@
                             <div class="content table-responsive table-full-width">
                             	<h3>DANH SÁCH ĐỀ XUẤT CẦN DUYỆT</h3>
 								<form method="post" action="<%=request.getContextPath()%>/admin/qldangkydetai/duyet-de-xuat-khoa?type=action" onsubmit="return validateForm()">
-                                <table class="table table-striped">
+                                <div class="row">
+                                 	<div class="btn-action">
+                                     		<input type="submit" name="submit" value="Thực hiện" class="btn btn-primary btn-search" />
+                                    </div>
+                            		<div class="btn-action" style="margin-right: 7px;width: 95px;margin-top: 5px;" >
+                           				<select name="action" class="form-control border-input" style="font-size: 12px; padding: 0px; height: 24px;width: 95px;">
+                           					<option value="0">Không duyệt</option>
+                           					<option value="1" selected="selected">Duyệt</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <table class="table table-striped" id="table-contain">
                                     <thead>
                                         <th>ID</th>
                                     	<th>Tên đề tài</th>
@@ -89,21 +100,6 @@
                                         </tr>                                 
                                     </tbody>
                                 </table>
-                                <div class="btn-form-action">
-                            		<div class="col-md-2 col-offset-8">
-                            			<div class="form-group">
-                            				<select name="action">
-                            					<option value="0">Không duyệt</option>
-                            					<option value="1" selected="selected">Duyệt</option>
-	                                        </select>
-	                                    </div>
-                                    </div>
-                                    <div class="col-md-2 col-offset-10">
-                                    	<div class="form-group">
-                                       		<input type="submit" name="submit" value="Thực hiện" class="btn btn-primary btn-search" />
-                                      	</div>
-                                    </div>
-                                </div>
                       		   	</form>
 								<%	
 									int page_sum = (Integer) request.getAttribute("page_sum"); 

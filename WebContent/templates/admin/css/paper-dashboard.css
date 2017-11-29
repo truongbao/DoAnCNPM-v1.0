@@ -3420,3 +3420,11 @@ textarea.form-control {
     text-decoration: none;
     cursor: pointer;
 }
+
+
+.btn-action{
+	float: right;
+	height: 30px;
+	width: 130px;
+}
+

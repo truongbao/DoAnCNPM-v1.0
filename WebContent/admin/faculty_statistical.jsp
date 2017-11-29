@@ -1,3 +1,4 @@
+<%@page import="model.bean.CapDeTai"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.util.Date"%>
@@ -66,9 +67,12 @@
 										<select name="type_detai" id="type_detai"
 											class="form-control border-input">
 											<option value="0">-- Chọn cấp đề tài --</option>
-											<option value="<%=LibraryConstant.TOPICTYPE_CAPCOSO%>">Cơ sở</option>
-											<option value="<%=LibraryConstant.TOPICTYPE_CAPDHDN%>">Đại học Đà Nẵng</option>
-											<option value="<%=LibraryConstant.TOPICTYPE_CAPBGD%>">Bộ giáo dục</option>
+											<%
+												ArrayList<CapDeTai> alCDT = (ArrayList<CapDeTai>) request.getAttribute("alCDT");
+												for(CapDeTai obj: alCDT){
+											%>
+											<option value="<%=obj.getIdCapDeTai()%>"><%=obj.getTenCapDeTai() %></option>
+											<%	} %>lue="<%=LibraryConstant.TOPICTYPE_CAPBGD%>">Bộ giáo dục</option>
 										</select>
 									</div>
 								</div>
@@ -99,7 +103,7 @@
 							%>
 								<span><%=LibraryConstant.ConvertTrangThai(filter_type_stat) %></span>	
 							<%	} 
-								if(!"0".equals(filter_type_detai)){
+								if(filter_type_detai != null){
 							%>
 								<span class=""><%=filter_type_detai %></span>	
 							<%	}}
@@ -119,11 +123,6 @@
 							</thead>
 							<tbody>
 							<%	
-								int dt_hoanthanh = (Integer)request.getAttribute("dt_hoanthanh");
-								int dt_dangthuchien =(Integer) request.getAttribute("dt_dangthuchien"); // so de tai dang thuc hien
-								int dt_CCS = (Integer)request.getAttribute("dt_CCS"); // so detai cap co so
-								int dt_DHDN =(Integer) request.getAttribute("dt_DHDN"); // so detai cap ĐH Da Nang
-								int dt_BGD = (Integer)request.getAttribute("dt_BGD"); // so detai cap Bo GD
 								ArrayList<DeTai> alItem = (ArrayList<DeTai>)request.getAttribute("alItem");
 								for(DeTai obj:alItem){
 									String date = new SimpleDateFormat("dd-MM-yyyy").format(obj.getThoiGianBatDau());
@@ -168,15 +167,6 @@
 									href="<%=request.getContextPath()%>/admin/faculty-statistical?type=<%=type%>&page=<%=page_sum%>"><%=page_sum%></a></li>
 							</ul>
 						</div>
-					</div>
-					<div>
-						<ul>
-							<li>Số đề tài đã hoàn thành: <%= dt_hoanthanh %></li>
-							<li>Số đề tài đang thực hiện: <%= dt_dangthuchien %></li>
-							<li>Số đề tài cấp cơ sở: <%= dt_CCS %></li>
-							<li>Số đề tài cấp Đại học Đà Nẵng: <%=dt_DHDN %></li>
-							<li>Số đề tài cấp bộ giáo dục: <%=dt_BGD %></li>
-						</ul>
 					</div>
 					<div class="text-center">
 						<button class="btn btn-default" type="button"

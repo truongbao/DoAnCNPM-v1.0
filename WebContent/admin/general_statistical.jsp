@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="model.bean.CapDeTai"%>
 <%@page import="library.LibraryConstant"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="model.bean.Khoa"%>
@@ -67,9 +69,12 @@
 										<select name="type_detai" id="type_detai"
 											class="form-control border-input">
 											<option value="0">-- Chọn cấp đề tài --</option>
-											<option value="<%=LibraryConstant.TOPICTYPE_CAPCOSO%>">Cơ sở</option>
-											<option value="<%=LibraryConstant.TOPICTYPE_CAPDHDN%>">Đại học Đà Nẵng</option>
-											<option value="<%=LibraryConstant.TOPICTYPE_CAPBGD%>">Bộ giáo dục</option>
+											<%
+												ArrayList<CapDeTai> alCDT = (ArrayList<CapDeTai>) request.getAttribute("alCDT");
+												for(CapDeTai obj: alCDT){
+											%>
+											<option value="<%=obj.getIdCapDeTai()%>"><%=obj.getTenCapDeTai() %></option>
+											<%	} %>
 										</select>
 									</div>
 								</div>
@@ -115,7 +120,7 @@
 							%>
 								<span><%=LibraryConstant.ConvertTrangThai(filter_type_stat) %></span>	
 							<%	} 
-								if(!"0".equals(filter_type_detai)){
+								if(filter_type_detai != null){
 							%>
 								<span class=""><%=filter_type_detai %></span>	
 							<%	} 
@@ -134,18 +139,14 @@
 								<th>Chủ nhiệm đề tài</th>
 								<th>Trạng thái</th>
 								<th>Cấp đề tài</th>
+								<th>Năm bắt đầu thực hiện</th>
 								<th>Ghi chú</th>
 							</thead>
 							<tbody>
 							<%	
-								int dt_hoanthanh = (Integer)request.getAttribute("dt_hoanthanh");
-								int dt_dangthuchien =(Integer) request.getAttribute("dt_dangthuchien"); // so de tai dang thuc hien
-								int dt_CCS = (Integer)request.getAttribute("dt_CCS"); // so detai cap co so
-								int dt_DHDN =(Integer) request.getAttribute("dt_DHDN"); // so detai cap ĐH Da Nang
-								int dt_BGD = (Integer)request.getAttribute("dt_BGD"); // so detai cap Bo GD
 								ArrayList<DeTai> alItem = (ArrayList<DeTai>)request.getAttribute("alItem");
 								for(DeTai obj:alItem){
-									 
+									String date = new SimpleDateFormat("dd-MM-yyyy").format(obj.getThoiGianBatDau());
 							%>
 								<tr>
 									<td><%=obj.getIdDeTai() %></td>
@@ -153,6 +154,7 @@
 									<td><%= obj.getFullName() %></td>
 									<td><%=obj.getTrangThai() %></td>
 									<td><%=obj.getTenCapDeTai() %></td>
+									<td><%= date%></td>
 									<td></td>
 								</tr>
 							<%} %>
@@ -186,15 +188,6 @@
 									href="<%=request.getContextPath()%>/admin/general-statistical?type=<%=type%>&page=<%=page_sum%>"><%=page_sum%></a></li>
 							</ul>
 						</div>
-					</div>
-					<div>
-						<ul>
-							<li>Số đề tài đã hoàn thành: <%= dt_hoanthanh %></li>
-							<li>Số đề tài đang thực hiện: <%= dt_dangthuchien %></li>
-							<li>Số đề tài cấp cơ sở: <%= dt_CCS %></li>
-							<li>Số đề tài cấp Đại học Đà Nẵng: <%=dt_DHDN %></li>
-							<li>Số đề tài cấp bộ giáo dục: <%=dt_BGD %></li>
-						</ul>
 					</div>
 					<div class="text-center">
 						<button class="btn btn-default" type="button"

@@ -267,7 +267,7 @@ public class HopDongDAO {
 		return result;
 	}
 	
-	public int editItem(HopDong objHopDong) {
+	public int editItem(int idHD, HopDong objHopDong) {
 		int result = 0;
 		conn = connectMySQLLibrary.getConnectMySQL();
 		
@@ -291,7 +291,7 @@ public class HopDongDAO {
 			pst.setTimestamp(10, objHopDong.getThoiGianKyHopDong());
 			pst.setString(11, objHopDong.getDienThoaiKH());
 			pst.setString(12, objHopDong.getTrangThaiHopDong());
-			pst.setInt(13, objHopDong.getIdHopDong());
+			pst.setInt(13, idHD);
 			
 			result = pst.executeUpdate();
 		} catch (SQLException e) {

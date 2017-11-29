@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import library.LibraryAuth;
+import library.LibraryConstant;
 import model.bean.HopDong;
 import model.dao.HopDongDAO;
 import model.bean.DeTai;
@@ -54,10 +55,12 @@ public class AdminExportHopDongController extends HttpServlet {
 		hopDong.setDienThoaiKH("0976666663");
 		hopDong.setTrangThaiHopDong("Đã ký");
 		int result = 0;
-    	if (hopDongDAO.getObjHopDongByIdDeTai(idDeTai) == null) { //đề tài chưa lưu hơp đồng=> lưu hợp đồng
+		HopDong objHD = hopDongDAO.getObjHopDongByIdDeTai(idDeTai);
+    	if (objHD == null) { //đề tài chưa lưu hơp đồng=> lưu hợp đồng
     		result = hopDongDAO.addItem(hopDong);
+    		deTaiDAO.updateToTrangThai(LibraryConstant.DangThucHien, idDeTai);
     	} else {//đề tài đã được lưu hơp đồng=> sửa hợp đồng
-    		result = hopDongDAO.editItem(hopDong);
+    		result = hopDongDAO.editItem(objHD.getIdHopDong(),hopDong);
     	}
 		if (result != 0) {
 			request.setAttribute("objHopDong", hopDongDAO.getObjHopDongByIdDeTai(idDeTai));
@@ -65,8 +68,7 @@ public class AdminExportHopDongController extends HttpServlet {
 			rd.forward(request, response);
 		
 	    }else{
-	    	//???????????????????????????????? url of index detai
-	    	response.sendRedirect(request.getContextPath()+"/admin/detai/index?msg=4");
+	    	response.sendRedirect(request.getContextPath()+"/admin/qldetai/index_nhanvien?type=load&msg=0");
 	    	return;
 	    } 
 	    
