@@ -18,6 +18,7 @@ import model.bean.DeTai;
 import model.bean.QuaTrinhThucHien;
 import model.bean.ThongBao;
 import model.bean.User;
+import model.dao.CapDeTaiDAO;
 import model.dao.DetaiDAO;
 import model.dao.QuaTrinhThucHienDAO;
 import model.dao.ThongBaoDAO;
@@ -56,7 +57,7 @@ public class AdminDuyetDTKhoa extends HttpServlet {
  		}
  		int idFaculty = objUser.getIdKhoa();
  		if ("load".equals(request.getParameter("type"))) { 
- 			int DT_sum = detaiDAO.getSumListDeTaiByStatus(idFaculty, LibraryConstant.DangChoDuyetCapKhoa,"",1);
+ 			int DT_sum = detaiDAO.getSumListDeTaiByStatus(idFaculty, LibraryConstant.DangChoDuyetCapKhoa,"",0);
  			int page_sum = (int) Math.ceil(((float) DT_sum / LibraryConstant.ROW_COUNT));
  			int current_page = 1;
  			if (request.getParameter("page") != null) {
@@ -65,7 +66,7 @@ public class AdminDuyetDTKhoa extends HttpServlet {
  			int offset = (current_page - 1) * LibraryConstant.ROW_COUNT;
  			request.setAttribute("current_page", current_page);
  			request.setAttribute("page_sum", page_sum);
- 			 ArrayList<DeTai> listDuyetDeTaiByIdKhoa = detaiDAO.getListDeTaiByStatus(0,LibraryConstant.DangChoDuyetCapKhoa,"",1,offset, LibraryConstant.ROW_COUNT);
+ 			 ArrayList<DeTai> listDuyetDeTaiByIdKhoa = detaiDAO.getListDeTaiByStatus(idFaculty,LibraryConstant.DangChoDuyetCapKhoa,"",0,offset, LibraryConstant.ROW_COUNT);
  			 request.setAttribute("listDuyetDeTaiByIdKhoa", listDuyetDeTaiByIdKhoa);
  			 RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/khoa/duyet_de_xuat_khoa.jsp");
  			 rd.forward(request, response);
@@ -73,7 +74,7 @@ public class AdminDuyetDTKhoa extends HttpServlet {
  			if (request.getParameter("keyword") != null) {
  				keyword = request.getParameter("keyword");
  			}
- 			int DT_sum = detaiDAO.getSumListDeTaiByStatus(idFaculty, LibraryConstant.DangChoDuyetCapKhoa,keyword,1);
+ 			int DT_sum = detaiDAO.getSumListDeTaiByStatus(idFaculty, LibraryConstant.DangChoDuyetCapKhoa,keyword,0);
  			int page_sum = (int) Math.ceil(((float) DT_sum / LibraryConstant.ROW_COUNT));
  			int current_page = 1;
  			if (request.getParameter("page") != null) {
@@ -82,7 +83,7 @@ public class AdminDuyetDTKhoa extends HttpServlet {
  			int offset = (current_page - 1) * LibraryConstant.ROW_COUNT;
  			request.setAttribute("current_page", current_page);
  			request.setAttribute("page_sum", page_sum);
- 			 ArrayList<DeTai> listDuyetDeTaiByIdKhoa = detaiDAO.getListDeTaiByStatus(0,LibraryConstant.DangChoDuyetCapKhoa,keyword,1,offset, LibraryConstant.ROW_COUNT);
+ 			 ArrayList<DeTai> listDuyetDeTaiByIdKhoa = detaiDAO.getListDeTaiByStatus(idFaculty,LibraryConstant.DangChoDuyetCapKhoa,keyword,0,offset, LibraryConstant.ROW_COUNT);
  			 request.setAttribute("listDuyetDeTaiByIdKhoa", listDuyetDeTaiByIdKhoa);
  			 RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/khoa/duyet_de_xuat_khoa.jsp");
  			 rd.forward(request, response);

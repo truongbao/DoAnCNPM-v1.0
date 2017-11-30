@@ -12,8 +12,10 @@ import javax.servlet.http.HttpSession;
 
 import library.LibraryAuth;
 import library.LibraryConstant;
+import model.bean.CapDeTai;
 import model.bean.DeTai;
 import model.bean.User;
+import model.dao.CapDeTaiDAO;
 import model.dao.DetaiDAO;
 import model.dao.UserDAO;
 
@@ -21,6 +23,7 @@ public class AdminIndexQLDKDTKhoa extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     String keyword = "";
     DetaiDAO detaiDAO = new DetaiDAO();
+    CapDeTaiDAO cdtDAO = new CapDeTaiDAO();
     
     public AdminIndexQLDKDTKhoa() {
         super();
@@ -46,6 +49,7 @@ public class AdminIndexQLDKDTKhoa extends HttpServlet {
 		if(session.getAttribute("quanLyNCKHKhoa")!=null){
 			objUser = (User)session.getAttribute("quanLyNCKHKhoa");
 		}
+		request.setAttribute("alCDT", cdtDAO.getItemsByPage());
 		if ("load".equals(request.getParameter("type"))) { 
 			int DT_sum = detaiDAO.getSumDeTaiDangKy(objUser.getIdKhoa(),"");
 			int page_sum = (int) Math.ceil(((float) DT_sum / LibraryConstant.ROW_COUNT));
@@ -58,8 +62,6 @@ public class AdminIndexQLDKDTKhoa extends HttpServlet {
 			request.setAttribute("page_sum", page_sum);
 			ArrayList<DeTai> listDeTaiByIdKhoa = detaiDAO.getListDeTaiDangKy(objUser.getIdKhoa(),"", offset, LibraryConstant.ROW_COUNT);
 			request.setAttribute("listDeTaiByIdKhoa", listDeTaiByIdKhoa);
-			System.out.println(listDeTaiByIdKhoa.get(0).getFullName());
-			
 			RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/khoa/index_khoa.jsp");
 			rd.forward(request, response);
 		}else if("search".equals(request.getParameter("type"))){

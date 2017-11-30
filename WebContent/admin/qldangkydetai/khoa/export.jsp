@@ -1,3 +1,4 @@
+<%@page import="model.bean.CapDeTai"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.security.Timestamp"%>
@@ -39,6 +40,7 @@
 </head>
 <body>
 	<%
+	CapDeTai obj = (CapDeTai) request.getAttribute("objCDT");
 	String exportToWord = request.getParameter("exportToWord");
 	if (exportToWord != null && exportToWord.toString().equalsIgnoreCase("YES")) {
 		//response.setContentType("application/vnd.ms-word");
@@ -64,8 +66,9 @@
 	</div>
 	<br>
 	<div class="col-md-12" style="font-weight: bold; font-size: 22px; text-align: center;">
-		DANH MỤC ĐỀ XUẤT KH&CN CẤP <span style="text-transform:uppercase;"><%= request.getAttribute("capDeTai") %></span> NĂM <%= new SimpleDateFormat("yyyy").format(new Date()) %>
-</div>
+		DANH MỤC ĐỀ XUẤT KH&CN CẤP <span style="text-transform:uppercase;"><%= obj.getTenCapDeTai() %></span> NĂM <%= new SimpleDateFormat("yyyy").format(new Date()) %>
+		<div>Khoa: <%=request.getAttribute("khoa") %></div>
+	</div>
 	<br><br><br>
 	 <table>
          <thead>
@@ -80,7 +83,7 @@
           <th>Ghi chú</th>
            </thead>
            <tbody>
-			<%
+			<%	
 				if(request.getAttribute("listDeTai") != null) {
 					ArrayList<DeTai> listDeTai = (ArrayList<DeTai>) request.getAttribute("listDeTai");
 					int stt = 1;
@@ -110,8 +113,8 @@
 			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 			<span style="float: right; margin-right: 10%">Đà Nẵng, ngày&emsp;&emsp;tháng&emsp;&emsp;năm&emsp;&emsp; </span>
 			<div class="cls"></div>
-			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-			<span style="float: right; margin-right: 11%"><b>TRƯỞNG PHÒNG KHCN & HTQT</b></span>
+			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+			<span style="float: right; margin-right: 11%"><b>TRƯỞNG KHOA</b></span>
 			<div class="cls"></div>
 			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 			<span style="float: right; margin-right: 17%">(Chữ ký, họ và tên)</span>
@@ -125,8 +128,9 @@
         <br><br><br><br>
         <%
 		if (exportToWord == null) {
+			
 	%>
-	<a href="<%=request.getContextPath() %>/admin/qldangkydetai/nhanvien/export?exportToWord=YES"><button
+	<a href="<%=request.getContextPath() %>/admin/qldangkydetai/khoa/export?exportToWord=YES&capDeTai=<%=obj.getIdCapDeTai()%>"><button
 			class="btn btn-primary">Xuất file</button></a>
 	<%
 		}

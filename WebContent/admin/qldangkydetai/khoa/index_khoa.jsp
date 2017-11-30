@@ -1,3 +1,4 @@
+<%@page import="model.bean.CapDeTai"%>
 <%@page import="library.LibraryConstant"%>
 <%@page import="model.bean.DeTai"%>
 <%@page import="java.util.ArrayList"%>
@@ -27,9 +28,19 @@
 	                                        </div>
                                         </div>
                                     </div>
-                                    
                                 </form>
-                                
+                                <div class="row">
+                                	<div class="col-md-3">
+                                		<a class="btn btn-info btn-fill btn-wd"  href="<%=request.getContextPath()%>/admin/qldangkydetai/duyet-de-xuat-khoa?type=load">Xem danh sách duyệt đề xuất</a>
+	                            	</div>
+	                            	<div class="col-md-3">
+										<button class="btn btn-info btn-fill btn-wd" onclick="showModal()">
+											Xuất danh sách đề xuất</button>
+									</div>
+                                </div>
+                                <div class="row">
+                                	
+                                </div>
                             </div>
                             <div class="text-center text-danger col-md-12" style="font-size: 18px;font-weight: bold;">
                             	 <%
@@ -43,10 +54,9 @@
 		     			       	%>  
                            	</div>
                             <div class="content table-responsive table-full-width">
-	                            <div class="row"> 
-	                            		<div class="col-md-8"><h3>DANH SÁCH ĐỀ TÀI ĐĂNG KÝ</h3></div>
-	                            		<div class="col-md-4"><a class="btn btn-info btn-fill btn-wd" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldangkydetai/duyet-de-xuat-khoa?type=load">Xem danh sách duyệt đề xuất</a>
-	                            		</div>
+	                            <div class="row text-center"> 
+	                            		<div class=""><h3>DANH SÁCH ĐỀ TÀI ĐĂNG KÝ</h3></div>
+	                            		
 	                            </div>
                                 <table class="table table-striped" id="table-contain">
                                     <thead>
@@ -117,5 +127,55 @@
                 </div>
             </div>
         </div>
+		<div id="myModal" class="modal" >
+                       	<!-- Modal content -->
+			<div class="modal-content" style="width: 40%;">
+				<div class="modal-header">
+					<span class="close">&times;</span>
+					<h4>Gửi thông báo</h4>
+				</div>
+				<div class="modal-body">
+					<form action="<%=request.getContextPath()%>/admin/qldangkydetai/khoa/export" method="post" name="formNotif" target="_blank">
+                     	<div class="row">
+                             <div class="col-md-12 text-center">
+                             	Danh sách theo cấp đề tài:
+                                 <div class="form-group" style="display: inline-block;">
+                                    <select name="capDeTai" class="form-control border-input" >
+                                     	<%
+										ArrayList<CapDeTai> alCDT = (ArrayList<CapDeTai>) request.getAttribute("alCDT");
+										for(CapDeTai obj: alCDT){
+										%>
+										<option value="<%=obj.getIdCapDeTai()%>"><%=obj.getTenCapDeTai() %></option>
+										<%	} %>
+                                     </select>
+                                 </div>
+                             </div>
+                             <div class="col-md-12 text-center">
+                              	<div class="form-group">
+                                	<input type="submit" name="submit" value="Xuất" class="btn btn-default" />
+                             	</div>
+                             </div>
+                         </div>
+                     </form>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			function showModal() {
+				var modal = document.getElementById('myModal');
+				var span = document.getElementsByClassName("close")[0];
+				modal.style.display = "block";
+				// When the user clicks on <span> (x), close the modal
+				span.onclick = function() {
+				    modal.style.display = "none";
+				}
 
+				// When the user clicks anywhere outside of the modal, close it
+				window.onclick = function(event) {
+				    if (event.target == modal) {
+				        modal.style.display = "none";
+				    }
+				}
+			}
+		</script>
        <%@include file="/templates/admin/inc/footer.jsp" %>
