@@ -12,6 +12,7 @@ import library.LibraryConstant;
 import model.bean.BieuMau;
 import model.bean.CapDeTai;
 import model.bean.DeTai;
+import model.bean.DeTaiThongBao;
 import model.bean.LinhVucNC;
 import model.bean.ThanhVien;
 
@@ -216,7 +217,7 @@ public class DetaiDAO {
 					+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 					+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 					+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
-					+ "  WHERE  dt.trangThai IN ('3','7','10','11')  and  dt.idDeTai = "+idDeTai;
+					+ "  WHERE  dt.trangThai IN ('3','7','10','11','5','8')  and  dt.idDeTai = "+idDeTai;
 
 			DeTai objDeTai =null;
 			try {
@@ -251,6 +252,52 @@ public class DetaiDAO {
 		}	
 		
 	
+	//Lay ra trangThai mới cập nhật ứng vs idDeTai vừa dk và phụ thuộc wasRead (public)
+	public DeTaiThongBao getTrangThaiUpdateByIdDeTaiDKAndWasRead(int idDeTai) {
+		conn = connectMySQLLibrary.getConnectMySQL();
+
+		String sql = "select dt.*,cdt.tenCapDeTai,u.fullName, lvnc.tenLinhVucNghienCuu, tb.wasRead FROM detai AS dt "
+				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
+				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
+				+ " INNER JOIN thongbao AS tb ON tb.idDeTai = dt.idDeTai "
+				+ "  WHERE  dt.trangThai IN ('3','7','10','11','5','8')  and  dt.idDeTai = "+idDeTai;
+
+		DeTaiThongBao objDeTaiThongBao =null;
+		try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+
+			//Mọi người đừng sửa chi trong này nhé...cái ni ko liên quan đến phần khác
+			
+			if (rs.next()) {
+				objDeTaiThongBao = new DeTaiThongBao(rs.getInt("idDeTai"), rs.getString("tenDeTai"), rs.getString("maSoDeTai"),
+						rs.getInt("idLinhVucNghienCuu"), rs.getString("tenLinhVucNghienCuu"),
+						rs.getInt("idLoaiHinhNghienCuu"), "",
+						rs.getTimestamp("thoiGianBatDau"), rs.getTimestamp("thoiGianKetThuc"),
+						rs.getString("donViChuTri"), rs.getInt("idUser"), rs.getString("fullName"),
+						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
+						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
+						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
+						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
+						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getInt("wasRead") );
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				st.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return objDeTaiThongBao;
+
+	}	
+		
+		
 
 	public ArrayList<DeTai> getListDeTai(int offset, int row_count) {
 		ArrayList<DeTai> listDeTai = new ArrayList<>();
@@ -1928,6 +1975,10 @@ public class DetaiDAO {
  		}
 		return result;
 	}
+	
+	
+	
+	
 	
 	
 

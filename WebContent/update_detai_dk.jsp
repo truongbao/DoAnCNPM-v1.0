@@ -258,7 +258,7 @@
 								</div>
 								<div class="col-xs-9 ">
 									
-									<a href="javascript:void()" class="btn btn-lg btn-primary pull-right ml10" >Hủy</a>
+									<a href="<%=request.getContextPath() %>/list-register-detai" class="btn btn-lg btn-primary pull-right ml10" >Hủy</a>
 									<!-- <a href="javascript:void()" class="btn btn-lg btn-primary pull-right" onclick="showMessage()">Đăng ký</a> -->
 									<button class="btn btn-lg btn-primary pull-right">  Cập nhật</button>
 								</div>

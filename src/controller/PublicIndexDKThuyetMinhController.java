@@ -94,6 +94,9 @@ public class PublicIndexDKThuyetMinhController extends HttpServlet {
 		      if(!dirFile.exists()){
 		      	dirFile.mkdir(); //neu file chua ton tai thi tao file
 		      }
+		      
+		      
+		      System.out.println(path);
 
 		      final Part filePart = request.getPart("upfiles");
 		      final String fileName = RenameFileLibrary.getName(filePart);//lay ra ten anh trong đường dẫn

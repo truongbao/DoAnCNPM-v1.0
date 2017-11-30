@@ -1,3 +1,4 @@
+<%@page import="model.bean.DeTaiThongBao"%>
 <%@page import="library.LibraryConstant"%>
 <%@page import="model.dao.DetaiDAO"%>
 <%@page import="model.bean.DeTai"%>
@@ -81,11 +82,12 @@
 								<td>Tên đề tài</td>
 								<td>Chủ nhiệm đề tài</td>
 								<td>Thời gian đăng ký</td>
-								<td>Trạng thái</td>
 								<td><center> Sửa đề tài</center></td>
 							    <td><center> Tạo thuyết minh </center></td>
 							    <td><center> Sửa thuyết minh </center></td>
-							    <td><center> Thông báo</center></td>
+							    <td>Trạng thái</td>
+							    <td><center> Thông báo mới </center></td>
+							    <td><center> Thông báo cũ </center></td>
 							</th>
 							</thead>
 							<tbody>
@@ -108,9 +110,7 @@
 									 <%=objDT.getFullName() %>
 								</td>
 								<td> <%=objDT.getThoiGianDangKy() %> </td>
-								<td>
-								   <%= LibraryConstant.ConvertTrangThai(objDT.getTrangThai())%>
-							    </td>
+								
 							    
 								<td>
 									<center>
@@ -139,20 +139,34 @@
 								</td>
 								
 								<td>
-									<center>
+								   <%= LibraryConstant.ConvertTrangThai(objDT.getTrangThai())%>
+							    </td>
+								
+								<td>
+									<center>  <!-- thong bao mơi -->
 									  <%
 									    //viet phuong thuc lay ra trangThai mới cập nhật ứng vs idDeTai vừa dk
 									    DetaiDAO detaiDAO = new DetaiDAO();
-									    DeTai objDeTaiById =  detaiDAO.getTrangThaiUpdateByIdDeTaiDK(objDT.getIdDeTai());
-									    if( objDeTaiById != null ){
+									    DeTaiThongBao objDeTaiById =  detaiDAO.getTrangThaiUpdateByIdDeTaiDKAndWasRead(objDT.getIdDeTai());
+									    if( objDeTaiById != null && objDeTaiById.getWasRead() == 0){
 									  
 									  %>
-										<a href="<%=request.getContextPath()%>/thong-bao?id_detai=<%=objDT.getIdDeTai() %>" class="btn btn-danger" style="">  Xem thông báo </a>
+										<a href="<%=request.getContextPath()%>/thong-bao?id_detai=<%=objDT.getIdDeTai() %>" class="btn btn-danger" style="">  Xem </a>
 									  <%}else{%>
 									  
 									  <%} %>
 									</center>
 								</td> 
+								
+								
+								<td>
+									<center> <!-- thong bao old -->
+									    <% if( objDeTaiById != null && objDeTaiById.getWasRead() == 1){ %>
+										    <a href="<%=request.getContextPath()%>/thong-bao-old?id_detai=<%=objDT.getIdDeTai() %>" class="btn btn-primary" style="">  Xem </a>
+									    <%} %>
+									</center>
+								</td> 
+								
 								
 							</tr>
 							

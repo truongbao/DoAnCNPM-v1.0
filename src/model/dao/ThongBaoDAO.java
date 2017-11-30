@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import library.ConnectMySQLLibrary;
+import library.LibraryConstant;
 import model.bean.ThongBao;
 
 public class ThongBaoDAO {
@@ -57,6 +58,87 @@ public class ThongBaoDAO {
 		}
 		return listDeTai;
 	}
+	
+	
+	
+	public ArrayList<ThongBao> getListThongBaoOldByIdDeTai(int idDeTai) {
+
+		ArrayList<ThongBao> listDeTai = new ArrayList<>();
+		conn = connectMySQLLibrary.getConnectMySQL();
+
+		String sql = "select * FROM thongbao AS tb " 
+				+ " INNER JOIN user AS userTB ON userTB.idUser = tb.idUserThongBao"
+				+ " INNER JOIN user AS userDen ON userDen.idUser = tb.idUserDen"
+				+ " INNER JOIN detai AS dt ON tb.idDeTai = dt.idDeTai "
+				+ " where tb.wasRead = 1 and tb.idDeTai = ? ORDER BY tb.idThongBao DESC";
+
+		ThongBao objTB = null;
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, idDeTai);
+			rs = pst.executeQuery();
+
+			while (rs.next()) {
+				objTB = new ThongBao(rs.getInt("idThongBao"), rs.getInt("idUserThongBao"), rs.getInt("idUserDen"),
+						rs.getString("noiDung"), rs.getTimestamp("thoiGian"),
+						rs.getInt("idDeTai"), rs.getString("tenDeTai"), rs.getString("userDen.fullName"),
+						rs.getString("userTB.fullName"),rs.getInt("tb.wasRead"));
+				listDeTai.add(objTB);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listDeTai;
+	}
+	
+	
+	
+	public ArrayList<ThongBao> getListThongBaoNewByIdDeTai(int idDeTai) {
+
+		ArrayList<ThongBao> listDeTai = new ArrayList<>();
+		conn = connectMySQLLibrary.getConnectMySQL();
+
+		String sql = "select * FROM thongbao AS tb " 
+				+ " INNER JOIN user AS userTB ON userTB.idUser = tb.idUserThongBao"
+				+ " INNER JOIN user AS userDen ON userDen.idUser = tb.idUserDen"
+				+ " INNER JOIN detai AS dt ON tb.idDeTai = dt.idDeTai "
+				+ " where  tb.wasRead = 0 and tb.idDeTai = ? ORDER BY tb.idThongBao DESC";
+
+		ThongBao objTB = null;
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, idDeTai);
+			rs = pst.executeQuery();
+
+			while (rs.next()) {
+				objTB = new ThongBao(rs.getInt("idThongBao"), rs.getInt("idUserThongBao"), rs.getInt("idUserDen"),
+						rs.getString("noiDung"), rs.getTimestamp("thoiGian"),
+						rs.getInt("idDeTai"), rs.getString("tenDeTai"), rs.getString("userDen.fullName"),
+						rs.getString("userTB.fullName"),rs.getInt("tb.wasRead"));
+				listDeTai.add(objTB);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listDeTai;
+	}
+	
+	
+	
 
 	/*
 	 * Author: Quoc 
@@ -326,5 +408,69 @@ public class ThongBaoDAO {
 		}
 		return sql;
 	}
+	
+	
+	
+	public int updateTrangThaiWasRead(int idDeTai) {
+		int result = 0;
+		conn = connectMySQLLibrary.getConnectMySQL();
+		String sql = "UPDATE thongbao SET wasRead = 1 WHERE idDeTai = ?";
+		try {
+ 			pst = conn.prepareStatement(sql);
+ 			
+ 			pst.setInt(1, idDeTai);
+ 			
+ 			result = pst.executeUpdate();
+ 		} catch (SQLException e) {
+ 			e.printStackTrace();
+ 		} finally {
+ 			try {
+ 				pst.close();
+ 				conn.close();
+ 			} catch (SQLException e) {
+ 				e.printStackTrace();
+ 			}
+ 		}
+		return result;
+	}
+	
+	   
+	
+	//đếm số đề tài đã co ma so (nghĩa là da duyet thuyet minh )
+    public int maxIdThongBao(int idDeTai) {
+		
+		int GTLN = 0;
+		conn = connectMySQLLibrary.getConnectMySQL();
+		
+		String sql = " SELECT MAX(idThongBao) AS GTLN FROM thongbao AS tb where tb.idDeTai = "+idDeTai;
+		
+		try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			if (rs.next()){
+				GTLN = rs.getInt("GTLN");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			try {
+				rs.close();
+				st.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return GTLN;
+		
+	}
+     
+	
+	
+	
+	
+	
+	
+	
 
 }
