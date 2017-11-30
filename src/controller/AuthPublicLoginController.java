@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import library.StringLibrary;
+import library.LibraryAuth;
 import model.bean.User;
 import model.dao.UserDAO;
 
@@ -44,6 +45,8 @@ public class AuthPublicLoginController extends HttpServlet {
 			User  objUserLogin  = objDAO.checkLoginPublic(username, password);
 			
 			if( objUserLogin !=null && objUserLogin.getIdLoaiTaiKhoan() == 2){ //kiem tra  user và pass
+				LibraryAuth lb = new LibraryAuth();
+				lb.CheckThoiGianChuyenTrangThaiDeTai();
 				//login thanh cong = > tạo session
 				HttpSession session = request.getSession();
 				//System.out.println(objUserLogin.toString());

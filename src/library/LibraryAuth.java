@@ -1,11 +1,14 @@
 package library;
 
 import java.io.IOException;
+import java.security.Timestamp;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import model.dao.DetaiDAO;
+import model.dao.ThoiGianDKDAO;
 public class LibraryAuth {
 
 	public static boolean CheckLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -28,6 +31,23 @@ public class LibraryAuth {
 		}
 
 		return true;
+	}
+	
+	public static void CheckThoiGianChuyenTrangThaiDeTai() {
+		ThoiGianDKDAO thoiGianDKDAO = new ThoiGianDKDAO();
+		Date thoiGianKetThucDKDeXuat = thoiGianDKDAO.getItem(1).getThoiGianKetThuc();
+		
+		Date thoiGianKetThucThuyetMinh = thoiGianDKDAO.getItem(2).getThoiGianKetThuc();
+		Date now = new Date();
+		if (now.after(thoiGianKetThucDKDeXuat)) {
+			DetaiDAO detaiDAO = new DetaiDAO();
+			detaiDAO.changeTrangThaiDangChoDuyetDeXuat();
+		}
+		if (now.after(thoiGianKetThucThuyetMinh)) {
+			DetaiDAO detaiDAO = new DetaiDAO();
+			detaiDAO.changeTrangThaiDangChoDuyetThuyetMinh();
+		}
+		return;
 	}
 
 	public static boolean CheckLoginPublic(HttpServletRequest request, HttpServletResponse response)

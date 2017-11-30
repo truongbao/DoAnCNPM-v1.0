@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import library.LibraryAuth;
 import library.StringLibrary;
 import model.bean.User;
 import model.dao.UserDAO;
@@ -58,9 +59,10 @@ public class AuthAdminLoginController extends HttpServlet {
 				permision = "nhanVienQLNCKHTruong";
 				break;
 			}
+			LibraryAuth lb = new LibraryAuth();
+			lb.CheckThoiGianChuyenTrangThaiDeTai();
 			//System.out.println(objUserLogin.toString());
 			
-			System.out.println(objUserLogin.getFullName()+"pass : "+objUserLogin.getMatKhau());
 			
 			session.setAttribute(permision, objUserLogin );//gán đối tuong tra về cho session=> tâ có đoi tuong user lưu trong sesion
 			response.sendRedirect(request.getContextPath() + "/admin");
