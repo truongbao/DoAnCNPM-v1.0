@@ -190,6 +190,13 @@ public class AdminDuyetDXAdmin extends HttpServlet {
 							}
 							result = detaiDAO.updateToTrangThai(newTrangthai, idDeTai);
 							
+							QuaTrinhThucHienDAO qtthDAO = new QuaTrinhThucHienDAO();
+							QuaTrinhThucHien qtth = qtthDAO.getQuaTrinhThucHienWith(idDeTai, LibraryConstant.DangChoDuyetCapTruong);
+							// Tao moi thong bao cho giang vien
+							ThongBaoDAO tbDAO = new ThongBaoDAO();
+							ThongBao tb = new ThongBao(0, objUserAdmin.getIdUser(), detaiDAO.getIdUserWith(idDeTai), qtth.getNoiDung(), null,
+									idDeTai, null, null, null, 0);
+							tbDAO.addItem(tb);
 						}
 						if (result != 0) {
 							System.out.println("Update Success!");
