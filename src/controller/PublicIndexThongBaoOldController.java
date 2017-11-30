@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import library.LibraryAuth;
 import model.dao.ThongBaoDAO;
 
-public class PublicIndexThongBaoController extends HttpServlet {
+public class PublicIndexThongBaoOldController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public PublicIndexThongBaoController() {
+    public PublicIndexThongBaoOldController() {
         super();
     }
     
@@ -33,13 +33,7 @@ public class PublicIndexThongBaoController extends HttpServlet {
 	    int idDeTai = Integer.parseInt(request.getParameter("id_detai"));
 
 	    //lây ra danh sach thong bao ứng với idDeTai
-	    request.setAttribute("listThongBaoByIdDeTai",  thongBaoDAO.getListThongBaoNewByIdDeTai(idDeTai) );
-	    
-	    //set lại trường wasRead = 1
-	    thongBaoDAO.updateTrangThaiWasRead(idDeTai);
-	    
-	    //gui idDeTai qua jsp
-	    request.setAttribute("idDeTai",  idDeTai );
+	    request.setAttribute("listThongBaoByIdDeTai",  thongBaoDAO.getListThongBaoOldByIdDeTai(idDeTai) );
 	    
 		RequestDispatcher rd = request.getRequestDispatcher("/thong_bao.jsp");
 	    rd.forward(request, response);

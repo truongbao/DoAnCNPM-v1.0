@@ -36,7 +36,7 @@ public class PublicDownloadTMController extends HttpServlet {
 		}
 		
 		
-		String filename = "Bieu_mau_tao_thuyet_minh.docx";
+		String filename = "bieu-mau-tao-thuyet-minh.docx";
 		   
 	    final String filepath = request.getServletContext().getRealPath("files_bieumau"); //duong dan den thu muc chua file
 	   

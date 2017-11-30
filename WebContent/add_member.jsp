@@ -151,7 +151,7 @@
 									
 								</div>
 								<div class="col-xs-10 ">
-									<a href="javascript:void()" class="btn btn-lg btn-primary pull-right ml10" >Hủy</a>
+									<a href="<%=request.getContextPath() %>/quanly-thanhvien" class="btn btn-lg btn-primary pull-right ml10" >Hủy</a>
 									<!-- <a href="javascript:void()" class="btn btn-lg btn-primary pull-right" onclick="showMessage()">Thêm</a> -->
 									<button class="btn btn-lg btn-primary pull-right"> Thêm </button>
 								</div>

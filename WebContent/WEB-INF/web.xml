@@ -739,6 +739,15 @@
      <url-pattern>/update-detai</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+     <servlet-name>PublicIndexThongBaoOldController</servlet-name>
+     <servlet-class>controller.PublicIndexThongBaoOldController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+     <servlet-name>PublicIndexThongBaoOldController</servlet-name>
+     <url-pattern>/thong-bao-old</url-pattern>
+  </servlet-mapping>
+  
   
   
     <servlet>
