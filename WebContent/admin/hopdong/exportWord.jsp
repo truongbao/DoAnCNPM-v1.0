@@ -106,7 +106,7 @@
 		</div>
 		<div class="row" style="font-size: 17px;">
 		<b>Điều 3. Kinh phí thực hiện đề tài cấp từ ngân sách nhà nước </b> <br>
-		Kinh phí thực hiện đề tài cấp từ ngân sách nhà nước là <%=detaiDao.getObjDeTai(objHopDong.getIdHopDong()).getKinhPhiThucHien() %>  vnd. (bằng chữ .... ....... ..... ..... ..... ........ ..... ..... ..... ...........  ...... ..... ..... .....). 
+		Kinh phí thực hiện đề tài cấp từ ngân sách nhà nước là <%=detaiDao.getObjDeTai(objHopDong.getIdDeTai()).getKinhPhiThucHien() %>  vnd. (bằng chữ .... ....... ..... ..... ..... ........ ..... ..... ..... ...........  ...... ..... ..... .....). 
 		</div>
 		<div class="row" style="font-size: 17px;">
 		<b>Điều 4. Quyền và nghĩa vụ của các bên </b> <br>
@@ -192,7 +192,7 @@
 	<%
 		if (exportToWord == null) {
 	%>
-	<a href="<%=request.getContextPath() %>/admin/hopdong/export?uid=<%=objHopDong.getIdHopDong() %>&exportToWord=YES"><button
+	<a href="<%=request.getContextPath() %>/admin/hopdong/export?uid=<%=objHopDong.getIdDeTai() %>&exportToWord=YES"><button
 			class="btn btn-primary">Xuất file</button></a>
 	<%
 		}

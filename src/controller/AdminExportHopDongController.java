@@ -33,7 +33,7 @@ public class AdminExportHopDongController extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//kiểm tra đã đăng nhập chưa
-				if(  LibraryAuth.CheckAdmin(request, response)==false){
+				if(  LibraryAuth.CheckNhanVienTruong(request, response)==false){
 					return;
 				}
 		int idDeTai = Integer.parseInt(request.getParameter("uid"));//idDeTai tren url
