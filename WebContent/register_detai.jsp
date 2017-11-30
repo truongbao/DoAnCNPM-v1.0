@@ -216,6 +216,26 @@
 							
 							<div class="form-group row">
 								<div class="col-xs-3">
+									<label class="p-center"> Thời gian bắt đầu:</label>
+								</div>
+								<div class="col-xs-9">
+									<input value="" type="Date" name="thoiGianBatDau" class="form-control" placeholder="Vui lòng chọn thời gian bắt đầu...">
+								</div>
+								
+							</div>
+								
+							<div class="form-group row">
+								<div class="col-xs-3">
+									<label class="p-center"> Thời gian kết thúc:</label>
+								</div>
+								<div class="col-xs-9">
+									<input value="" type="Date" name="thoiGianKetThuc" class="form-control" placeholder="Vui lòng chọn thời gian kết thúc...">
+								</div>
+								
+							</div>	
+							
+							<div class="form-group row">
+								<div class="col-xs-3">
 									<label class="p-center">Thông tin liên lạc của người đề xuất (điện thoại/email):</label>
 								</div>
 								<div class="col-xs-9">
