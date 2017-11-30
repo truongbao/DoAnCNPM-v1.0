@@ -63,7 +63,7 @@
                                                 	data-namecdt="<%= listCapDeTai.get(i).getTenCapDeTai() %>"
                                                 	data-url="<%=request.getContextPath() %>/admin/capdetai/edit?uid=<%=listCapDeTai.get(i).getIdCapDeTai() %>"
                                                 	><img src="<%=request.getContextPath() %>/templates/admin/img/edit.gif" alt="" /></a> &nbsp;||&nbsp;
-                                                <form id="form-xoa" method="post" class='<%=listCapDeTai.get(i).getTenCapDeTai().toLowerCase().equals("trường")?"disabled":"" %>' action="<%=request.getContextPath() %>/admin/capdetai/del?uid=<%=listCapDeTai.get(i).getIdCapDeTai() %>" style="display: inline" >
+                                                <form id="form-xoa" method="post" class='<%=listCapDeTai.get(i).getTenCapDeTai().toLowerCase().equals("cơ sở")?"disabled":"" %>' action="<%=request.getContextPath() %>/admin/capdetai/del?uid=<%=listCapDeTai.get(i).getIdCapDeTai() %>" style="display: inline" >
                                                 	
 						                           <a href="" class='link-xoa'
 						                              data-title="Confirm deletion!"
