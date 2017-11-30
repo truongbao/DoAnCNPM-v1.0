@@ -1,3 +1,5 @@
+<%@page import="model.bean.DeTaiThongBao"%>
+<%@page import="model.dao.DetaiDAO"%>
 <%@page import="library.LibraryConstant"%>
 <%@page import="model.bean.DeTai"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -64,10 +66,12 @@
 								<td>Tên đề tài</td>
 								<td>Chủ nhiệm đề tài</td>
 								<td>TG đăng ký</td>
-								<td>TG bắt đầu</td>
-								<td>TG kết thúc</td>
+								<!-- <td>TG bắt đầu</td>
+								<td>TG kết thúc</td> -->
 								<td>Trạng thái</td>
-								<!-- <td style="float:right;margin-right:14px;"><center>Cập nhật</center></td> -->
+							    <td style="float:right;margin-right:14px;"><center>Đăng ký nghiệm thu</center></td>
+							    <td><center> Thông báo mới </center></td>
+							    <td><center> Thông báo cũ </center></td>
 								
 							</th>
 							</thead>
@@ -86,19 +90,45 @@
 									<a href="<%=request.getContextPath()%>/detail-detai?did=<%=objDetai.getIdDeTai()%>"> <%=objDetai.getTenDeTai() %> </a>
 								</td>
 								<td> <%=objDetai.getFullName() %> </td>
-								<td> <%=objDetai.getThoiGianDangKy() %> </td>
-								<td> <%=objDetai.getThoiGianBatDau() %> </td>
-								<td> <%=objDetai.getThoiGianKetThuc() %> </td>
+							    <td> <%=objDetai.getThoiGianDangKy() %> </td>
+							    
+								<%-- <td> <%=objDetai.getThoiGianBatDau() %> </td> 
+								<td> <%=objDetai.getThoiGianKetThuc() %> </td> --%>
+								
 								<td> <%= LibraryConstant.ConvertTrangThai(objDetai.getTrangThai())  %> </td>
 								
 								
-								<%-- <td >
+								<td >
 									<center>
-										<div class="pull-right" >
-											<a disabled="disabled" href="<%=request.getContextPath()%>/update-detai?did=<%=objDetai.getIdDeTai()%>" class="btn btn-default"  style=""> Sửa đề tài </a>
-										</div>
+									    <a href="<%=request.getContextPath()%>/update-detai?did=<%=objDetai.getIdDeTai()%>" class="btn btn-primary"  style="">  Đăng ký</a>
 									</center>
-								</td> --%>
+								</td>
+								 
+								 
+								<td>
+									<center>  <!-- thong bao mơi -->
+									  <%
+									    //viet phuong thuc lay ra trangThai mới cập nhật ứng vs idDeTai vừa dk
+									    DetaiDAO detaiDAO = new DetaiDAO();
+									    DeTaiThongBao objDeTaiById =  detaiDAO.getTrangThaiUpdateByIdDeTaiDKAndWasRead(objDetai.getIdDeTai());
+									    if( objDeTaiById != null && objDeTaiById.getWasRead() == 0){
+									  
+									  %>
+										<a href="<%=request.getContextPath()%>/thong-bao?id_detai=<%=objDetai.getIdDeTai() %>" class="btn btn-danger" style="">  Xem </a>
+									  <%}else{%> 
+									  
+									  <%} %>
+									</center>
+								</td> 
+								
+								
+								<td>
+									<center> <!-- thong bao old -->
+									    <% if( objDeTaiById != null && objDeTaiById.getWasRead() == 1){ %>
+										    <a href="<%=request.getContextPath()%>/thong-bao-old?id_detai=<%=objDetai.getIdDeTai() %>" class="btn btn-primary" style="">  Xem </a>
+									    <%} %>
+									</center>
+								</td> 
 								
 							</tr>
 							
@@ -130,7 +160,7 @@
 										 %>  
 										 
 										   <a class="last" href="<%=request.getContextPath() %>/quanly-detai?page=<%=current_page-1%>"> 
-										       <span style="font-size: 20px;">  Back </span>
+										       <span style="font-size: 20px;">  [Back] </span>
 										    </a>
 										   
 										 <%} %>  	
@@ -180,7 +210,7 @@
 										   %>
 										  
 										   <a class="last" href="<%=request.getContextPath() %>/quanly-detai?page=<%=current_page+1%>"> 
-										      <span style="font-size: 20px;">  Next  </span> 
+										      <span style="font-size: 20px;">  [Next]  </span> 
 										   </a> 
 										 	
 										  <%} %>

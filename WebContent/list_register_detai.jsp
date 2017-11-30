@@ -74,6 +74,11 @@
 					           	 }
 					        }
 				          %>       
+				          
+				          
+				           <%
+						      DetaiDAO detaiDAO = new DetaiDAO();
+						   %>
 		            
 		            
 						<table class="table">
@@ -114,7 +119,14 @@
 							    
 								<td>
 									<center>
+									     <%
+									      if( LibraryConstant.KhoaDeXuatChinhSua.equals(objDT.getTrangThai()) || 
+									          LibraryConstant.TruongDeXuatChinhSua.equals(objDT.getTrangThai()) ||  
+									          LibraryConstant.DangThoiGianDK.equals(objDT.getTrangThai()) ){
+									   %>
 										<a href="<%=request.getContextPath()%>/update-detai-dk?did=<%=objDT.getIdDeTai()%>" class="btn btn-primary" style="">  Sửa </a>
+									 <%} %>
+									
 									</center>
 								</td>
 								
@@ -128,13 +140,22 @@
 								
 								<td>
 									<center>
+									   <%
+									      if( LibraryConstant.DangLamThuyetMinh.equals(objDT.getTrangThai()) ){
+									   %>
 										<a href="<%=request.getContextPath()%>/dangky-thuyetminh?did=<%=objDT.getIdDeTai()%>" class="btn btn-primary" style="">  Tạo </a>
+								       <%}%> 
+								       
 									</center>
 								</td>
 								
 								<td>
 									<center>
+									   <%
+									      if(LibraryConstant.TruongDeXuatChinhSuaThuyetMinh.equals(objDT.getTrangThai()) ){
+									   %>
 										<a href="<%=request.getContextPath()%>/edit-thuyetminh?did=<%=objDT.getIdDeTai()%>" class="btn btn-primary" style="">  Sửa </a>
+									   <%}%> 
 									</center>
 								</td>
 								
@@ -146,7 +167,6 @@
 									<center>  <!-- thong bao mơi -->
 									  <%
 									    //viet phuong thuc lay ra trangThai mới cập nhật ứng vs idDeTai vừa dk
-									    DetaiDAO detaiDAO = new DetaiDAO();
 									    DeTaiThongBao objDeTaiById =  detaiDAO.getTrangThaiUpdateByIdDeTaiDKAndWasRead(objDT.getIdDeTai());
 									    if( objDeTaiById != null && objDeTaiById.getWasRead() == 0){
 									  

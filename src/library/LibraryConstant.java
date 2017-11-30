@@ -55,7 +55,7 @@ public class LibraryConstant {
 			    ketQua = "Đang chờ duyệt đề xuất cấp khoa";
 			    break;
 		  case "2":
-			    ketQua = "Đang chờ xét đề tài";
+			    ketQua = "Đang thời gian đề xuất";
 			    break;
 		  case "3":
 			    ketQua = "Khoa đề nghị chỉnh sửa đề xuất";
@@ -110,6 +110,9 @@ public class LibraryConstant {
 			    break;
 		  case "20":
 			    ketQua = "Đang chờ duyệt đề nghị chỉnh sửa thuyết minh";
+			    break;
+		  case "21":
+			    ketQua = "Đang làm thuyết minh";
 			    break;
 		  default:
 			    break;

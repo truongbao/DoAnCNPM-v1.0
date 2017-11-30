@@ -1,6 +1,11 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -88,8 +93,25 @@ public class PublicRegisterDeTaiController extends HttpServlet {
 		int kinhPhiThucHien = Integer.parseInt(request.getParameter("kinhPhiThucHien"));
 		int idUser = objUser.getIdUser();
 		
+		
+		Timestamp thoiGianBatDau = null;
+		Timestamp thoiGianKetThuc = null;
+		
+		String  tgbd = request.getParameter("thoiGianBatDau");
+		String  tgkt = request.getParameter("thoiGianKetThuc");
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			thoiGianBatDau = new Timestamp(((java.util.Date)df.parse(tgbd)).getTime());
+			thoiGianKetThuc = new Timestamp(((java.util.Date)df.parse(tgkt)).getTime());
+			System.out.println("thoi gian bat dau : "+thoiGianBatDau+"--thoi gian ket thuc : "+thoiGianKetThuc);
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		
 		DeTai objDeTai = new DeTai( 0, tenDeTai, "", idLinhVucNghienCuu,
-									"", 0, "", null, null, "", idUser, "", "", "",
+									"", 0, "", thoiGianBatDau, thoiGianKetThuc, "Đại học bách khoa - Đại học đà nẵng", idUser, "", "", "",
 									tinhCapThiet, mucTieu, "", "",
 									noiDung, sanPham, hieuQua, kinhPhiThucHien, 
 									LibraryConstant.DangThoiGianDK, idCapDeTai,"", null, objUser.getIdKhoa());

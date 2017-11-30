@@ -85,7 +85,7 @@ public class DetaiDAO {
 					+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 					+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 					+ "  WHERE  dt.maSoDeTai = 'no' and u.idUser = "+idUserLogin
-			        + " ORDER BY dt.idDeTai ASC  LIMIT "+offset+", "+row_count;
+			        + " ORDER BY dt.idDeTai DESC  LIMIT "+offset+", "+row_count;
 			
 			try {
 				st = conn.createStatement();
@@ -260,7 +260,8 @@ public class DetaiDAO {
 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " INNER JOIN thongbao AS tb ON tb.idDeTai = dt.idDeTai "
-				+ "  WHERE  dt.trangThai IN ('3','7','10','11','5','8')  and  dt.idDeTai = "+idDeTai;
+				+ "  WHERE  dt.idDeTai = "+idDeTai;
+		      //+ "  WHERE  dt.trangThai IN ('3','7','10','11','5','8')  and  dt.idDeTai = "+idDeTai;
 
 		DeTaiThongBao objDeTaiThongBao =null;
 		try {
@@ -1872,24 +1873,27 @@ public class DetaiDAO {
 		conn = connectMySQLLibrary.getConnectMySQL();
 		
 		
-		String sql="insert into detai (tenDeTai,idLinhVucNghienCuu,idUser,tinhCapThiet,"
-				+ " mucTieu,noiDung,sanPham,hieuQua,kinhPhiThucHien,trangThai,idCapDeTai,idKhoa ) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql="insert into detai (tenDeTai, idLinhVucNghienCuu, thoiGianBatDau, thoiGianKetThuc, donViChuTri, idUser,tinhCapThiet,"
+				+ " mucTieu,noiDung,sanPham,hieuQua,kinhPhiThucHien,trangThai,idCapDeTai,idKhoa ) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		try {
 			pst = conn.prepareStatement(sql);
 			
 			pst.setString(1, objDeTai.getTenDeTai());
 			pst.setInt(2, objDeTai.getIdLinhVucNghienCuu());
-			pst.setInt(3, objDeTai.getIdUser());
-			pst.setString(4, objDeTai.getTinhCapThiet());
-			pst.setString(5, objDeTai.getMucTieu());
-			pst.setString(6, objDeTai.getNoiDung());
-			pst.setString(7, objDeTai.getSanPham());
-			pst.setString(8, objDeTai.getHieuQua());
-			pst.setInt(9, objDeTai.getKinhPhiThucHien());
-			pst.setString(10, objDeTai.getTrangThai());
-			pst.setInt(11, objDeTai.getIdCapDeTai());
-			pst.setInt(12, objDeTai.getIdKhoa());
+			pst.setTimestamp(3, objDeTai.getThoiGianBatDau());
+			pst.setTimestamp(4, objDeTai.getThoiGianKetThuc());
+			pst.setString(5, objDeTai.getDonViChuTri());
+			pst.setInt(6, objDeTai.getIdUser());
+			pst.setString(7, objDeTai.getTinhCapThiet());
+			pst.setString(8, objDeTai.getMucTieu());
+			pst.setString(9, objDeTai.getNoiDung());
+			pst.setString(10, objDeTai.getSanPham());
+			pst.setString(11, objDeTai.getHieuQua());
+			pst.setInt(12, objDeTai.getKinhPhiThucHien());
+			pst.setString(13, objDeTai.getTrangThai());
+			pst.setInt(14, objDeTai.getIdCapDeTai());
+			pst.setInt(15, objDeTai.getIdKhoa());
 			
 			
 			result = pst.executeUpdate();
