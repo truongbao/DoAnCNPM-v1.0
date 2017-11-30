@@ -138,6 +138,7 @@ public class AdminDuyetTMAdmin extends HttpServlet {
 					newTrangthai = LibraryConstant.TruongDeXuatChinhSuaThuyetMinh;
 				} else if (detai.getTrangThai().equals(LibraryConstant.DangChoDuyetThuyetMinh)) {
 					newTrangthai = LibraryConstant.DaDuyet;
+					detaiDAO.updateMaSoDeTai(idDeTai);
 				}
 	 			if (detaiDAO.updateToTrangThai(newTrangthai, idDeTai) != 0) {
 		 			System.out.println("Update Success!");
@@ -183,6 +184,7 @@ public class AdminDuyetTMAdmin extends HttpServlet {
  								newTrangthai = LibraryConstant.TruongDeXuatChinhSuaThuyetMinh;
  							} else if (detai.getTrangThai().equals(LibraryConstant.DangChoDuyetThuyetMinh)) {
  								newTrangthai = LibraryConstant.DaDuyet;
+ 								detaiDAO.updateMaSoDeTai(idDeTai);
  							}
  							result = detaiDAO.updateToTrangThai(newTrangthai, idDeTai);
  							QuaTrinhThucHienDAO qtthDAO = new QuaTrinhThucHienDAO();

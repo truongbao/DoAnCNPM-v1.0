@@ -44,6 +44,7 @@ public class AdminDuyetTMNhanVien extends HttpServlet {
 		 
 		 int khoa = 0;
 		 String key = "";
+		 int capdt = 0;
 		 if (request.getParameter("cancel") == null) {
 			 if (request.getParameter("key") != null) {
 				 key = request.getParameter("key");
@@ -51,15 +52,21 @@ public class AdminDuyetTMNhanVien extends HttpServlet {
 			 if (request.getParameter("khoa") != null) {
 				 khoa = Integer.parseInt(request.getParameter("khoa"));
 			 }
+			 if (request.getParameter("capdetai") != null) {
+				 capdt = Integer.parseInt(request.getParameter("capdetai"));
+				 System.out.println("CAP DE TAI: " + capdt);
+			 }
 		 }
 		 //Xu ly chia trang
 		 int row_count = LibraryConstant.ROW_COUNT;
  		 int current_page = 1;
  		 
  		//tong so de tai
- 		 int sumDeTai = detaiDAO.countListDeTaiWith(LibraryConstant.DangChoXetThuyetMinh);
+ 		 int sumDeTai = 0;
  		if (request.getParameter("search") != null){
- 			sumDeTai = detaiDAO.countListDeTaiSearchWith(key, khoa, LibraryConstant.DangChoXetThuyetMinh);
+ 			sumDeTai = detaiDAO.countListDeTaiSearchWith(key, khoa, LibraryConstant.DangChoXetThuyetMinh, capdt);
+ 		} else {
+ 			sumDeTai = detaiDAO.countListDeTaiWith(LibraryConstant.DangChoXetThuyetMinh);
  		}
  		// tong so trang
  		 int sumPage = (int)Math.ceil((float)sumDeTai/row_count);
@@ -77,7 +84,7 @@ public class AdminDuyetTMNhanVien extends HttpServlet {
  			ArrayList<DeTai> listDeTaiNhanVien = detaiDAO.getListDeTaiWith(LibraryConstant.DangChoXetThuyetMinh, offset);
  			 request.setAttribute("listDeTaiNhanVien", listDeTaiNhanVien);
  		} else {
- 			ArrayList<DeTai> listDeTaiNhanVien = detaiDAO.getListDeTaiSearchWith(offset, key, khoa, LibraryConstant.DangChoXetThuyetMinh);
+ 			ArrayList<DeTai> listDeTaiNhanVien = detaiDAO.getListDeTaiSearchWith(offset, key, khoa, LibraryConstant.DangChoXetThuyetMinh, capdt);
  			 request.setAttribute("listDeTaiNhanVien", listDeTaiNhanVien);
  		}
 		 

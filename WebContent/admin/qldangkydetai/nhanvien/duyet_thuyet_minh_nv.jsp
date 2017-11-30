@@ -3,6 +3,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.bean.Khoa"%>
 <%@page import="model.dao.UserDAO"%>
+<%@page import="model.dao.CapDeTaiDAO"%>
+<%@page import="model.bean.CapDeTai"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -19,7 +21,7 @@
                                     <form action="<%=request.getContextPath() %>/admin/qldangkydetai/nhanvien/duyet_thuyet_minh_nv" method="get">
                                     	<div class="row">
                                     		
-                                            <div class="col-md-6">
+                                            <div class="col-md-5">
                                                 <div class="form-group">
                                                     <input type="text" 
 	                                                    name="key" class="form-control border-input"
@@ -27,7 +29,32 @@
 	                                                    placeholder="Nhập tên đề tài, tên chủ nhiệm cần tìm kiếm" >
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-md-2">
+									<div class="form-group">
+										<select name="capdetai" class="form-control border-input">
+											<option value="0">-- Tất cả cấp đề tài --</option>
+
+											<%
+												CapDeTaiDAO capdetaiDAO = new CapDeTaiDAO();
+												ArrayList<CapDeTai> listCapDeTai = capdetaiDAO.getItemsByPage();
+												for (int i = 0; i < listCapDeTai.size(); i++) {
+                                        			if (request.getParameter("capdetai") != null) {
+                                        				if (Integer.parseInt(request.getParameter("capdetai")) == listCapDeTai.get(i).getIdCapDeTai()) {
+                                        	%>
+		                                    <option value="<%= listCapDeTai.get(i).getIdCapDeTai() %>" selected><%= listCapDeTai.get(i).getTenCapDeTai() %></option>
+                                        	        <%} else {%>
+                                        	<option value="<%= listCapDeTai.get(i).getIdCapDeTai() %>"><%= listCapDeTai.get(i).getTenCapDeTai() %></option>
+                                        		<%	  }
+		                                    	} else {%>
+		                                    	<option value="<%= listCapDeTai.get(i).getIdCapDeTai() %>"><%= listCapDeTai.get(i).getTenCapDeTai() %></option>
+                                        		
+		                                    	<%}
+		                                    	}%>
+
+										</select>
+										</div>
+									</div>
+                                            <div class="col-md-2">
                                                 <div class="form-group">
                                                     <select name="khoa" class="form-control border-input">
                                                     	<option value="0">-- Tất cả các khoa--</option>
@@ -84,7 +111,7 @@
                                     	<th>Tên đề tài</th>
                                     	<th>Chủ nhiệm</th>
                                     	<th>Cấp đề tài</th>
-                                    	<th>Trạng thái</th>
+                                    	<th class="text-center">Kết quả đánh giá</th>
                                     	<th>Chức năng</th>
                                     </thead>
                                     <tbody>
@@ -100,11 +127,23 @@
                                             <td><a href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/detail_duyet_tm_nv?did=<%=objDeTai.getIdDeTai()%>"><%=objDeTai.getTenDeTai() %></a></td>
                                             <td><%=objDeTai.getFullName() %></td>
                                         	<td><%=objDeTai.getTenCapDeTai() %></td>
-                                        	<td><%=LibraryConstant.ConvertTrangThai(objDeTai.getTrangThai()) %></td>
+                                        	<form action="<%=request.getContextPath() %>/admin/qldangkydetai/nhanvien/duyet_thuyet_minh_nv?did=<%=objDeTai.getIdDeTai() %>" method="post">
+                                        	<td>
+                                        	<textarea id="cktext1" class="form-control border-input" name = "noidung" style="height:150px;"></textarea>
+                                        		<div style="margin-top: 15px;" class="text-center">
+											<input type="submit" name="huy"
+										class="btn btn-info" value="Huỷ thuyết minh" />
+											<input type="submit" name="duyet"
+										class="btn btn-info" value="Duyệt thuyết minh" />
+											<input type="submit" name="chinhsua"
+										class="btn btn-info" value="Đề nghị chỉnh sửa" />
+											</div>
+                                        	</td>
+                                        	</form>
                                         	<td>
                                         		<a href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/detail_duyet_tm_nv?did=<%=objDeTai.getIdDeTai()%>"><img src="assets/img/edit.gif" alt="" /> Xem</a>
                                         		 &nbsp;||&nbsp;<a href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/danh_gia_tm_nv?did=<%=objDeTai.getIdDeTai()%>">
-                                        Nhập kết quả đánh giá thuyết minh
+                                        Nhập
                                         </a>
                                         	</td>
                                         </tr>
