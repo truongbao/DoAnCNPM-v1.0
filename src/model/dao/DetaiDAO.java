@@ -2223,5 +2223,62 @@ public class DetaiDAO {
 		return listDeTai;
 	}
 
-	
+	//sửa trajng thai đề tài từ đang đề xuất sang đang chờ đề xuất nếu hết thời gian đang kí đề xuất
+		public int changeTrangThaiDangChoDuyetDeXuat() {
+	         
+			int result = 0;
+			conn = connectMySQLLibrary.getConnectMySQL();
+
+			String sql="UPDATE detai SET trangThai = ? where trangThai = ? ";
+
+			try {
+	            pst = conn.prepareStatement(sql);
+				
+				pst.setString(1, "1");
+				pst.setString(2, "2");
+				result = pst.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					pst.close();
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+
+			return result;
+		}
+		
+		//sửa trajng thai đề tài từ đang đang kí thuyết minh sang đang chờ duyệt thuyết minh nếu hết thời gian đang kí thuyết minh
+				public int changeTrangThaiDangChoDuyetThuyetMinh() {
+			         
+					int result = 0;
+					conn = connectMySQLLibrary.getConnectMySQL();
+
+					String sql="UPDATE detai SET trangThai = ? where trangThai = ? ";
+
+					try {
+			            pst = conn.prepareStatement(sql);
+						
+						pst.setString(1, "8");
+						pst.setString(2, "21");
+						result = pst.executeUpdate();
+						
+					} catch (SQLException e) {
+						e.printStackTrace();
+					} finally {
+						try {
+							pst.close();
+							conn.close();
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+					}
+
+					return result;
+				}
+		
 }

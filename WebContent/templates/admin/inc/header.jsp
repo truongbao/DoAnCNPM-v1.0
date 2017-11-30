@@ -160,14 +160,6 @@
                 <p>Thông báo</p>
                     </a>
                 </li>
-                <% if(isAdmin || isNhanVienQLNCKHTruong){ %>
-                <li>
-                    <a href="<%=request.getContextPath() %>/admin/hopdong/index">
-                        <!-- <i class="ti-user"></i> -->
-                        <p>Quản lý hợp đồng</p>
-                    </a>
-                </li>
-                <% }%>
                 
             </ul>
         </div>
