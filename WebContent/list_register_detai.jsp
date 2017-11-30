@@ -81,7 +81,7 @@
 							<th>
 								<td>Tên đề tài</td>
 								<td>Chủ nhiệm đề tài</td>
-								<td>Thời gian đăng ký</td>
+								<!-- <td>Thời gian đăng ký</td> -->
 								<td><center> Sửa đề tài</center></td>
 							    <td><center> Tạo thuyết minh </center></td>
 							    <td><center> Sửa thuyết minh </center></td>
@@ -109,7 +109,7 @@
 								<td>
 									 <%=objDT.getFullName() %>
 								</td>
-								<td> <%=objDT.getThoiGianDangKy() %> </td>
+								<%-- <td> <%=objDT.getThoiGianDangKy() %> </td> --%> 
 								
 							    
 								<td>

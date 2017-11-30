@@ -130,7 +130,7 @@
 					
 				</div>
 				<div class="col-xs-10 ">
-					<a href="<%=request.getContextPath()%>/update-detai?did=<%=objDeTaiByIdDeTaiDK.getIdDeTai()%>" class="btn btn-lg btn-primary pull-right">Cập nhật đề tài đăng ký</a>
+					<a href="<%=request.getContextPath()%>/update-detai-dk?did=<%=objDeTaiByIdDeTaiDK.getIdDeTai()%>" class="btn btn-lg btn-primary pull-right">Cập nhật đề tài đăng ký</a>
 				</div>
 			</div>
 

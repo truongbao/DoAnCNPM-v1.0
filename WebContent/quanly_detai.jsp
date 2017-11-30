@@ -67,7 +67,7 @@
 								<td>TG bắt đầu</td>
 								<td>TG kết thúc</td>
 								<td>Trạng thái</td>
-								<td style="float:right;margin-right:14px;"><center>Cập nhật</center></td>
+								<!-- <td style="float:right;margin-right:14px;"><center>Cập nhật</center></td> -->
 								
 							</th>
 							</thead>
@@ -90,13 +90,15 @@
 								<td> <%=objDetai.getThoiGianBatDau() %> </td>
 								<td> <%=objDetai.getThoiGianKetThuc() %> </td>
 								<td> <%= LibraryConstant.ConvertTrangThai(objDetai.getTrangThai())  %> </td>
-								<td>
+								
+								
+								<%-- <td >
 									<center>
 										<div class="pull-right" >
-											<a href="<%=request.getContextPath()%>/update-detai?did=<%=objDetai.getIdDeTai()%>" class="btn btn-default" style=""> Sửa đề tài </a>
+											<a disabled="disabled" href="<%=request.getContextPath()%>/update-detai?did=<%=objDetai.getIdDeTai()%>" class="btn btn-default"  style=""> Sửa đề tài </a>
 										</div>
 									</center>
-								</td>
+								</td> --%>
 								
 							</tr>
 							

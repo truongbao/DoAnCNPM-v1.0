@@ -14,7 +14,7 @@ public class LibraryConstant {
 	  public final static String TOPICTYPE_CAPBGD = "Cấp Bộ giáo dục";
 	  
 	  public final static String DangChoDuyetCapKhoa = "1" ;
-	  public final static String DangChoXetDeTai = "2" ;
+	  public final static String DangThoiGianDK = "2" ;
 	  public final static String KhoaDeXuatChinhSua = "3";
 	  public final static String DangChoXetCapTruong = "4" ;
 	  public final static String Huy = "5" ;
@@ -33,6 +33,7 @@ public class LibraryConstant {
 	  public final static String ChoDeNghiChinhSuaDeXuat = "18";
 	  public final static String ChoHuyThuyetMinh = "19";
 	  public final static String ChoDeNghiChinhSuaThuyetMinh = "20";
+	  public final static String DangLamThuyetMinh = "21" ;
 	  
 	  public final static String pathAvt = "/home/yenhot/web/DoAnCNPM_SE03/WebContent/templates/admin/img/users" ;
 	  

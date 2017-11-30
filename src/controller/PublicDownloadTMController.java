@@ -6,12 +6,14 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.PageContext;
 
 import library.LibraryAuth;
 
@@ -38,7 +40,7 @@ public class PublicDownloadTMController extends HttpServlet {
 		
 		String filename = "bieu-mau-tao-thuyet-minh.docx";
 		   
-	    final String filepath = request.getServletContext().getRealPath("files_bieumau"); //duong dan den thu muc chua file
+	    final String filepath = request.getServletContext().getRealPath("bieumau"); //duong dan den thu muc chua file
 	   
 	    File dirFile = new File(filepath);
         if(!dirFile.exists()){
@@ -49,12 +51,12 @@ public class PublicDownloadTMController extends HttpServlet {
 	    File[] children = dirFile.listFiles();
 	    String nameFileInForder = null;
 	    
-        for (File file : children) {
+        for (File file : children) { 
         	nameFileInForder = file.getName(); //lấy tên file trong thư mục 
         }
 		   
 		   
-		if( filename.equals(nameFileInForder) ){ 
+		if( !"".equalsIgnoreCase(filepath+ File.separator+ filename)  ){ 
 			
 			BufferedInputStream buf=null;
 		    ServletOutputStream myOut=null;
@@ -64,6 +66,8 @@ public class PublicDownloadTMController extends HttpServlet {
 		     myOut = response.getOutputStream();
 		     File myfile = new File(filepath+ File.separator+ filename);
 		     
+		     //System.out.println(filepath+ File.separator+ filename);
+		     
 		     response.setHeader("Content-Disposition", "attachment; filename=\""+ filename + "\"");
 
 		     response.setContentLength( (int) myfile.length( ) );
@@ -71,7 +75,7 @@ public class PublicDownloadTMController extends HttpServlet {
 		     FileInputStream input = new FileInputStream(myfile);
 		     buf = new BufferedInputStream(input);
 		     int readBytes = 0;
-
+ 
 		     //read from the file; write to the ServletOutputStream
 		     while((readBytes = buf.read( )) != -1)
 		       myOut.write(readBytes);
