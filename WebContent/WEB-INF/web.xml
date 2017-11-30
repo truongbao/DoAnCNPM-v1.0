@@ -208,6 +208,17 @@
     <servlet-name>AdminExportDSDeXuat</servlet-name>
     <url-pattern>/admin/qldangkydetai/nhanvien/export</url-pattern>
     </servlet-mapping>
+    
+    <!-- ============== QL xuat file Khoa ==================== -->
+   <servlet>
+    <servlet-name>AdminExportDSDeXuatKhoa</servlet-name>
+    <servlet-class>controller.AdminExportDSDeXuatKhoa</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminExportDSDeXuatKhoa</servlet-name>
+    <url-pattern>/admin/qldangkydetai/khoa/export</url-pattern>
+    </servlet-mapping>
+    
    
    <!-- ============== RIN QL duyet de xuat cua Admin ==================== -->
    <servlet>

@@ -72,7 +72,7 @@
 												for(CapDeTai obj: alCDT){
 											%>
 											<option value="<%=obj.getIdCapDeTai()%>"><%=obj.getTenCapDeTai() %></option>
-											<%	} %>lue="<%=LibraryConstant.TOPICTYPE_CAPBGD%>">Bộ giáo dục</option>
+											<%	} %>
 										</select>
 									</div>
 								</div>

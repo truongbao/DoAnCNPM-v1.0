@@ -1,3 +1,4 @@
+<%@page import="model.bean.CapDeTai"%>
 <%@page import="library.LibraryConstant"%>
 <%@page import="model.bean.DeTai"%>
 <%@page import="java.util.ArrayList"%>
@@ -51,7 +52,11 @@
 		     			       	%>  
                            	</div>
                             <div class="content table-responsive table-full-width">
-                            	<h3>DANH SÁCH ĐỀ XUẤT CẦN DUYỆT</h3>
+                            	<div class="row">
+                            		<div class="col-md-6 col-md-offset-3">
+                            		<h3>DANH SÁCH ĐỀ XUẤT CẦN DUYỆT</h3>
+                            		</div>
+                            	</div>
 								<form method="post" action="<%=request.getContextPath()%>/admin/qldangkydetai/duyet-de-xuat-khoa?type=action" onsubmit="return validateForm()">
                                 <div class="row">
                                  	<div class="btn-action">
@@ -141,5 +146,4 @@
                 </div>
             </div>
         </div>
-
        <%@include file="/templates/admin/inc/footer.jsp" %>

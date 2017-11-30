@@ -111,9 +111,9 @@
 																&& Integer.parseInt(objDeTai.getTrangThai()) <= Integer
 																		.parseInt(LibraryConstant.DangThucHien)) {
 										%>
-										<button class="btn btn-info">
-											<a href="<%=request.getContextPath()%>/admin/hopdong/export?uid=<%=objDeTai.getIdDeTai()%>">Inhợp đồng</a>
-										</button> <%
+										
+											<a href="<%=request.getContextPath()%>/admin/hopdong/export?uid=<%=objDeTai.getIdDeTai()%>" target="_blank"><button class="btn btn-info">In hợp đồng </button></a>
+										 <%
  	}
  %>
 									</td>
