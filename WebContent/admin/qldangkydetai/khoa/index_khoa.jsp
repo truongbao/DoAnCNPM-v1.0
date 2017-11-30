@@ -132,7 +132,7 @@
 			<div class="modal-content" style="width: 40%;">
 				<div class="modal-header">
 					<span class="close">&times;</span>
-					<h4>Gửi thông báo</h4>
+					<h4>Xuất danh sách đề tài đăng ký</h4>
 				</div>
 				<div class="modal-body">
 					<form action="<%=request.getContextPath()%>/admin/qldangkydetai/khoa/export" method="post" name="formNotif" target="_blank">
