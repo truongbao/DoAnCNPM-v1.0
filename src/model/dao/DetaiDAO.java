@@ -2234,8 +2234,8 @@ public class DetaiDAO {
 			try {
 	            pst = conn.prepareStatement(sql);
 				
-				pst.setString(1, "1");
-				pst.setString(2, "2");
+				pst.setString(1, LibraryConstant.DangChoDuyetCapKhoa);
+				pst.setString(2, LibraryConstant.DangThoiGianDK);
 				result = pst.executeUpdate();
 				
 			} catch (SQLException e) {
@@ -2263,8 +2263,8 @@ public class DetaiDAO {
 					try {
 			            pst = conn.prepareStatement(sql);
 						
-						pst.setString(1, "8");
-						pst.setString(2, "21");
+						pst.setString(1, LibraryConstant.DangChoXetThuyetMinh);
+						pst.setString(2, LibraryConstant.DangLamThuyetMinh);
 						result = pst.executeUpdate();
 						
 					} catch (SQLException e) {
