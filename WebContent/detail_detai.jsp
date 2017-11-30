@@ -156,15 +156,15 @@
 
 			<p>&nbsp;</p>
 			
-			<div class="form-group row">
-				<div class="col-xs-2">
+			 <div class="form-group row">
+				    <div class="col-xs-2">
 					
-				</div>
-				<div class="col-xs-10 ">
-					<a href="updateDeTai.html" class="btn btn-lg btn-primary pull-right">Cập nhật đề tài</a>
-				</div>
+				   </div>
+				   <div class="col-xs-10 ">
+					  <a href="<%=request.getContextPath() %>/quanly-detai" class="btn btn-lg btn-primary pull-right">Quay lại</a>
+				  </div>
 			</div>
-
+            
 
 
 <p>&nbsp;</p>

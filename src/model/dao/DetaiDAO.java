@@ -128,7 +128,7 @@ public class DetaiDAO {
 					+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
 					+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 					+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
-					+ "  WHERE dt.trangThai = "+LibraryConstant.DangChoXetDeTai+"  and  dt.idDeTai = "+idDeTai;
+					+ "  WHERE dt.idDeTai = "+idDeTai;
 
 			DeTai objDeTai =null;
 			try {
@@ -441,6 +441,7 @@ public class DetaiDAO {
 			sql+= " AND (u.fullname LIKE '%"+keyword+"%' OR dt.tenDeTai LIKE '%"+keyword+"%')";
 		}
 		sql +=" ORDER BY dt.idDeTai DESC LIMIT ?,?";
+		System.out.println(sql);
 		try {
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, offset);

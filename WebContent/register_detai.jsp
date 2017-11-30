@@ -117,9 +117,19 @@
 								<div class="col-xs-3">
 									<label class="p-center">Tính cấp thiết:</label>
 								</div>
+								
+								
 								<div class="col-xs-9">
-									<input type="text" name="tinhCapThiet" class="form-control">
+									<textarea id="cktexta1" name="tinhCapThiet" class="form-control" rows="4"></textarea>
+									
+									 <script type="text/javascript">
+							               var editor = CKEDITOR.replace('cktexta1');
+							               CKFinder.setupCKEditor(editor,'<%=request.getContextPath()%>/ckfinder/')
+							         </script>
+									
 								</div>
+								
+								
 							</div>
 							
 							
@@ -156,22 +166,6 @@
 								</div>
 							</div>
 							
-							<%-- <div class="form-group row">
-								<div class="col-xs-3">
-									<label class="p-center">Kết quả dự kiến:</label>
-								</div>
-								<div class="col-xs-9">
-									<textarea id="cktext3" name="ket" class="form-control" rows="4">
-										
-									</textarea>
-									
-									 <script type="text/javascript">
-							               var editor = CKEDITOR.replace('cktext3');
-							               CKFinder.setupCKEditor(editor,'<%=request.getContextPath()%>/ckfinder/')
-							         </script>
-									
-								</div>
-							</div> --%>
 							
 							<div class="form-group row">
 								<div class="col-xs-3">
@@ -194,9 +188,20 @@
 								<div class="col-xs-3">
 									<label class="p-center">Hiệu quả dự kiến:</label>
 								</div>
+								
+								
+								
 								<div class="col-xs-9">
-									<input type="text" name="hieuQuaDukien" class="form-control">
+									<textarea id="cktexta4" name="hieuQuaDukien" class="form-control" rows="4"></textarea>
+									
+									  <script type="text/javascript">
+							               var editor = CKEDITOR.replace('cktexta4');
+							               CKFinder.setupCKEditor(editor,'<%=request.getContextPath()%>/ckfinder/')
+							         </script>
+									
 								</div>
+								
+								
 							</div>
 							
 							<div class="form-group row">

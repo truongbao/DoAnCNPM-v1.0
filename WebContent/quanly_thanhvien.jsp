@@ -106,10 +106,10 @@
 							<tr>
 								<td> <%=demstt %> </td>
 								<td>
-									<a href="#"> <%=objTV.getTenThanhVien() %> </a>
+									<a> <%=objTV.getTenThanhVien() %> </a>
 								</td>
 								<td>
-									<a href="#"> <%=objTV.getDonVi() %> </a>
+									<a> <%=objTV.getDonVi() %> </a>
 								</td>
 								<td> <%=objTV.getNoiDungNghienCuu() %> </td>
 								<td> <%=objTV.getMaSoDeTai() %> </td>

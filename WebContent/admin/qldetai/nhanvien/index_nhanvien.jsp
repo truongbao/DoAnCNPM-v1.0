@@ -83,7 +83,7 @@
                                         	<td><%=objDeTai.getTenCapDeTai() %></td>
                                         	<td><%=LibraryConstant.ConvertTrangThai(objDeTai.getTrangThai()) %></td>
                                         	<td>
-                                        	<% if(LibraryConstant.DaDuyet.equals(objDeTai.getTrangThai())){ %>
+                                        	<% if(Integer.parseInt(objDeTai.getTrangThai()) >= Integer.parseInt(LibraryConstant.DaDuyet)){ %>
                                         	<button class="btn btn-info"><a href="<%=request.getContextPath()%>/admin/hopdong/export?uid=<%=objDeTai.getIdDeTai()%>">In hợp đồng</a></button>
                                         	<%} %>
                                         	</td>

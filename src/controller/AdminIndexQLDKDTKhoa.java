@@ -58,7 +58,8 @@ public class AdminIndexQLDKDTKhoa extends HttpServlet {
 			request.setAttribute("page_sum", page_sum);
 			ArrayList<DeTai> listDeTaiByIdKhoa = detaiDAO.getListDeTaiDangKy(objUser.getIdKhoa(),"", offset, LibraryConstant.ROW_COUNT);
 			request.setAttribute("listDeTaiByIdKhoa", listDeTaiByIdKhoa);
-
+			System.out.println(listDeTaiByIdKhoa.get(0).getFullName());
+			
 			RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/khoa/index_khoa.jsp");
 			rd.forward(request, response);
 		}else if("search".equals(request.getParameter("type"))){
