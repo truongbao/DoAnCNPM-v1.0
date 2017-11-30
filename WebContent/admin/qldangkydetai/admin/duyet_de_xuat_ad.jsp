@@ -82,8 +82,15 @@
 		     			       	%>
 					</div>
 					<div class="content table-responsive table-full-width">
+					<%
+					if(request.getAttribute("listDeTaiAdmin") != null) {
+                 	   ArrayList<DeTai> listDeTaiByIdKhoa = (ArrayList<DeTai>)request.getAttribute("listDeTaiAdmin");
+					%>
 						<h3>DANH SÁCH ĐỀ XUẤT CẦN DUYỆT</h3>
 						<form method="post" action="<%=request.getContextPath()%>/admin/qldangkydetai/admin/duyet_de_xuat_ad?type=action">
+						<%
+                            		if (listDeTaiByIdKhoa.size() > 0) {
+                            %>
 						<div class="row">
                           	<div class="btn-action">
                               		<input type="submit" name="submit" value="Thực hiện" class="btn btn-primary btn-search" />
@@ -95,6 +102,7 @@
                                  </select>
                              </div>
                          </div>
+                         <% } %>
 						<table class="table table-striped" id="table-contain">
 							<thead>
 								<th>ID</th>
@@ -107,8 +115,7 @@
 							</thead>
 							<tbody>
 								<%
-                                       if(request.getAttribute("listDeTaiAdmin") != null) {
-                                    	   ArrayList<DeTai> listDeTaiByIdKhoa = (ArrayList<DeTai>)request.getAttribute("listDeTaiAdmin");
+                                       
                                     	   if (listDeTaiByIdKhoa.size() > 0) {
                                     		   for (DeTai objDeTai : listDeTaiByIdKhoa){
                                 
@@ -126,28 +133,18 @@
 													href="<%=request.getContextPath()%>/admin/qldangkydetai/admin/detail_duyet_dx_ad?did=<%=objDeTai.getIdDeTai()%>">
 													<input style="width: 70px;" class="btn btn-info"
 													value="Xem" />
-												</a> &nbsp;||&nbsp;
+												</a>
 												<a 
 													href="<%=request.getContextPath()%>/admin/qldangkydetai/admin/duyet_de_xuat_ad?did=<%=objDeTai.getIdDeTai()%>&duyet=ok">
 													<input style="width: 80px;" class="btn btn-info"
 													value="Duyệt"/>
-												</a> &nbsp;||&nbsp;
+												</a>
 												<a 
 													href="<%=request.getContextPath()%>/admin/qldangkydetai/admin/duyet_de_xuat_ad?did=<%=objDeTai.getIdDeTai()%>&huy=ok">
 													<input style="width: 70px;" class="btn btn-info"
 													value="Huỷ"/>
 												</a>
-											<%-- <form
-												action="<%=request.getContextPath()%>/admin/qldangkydetai/admin/duyet_de_xuat_ad?did=<%=objDeTai.getIdDeTai()%>"
-												method="post">
-												<a
-													href="<%=request.getContextPath()%>/admin/qldangkydetai/admin/detail_duyet_dx_ad?did=<%=objDeTai.getIdDeTai()%>">
-													<input style="width: 70px;" class="btn btn-info"
-													value="Xem" />
-												</a> &nbsp;||&nbsp; <input type="submit" class="btn btn-info"
-													value="Duyệt" name="duyet" />&nbsp;||&nbsp; <input
-													type="submit" class="btn btn-info" value="Huỷ" name="huy" />
-											</form> --%>
+						
 										</div>
 									</td>
 									 <td>
@@ -164,7 +161,7 @@
 						</table>
 						</form>
 						<div class="row">
-						<div class="text-center col-md-9">
+						<div class="text-center">
 							<ul class="pagination">
 								<li>
 									<%

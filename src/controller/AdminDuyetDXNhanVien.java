@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -31,6 +32,8 @@ public class AdminDuyetDXNhanVien extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
         
+        PrintWriter out = response.getWriter();
+        
       //kiểm tra đã đăng nhập chưa
       	if(  LibraryAuth.CheckNhanVienTruong(request, response)==false){
       		return;
@@ -43,6 +46,7 @@ public class AdminDuyetDXNhanVien extends HttpServlet {
 		 }
 		 
 		 int khoa = 0;
+		 int capdt = 0;
 		 String key = "";
 		 if (request.getParameter("cancel") == null) {
 			 if (request.getParameter("key") != null) {
@@ -51,15 +55,22 @@ public class AdminDuyetDXNhanVien extends HttpServlet {
 			 if (request.getParameter("khoa") != null) {
 				 khoa = Integer.parseInt(request.getParameter("khoa"));
 			 }
+			 if (request.getParameter("capdetai") != null) {
+				 capdt = Integer.parseInt(request.getParameter("capdetai"));
+				 System.out.println("CAP DE TAI: " + capdt);
+			 }
 		 }
 		 //Xu ly chia trang
 		 int row_count = LibraryConstant.ROW_COUNT;
  		 int current_page = 1;
  		 
  		//tong so de tai
- 		 int sumDeTai = detaiDAO.countListDeTaiWith(LibraryConstant.DangChoXetCapTruong);
+ 		 int sumDeTai = 0;
  		if (request.getParameter("search") != null){
- 			sumDeTai = detaiDAO.countListDeTaiSearchWith(key, khoa, LibraryConstant.DangChoXetCapTruong);
+ 			System.out.println("Searh....1");
+ 			sumDeTai = detaiDAO.countListDeTaiSearchWith(key, khoa, LibraryConstant.DangChoXetCapTruong, capdt);
+ 		} else {
+ 			sumDeTai = detaiDAO.countListDeTaiWith(LibraryConstant.DangChoXetCapTruong);
  		}
  		// tong so trang
  		 int sumPage = (int)Math.ceil((float)sumDeTai/row_count);
@@ -74,16 +85,20 @@ public class AdminDuyetDXNhanVien extends HttpServlet {
  		int offset = (current_page - 1) * row_count;
  		request.setAttribute("current_page", current_page);
  		if (request.getParameter("search") == null){
+ 			
  			ArrayList<DeTai> listDeTaiNhanVien = detaiDAO.getListDeTaiWith(LibraryConstant.DangChoXetCapTruong, offset);
+ 	  
  			 request.setAttribute("listDeTaiNhanVien", listDeTaiNhanVien);
  		} else {
- 			ArrayList<DeTai> listDeTaiNhanVien = detaiDAO.getListDeTaiSearchWith(offset, key, khoa, LibraryConstant.DangChoXetCapTruong);
+ 			System.out.println("Searh....2");
+ 			ArrayList<DeTai> listDeTaiNhanVien = detaiDAO.getListDeTaiSearchWith(offset, key, khoa, LibraryConstant.DangChoXetCapTruong, capdt);
+ 
  			 request.setAttribute("listDeTaiNhanVien", listDeTaiNhanVien);
  		}
- 		
+ 		 
+  		System.out.println("LOAD LAI TRANG");
  		RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/nhanvien/duyet_de_xuat_nv.jsp");
          rd.forward(request, response);
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

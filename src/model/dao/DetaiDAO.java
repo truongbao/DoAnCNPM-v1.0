@@ -615,12 +615,13 @@ public class DetaiDAO {
 		return total;
 	}
 	//Đếm tổng số đề tài trong 1 trạng thái nào đó với hành động tìm kiếm 
-	public int countListDeTaiSearchWith(String key, int khoa, String trangthai) {
-		if ((key == "") && (khoa == 0)) return this.countListDeTaiWith(trangthai);
+	public int countListDeTaiSearchWith(String key, int khoa, String trangthai, int capdt) {
+		if ((key == "") && (khoa == 0) && (capdt==0)) return this.countListDeTaiWith(trangthai);
 		int total = 0;
 		conn = connectMySQLLibrary.getConnectMySQL();
 		String sql = "select count(*) AS total FROM detai AS dt "
 				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
+				+ " INNER JOIN capdetai AS c ON c.idCapDeTai = dt.idCapDeTai "
 				+ "WHERE dt.trangthai = " + trangthai; 
 		if (key != "") {
 			sql += " and ((tenDeTai like '%" 
@@ -634,6 +635,11 @@ public class DetaiDAO {
 			//String pre = key != ""  ? " and" : " and ";
 			sql += " and " + " u.idKhoa = " + khoa + " ";
 		}
+		
+		if (capdt != 0) {
+			sql += " and " + " c.idCapDeTai = " + capdt + " ";
+		}
+		System.out.println(sql);
         try {
 			st = conn.createStatement();
 			rs = st.executeQuery(sql);
@@ -739,8 +745,8 @@ public class DetaiDAO {
 		return listDeTai;
 	}
 	
-	public ArrayList<DeTai> getListDeTaiSearchWith(int offset, String key, int khoa, String trangthai) {
-		if ((key == "") && (khoa == 0)) return this.getListDeTaiWith(trangthai, offset);
+	public ArrayList<DeTai> getListDeTaiSearchWith(int offset, String key, int khoa, String trangthai, int capdt) {
+		if ((key == "") && (khoa == 0) && (capdt==0)) return this.getListDeTaiWith(trangthai, offset);
 		ArrayList<DeTai> listDeTai = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
 		String sql = "select dt.*,cdt.tenCapDeTai,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu  FROM detai AS dt "
@@ -762,8 +768,14 @@ public class DetaiDAO {
 			//String pre = key != ""  ? " and" : " ";
 			sql += " and " + " u.idKhoa = " + khoa + " ";
 		}
+		
+		if (capdt != 0) {
+			sql += " and " + " cdt.idCapDeTai = " + capdt + " ";
+		}
+		
 		sql += " ORDER BY dt.idDeTai ASC LIMIT "+offset+","+LibraryConstant.ROW_COUNT;
 		DeTai objDeTai = null;
+		System.out.println(sql);
 		try {
 			pst = conn.prepareStatement(sql);
 			rs = pst.executeQuery();
@@ -1425,6 +1437,27 @@ public class DetaiDAO {
 		return result;
 	}
 	
+	//Cap nhat Ma so de tai cho de tai
+		public int updateMaSoDeTai(int idDeTai) {
+			int result = 0;
+			conn = connectMySQLLibrary.getConnectMySQL();
+			String sql = "update detai SET maSoDeTai = 'MSDT" + idDeTai + "' WHERE idDeTai = " + idDeTai ;
+			try {
+				pst = conn.prepareStatement(sql);
+				result = pst.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					pst.close();
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return result;
+		}
+		
 	/* *****END FUNTIONS OF RIN PHAM ****** */
 	
 	//lay ra danh sách linh vuc nghien cuu ko phan trang (public)

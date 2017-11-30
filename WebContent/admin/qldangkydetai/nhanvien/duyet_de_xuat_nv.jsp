@@ -1,12 +1,13 @@
+<%@page import="model.dao.CapDeTaiDAO"%>
 <%@page import="library.LibraryConstant"%>
 <%@page import="model.bean.DeTai"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.bean.Khoa"%>
 <%@page import="model.dao.UserDAO"%>
+<%@page import="model.bean.CapDeTai"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-   <%@include file="/templates/admin/inc/header.jsp" %>
+<%@include file="/templates/admin/inc/header.jsp" %>
 
         <div class="content">
             <div class="container-fluid">
@@ -18,28 +19,52 @@
                                 
                                     <form action="<%=request.getContextPath() %>/admin/qldangkydetai/nhanvien/duyet_de_xuat_nv" method="get">
                                     	<div class="row">
-                                    		
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <input type="text" 
-	                                                    name="key" class="form-control border-input"
-	                                                    value="<%=request.getParameter("key") != null ? request.getParameter("key") : "" %>" 
-	                                                    placeholder="Nhập tên đề tài, tên chủ nhiệm cần tìm kiếm" >
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
+
+									<div class="col-md-5">
+										<div class="form-group">
+											<input type="text" name="key"
+												class="form-control border-input"
+												value="<%=request.getParameter("key") != null ? request.getParameter("key") : "" %>"
+												placeholder="Nhập tên đề tài, tên chủ nhiệm cần tìm kiếm">
+										</div>
+									</div>
+									<div class="col-md-2">
+									<div class="form-group">
+										<select name="capdetai" class="form-control border-input">
+											<option value="0">-- Tất cả cấp đề tài --</option>
+
+											<%
+												CapDeTaiDAO capdetaiDAO = new CapDeTaiDAO();
+												ArrayList<CapDeTai> listCapDeTai = capdetaiDAO.getItemsByPage();
+												for (int i = 0; i < listCapDeTai.size(); i++) {
+                                        			if (request.getParameter("capdetai") != null) {
+                                        				if (Integer.parseInt(request.getParameter("capdetai")) == listCapDeTai.get(i).getIdCapDeTai()) {
+                                        	%>
+		                                    <option value="<%= listCapDeTai.get(i).getIdCapDeTai() %>" selected><%= listCapDeTai.get(i).getTenCapDeTai() %></option>
+                                        	        <%} else {%>
+                                        	<option value="<%= listCapDeTai.get(i).getIdCapDeTai() %>"><%= listCapDeTai.get(i).getTenCapDeTai() %></option>
+                                        		<%	  }
+		                                    	} else {%>
+		                                    	<option value="<%= listCapDeTai.get(i).getIdCapDeTai() %>"><%= listCapDeTai.get(i).getTenCapDeTai() %></option>
+                                        		
+		                                    	<%}
+		                                    	}%>
+
+										</select>
+										</div>
+									</div>
+									<div class="col-md-2">
                                                 <div class="form-group">
                                                     <select name="khoa" class="form-control border-input">
                                                     	<option value="0">-- Tất cả các khoa--</option>
-                                                    	<% 
+                                                    	<%
+                                                    		UserDAO userDao = new UserDAO();
 
-	                                                    	UserDAO userDao = new UserDAO();
-                                                    		
-					                                    	ArrayList<Khoa> listKhoa = userDao.getListKhoa();
-					                                    	for(int i = 0; i < listKhoa.size(); i++) {
-					                                    		if (request.getParameter("khoa") != null) {
-					                                    		if (Integer.parseInt(request.getParameter("khoa")) == listKhoa.get(i).getIdKhoa()) {
-					                                    %>
+                                                    		ArrayList<Khoa> listKhoa = userDao.getListKhoa();
+                                                    		for (int i = 0; i < listKhoa.size(); i++) {
+                                                    			if (request.getParameter("khoa") != null) {
+                                                    				if (Integer.parseInt(request.getParameter("khoa")) == listKhoa.get(i).getIdKhoa()) {
+                                                    	%>
 					                                    <option value="<%= listKhoa.get(i).getIdKhoa() %>" selected><%= listKhoa.get(i).getTenKhoa() %></option>
                                                     	        <%} else {%>
                                                     	<option value="<%= listKhoa.get(i).getIdKhoa() %>"><%= listKhoa.get(i).getTenKhoa() %></option>
@@ -76,22 +101,27 @@
 							      }
 		     			       	%>  
                             	</div>
-                            <div class="content table-responsive table-full-width">
-                            <div class="row">
-                            		<div class="col-md-8"><h3>DANH SÁCH ĐỀ XUẤT CẦN DUYỆT</h3></div>
-                   
-                            		<div class="col-md-4"><a class="btn btn-info btn-fill btn-wd" target="_blank" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/export">
-                            		Xuất danh sách đề xuất cần duyệt</a>
-                            		</div>
-                            </div>
-                            
-                                <table class="table table-striped" id="table-contain">
+                            <div class="content table-responsive table-full-width">                            
+						<div class="row">
+							<div class="col-md-8">
+								<h3>DANH SÁCH ĐỀ XUẤT CẦN DUYỆT</h3>
+							</div>
+							
+							<div class="col-md-4">
+								<a class="btn btn-info btn-fill btn-wd" target="_blank"
+									style="margin-top: 20px;"
+									href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/export">
+									Xuất danh sách đề xuất cần duyệt</a>
+							</div>
+						</div>
+
+						<table class="table table-striped" id="table-contain">
                                     <thead>
                                         <th>ID</th>
                                     	<th>Tên đề tài</th>
                                     	<th>Chủ nhiệm</th>
                                     	<th>Cấp đề tài</th>
-                                    	<th>Trạng thái</th>
+                                    	<th class="text-center">Kết quả đánh giá</th>
                                     	<th>Chức năng</th>
                                     </thead>
                                     <tbody>
@@ -107,11 +137,23 @@
                                             <td><a href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/detail_duyet_dx_nv?did=<%=objDeTai.getIdDeTai()%>"><%=objDeTai.getTenDeTai() %></a></td>
                                             <td><%=objDeTai.getFullName() %></td>
                                         	<td><%=objDeTai.getTenCapDeTai() %></td>
-                                        	<td><%=LibraryConstant.ConvertTrangThai(objDeTai.getTrangThai()) %></td>
+                                        	<form action="<%=request.getContextPath() %>/admin/qldangkydetai/nhanvien/duyet_de_xuat_nv?did=<%=objDeTai.getIdDeTai() %>" method="post">
+                                        	<td >
+                                        		<textarea id="cktext1" class="form-control border-input" name = "noidung" style="height:150px;"></textarea>
+                                        		<div style="margin-top: 15px;" class="text-center">
+                                        		<input type="submit" name="huy"
+												class="btn btn-info" value="Huỷ đề xuất" />
+											<input type="submit" name="duyet"
+												class="btn btn-info" value="Duyệt đề xuất" />
+											<input type="submit" name="chinhsua"
+												class="btn btn-info" value="Đề nghị chỉnh sửa" />
+												</div>
+                                        	</td>
+                                        	</form>
                                         	<td>
                                         		<a href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/detail_duyet_dx_nv?did=<%=objDeTai.getIdDeTai()%>"><img src="assets/img/edit.gif" alt="" /> Xem</a>
                                         		 &nbsp;||&nbsp;<a href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/danh_gia_dx_nv?did=<%=objDeTai.getIdDeTai()%>">
-                                        Nhập kết quả đánh giá đề xuất
+                                        Nhập
                                         </a>
                                         	</td>
                                         </tr>
