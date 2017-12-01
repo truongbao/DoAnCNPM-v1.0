@@ -74,6 +74,7 @@
 			              case 0: out.print("<h3 style='color :red;'> Upload file thất bại </h3> ");break; 
 			              case 1: out.print("<h3 style='color :red;'> Upload file thành công </h3> ");break; 
 			              case 2: out.print("<h3 style='color :red;'> File thuyết minh ứng với đề tài này đã tồn tại ! </h3> ");break; 
+			              case 3: out.print("<h4 style='color :red'> Bạn chưa chọn file upload  ! </h4> ");break; 
 			           	     }
 			           }
 		          %>      	

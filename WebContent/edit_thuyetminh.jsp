@@ -73,6 +73,7 @@
 			          switch(msg){
 			              case 0: out.print("<h3 style='color :red;'> Upload file đã chỉnh sửa thất bại </h3> ");break; 
 			              case 1: out.print("<h3 style='color :red;'> Upload file đã chỉnh sửa thành công </h3> ");break; 
+			              case 3: out.print("<h4 style='color :red'> Bạn chưa chọn file upload  ! </h4> ");break; 
 			           	     }
 			           }
 		          %>      	

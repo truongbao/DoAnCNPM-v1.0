@@ -203,6 +203,11 @@ public class PublicEditThuyetMinhController extends HttpServlet {
 		      			filecontent.close();
 		      		}
 		      	}
+		      }else{
+		    	  
+		    	  response.sendRedirect(request.getContextPath()+"/edit-thuyetminh?msg=3&did="+this.idDeTai);
+				  return;
+		    	  
 		      }
 				
 		      BieuMau objBM  =new BieuMau(0, idDeTai, LibraryConstant.BieuMauThuyetMinh, SluglinkUpload);
