@@ -60,7 +60,7 @@
 <body>
 <div class="wrapper"> 
     <div class="sidebar" data-background-color="white" data-active-color="danger">
-        <div class="sidebar-wrapper" style="background: black; color: white;">
+        <div class="sidebar-wrapper" style="background: #E1E1E1; color: white;">
         	<%
         	User sobjUser = new User();
         	boolean isAdmin = false;
@@ -78,10 +78,12 @@
     	    }
     	    %>
             <div class="logo">
+            
                 <a href="<%=request.getContextPath()%>/admin/user/show?uid=<%=sobjUser.getIdUser() %>" class="simple-text"><img src="<%=sobjUser.getAvt() != null? request.getContextPath() + "/templates/admin/img/users/" + sobjUser.getAvt() : request.getContextPath() + "/templates/admin/img/faces/face-3.jpg"%>"
 									 class="img-circle" style="display:inline-block; width:130px;height:100px">
                 	 <h5> <%=sobjUser.getFullName() %> </h5> 
-                </a>
+                </a> 
+                
             </div>
 
 
@@ -166,7 +168,7 @@
     </div> 
      <div class="main-panel">
         <nav class="navbar navbar-default">
-            <div class="container-fluid" style="background: black">
+            <div class="container-fluid" style="background: #E1E1E1;">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle">
                         <span class="sr-only">Toggle navigation</span>

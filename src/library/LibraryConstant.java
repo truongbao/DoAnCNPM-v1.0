@@ -1,5 +1,7 @@
 package library;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class LibraryConstant {
      
 	  public final static int ROW_COUNT=5;
@@ -36,8 +38,7 @@ public class LibraryConstant {
 	  public final static String DangLamThuyetMinh = "21" ;
 	  
 	  public final static String pathAvt = "/home/yenhot/web/DoAnCNPM_SE03/WebContent/templates/admin/img/users" ;
-	  
-	  
+	 
 	  
 	  //Mã biểu mẫu
 	  public final static String BieuMauThuyetMinh = "BM_TM" ;
@@ -45,7 +46,7 @@ public class LibraryConstant {
 	  public final static String BieuMauBoSungThuyetMinh = "BM_BSTM" ;
 	  
 
- 
+      
 	  
 	  
 	  public static String ConvertTrangThai(String soDangChuoi){

@@ -191,8 +191,8 @@
 					
 						<div class="col-sm-6 col-xs-6 col-md-3 std_ic_ct_pr no-padding-lr">
 							<div class="">
-								<a href="<%=request.getContextPath()%>/thongtin-giangvien?uid=<%=objUser.getIdUser() %>"> <img
-									src="<%=request.getContextPath()%>/templates/public/images/thanhViet.jpg" alt="">
+								<a href="<%=request.getContextPath()%>/thongtin-giangvien?uid=<%=objUser.getIdUser() %>">
+								 <img src="<%=request.getContextPath()%>/templates/admin/img/users/<%=objUser.getAvt() %>" alt="">
 								</a>
 							</div>
 							<a href="<%=request.getContextPath()%>/thongtin-giangvien?uid=<%=objUser.getIdUser() %>" class="std_ic_title">
