@@ -4,15 +4,6 @@
     pageEncoding="UTF-8"%>
 
    <%@include file="/templates/admin/inc/header.jsp" %>
-   <script type="text/javascript">
-	   function validateForm(){
-		   var content = document.forms["formDanhGia"]["noidung"].value;;
-		   if(content == ""){
-			   $("#alert").html( "<p> <span style='color:red' > Vui lòng nhập nhập nội dung đánh giá</span> </p>" );
-		        return false;
-		   }
-	   }
-</script>
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -49,8 +40,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Nội dung đánh giá</label>
-                                                <textarea id="cktext1" name="noidung" class="form-control border-input ckeditor"></textarea>
-                                                 
+                                                <textarea id="editor1" name="editor1" class="form-control border-input"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -62,6 +52,16 @@
                                     </div>
                                     <div class="clearfix"></div>
                                 </form>
+                                <script type="text/javascript">
+								   		CKEDITOR.replace("editor1");
+									   function validateForm(){
+										   var content = CKEDITOR.instances.editor1.getData();
+										   if(content == ""){
+											   $("#alert").html( "<p> <span style='color:red' > Vui lòng nhập nhập nội dung đánh giá</span> </p>" );
+										        return false;
+										   }
+									   }
+								</script>
                             </div>
                         </div>
                     </div>

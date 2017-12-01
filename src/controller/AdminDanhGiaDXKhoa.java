@@ -63,7 +63,6 @@ public class AdminDanhGiaDXKhoa extends HttpServlet {
        	if(  LibraryAuth.CheckQuanLyKhoa(request, response)==false){
        		return;
        	}
-       	
          DetaiDAO detaiDAO = new DetaiDAO();
          QuaTrinhThucHienDAO qtthDAO = new QuaTrinhThucHienDAO();
          ThongBaoDAO thongBaoDAO = new ThongBaoDAO();

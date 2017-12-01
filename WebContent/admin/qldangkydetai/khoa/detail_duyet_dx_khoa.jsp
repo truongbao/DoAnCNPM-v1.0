@@ -141,9 +141,7 @@
 	                                    <div class="text-center">
 	                                    	<input type="submit" class="btn btn-info btn-fill btn-wd" name="submit" value="Duyệt đề xuất" />
 	                                        <input type="submit" class="btn btn-info btn-fill btn-wd" name="cancel" value="Huỷ đề xuất" />
-	                                        <button class="btn btn-info btn-fill btn-wd" ><a href="<%=request.getContextPath()%>/admin/qldangkydetai/danh_gia_dx_khoa?did=<%=objDeTai.getIdDeTai()%>" style="color:#FFFFFF;">
-	                                        Yêu cầu chỉnh sửa
-	                                        </a></button>
+	                                        <a href="<%=request.getContextPath()%>/admin/qldangkydetai/danh_gia_dx_khoa?did=<%=objDeTai.getIdDeTai()%>" class="btn btn-info btn-fill btn-wd" >Yêu cầu chỉnh sửa </a>
 	                                    </div>
                        				</div>
                        				<%} %>
