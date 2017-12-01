@@ -109,6 +109,20 @@ public class PublicUpdateDetaiDKController extends HttpServlet {
 			objDeTai.setIdDeTai(idDeTai); //set lại idDeTai lấy dc
 
 			if(detaiDAO.editDeTaiPublic(objDeTai) >  0){
+				
+				//set tt
+				if(LibraryConstant.KhoaDeXuatChinhSua.equals(detaiDAO.getObjDeTai(idDeTai).getTrangThai() )){
+					detaiDAO.updateToTrangThai(LibraryConstant.DangChoDuyetCapKhoa, idDeTai);
+				}
+				if(LibraryConstant.TruongDeXuatChinhSua.equals(detaiDAO.getObjDeTai(idDeTai).getTrangThai())){
+					detaiDAO.updateToTrangThai(LibraryConstant.DangChoXetCapTruong, idDeTai);
+				}
+				
+				
+				
+				
+				
+				
 			   response.sendRedirect(request.getContextPath()+"/list-register-detai?msg=2");
 			   return;
 			}else{

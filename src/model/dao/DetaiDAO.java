@@ -260,8 +260,10 @@ public class DetaiDAO {
 				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
 				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
 				+ " INNER JOIN thongbao AS tb ON tb.idDeTai = dt.idDeTai "
-				+ "  WHERE  dt.idDeTai = "+idDeTai;
+				+ "  WHERE  dt.idDeTai = "+idDeTai+" order by tb.thoiGian DESC Limit 1";
 		      //+ "  WHERE  dt.trangThai IN ('3','7','10','11','5','8')  and  dt.idDeTai = "+idDeTai;
+		
+		
 		
 		DeTaiThongBao objDeTaiThongBao =null;
 		try {
