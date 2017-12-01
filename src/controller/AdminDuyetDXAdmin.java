@@ -106,38 +106,41 @@ public class AdminDuyetDXAdmin extends HttpServlet {
 				String noiDung = request.getParameter("noidung");
 				System.out.println("NOI DUNG : " + noiDung);
 				QuaTrinhThucHienDAO qtthDAO = new QuaTrinhThucHienDAO();
-				QuaTrinhThucHien qtth = new QuaTrinhThucHien(0, 0, LibraryConstant.DangChoDuyetCapTruong, null, "",
+				QuaTrinhThucHien qtth = new QuaTrinhThucHien(0, idDeTai, LibraryConstant.DangChoDuyetCapTruong, null, "",
 						noiDung);
 				if (qtthDAO.addItem(qtth) > 0) {
 					System.out.println("Add new QTTH OK");
 				}
-
-				// Tao moi thong bao cho giang vien
-				ThongBaoDAO tbDAO = new ThongBaoDAO();
-				ThongBao tb = new ThongBao(0, objUserAdmin.getIdUser(), detaiDAO.getIdUserWith(idDeTai), noiDung, null,
-						idDeTai, null, null, null, 0);
-				tbDAO.addItem(tb);
 			} 
-			else {
-				QuaTrinhThucHienDAO qtthDAO = new QuaTrinhThucHienDAO();
-				QuaTrinhThucHien qtth = qtthDAO.getQuaTrinhThucHienWith(idDeTai, LibraryConstant.DangChoDuyetCapTruong);
-				// Tao moi thong bao cho giang vien
-				ThongBaoDAO tbDAO = new ThongBaoDAO();
-				ThongBao tb = new ThongBao(0, objUserAdmin.getIdUser(), detaiDAO.getIdUserWith(idDeTai), qtth.getNoiDung(), null,
-						idDeTai, null, null, null, 0);
-				tbDAO.addItem(tb);
-			}
+			
 
 			if (request.getParameter("duyet") != null) {
 				System.out.println("DUYET KET QUA CUA NV!");
 				DeTai detai = detaiDAO.getObjDeTai(idDeTai);
 				String newTrangthai = LibraryConstant.DangChoXetThuyetMinh;
+				QuaTrinhThucHienDAO qtthDAO = new QuaTrinhThucHienDAO();
+				QuaTrinhThucHien qtth = qtthDAO.getQuaTrinhThucHienWith(idDeTai, LibraryConstant.DangChoDuyetCapTruong);
 				if (detai.getTrangThai().equals(LibraryConstant.ChoHuy)) {
 					newTrangthai = LibraryConstant.Huy;
+					// Tao moi thong bao cho giang vien
+					ThongBaoDAO tbDAO = new ThongBaoDAO();
+					ThongBao tb = new ThongBao(0, objUserAdmin.getIdUser(), detaiDAO.getIdUserWith(idDeTai), "Đề xuất đề tài không được duyệt.\nÝ kiến đánh giá đề xuất của hội đồng:\n"+ qtth.getNoiDung(), null,
+							idDeTai, null, null, null, 0);
+					tbDAO.addItem(tb);
 				} else if (detai.getTrangThai().equals(LibraryConstant.ChoDeNghiChinhSuaDeXuat)) {
 					newTrangthai = LibraryConstant.TruongDeXuatChinhSua;
+					// Tao moi thong bao cho giang vien
+					ThongBaoDAO tbDAO = new ThongBaoDAO();
+					ThongBao tb = new ThongBao(0, objUserAdmin.getIdUser(), detaiDAO.getIdUserWith(idDeTai), "Đề xuất đề tài cần được chỉnh sửa.\nÝ kiến đánh giá đề xuất của hội đồng:\n"+ qtth.getNoiDung(), null,
+							idDeTai, null, null, null, 0);
+					tbDAO.addItem(tb);
 				} else if (detai.getTrangThai().equals(LibraryConstant.DangChoDuyetCapTruong)) {
 					newTrangthai = LibraryConstant.DangLamThuyetMinh;
+					// Tao moi thong bao cho giang vien
+					ThongBaoDAO tbDAO = new ThongBaoDAO();
+					ThongBao tb = new ThongBao(0, objUserAdmin.getIdUser(), detaiDAO.getIdUserWith(idDeTai), "Đề xuất đề tài đã được duyệt.\nÝ kiến đánh giá đề xuất của hội đồng:\n"+ qtth.getNoiDung(), null,
+							idDeTai, null, null, null, 0);
+					tbDAO.addItem(tb);
 				}
 				
 				if (detaiDAO.updateToTrangThai(newTrangthai, idDeTai) != 0) {
@@ -180,23 +183,32 @@ public class AdminDuyetDXAdmin extends HttpServlet {
 							System.out.println(string);
 							int idDeTai = Integer.parseInt(string);
 							DeTai detai = detaiDAO.getObjDeTai(idDeTai);
+							QuaTrinhThucHienDAO qtthDAO = new QuaTrinhThucHienDAO();
+							QuaTrinhThucHien qtth = qtthDAO.getQuaTrinhThucHienWith(idDeTai, LibraryConstant.DangChoDuyetCapTruong);
 							String newTrangthai = LibraryConstant.DangChoXetThuyetMinh;
 							if (detai.getTrangThai().equals(LibraryConstant.ChoHuy)) {
 								newTrangthai = LibraryConstant.Huy;
+								ThongBaoDAO tbDAO = new ThongBaoDAO();
+								ThongBao tb = new ThongBao(0, objUserAdmin.getIdUser(), detaiDAO.getIdUserWith(idDeTai), "Đề xuất đề tài không được duyệt.\nÝ kiến đánh giá đề xuất của hội đồng:\n"+ qtth.getNoiDung(), null,
+										idDeTai, null, null, null, 0);
+								tbDAO.addItem(tb);
 							} else if (detai.getTrangThai().equals(LibraryConstant.ChoDeNghiChinhSuaDeXuat)) {
 								newTrangthai = LibraryConstant.TruongDeXuatChinhSua;
+								// Tao moi thong bao cho giang vien
+								ThongBaoDAO tbDAO = new ThongBaoDAO();
+								ThongBao tb = new ThongBao(0, objUserAdmin.getIdUser(), detaiDAO.getIdUserWith(idDeTai), "Đề xuất đề tài cần được chỉnh sửa.\nÝ kiến đánh giá đề xuất của hội đồng:\n"+ qtth.getNoiDung(), null,
+										idDeTai, null, null, null, 0);
+								tbDAO.addItem(tb);
 							} else if (detai.getTrangThai().equals(LibraryConstant.DangChoDuyetCapTruong)) {
 								newTrangthai = LibraryConstant.DangLamThuyetMinh;
+								// Tao moi thong bao cho giang vien
+								ThongBaoDAO tbDAO = new ThongBaoDAO();
+								ThongBao tb = new ThongBao(0, objUserAdmin.getIdUser(), detaiDAO.getIdUserWith(idDeTai), "Đề xuất đề tài đã được duyệt.\nÝ kiến đánh giá đề xuất của hội đồng:\n"+ qtth.getNoiDung(), null,
+										idDeTai, null, null, null, 0);
+								tbDAO.addItem(tb);
 							}
 							result = detaiDAO.updateToTrangThai(newTrangthai, idDeTai);
-							
-							QuaTrinhThucHienDAO qtthDAO = new QuaTrinhThucHienDAO();
-							QuaTrinhThucHien qtth = qtthDAO.getQuaTrinhThucHienWith(idDeTai, LibraryConstant.DangChoDuyetCapTruong);
-							// Tao moi thong bao cho giang vien
-							ThongBaoDAO tbDAO = new ThongBaoDAO();
-							ThongBao tb = new ThongBao(0, objUserAdmin.getIdUser(), detaiDAO.getIdUserWith(idDeTai), qtth.getNoiDung(), null,
-									idDeTai, null, null, null, 0);
-							tbDAO.addItem(tb);
+						
 						}
 						if (result != 0) {
 							System.out.println("Update Success!");
