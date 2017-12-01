@@ -61,8 +61,7 @@ public class AdminExportDSDeXuatKhoa extends HttpServlet {
        	request.setAttribute("khoa", objUser.getTenKhoa());
        	request.setAttribute("objCDT", cdt);
  		 request.setAttribute("listDeTai", listDeTai);
- 		 System.out.println("XUAT FILE DS: "+listDeTai.size());
-  		RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/khoa/export.jsp");
+  		RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/khoa/export_file_de_xuat.jsp");
           rd.forward(request, response);
 	}
 

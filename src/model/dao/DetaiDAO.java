@@ -345,6 +345,49 @@ public class DetaiDAO {
 		return listDeTai;
 
 	}
+	
+	public ArrayList<DeTai> getListDeTaiEx() {
+		ArrayList<DeTai> listDeTai = new ArrayList<>();
+		conn = connectMySQLLibrary.getConnectMySQL();
+
+		String sql = "select dt.*,cdt.tenCapDeTai,u.fullName, lvnc.tenLinhVucNghienCuu, lhnc.tenLoaiHinhNghienCuu FROM detai AS dt "
+				+ " INNER JOIN user AS u ON u.idUser = dt.idUser "
+				+ " INNER JOIN linhvucnghiencuu AS lvnc ON lvnc.idLinhVucNghienCuu = dt.idLinhVucNghienCuu "
+				+ " INNER JOIN loaihinhnghiencuu AS lhnc ON lhnc.idLoaiHinhNghienCuu = dt.idLoaiHinhNghienCuu "
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
+				+ " order by dt.idDeTai DESC";
+
+		try {
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				DeTai objDeTai = new DeTai(rs.getInt("idDeTai"), rs.getString("tenDeTai"), rs.getString("maSoDeTai"),
+						rs.getInt("idLinhVucNghienCuu"), rs.getString("tenLinhVucNghienCuu"),
+						rs.getInt("idLoaiHinhNghienCuu"), rs.getString("tenLoaiHinhNghienCuu"),
+						rs.getTimestamp("thoiGianBatDau"), rs.getTimestamp("thoiGianKetThuc"),
+						rs.getString("donViChuTri"), rs.getInt("idUser"), rs.getString("fullName"),
+						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
+						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
+						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
+						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
+						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"),  rs.getString("danhGiaNghiemThu"),rs.getFloat("diem"),rs.getString("xepLoai"));
+
+				listDeTai.add(objDeTai);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pst.close();
+				rs.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listDeTai;
+
+	}
 
 	public ArrayList<ThanhVien> getListThanhVienByDeTai(int idDeTai) {
 		ArrayList<ThanhVien> listTVByDeTai = new ArrayList<>();
@@ -1292,6 +1335,7 @@ public class DetaiDAO {
 		}
 		return listDeTai;
 	}
+
 	
 	public int getSumDeTaiThucHien(int idKhoa, String keyword) {
 		int sum = 0;
@@ -1667,6 +1711,49 @@ public class DetaiDAO {
 		return listObj;
 	}
 	
+	// get list DeTai of Faculty (idFaculty)
+		public ArrayList<DeTai> getListByFaculty(int idKhoa) {
+			ArrayList<DeTai> listObj = new ArrayList<>();
+			conn = connectMySQLLibrary.getConnectMySQL();
+
+			String sql = "SELECT *,cdt.tenCapDeTai FROM detai AS dt "
+					+ " JOIN linhvucnghiencuu AS lvnc ON dt.idLinhVucNghienCuu = lvnc.idLinhVucNghienCuu "
+					+ " JOIN loaihinhnghiencuu AS lhnc ON dt.idLoaiHinhNghienCuu = lhnc.idLoaiHinhNghienCuu "
+					+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDetai "
+					+ " JOIN user ON dt.idUser = user.idUser WHERE dt.idKhoa = ? ORDER BY dt.idDeTai";
+
+			try {
+				pst = conn.prepareStatement(sql);
+				pst.setInt(1, idKhoa);
+				rs = pst.executeQuery();
+				while (rs.next()) {
+					DeTai objDetai = new DeTai(rs.getInt("idDeTai"), rs.getString("tenDeTai"), rs.getString("maSoDeTai"),
+							rs.getInt("idLinhVucNghienCuu"), rs.getString("tenLinhVucNghienCuu"),
+							rs.getInt("idLoaiHinhNghienCuu"), rs.getString("tenLoaiHinhNghienCuu"),
+							rs.getTimestamp("thoiGianBatDau"), rs.getTimestamp("thoiGianKetThuc"),
+							rs.getString("donViChuTri"), rs.getInt("idUser"), rs.getString("fullName"),
+							rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
+							rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
+							rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
+							rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
+							rs.getTimestamp("thoiGianDangKy"), idKhoa, rs.getString("danhGiaNghiemThu"),rs.getFloat("diem"),rs.getString("xepLoai"));
+					listObj.add(objDetai);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					pst.close();
+					rs.close();
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return listObj;
+		}
+	
+
 	public ArrayList<DeTai> getSearchList(int year, String type_detai, String type_stat, int offset, int rowCount) {
 		ArrayList<DeTai> listObj = new ArrayList<>();
 		conn = connectMySQLLibrary.getConnectMySQL();
@@ -1681,6 +1768,46 @@ public class DetaiDAO {
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, offset);
 			pst.setInt(2, rowCount);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				DeTai objDetai = new DeTai(rs.getInt("idDeTai"), rs.getString("tenDeTai"), rs.getString("maSoDeTai"),
+						rs.getInt("idLinhVucNghienCuu"), rs.getString("tenLinhVucNghienCuu"),
+						rs.getInt("idLoaiHinhNghienCuu"), rs.getString("tenLoaiHinhNghienCuu"),
+						rs.getTimestamp("thoiGianBatDau"), rs.getTimestamp("thoiGianKetThuc"),
+						rs.getString("donViChuTri"), rs.getInt("idUser"), rs.getString("fullName"),
+						rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
+						rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
+						rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
+						rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
+						rs.getTimestamp("thoiGianDangKy"), rs.getInt("idKhoa"), rs.getString("danhGiaNghiemThu"),rs.getFloat("diem"),rs.getString("xepLoai"));
+				listObj.add(objDetai);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pst.close();
+				rs.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listObj;
+	}
+	
+	public ArrayList<DeTai> getSearchList(int year, String type_detai, String type_stat) {
+		ArrayList<DeTai> listObj = new ArrayList<>();
+		conn = connectMySQLLibrary.getConnectMySQL();
+
+		String sql = "SELECT *,cdt.tenCapDeTai FROM detai AS dt JOIN linhvucnghiencuu AS lvnc ON dt.idLinhVucNghienCuu = lvnc.idLinhVucNghienCuu"
+				+ " JOIN loaihinhnghiencuu AS lhnc ON dt.idLoaiHinhNghienCuu = lhnc.idLoaiHinhNghienCuu JOIN user ON dt.idUser"
+				+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDeTai "
+				+ " = user.idUser WHERE";
+		sql = getSqlWithSearch(sql, year, type_detai, type_stat) + " ORDER BY dt.idDeTai DESC";
+		
+		try {
+			pst = conn.prepareStatement(sql);
 			rs = pst.executeQuery();
 			while (rs.next()) {
 				DeTai objDetai = new DeTai(rs.getInt("idDeTai"), rs.getString("tenDeTai"), rs.getString("maSoDeTai"),
@@ -1780,6 +1907,49 @@ public class DetaiDAO {
 		}
 		return listObj;
 	}
+	
+	// get list DeTai of Faculty with search
+		public ArrayList<DeTai> getSearchListByFaculty(int idFaculty, int year, String type_detai, String type_stat) {
+			ArrayList<DeTai> listObj = new ArrayList<>();
+			conn = connectMySQLLibrary.getConnectMySQL();
+
+			String sql = "SELECT *,cdt.tenCapDeTai FROM detai AS dt JOIN linhvucnghiencuu AS lvnc ON dt.idLinhVucNghienCuu = lvnc.idLinhVucNghienCuu"
+					+ " JOIN loaihinhnghiencuu AS lhnc ON dt.idLoaiHinhNghienCuu = lhnc.idLoaiHinhNghienCuu JOIN user ON dt.idUser"
+					+ " INNER JOIN capdetai AS cdt ON cdt.idCapDeTai = dt.idCapDeTai "
+					+ " = user.idUser WHERE dt.idKhoa = ?  AND";
+			sql = getSqlWithSearch(sql, year, type_detai, type_stat) + " ORDER BY dt.idDeTai ";
+			try {
+				pst = conn.prepareStatement(sql);
+				pst.setInt(1, idFaculty);
+				rs = pst.executeQuery();
+				while (rs.next()) {
+					DeTai objDetai = new DeTai(rs.getInt("idDeTai"), rs.getString("tenDeTai"), rs.getString("maSoDeTai"),
+							rs.getInt("idLinhVucNghienCuu"), rs.getString("tenLinhVucNghienCuu"),
+							rs.getInt("idLoaiHinhNghienCuu"), rs.getString("tenLoaiHinhNghienCuu"),
+							rs.getTimestamp("thoiGianBatDau"), rs.getTimestamp("thoiGianKetThuc"),
+							rs.getString("donViChuTri"), rs.getInt("idUser"), rs.getString("fullName"),
+							rs.getString("donViPhoiHopChinh"), rs.getString("tongQuan"), rs.getString("tinhCapThiet"),
+							rs.getString("mucTieu"), rs.getString("phamViNghienCuu"), rs.getString("phuongPhapNghienCuu"),
+							rs.getString("noiDung"), rs.getString("sanPham"), rs.getString("hieuQua"),
+							rs.getInt("kinhPhiThucHien"), rs.getString("trangThai"), rs.getInt("idCapDeTai"),rs.getString("tenCapDeTai"),
+							rs.getTimestamp("thoiGianDangKy"), idFaculty, rs.getString("danhGiaNghiemThu"),rs.getFloat("diem"),rs.getString("xepLoai"));
+					listObj.add(objDetai);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					pst.close();
+					rs.close();
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return listObj;
+		}
+	
+	
 
 	// get the sum of DeTai of faculty (idFaculty)
 	public int getSumWithIdFaculty(int idFaculty) {

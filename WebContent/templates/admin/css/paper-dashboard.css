@@ -255,11 +255,11 @@ hr {
   background-position: center center;
 }
 .sidebar .sidebar-wrapper {
+	max-width: 100%;
   position: relative;
   max-height: none;
   min-height: 100%;
   overflow: hidden;
-  width: 260px;
   z-index: 4;
   box-shadow: inset -1px 0px 0px 0px #DDDDDD;
 }
@@ -312,7 +312,7 @@ hr {
   margin: 10px 0px;
   padding-left: 25px;
   padding-right: 25px;
-  opacity: .7;
+  opacity: 0.8;
 }
 .sidebar .nav li:hover > a,
 .off-canvas-sidebar .nav li:hover > a {
@@ -395,12 +395,12 @@ hr {
 .sidebar .logo .simple-text, .sidebar[data-background-color="white"] .logo .simple-text,
 .off-canvas-sidebar .logo .simple-text,
 .off-canvas-sidebar[data-background-color="white"] .logo .simple-text {
-  color: #66615B;
+  color: #ffffff;
 }
 .sidebar .nav li:not(.active) > a, .sidebar[data-background-color="white"] .nav li:not(.active) > a,
 .off-canvas-sidebar .nav li:not(.active) > a,
 .off-canvas-sidebar[data-background-color="white"] .nav li:not(.active) > a {
-  color: #66615B;
+  color: #FFFFFF;
 }
 .sidebar .nav .divider, .sidebar[data-background-color="white"] .nav .divider,
 .off-canvas-sidebar .nav .divider,
@@ -410,7 +410,7 @@ hr {
 .sidebar[data-background-color="black"]:after, .sidebar[data-background-color="black"]:before,
 .off-canvas-sidebar[data-background-color="black"]:after,
 .off-canvas-sidebar[data-background-color="black"]:before {
-  background-color: #212120;
+  background-color: #FFFFFF;
 }
 .sidebar[data-background-color="black"] .logo,
 .off-canvas-sidebar[data-background-color="black"] .logo {
@@ -2798,6 +2798,7 @@ textarea.form-control {
     transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
   }
   .off-canvas-sidebar .sidebar-wrapper {
+  	background:#2b2842;
     position: relative;
     z-index: 3;
     overflow-y: scroll;

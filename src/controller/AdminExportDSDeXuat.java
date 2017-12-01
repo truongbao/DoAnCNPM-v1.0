@@ -50,7 +50,7 @@ public class AdminExportDSDeXuat extends HttpServlet {
        	ArrayList<DeTai> listDeTai = detaiDAO.getListDeTaiWithCapDeTai(LibraryConstant.DangChoXetCapTruong,idcapDeTai);
        	request.setAttribute("capDeTai", cdt.getTenCapDeTai());
  		 request.setAttribute("listDeTai", listDeTai);
-  		RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/nhanvien/export.jsp");
+  		RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/nhanvien/export_file_DS.jsp");
           rd.forward(request, response);
 	}
 

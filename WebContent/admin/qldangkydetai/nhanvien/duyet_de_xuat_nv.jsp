@@ -28,7 +28,7 @@
 												placeholder="Nhập tên đề tài, tên chủ nhiệm cần tìm kiếm">
 										</div>
 									</div>
-									<div class="col-md-2">
+									<div class="col-md-3">
 									<div class="form-group">
 										<select name="capdetai" class="form-control border-input">
 											<option value="0">-- Tất cả cấp đề tài --</option>
@@ -53,7 +53,7 @@
 										</select>
 										</div>
 									</div>
-									<div class="col-md-2">
+									<div class="col-md-4">
                                                 <div class="form-group">
                                                     <select name="khoa" class="form-control border-input">
                                                     	<option value="0">-- Tất cả các khoa--</option>
@@ -110,19 +110,18 @@
 							<div class="col-md-4">
 								<a class="btn btn-info btn-fill btn-wd" target="_blank"
 									style="margin-top: 20px;"
-									href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/export">
+									href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/export"  target="_blank">
 									Xuất danh sách đề xuất cần duyệt</a>
 							</div>
 						</div>
-
-						<table class="table table-striped" id="table-contain">
+							<form action="<%=request.getContextPath() %>/admin/qldangkydetai/nhanvien/duyet_de_xuat_nv" method="post">
+							<table class="table table-striped" id="table-contain">
                                     <thead>
                                         <th>ID</th>
                                     	<th>Tên đề tài</th>
                                     	<th>Chủ nhiệm</th>
                                     	<th>Cấp đề tài</th>
                                     	<th class="text-center">Kết quả đánh giá</th>
-                                    	<th>Chức năng</th>
                                     </thead>
                                     <tbody>
                                     <%
@@ -130,31 +129,14 @@
                                     	   ArrayList<DeTai> listDeTaiByIdKhoa = (ArrayList<DeTai>)request.getAttribute("listDeTaiNhanVien");
                                     	   if (listDeTaiByIdKhoa.size() > 0) {
                                     		   for (DeTai objDeTai : listDeTaiByIdKhoa){
-                
                                     %>
                                         <tr>
                                         	<td><%=objDeTai.getIdDeTai() %></td>
                                             <td><a href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/detail_duyet_dx_nv?did=<%=objDeTai.getIdDeTai()%>"><%=objDeTai.getTenDeTai() %></a></td>
                                             <td><%=objDeTai.getFullName() %></td>
                                         	<td><%=objDeTai.getTenCapDeTai() %></td>
-                                        	<form action="<%=request.getContextPath() %>/admin/qldangkydetai/nhanvien/duyet_de_xuat_nv?did=<%=objDeTai.getIdDeTai() %>" method="post">
                                         	<td >
                                         		<textarea id="cktext1" class="form-control border-input" name = "noidung" style="height:150px;"></textarea>
-                                        		<div style="margin-top: 15px;" class="text-center">
-                                        		<input type="submit" name="huy"
-												class="btn btn-info" value="Huỷ đề xuất" />
-											<input type="submit" name="duyet"
-												class="btn btn-info" value="Duyệt đề xuất" />
-											<input type="submit" name="chinhsua"
-												class="btn btn-info" value="Đề nghị chỉnh sửa" />
-												</div>
-                                        	</td>
-                                        	</form>
-                                        	<td>
-                                        		<a href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/detail_duyet_dx_nv?did=<%=objDeTai.getIdDeTai()%>"><img src="assets/img/edit.gif" alt="" /> Xem</a>
-                                        		 &nbsp;||&nbsp;<a href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/danh_gia_dx_nv?did=<%=objDeTai.getIdDeTai()%>">
-                                        Nhập
-                                        </a>
                                         	</td>
                                         </tr>
 
@@ -164,7 +146,7 @@
                                         </tr>                            
                                     </tbody>
                                 </table>
-
+								</form>
 
 								<div class="text-center">
 								    <ul class="pagination">

@@ -24,6 +24,8 @@ public class AdminGeneralStatController extends HttpServlet {
 	String type_detai = null;
 	int idFaculty_search = 0;
 	String cdt = null;
+	ArrayList<DeTai> list_export = new ArrayList<>();
+	
 	public AdminGeneralStatController() {
 		super();
 	}
@@ -43,7 +45,8 @@ public class AdminGeneralStatController extends HttpServlet {
 		 if( !(LibraryAuth.CheckNhanVienTruong(request, response))){
 			 return;
 		 }
-		 
+		String tenKhoa = null;
+		String trangThai = null;
 		FacultyDAO modelFaculty = new FacultyDAO();
 		request.setAttribute("list_Faculty", modelFaculty.getList());
 		DetaiDAO modelDT = new DetaiDAO();
@@ -60,6 +63,7 @@ public class AdminGeneralStatController extends HttpServlet {
 			request.setAttribute("current_page", current_page);
 			request.setAttribute("page_sum", page_sum);
 			request.setAttribute("alItem",modelDT.getListDeTai( offset, LibraryConstant.ROW_COUNT));
+			list_export = modelDT.getListDeTaiEx();
 			RequestDispatcher rd = request.getRequestDispatcher("/admin/general_statistical.jsp");
 			rd.forward(request, response);
 		} else if ("search".equals(request.getParameter("type"))) {
@@ -73,6 +77,7 @@ public class AdminGeneralStatController extends HttpServlet {
 				}
 				if(!"0".equals(request.getParameter("type_stat"))){
 					type_stat = request.getParameter("type_stat");
+					trangThai = LibraryConstant.ConvertTrangThai(type_stat);
 				}else{
 					type_stat = "0";
 				}
@@ -84,6 +89,7 @@ public class AdminGeneralStatController extends HttpServlet {
 				}
 				if(!"0".equals(request.getParameter("faculty"))){
 					idFaculty_search = Integer.parseInt(request.getParameter("faculty"));
+					tenKhoa = modelFaculty.getItem(idFaculty_search).getTenKhoa();
 				}else{
 					idFaculty_search = 0;
 				}
@@ -98,6 +104,7 @@ public class AdminGeneralStatController extends HttpServlet {
 				}
 				int offset = (current_page - 1) * LibraryConstant.ROW_COUNT;
 				request.setAttribute("alItem",modelDT.getSearchListByFaculty(idFaculty_search,year,type_detai, type_stat, offset, LibraryConstant.ROW_COUNT));
+				list_export = modelDT.getSearchListByFaculty(idFaculty_search, year, type_detai, type_stat);
 			}else{
 				int DT_sum =  modelDT.getSumWithSearch(year,type_detai,type_stat);
 				page_sum = (int) Math.ceil(((float) DT_sum / LibraryConstant.ROW_COUNT));
@@ -106,6 +113,7 @@ public class AdminGeneralStatController extends HttpServlet {
 				}
 				int offset = (current_page - 1) * LibraryConstant.ROW_COUNT;
 				request.setAttribute("alItem",modelDT.getSearchList(year,type_detai, type_stat, offset, LibraryConstant.ROW_COUNT));
+				list_export = modelDT.getSearchList(year,type_detai, type_stat);
 			}
 			request.setAttribute("filter_year", year);
 			request.setAttribute("filter_type_stat", type_stat);
@@ -115,6 +123,17 @@ public class AdminGeneralStatController extends HttpServlet {
 			request.setAttribute("page_sum", page_sum);
 			RequestDispatcher rd = request.getRequestDispatcher("/admin/general_statistical.jsp");
 			rd.forward(request, response);
+		}else if ("export".equals(request.getParameter("type"))) {
+			
+			request.setAttribute("khoa", tenKhoa);
+	       	request.setAttribute("tenCDT", cdt);
+	       	request.setAttribute("nam", year);
+	       	request.setAttribute("trangThai", trangThai);
+	 		request.setAttribute("listDeTai", list_export);
+	 		System.out.println(list_export.size());
+	 		RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/nhanvien/export_file_thong_ke.jsp");
+	        rd.forward(request, response);
+			
 		}
 	}
 

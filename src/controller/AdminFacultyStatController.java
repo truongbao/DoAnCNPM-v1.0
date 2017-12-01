@@ -24,6 +24,7 @@ public class AdminFacultyStatController extends HttpServlet {
 	String type_stat = "0";
 	String type_detai = "0";
 	String cdt = null;
+	ArrayList<DeTai> list_export = new ArrayList<>();
 	
 	public AdminFacultyStatController() {
 		super();
@@ -48,7 +49,7 @@ public class AdminFacultyStatController extends HttpServlet {
 		 HttpSession session = request.getSession();
 		 User objUser = (User) session.getAttribute("quanLyNCKHKhoa");
 		 int idFaculty = objUser.getIdKhoa();
-
+		 String trangThai = null;
 //		int idFaculty = 6;
 		DetaiDAO model = new DetaiDAO();
 		CapDeTaiDAO cdtModel  =  new CapDeTaiDAO();
@@ -64,6 +65,7 @@ public class AdminFacultyStatController extends HttpServlet {
 			request.setAttribute("current_page", current_page);
 			request.setAttribute("page_sum", page_sum);
 			request.setAttribute("alItem",model.getListByFaculty(idFaculty, offset, LibraryConstant.ROW_COUNT));
+			list_export = model.getListByFaculty(idFaculty);
 			RequestDispatcher rd = request.getRequestDispatcher("/admin/faculty_statistical.jsp");
 			rd.forward(request, response);
 		} else if ("search".equals(request.getParameter("type"))) {
@@ -75,6 +77,7 @@ public class AdminFacultyStatController extends HttpServlet {
 				}
 				if(!"0".equals(request.getParameter("type_stat"))){
 					type_stat = request.getParameter("type_stat");
+					trangThai = LibraryConstant.ConvertTrangThai(type_stat);
 				}else{
 					type_stat = "0";
 				}
@@ -99,8 +102,19 @@ public class AdminFacultyStatController extends HttpServlet {
 			request.setAttribute("filter_year", year);
 			request.setAttribute("filter_type_stat", type_stat);
 			request.setAttribute("filter_type_detai", cdt);
+			list_export = model.getSearchListByFaculty(idFaculty,year,type_detai, type_stat);
 			RequestDispatcher rd = request.getRequestDispatcher("/admin/faculty_statistical.jsp");
 			rd.forward(request, response);
+		}  else if ("export".equals(request.getParameter("type"))) {
+			
+			request.setAttribute("khoa", objUser.getTenKhoa());
+	       	request.setAttribute("tenCDT", cdt);
+	       	request.setAttribute("nam", year);
+	       	request.setAttribute("trangThai", trangThai);
+	 		request.setAttribute("listDeTai", list_export);
+	 		RequestDispatcher rd = request.getRequestDispatcher("/admin/qldangkydetai/nhanvien/export_file_thong_ke.jsp");
+	        rd.forward(request, response);
+			
 		}
 	}
 

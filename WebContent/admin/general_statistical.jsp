@@ -92,10 +92,12 @@
 										</select>
 									</div>
 								</div>
-								<div class="col-md-2 text-center ">
+								<div class="col-md-12 text-center ">
 									<div class="form-group">
 										<input type="submit" name="search" value="Thống kê"
 											class="btn btn-default" />
+										<a href="<%=request.getContextPath()%>/admin/general-statistical?type=load" name="reset"
+										class="btn btn-default">Hủy thống kê</a>
 									</div>
 								</div>
 							</div>
@@ -190,8 +192,8 @@
 						</div>
 					</div>
 					<div class="text-center">
-						<button class="btn btn-default" type="button"
-							style="margin-bottom: 20px;">In</button>
+						<a class="btn btn-default" href="<%=request.getContextPath()%>/admin/general-statistical?type=export"
+							style="margin-bottom: 20px;"  target="_blank">In</a>
 					</div>
 				</div>
 			</div>

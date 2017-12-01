@@ -60,7 +60,7 @@
 <body>
 <div class="wrapper"> 
     <div class="sidebar" data-background-color="white" data-active-color="danger">
-        <div class="sidebar-wrapper" style="background: #E1E1E1; color: white;">
+        <div class="sidebar-wrapper" style="background: #3c4252; color: white;">
         	<%
         	User sobjUser = new User();
         	boolean isAdmin = false;
@@ -78,17 +78,15 @@
     	    }
     	    %>
             <div class="logo">
-            
                 <a href="<%=request.getContextPath()%>/admin/user/show?uid=<%=sobjUser.getIdUser() %>" class="simple-text"><img src="<%=sobjUser.getAvt() != null? request.getContextPath() + "/templates/admin/img/users/" + sobjUser.getAvt() : request.getContextPath() + "/templates/admin/img/faces/face-3.jpg"%>"
 									 class="img-circle" style="display:inline-block; width:130px;height:100px">
                 	 <h5> <%=sobjUser.getFullName() %> </h5> 
-                </a> 
-                
+                </a>
             </div>
 
 
             <ul class="nav">
-            	<li>
+            	<li class="">
                     <a href="<%=request.getContextPath() %>/admin">
                         <!-- <i class="ti-user"></i> -->
                         <p>Trang quản lý</p>
@@ -109,7 +107,7 @@
                     </a>
                 </li>
                 <% if(isAdmin){ %>
-                 <li>
+                 <li class="">
                     <a href="<%= request.getContextPath() %>/admin/capdetai/index">
                         <!-- <i class="ti-view-list-alt"></i> -->
                         <p>Quản lý cấp đề tài</p>
@@ -117,24 +115,25 @@
                 </li>
                 <%} %>
                 <% if(isAdmin){ %>
-                 <li>
+                 <li class="">
                     <a href="<%= request.getContextPath() %>/admin/thoigiandk/index">
+                     <!-- <i class="ti-view-list-alt"></i> -->
                         <p>Quản lý thời gian đăng ký</p>
                     </a>
                 </li>
                 <%} %>
-                <li>
+                <li class="">
                 <% if (isQuanLyNCKHKhoa) {%> 
          				<a href="<%= request.getContextPath() %>/admin/qldetai/index-khoa?type=load">
-             				<p>Quản lý đề tài</p>
-         				</a>
+         				 
     			<%} else{ %> 
     					<a href="<%= request.getContextPath() %>/admin/qldetai/index_nhanvien?type=load">
+    			<%} %>
+    				<!-- <i class="ti-view-list-alt"></i> -->
              				<p>Quản lý đề tài</p>
          				</a>
-    			<%} %>
                </li>
-               <li>
+               <li class="" >
                	<%if (isQuanLyNCKHKhoa) { %>
                			<a href="<%= request.getContextPath() %>/admin/qldangkydetai/index-khoa?type=load">
                	<%} else if (isNhanVienQLNCKHTruong) {%>
@@ -146,20 +145,20 @@
                 	<p>Quản lý đăng ký đề tài</p>
                     </a>
                 </li>
-                <li>
+                <li class="">
                 <% if(isAdmin || isNhanVienQLNCKHTruong){ %>
                     <a href="<%=request.getContextPath() %>/admin/general-statistical?type=load">
                 <% }else if(isQuanLyNCKHKhoa){ %>
                 	<a href="<%=request.getContextPath() %>/admin/faculty-statistical?type=load">
                 <%} %>
                         <!-- <i class="ti-stats-up"></i> -->
-                <p>Thống kê</p>
+                	<p>Thống kê</p>
                     </a>
                 </li>
-                <li>
+                <li class="">
                     <a href="<%=request.getContextPath() %>/admin/notif?type=load">
                         <!-- <i class="ti-announcement"></i> -->
-                <p>Thông báo</p>
+                		<p>Thông báo</p>
                     </a>
                 </li>
                 
@@ -168,7 +167,7 @@
     </div> 
      <div class="main-panel">
         <nav class="navbar navbar-default">
-            <div class="container-fluid" style="background: #E1E1E1;">
+            <div class="container-fluid" style="background: #2b2842;">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle">
                         <span class="sr-only">Toggle navigation</span>
@@ -176,7 +175,7 @@
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="<%=request.getContextPath()%>/admin">Trang quản lý</a>
+                    <a class="navbar-brand" href="<%=request.getContextPath()%>/admin" style="color: #c7c7c7;">Trang quản lý</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">

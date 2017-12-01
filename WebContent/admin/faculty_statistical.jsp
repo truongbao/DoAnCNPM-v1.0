@@ -31,7 +31,7 @@
 					<div class="header">
 						<form action="<%=request.getContextPath()%>/admin/faculty-statistical?type=search" method="post" name="searchform" onsubmit="return validateForm()">
 							<div class="row">
-								<div class="col-md-2">
+								<div class="col-md-offset-1 col-md-2">
 									<div class="form-group">
 										<select name="year_create" class="form-control border-input">
 											<%
@@ -76,10 +76,12 @@
 										</select>
 									</div>
 								</div>
-								<div class="col-md-2">
+								<div class="col-md-12 text-center">
 									<div class="form-group">
 										<input type="submit" name="search" value="Thống kê"
 											class="btn btn-default" />
+										<a href="<%=request.getContextPath()%>/admin/faculty-statistical?type=load" name="reset"
+										class="btn btn-default">Hủy thống kê</a>
 									</div>
 								</div>
 							</div>
@@ -169,15 +171,13 @@
 						</div>
 					</div>
 					<div class="text-center">
-						<button class="btn btn-default" type="button"
-							style="margin-bottom: 20px;">In</button>
+						<a class="btn btn-default" style="margin-bottom: 20px;" href="<%=request.getContextPath()%>/admin/faculty-statistical?type=export"  target="_blank">In</a>
 					</div>
 				</div>
 			</div>
-
+		
 
 		</div>
 	</div>
 </div>
-
 <%@include file="/templates/admin/inc/footer.jsp"%>

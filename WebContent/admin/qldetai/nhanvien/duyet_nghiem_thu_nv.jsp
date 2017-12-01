@@ -43,7 +43,7 @@
 		     			       	%>  
                            	</div>
                             <div class="content table-responsive table-full-width">
-                            <h3>DANH SÁCH THUYẾT MINH CẦN DUYỆT</h3>
+                            <h3>DANH SÁCH ĐỀ TÀI CHỜ NGHIỆM THU</h3>
                                 <table class="table table-striped">
                                     <thead>
                                         <th>ID</th>

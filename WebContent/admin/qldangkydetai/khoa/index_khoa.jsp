@@ -88,7 +88,7 @@
                                 </table>
 								<%	
 									int page_sum = (Integer) request.getAttribute("page_sum"); 
-									if(page_sum > 0){
+									if(page_sum > 1){
 								%>
 								<div class="text-right pagination-div">
 									<ul class="pagination">

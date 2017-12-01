@@ -60,17 +60,23 @@
     	                                        </div>
                                             </div>
                                         </div>
-                                        
                                     </form>
                                 </div>
+                                <div class="row">
+                                	<div class="col-md-3">
+                            			<a class="btn btn-info btn-fill btn-wd" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/duyet_de_xuat_nv">Xem danh sách duyệt đề xuất</a>
+                            		</div>
+                            		<div class="col-md-3">
+                            			<a class="btn btn-info btn-fill btn-wd" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/duyet_thuyet_minh_nv">Xem danh sách duyệt thuyết minh</a>
+                            		</div>
+                            		
+                                </div>
+                                
                             </div>
                             
                             <div class="content table-responsive table-full-width">
-                            <div class="row"> 
-                            		<div class="col-md-6"><h3>DANH SÁCH ĐỀ TÀI</h3></div>
-                            		<div class="col-md-6"><a class="btn btn-info btn-fill btn-wd" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/duyet_de_xuat_nv">Xem danh sách duyệt đề xuất</a>
-                            		<a class="btn btn-info btn-fill btn-wd" style = "margin-top: 20px;" href="<%=request.getContextPath()%>/admin/qldangkydetai/nhanvien/duyet_thuyet_minh_nv">Xem danh sách duyệt thuyết minh</a>
-                            		</div>
+                            	<div class="row"> 
+                            		<div class="col-md-12 text-center"><h3>DANH SÁCH ĐỀ TÀI</h3></div>
                             	</div>
                             
                                 <table class="table table-striped" id="table-contain">
