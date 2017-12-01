@@ -788,6 +788,15 @@
   </servlet-mapping>
   
   
+  <servlet>
+     <servlet-name>PublicXemChiTietKQNTController</servlet-name>
+     <servlet-class>controller.PublicXemChiTietKQNTController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+     <servlet-name>PublicXemChiTietKQNTController</servlet-name>
+     <url-pattern>/xem-chi-tiet-kqnt</url-pattern>
+  </servlet-mapping>
+  
   
   
     <servlet>
