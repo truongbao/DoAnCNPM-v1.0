@@ -9,7 +9,22 @@
    <%@include file="/templates/admin/inc/header.jsp" %>
    
    <script type="text/javascript">
-			     
+   $(document).ready(function(){
+		$("#frmCapDeTai").validate({
+			rules:{
+				"name":{
+					required: true,
+					maxlength: 32
+				}
+			},
+			messages:{
+				"name":{
+					required: "<p> <span style='color:red' > Vui lòng nhập vào tên cấp đề tài</span> </p>",
+					maxlength: "<p> <span style='color:red' >  Tên cấp đề tài có nhiều nhất 32 ký tự  </span></p>"
+				}
+			}
+		});// ham tren
+});
 			</script>
 
         <div class="content">
@@ -19,11 +34,11 @@
                         <div class="card">
                             <div class="header">
 	                            <h4 class="title" style="display: inline-block;width: 40%;">Danh sách cấp đề tài</h4>
-	                        	<form action="<%=request.getContextPath() %>/admin/capdetai/add" method="post" style="display: inline-block;margin-left: 17%; width: 40%">
+	                        	<form id="frmCapDeTai" action="<%=request.getContextPath() %>/admin/capdetai/add" method="post" style="display: inline-block;margin-left: 17%; width: 40%; position: relative;">
 	                        		<div  style="width: 75% ; display: inline-block; margin-right: 4%" class="form-group">
 	                        			<input name="name" type="text" placeholder="Nhập tên cấp đề tài cần thêm" class="form-control" style="border: 1px solid;background: #CB9E65;">
 	                        		</div>
-	                        		<button type="submit" class="btn btn-info">Thêm</button>
+	                        		<button type="submit" style="position: absolute;top: 0px" class="btn btn-info">Thêm</button>
                             		
 	                        	</form>
                                                                
