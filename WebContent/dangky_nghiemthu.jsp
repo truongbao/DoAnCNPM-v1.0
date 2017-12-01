@@ -173,7 +173,7 @@
 								</div>
 								<div class="col-xs-9 ">
 									
-									<a href="<%=request.getContextPath() %>/dangky-nghiemthu" class="btn btn-lg btn-primary pull-right ml10" >Hủy</a>
+									<a href="<%=request.getContextPath() %>/quanly-detai" class="btn btn-lg btn-primary pull-right ml10" >Hủy</a>
 									<!-- <a href="javascript:void()" class="btn btn-lg btn-primary pull-right" onclick="showMessage()">Đăng ký</a> -->
 									<button class="btn btn-lg btn-primary pull-right">  Đăng ký nghiệm thu</button>
 								</div>

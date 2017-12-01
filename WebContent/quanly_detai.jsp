@@ -115,7 +115,7 @@
 								<td >
 									<center>
 									    <%
-									        if( LibraryConstant.DaDuyet.equals( objDetai.getTrangThai()) ){
+									        if( LibraryConstant.DangThucHien.equals( objDetai.getTrangThai()) ){
 									    %>
 									    <a href="<%=request.getContextPath()%>/dangky-nghiemthu?did=<%=objDetai.getIdDeTai()%>" class="btn btn-primary"  style="">  Đăng ký</a>
 									    <%} %>

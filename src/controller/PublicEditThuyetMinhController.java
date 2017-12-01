@@ -209,11 +209,16 @@ public class PublicEditThuyetMinhController extends HttpServlet {
 		        
 			 if(bieuMauDAO.UploadFileThuyetMinhDaChinhSua(objBM) > 0){
 				//up thanh cong
-				response.sendRedirect(request.getContextPath()+"/edit-thuyetminh?msg=1&did="+this.idDeTai);
+				 
+				 if(LibraryConstant.TruongDeXuatChinhSuaThuyetMinh.equals(detaiDAO.getObjDeTai(idDeTai).getTrangThai())){
+						detaiDAO.updateToTrangThai(LibraryConstant.DangChoXetThuyetMinh, idDeTai);
+				 }
+				 
+				response.sendRedirect(request.getContextPath()+"/list-register-detai?msg=5&did="+this.idDeTai);
 				return;
 			 }else{
 				//that bai
-				response.sendRedirect(request.getContextPath()+"/edit-thuyetminh?msg=0&did="+this.idDeTai);
+				response.sendRedirect(request.getContextPath()+"/list-register-detai?msg=0&did="+this.idDeTai);
 				return;
 					
 			 }	

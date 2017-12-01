@@ -104,9 +104,14 @@ public class PublicDangKyNghiemThuController extends HttpServlet {
 			
 
 			if(thucHienDAO.addItem(objQTTH) >  0){
+			   //dang ky thanh cong
+				
+			   detaiDAO.updateToTrangThai(LibraryConstant.DangChoXetNghiemThu, idDeTai);
+				
 			   response.sendRedirect(request.getContextPath()+"/quanly-detai?msg=1");
 			   return;
 			}else{
+        		//dang ky that bai		 
 			   response.sendRedirect(request.getContextPath()+"/quanly-detai?msg=0");
 			   return;
 			}
