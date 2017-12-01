@@ -75,14 +75,14 @@
 		<div class="row" style="font-size: 17px;">
 			<b>
 			1. Bên đặt hàng (Bên A):</b> Trường Đại học Bách Khoa Đà Nẵng<br>
-			<br>- Do Ông/Bà &emsp;&emsp;<%=objHopDong.getTenKhachHang() %>
-			<br>- Chức vụ: &emsp;&emsp;<%=objHopDong.getChucVuKH() %>làm đại diện.
+			<br>- Do Ông/Bà &emsp;&emsp;<%=userDao.getObjUser(objHopDong.getIdGiangVien()).getFullName()  %>
+			<br>- Chức vụ: &emsp;&emsp;<%=userDao.getObjUser(objHopDong.getIdGiangVien()).getTenHocViHocHam() %>làm đại diện.
 			<br>- Địa chỉ: &emsp;<%=objHopDong.getDiaChiKH() %>
 			<br>- Điện thoại:&emsp;<%=objHopDong.getDienThoaiKH() %>Email:&emsp;<%=objHopDong.getEmailKH() %>
 		</div>
 		<div class="row" style="font-size: 17px;">
 			<b>
-			1. Bên đặt hàng (Bên A):</b> Chủ nhiệm đề tài:<br>
+			1. Bên nhận đặt hàng (Bên B):</b> Chủ nhiệm đề tài:<br>
 			<br>- Ông/Bà &emsp;&emsp;<%=objHopDong.getTenKhachHang() %>
 			<br>- Địa chỉ: &emsp;<%=objHopDong.getDiaChiKH() %>
 			<br>- Điện thoại:&emsp;<%=objHopDong.getDienThoaiKH() %>Email:&emsp;<%=objHopDong.getEmailKH() %>
