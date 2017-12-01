@@ -136,7 +136,7 @@
                                             </div>
                                     </div>
                                     </div>
-                                    <% if(LibraryConstant.DangChoDuyetCapKhoa.equals(objDeTai.getTrangThai()) && tenCDTQly.equals(objDeTai.getTenCapDeTai())){ %>
+                                    <% if(LibraryConstant.DangChoDuyetCapKhoa.equals(objDeTai.getTrangThai())){ %>
                                     <div class="row">
 	                                    <div class="text-center">
 	                                    	<input type="submit" class="btn btn-info btn-fill btn-wd" name="submit" value="Duyệt đề xuất" />
