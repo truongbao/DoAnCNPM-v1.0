@@ -201,7 +201,7 @@
 						<div class="col-sm-6 col-xs-6 col-md-3 std_ic_ct_pr no-padding-lr">
 							<div class="">
 								<a href="chuong-trinh-chat-luong-cao.html"> <img
-									src="<%=request.getContextPath()%>/templates/public/images/thanhViet.jpg" alt="">
+									src="<%=request.getContextPath()%>/templates/admin/img/users/<%=objUser.getAvt() %>" alt="">
 								</a>
 							</div>
 							<a href="chuong-trinh-chat-luong-cao.html" class="std_ic_title">
