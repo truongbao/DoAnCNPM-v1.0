@@ -20,7 +20,7 @@
 		          <!-- small box -->
 		          <div style="background: #dddddd;" class="box-dash">
 		            <div class="inner">
-		              <h3><%=request.getParameter("totalUser") %></h3>
+		              <%-- <h3><%=request.getParameter("totalUser") %></h3> --%>
 		
 		              <p>User</p>
 		            </div>
@@ -36,13 +36,13 @@
 		          <div style="background: #311C98; color: white;" class="box-dash">
 		            <div class="inner">
 		              <div class="inner">
-		              <h3><%=request.getParameter("totalCat") %></h3>
+		              <%-- <h3><%=request.getParameter("totalCat") %></h3> --%>
 		
 		              <p>Danh mục</p>
-		            </div>
-		            <div class="icon">
+		            </div> 
+		            <!-- <div class="icon">
 		              <i class="ion ion-email-unread"></i>
-		            </div>
+		            </div> -->
 		            <a href="<%=request.getContextPath() %>/admin/cat/index" class="btn btn-info">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
 		          </div>
 		          </div>
@@ -52,7 +52,7 @@
 		          <!-- small box -->
 		          <div style="background: #dddddd;" class="box-dash">
 		           <div class="inner">
-		              <h3><%=request.getParameter("totalDeTai") %></h3>
+		              <%-- <h3><%=request.getParameter("totalDeTai") %></h3> --%>
 		
 		              <p>Đề tài</p>
 		            </div>
@@ -67,7 +67,7 @@
 		          <!-- small box -->
 		          <div style="background: #311C98; color: white;" class="box-dash">
 		            <div class="inner">
-		              <h3><%=request.getParameter("totalDangKiDeTai") %></h3>
+		              <%-- <h3><%=request.getParameter("totalDangKiDeTai") %></h3> --%>
 		
 		              <p>Đăng kí đề tài</p>
 		            </div>
@@ -84,7 +84,7 @@
 		          <!-- small box -->
 		          <div style="background: #311C98; color: white;" class="box-dash">
 		            <div class="inner">
-		              <h3><%=request.getParameter("totalHopDong") %></h3>
+		             <%--  <h3><%=request.getParameter("totalHopDong") %></h3> --%>
 		
 		              <p>Hợp đồng</p>
 		            </div>
@@ -99,7 +99,7 @@
 		          <!-- small box -->
 		          <div style="background: #dddddd ;" class="box-dash">
 		            <div class="inner">
-		              <h3><%=request.getParameter("totalThongBao") %></h3>
+		             <%--  <h3><%=request.getParameter("totalThongBao") %></h3> --%>
 		
 		              <p>Thông báo</p>
 		            </div>

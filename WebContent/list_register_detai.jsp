@@ -1,3 +1,5 @@
+<%@page import="java.util.Date"%>
+<%@page import="model.dao.ThoiGianDKDAO"%>
 <%@page import="model.bean.DeTaiThongBao"%>
 <%@page import="library.LibraryConstant"%>
 <%@page import="model.dao.DetaiDAO"%>
@@ -78,6 +80,32 @@
 				          %>       
 				          
 				          
+				          <%
+					        if(request.getAttribute("tb1")!=null){
+					         // String tb1 = (String) request.getParameter("tb1");
+					          //out.print("<h4 style='color :red'> Hiện không phải thời gian đề xuất đề tài  </h4> ");
+				           %>
+				             
+				             <script type="text/javascript">
+			                     alert("Hiện không phải thời gian đề xuất đề tài ");
+		                      </script> 
+				             
+				           <%} %> 
+				             
+				           <% 
+				            if(request.getAttribute("tb2")!=null){
+					          //String tb1 = (String) request.getParameter("tb1");
+					          //out.print("<h4 style='color :red'> Hiện không phải thời gian tạo thuyết minh</h4> ");
+				            %>   
+				          
+				              <script type="text/javascript">
+			                     alert(" Hiện không phải thời gian tạo thuyết minh ");
+		                      </script> 
+				          
+				            <%} %>    
+				          
+				          
+				          
 				           <%
 						      DetaiDAO detaiDAO = new DetaiDAO();
 						   %>
@@ -142,11 +170,22 @@
 								
 								<td>
 									<center>
-									   <%
-									      if( LibraryConstant.DangLamThuyetMinh.equals(objDT.getTrangThai()) ){
+									    <%
+									      //kiem tra có trong thoi gian tạo thuyết minh hay không
+										  ThoiGianDKDAO thoiGianDKDAO = new ThoiGianDKDAO();
+										  Date thoiGianKetThucThuyetMinh = thoiGianDKDAO.getItem(2).getThoiGianKetThuc();
+										  Date now = new Date();
+										  if (now.after(thoiGianKetThucThuyetMinh)) {
 									   %>
-										<a href="<%=request.getContextPath()%>/dangky-thuyetminh?did=<%=objDT.getIdDeTai()%>" class="btn btn-primary" style="">  Tạo </a>
+									      <span> Hết thời gian tạo </span>
+									   
+									   <%}else{ %>
+									
+									   <% if( LibraryConstant.DangLamThuyetMinh.equals(objDT.getTrangThai()) ){ %>
+										  <a href="<%=request.getContextPath()%>/dangky-thuyetminh?did=<%=objDT.getIdDeTai()%>" class="btn btn-primary" style="">  Tạo </a>
 								       <%}%> 
+								       
+								        <%} %> 
 								       
 									</center>
 								</td>
@@ -154,10 +193,19 @@
 								<td>
 									<center>
 									   <%
-									      if(LibraryConstant.TruongDeXuatChinhSuaThuyetMinh.equals(objDT.getTrangThai()) ){
+									    //kiem tra có trong thoi gian tạo thuyết minh hay không
+										if (now.after(thoiGianKetThucThuyetMinh)) {
 									   %>
-										<a href="<%=request.getContextPath()%>/edit-thuyetminh?did=<%=objDT.getIdDeTai()%>" class="btn btn-primary" style="">  Sửa </a>
-									   <%}%> 
+									     <span> Hết thời gian sửa </span>
+									   
+									   <%}else{ %>
+									   
+									       <% if(LibraryConstant.TruongDeXuatChinhSuaThuyetMinh.equals(objDT.getTrangThai()) ){ %>
+										      <a href="<%=request.getContextPath()%>/edit-thuyetminh?did=<%=objDT.getIdDeTai()%>" class="btn btn-primary" style="">  Sửa </a>
+									       <%}%> 
+									       
+									   <%} %>    
+									
 									</center>
 								</td>
 								
