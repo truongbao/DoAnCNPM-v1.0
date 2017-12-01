@@ -86,6 +86,8 @@
 							    <td style="float:right;margin-right:14px;"><center>Đăng ký nghiệm thu</center></td>
 							    <td><center> Thông báo mới </center></td>
 							    <td><center> Thông báo cũ </center></td>
+							    <td><center> Kết quả ngiệm thu </center></td>
+							     
 								
 							</th>
 							</thead>
@@ -146,6 +148,23 @@
 									    <%} %>
 									</center>
 								</td> 
+								
+								
+								
+								<td>
+									<center> <!-- ket qua nghiem thu -->
+									     <%
+									        if( LibraryConstant.DaHoanThanh.equals( objDetai.getTrangThai()) ){
+									      %>
+									      
+									       <a href="<%=request.getContextPath()%>/xem-chi-tiet-kqnt?did=<%=objDetai.getIdDeTai() %>" style="">  Xem </a>
+									           <%--   Điểm : <%=objDetai.getDiem() %>,
+									             Xếp loại : <%=objDetai.getXepLoai() %> ,
+									           <p> Đánh giá : <%=objDetai.getKetQuaNghiemThu() %></p>  --%>
+									       
+									      <%} %>
+									</center> 
+								</td>  
 								
 							</tr>
 							
