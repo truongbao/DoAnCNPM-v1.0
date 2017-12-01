@@ -64,6 +64,7 @@ public class AdminEditThoiGianDKController extends HttpServlet {
 		System.out.println("tgbd : "+thoiGianBatDau+"--tgkt : "+thoiGianKetThuc);
 		
 		if( objDAO.changeThoiGianDangKy(idThoiGianDK, thoiGianBatDau, thoiGianKetThuc) > 0){
+			LibraryAuth.CheckThoiGianChuyenTrangThaiDeTai();
 			//sửa thanh cong
 			response.sendRedirect(request.getContextPath() + "/admin/thoigiandk/index?msg=1");
 			return; 
