@@ -103,7 +103,7 @@
 					
 				</div>
 				<div class="col-xs-10 ">
-					<a href="<%=request.getContextPath() %>/list-register-detai" class="btn btn-lg btn-primary pull-right ml10" >Quay lại</a>
+					<a href="<%=request.getContextPath() %>/quanly-detai" class="btn btn-lg btn-primary pull-right ml10" >Quay lại</a>
 				</div>
 			</div>
 			 

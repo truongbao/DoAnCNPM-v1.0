@@ -136,11 +136,14 @@ public class PublicIndexDKThuyetMinhController extends HttpServlet {
 		        
 			   if(bieuMauDAO.UploadFileThuyetMinh(objBM) > 0){
 					//up thanh cong
-					response.sendRedirect(request.getContextPath()+"/dangky-thuyetminh?msg=1&did="+this.idDeTai);
+				   //set lại trạng thái 
+				    detaiDAO.updateToTrangThai(LibraryConstant.DangChoXetThuyetMinh, idDeTai);
+				   
+					response.sendRedirect(request.getContextPath()+"/list-register-detai?msg=3&did="+this.idDeTai);
 					return;
 			   }else{
 					//that bai
-				    response.sendRedirect(request.getContextPath()+"/dangky-thuyetminh?msg=0&did="+this.idDeTai);
+				    response.sendRedirect(request.getContextPath()+"/list-register-detai?msg=4&did="+this.idDeTai);
 				    return;
 					
 			   }	
