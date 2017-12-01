@@ -70,7 +70,7 @@ public class AdminAddNotificationController extends HttpServlet {
   			int offset = (current_page - 1) * LibraryConstant.ROW_COUNT;
   			request.setAttribute("current_page", current_page);
   			request.setAttribute("page_sum", page_sum);
-  			request.setAttribute("alTeacher",modelUser.getListGV(idFaculty,"", offset, LibraryConstant.ROW_COUNT));
+  			request.setAttribute("alTeacher",modelUser.getListGVHasDeTai(idFaculty,"", offset, LibraryConstant.ROW_COUNT));
   			RequestDispatcher rd = request.getRequestDispatcher("/admin/notification/add_notification.jsp");
   			rd.forward(request, response);
   		} else if ("search".equals(request.getParameter("type"))) {

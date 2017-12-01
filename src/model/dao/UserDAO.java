@@ -1051,6 +1051,51 @@ public boolean checkExistEmail(String email) {
 			return listUser;
 			
 		}
+	 
+	 public ArrayList<User> getListGVHasDeTai(int idFac,String key_word, int offset, int row_count){
+			ArrayList<User> listUser = new ArrayList<>();
+			conn = connectMySQLLibrary.getConnectMySQL();
+			
+			String sql = "select u.*, k.tenKhoa, ltk.tenLoaiTaiKhoan, hv.tenHocViHocHam from user AS u "
+		        		+ " INNER JOIN loaitaikhoan AS ltk ON ltk.idLoaiTaiKhoan = u.idLoaiTaiKhoan  "
+		        		+ " INNER JOIN  khoa AS k ON k.idKhoa = u.idKhoa "
+		        		+ " INNER JOIN  hocvihocham AS hv ON hv.idHocViHocHam = u.idHocViHocHam where u.idLoaiTaiKhoan = 2 and u.idUser in (select idUser from detai)";
+			if(idFac != 0){
+				 sql += " AND k.idKhoa = "+idFac;
+			}
+			if(!"".equals(key_word)){
+					sql += " AND (u.idUser LIKE '"+key_word+"' OR u.fullName LIKE '%"+key_word+"%')";
+			}
+			 sql += " GROUP BY u.fullName LIMIT ?,?";
+		    User objUser = null;	  
+			try {
+				pst = conn.prepareStatement(sql);
+				pst.setInt(1, offset);
+				pst.setInt(2,row_count);
+				rs = pst.executeQuery();
+				
+				while(rs.next()){
+					 objUser = new User(rs.getInt("idUser"),rs.getString("fullName"),rs.getString("diaChiCoQuan") ,
+				             rs.getString("dienThoaiCoQuan"),rs.getInt("idHocViHocHam") ,rs.getString("tenHocViHocHam"),rs.getString("namSinh") ,rs.getString("diaChiNhaRieng") , 
+				             rs.getString("dienThoaiNhaRieng") ,rs.getString("email") ,rs.getString("fax"),rs.getString("userName") , 
+				             rs.getString("matKhau") ,rs.getInt("idLoaiTaiKhoan"),rs.getString("tenLoaiTaiKhoan") ,rs.getInt("idKhoa"), rs.getString("tenKhoa") , rs.getString("avt"));
+				                        
+					 listUser.add(objUser);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally{
+				try {
+					pst.close();
+					rs.close();
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return listUser;
+			
+		}
     /*
      * Author:Quoc
      * Create Date: 2/11/2017

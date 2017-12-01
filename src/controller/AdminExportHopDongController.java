@@ -58,11 +58,13 @@ public class AdminExportHopDongController extends HttpServlet {
 		HopDong objHD = hopDongDAO.getObjHopDongByIdDeTai(idDeTai);
     	if (objHD == null) { //đề tài chưa lưu hơp đồng=> lưu hợp đồng
     		result = hopDongDAO.addItem(hopDong);
-    		deTaiDAO.updateToTrangThai(LibraryConstant.DangThucHien, idDeTai);
     	} else {//đề tài đã được lưu hơp đồng=> sửa hợp đồng
     		result = hopDongDAO.editItem(objHD.getIdHopDong(),hopDong);
     	}
 		if (result != 0) {
+			if (deTai.getTrangThai().equals(LibraryConstant.DaDuyet)) {
+				deTaiDAO.updateToTrangThai(LibraryConstant.DangThucHien, idDeTai);
+			}
 			request.setAttribute("objHopDong", hopDongDAO.getObjHopDongByIdDeTai(idDeTai));
 			RequestDispatcher rd = request.getRequestDispatcher("/admin/hopdong/exportWord.jsp");
 			rd.forward(request, response);
