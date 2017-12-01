@@ -75,6 +75,7 @@
 					              case 3: out.print("<h4 style='color :red'> Upload file tạo thuyết minh thành công  ! </h4> ");break; 
 					              case 4: out.print("<h4 style='color :red'> Upload file tạo thuyết minh thành công  ! </h4> ");break; 
 					              case 5: out.print("<h4 style='color :red'> Upload file Sửa thuyết minh thành công  ! </h4> ");break; 
+					            
 					             
 					           	 }
 					        }
