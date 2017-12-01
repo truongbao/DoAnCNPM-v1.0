@@ -20,6 +20,7 @@ import library.StringLibrary;
 import model.bean.DeTai;
 import model.bean.User;
 import model.dao.DetaiDAO;
+import model.dao.ThoiGianDKDAO;
 import model.dao.UserDAO;
 
 public class PublicRegisterDeTaiController extends HttpServlet {
@@ -42,24 +43,77 @@ public class PublicRegisterDeTaiController extends HttpServlet {
 		
 		UserDAO userDAO = new UserDAO();
 	    DetaiDAO detaiDAO =new DetaiDAO();
-	    
-	    request.setAttribute("listLinhVucNC", detaiDAO.getListLinhVucNC());
-	    
-	    request.setAttribute("listCapDeTai", detaiDAO.getListCapDeTai());
-        
-	    
-		//lấy thông tin đối tượng sobjUserPublic 
-	    User objUser = null;
-		HttpSession session = request.getSession();
 		
-        if(session.getAttribute("sobjUserPublic")!=null){
-            objUser = (User)session.getAttribute("sobjUserPublic");
-        }
-        
-        request.setAttribute("objUser", objUser);
+		//kiem tra có phải trong thời gian đăng ký ko
+		ThoiGianDKDAO thoiGianDKDAO = new ThoiGianDKDAO();
+		Date thoiGianKetThucDKDeXuat = thoiGianDKDAO.getItem(1).getThoiGianKetThuc();
 		
-		 RequestDispatcher rd = request.getRequestDispatcher("/register_detai.jsp");
-         rd.forward(request, response);
+		Date thoiGianKetThucThuyetMinh = thoiGianDKDAO.getItem(2).getThoiGianKetThuc();
+		Date now = new Date();
+		if (now.after(thoiGianKetThucDKDeXuat)) {
+			
+			//detaiDAO.changeTrangThaiDangChoDuyetDeXuat();
+			
+			 //lấy thông tin đối tượng sobjUserPublic 
+		     User objUser = null;
+			 HttpSession session = request.getSession();
+			
+	         if(session.getAttribute("sobjUserPublic")!=null){
+	            objUser = (User)session.getAttribute("sobjUserPublic");
+	         }
+	        
+	        //phân trang
+	         int current_page = 1;		
+			 int row_count = LibraryConstant.ROW_COUNT; //5 tin trên 1 page
+			
+			 
+			 //tong so danh muc
+			 int sumDeTaiDK = detaiDAO.countDeTaiDKPublic(objUser.getIdUser());
+			 
+			 //tong so trang
+			int sumPage = (int) Math.ceil((float)sumDeTaiDK / row_count) ;
+			request.setAttribute("sumPage", sumPage);
+			
+			//lấy số trang hiện tại
+			if (request.getParameter("page") != null){
+				current_page = Integer.parseInt(request.getParameter("page"));
+			}
+			 
+			// tính offset
+			int offset = (current_page - 1) * row_count;
+			request.setAttribute("current_page", current_page);
+			
+
+			 //lấy danh sach đề tai do user đang login đăng ký
+			 request.setAttribute("listDeTaiDK", detaiDAO.getListDeTaiDK( objUser.getIdUser(), offset,row_count ) );
+			 
+			 request.setAttribute("tb1", "Hiện không phải thời gian đề xuất đề tài !");
+			
+			 RequestDispatcher rd = request.getRequestDispatcher("/list_register_detai.jsp");
+	         rd.forward(request, response);     
+			
+		}else{
+		    request.setAttribute("listLinhVucNC", detaiDAO.getListLinhVucNC());
+		    
+		    request.setAttribute("listCapDeTai", detaiDAO.getListCapDeTai());
+		    
+			//lấy thông tin đối tượng sobjUserPublic 
+		    User objUser = null;
+			HttpSession session = request.getSession();
+			
+	        if(session.getAttribute("sobjUserPublic")!=null){
+	            objUser = (User)session.getAttribute("sobjUserPublic");
+	        }
+	        
+	        request.setAttribute("objUser", objUser);
+			
+			 RequestDispatcher rd = request.getRequestDispatcher("/register_detai.jsp");
+	         rd.forward(request, response);
+		}
+		
+		
+	
+         
 	}
 	
 	

@@ -47,7 +47,7 @@ public class AdminEditThoiGianDKController extends HttpServlet {
 	    
 	    int idThoiGianDK = Integer.parseInt( request.getParameter("uid") ) ;
 	    
-	    SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy");
+	    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 //        java.sql.Date sql = new java.sql.Date(parsed.getTime());
 	    java.util.Date parsed;
 		Date thoiGianBatDau = null, thoiGianKetThuc = null;
@@ -60,6 +60,8 @@ public class AdminEditThoiGianDKController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		System.out.println("tgbd : "+thoiGianBatDau+"--tgkt : "+thoiGianKetThuc);
 		
 		if( objDAO.changeThoiGianDangKy(idThoiGianDK, thoiGianBatDau, thoiGianKetThuc) > 0){
 			//sửa thanh cong

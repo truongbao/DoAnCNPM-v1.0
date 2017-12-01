@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import library.ConvertStringLibrary;
@@ -21,8 +23,10 @@ import library.LibraryConstant;
 import library.RenameFileLibrary;
 import model.bean.BieuMau;
 import model.bean.DeTai;
+import model.bean.User;
 import model.dao.BieuMauDAO;
 import model.dao.DetaiDAO;
+import model.dao.ThoiGianDKDAO;
 
 
 @MultipartConfig
@@ -47,23 +51,73 @@ public class PublicEditThuyetMinhController extends HttpServlet {
 		
 		
 		DetaiDAO detaiDAO = new DetaiDAO();
-		  
-	    idDeTai = Integer.parseInt(request.getParameter("did"));
-	    
-	    DeTai objDeTaiByIdDeTaiDK = detaiDAO.getObjectDeTaiByIdDeTaiDK(idDeTai);
-	    
-	    request.setAttribute("objDeTaiByIdDeTaiDK", objDeTaiByIdDeTaiDK);
-	    
-	    
-	    
-		DeTai objDeTai = detaiDAO.getObjDeTai(idDeTai);
 		
-		request.setAttribute("objDeTai", objDeTai);
+		//kiem tra có trong thoi gian tạo thuyết minh hay không
+		ThoiGianDKDAO thoiGianDKDAO = new ThoiGianDKDAO();
+		Date thoiGianKetThucThuyetMinh = thoiGianDKDAO.getItem(2).getThoiGianKetThuc();
+		Date now = new Date();
+		if (now.after(thoiGianKetThucThuyetMinh)) {
+			
+			//detaiDAO.changeTrangThaiDangChoDuyetThuyetMinh();
+			
+			 //lấy thông tin đối tượng sobjUserPublic 
+		     User objUser = null;
+			 HttpSession session = request.getSession();
+			
+	         if(session.getAttribute("sobjUserPublic")!=null){
+	            objUser = (User)session.getAttribute("sobjUserPublic");
+	         }
+	        
+	        //phân trang
+	         int current_page = 1;		
+			 int row_count = LibraryConstant.ROW_COUNT; //5 tin trên 1 page
+			
+			 
+			 //tong so danh muc
+			 int sumDeTaiDK = detaiDAO.countDeTaiDKPublic(objUser.getIdUser());
+			 
+			 //tong so trang
+			int sumPage = (int) Math.ceil((float)sumDeTaiDK / row_count) ;
+			request.setAttribute("sumPage", sumPage);
+			
+			//lấy số trang hiện tại
+			if (request.getParameter("page") != null){
+				current_page = Integer.parseInt(request.getParameter("page"));
+			}
+			 
+			// tính offset
+			int offset = (current_page - 1) * row_count;
+			request.setAttribute("current_page", current_page);
+			
+
+			 //lấy danh sach đề tai do user đang login đăng ký
+			 request.setAttribute("listDeTaiDK", detaiDAO.getListDeTaiDK( objUser.getIdUser(), offset,row_count ) );
+			
+			 request.setAttribute("tb2", "Hiện không phải thời gian tạo thuyết minh !");
+			
+			 RequestDispatcher rd = request.getRequestDispatcher("/list_register_detai.jsp");
+	         rd.forward(request, response); 
+	         
+	         
+		}else{
+			
+			idDeTai = Integer.parseInt(request.getParameter("did"));
+			    
+			DeTai objDeTaiByIdDeTaiDK = detaiDAO.getObjectDeTaiByIdDeTaiDK(idDeTai);
+			    
+			request.setAttribute("objDeTaiByIdDeTaiDK", objDeTaiByIdDeTaiDK);
+			    
+		    DeTai objDeTai = detaiDAO.getObjDeTai(idDeTai);
+				
+			request.setAttribute("objDeTai", objDeTai);
+				
+			RequestDispatcher rd = request.getRequestDispatcher("/edit_thuyetminh.jsp");
+		    rd.forward(request, response); 
+			
+		}
 		
 		
-		
-		 RequestDispatcher rd = request.getRequestDispatcher("/edit_thuyetminh.jsp");
-         rd.forward(request, response); 
+         
 	}
 
 	 //Xử lý upload file tạo thuyết minh đề tài

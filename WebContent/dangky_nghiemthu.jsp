@@ -105,11 +105,11 @@
 								</div>
 								<div class="col-xs-8">
 								     	<span class="col-xs-4" style="margin-left: -15px;">
-								     	     Từ <input value="<%=objDeTaiByIdDeTaiDK.getThoiGianBatDau() %>" type="text"  name="donViChuTri" class="form-control">   
+								     	     Từ <input disabled="disabled" value="<%=objDeTaiByIdDeTaiDK.getThoiGianBatDau()  %>" type="text"  name="thoiGianBatDau" class="form-control">   
 								     	</span>
 								     	
 								     	<span class="col-xs-4">
-								     	     Đến <input value="<%=objDeTaiByIdDeTaiDK.getThoiGianKetThuc() %>" type="text"  name="donViChuTri" class="form-control">    
+								     	     Đến <input disabled="disabled" value="<%=objDeTaiByIdDeTaiDK.getThoiGianKetThuc()  %>"  type="text"  name="thoiGianKetThuc" class="form-control">    
 								     	</span> 
 									
 								</div>
@@ -119,28 +119,43 @@
 							
 							<div class="form-group row">
 								<div class="col-xs-3">
-									<label class="p-center">Mục tiêu:</label>
-								</div>
-								<div class="col-xs-9">
-									<textarea id="cktext1" name="mucTieu" class="form-control" rows="4">
-										<%=objDeTaiByIdDeTaiDK.getMucTieu() %>
-									</textarea>
-									
-									 <script type="text/javascript">
-							               var editor = CKEDITOR.replace('cktext1');
-							               CKFinder.setupCKEditor(editor,'<%=request.getContextPath()%>/ckfinder/')
-							         </script>
-									
-								</div>
-							</div>
-							
-							<div class="form-group row">
-								<div class="col-xs-3">
 									<label class="p-center">Nội dung của đề tài:</label>
 								</div>
 								<div class="col-xs-9">
-									<textarea id="cktext2" name="noiDungChinh" class="form-control" rows="4">
-										<%=objDeTaiByIdDeTaiDK.getNoiDung() %>
+									<textarea id="cktext2" name="noiDung" class="form-control" rows="4">
+									    
+										<div> <h4> 1. Nội dung :  </h4> </div>
+										<div> <h4> 2. Phương pháp nghiên cứu :  </h4> </div>
+										<div> <h4> 3. Mục tiêu :  </h4> </div>
+										<div> <h4> 4. Sản phẩm của đề tài :  </h4> </div>
+										<div> <h4> 5. Giá trị đề tài :  </h4> </div>
+										<div> <h4> 6. Danh sách dự kiến hội đồng (Tạo bảng theo mẫu):  </h4> </div>
+							
+							
+										<div>	
+											<table align="center"  cellpadding="1" cellspacing="1" style="width: 800px; height:20px;">
+											
+													<tr>
+														<th width="4%;" colspan="3">STT</th>
+														<th width="4%;" colspan="3">Họ và tên, học vị, chức danh khoa học</th>
+														<th width="4%;" colspan="3">Chức vụ </th>
+														<th width="4%;" colspan="3">Đơn vị công tác </th>
+														<th width="4%;" colspan="3">Địa chỉ  liên hệ </th>
+														<th width="4%;" colspan="3">Điện thoại liên hệ</th>
+													</tr>
+													
+													<tr>
+														<td width="4%;" colspan="3">1</th>
+														<td width="4%;" colspan="3">vd : Trương Công Bảo</th>
+														<td width="4%;" colspan="3">Leader </th>
+														<td width="4%;" colspan="3">Đại học bách khoa</th>
+														<td width="4%;" colspan="3">vd: 123 Trần Văn Nghị</th>
+														<td width="4%;" colspan="3">01228xxx</th>
+													</tr>
+													
+											</table>
+										</div>
+										<div></br> </br></div>
 									</textarea>
 									
 									 <script type="text/javascript">
@@ -150,45 +165,6 @@
 									
 								</div>
 							</div>
-							
-							<div class="form-group row">
-								<div class="col-xs-3">
-									<label class="p-center">Phương pháp nghiên cứu:</label>
-								</div>
-								
-								<div class="col-xs-9">
-									<textarea id="cktexta1" name="tinhCapThiet" class="form-control" rows="4">
-										
-									</textarea>
-									
-									 <script type="text/javascript">
-							               var editor = CKEDITOR.replace('cktexta1');
-							               CKFinder.setupCKEditor(editor,'<%=request.getContextPath()%>/ckfinder/')
-							         </script>
-									
-								</div>
-								
-							</div>
-							
-							
-							<div class="form-group row">
-								<div class="col-xs-3">
-									<label class="p-center">Sản phẩm của đề tài:</label>
-								</div>
-								<div class="col-xs-9">
-									<textarea id="cktext4" name="sanPham" class="form-control" rows="4">
-										<%=objDeTaiByIdDeTaiDK.getSanPham() %>
-									</textarea>
-									
-									  <script type="text/javascript">
-							               var editor = CKEDITOR.replace('cktext4');
-							               CKFinder.setupCKEditor(editor,'<%=request.getContextPath()%>/ckfinder/')
-							         </script>
-									
-								</div>
-							</div>
-							
-							
 							
 							
 							<div class="form-group row">

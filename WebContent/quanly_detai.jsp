@@ -60,6 +60,20 @@
 			    	</div>
 					
 		            <div class="page_content">
+		            
+		                   <%
+					        if(request.getParameter("msg")!=null){
+					          int msg = Integer.parseInt( request.getParameter("msg") );
+					          switch(msg){
+					              case 0: out.print("<h4 style='color :red'>  Đăng ký nghiệm thu thất bại ! </h4> ");break; 
+					              case 1: out.print("<h4 style='color :red'> Đăng ký nghiệm thu thành công ! </h4> ");break; 
+					             
+					           	 }
+					        }
+				          %>      
+		            
+		            
+		            
 						<table class="table">
 							<thead>
 							<th>

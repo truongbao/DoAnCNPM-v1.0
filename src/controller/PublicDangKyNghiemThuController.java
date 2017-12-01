@@ -1,6 +1,10 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,8 +16,10 @@ import javax.servlet.http.HttpSession;
 import library.LibraryAuth;
 import library.LibraryConstant;
 import model.bean.DeTai;
+import model.bean.QuaTrinhThucHien;
 import model.bean.User;
 import model.dao.DetaiDAO;
+import model.dao.QuaTrinhThucHienDAO;
 import model.dao.UserDAO;
 
 public class PublicDangKyNghiemThuController extends HttpServlet {
@@ -76,6 +82,7 @@ public class PublicDangKyNghiemThuController extends HttpServlet {
 		}
 		
 		 DetaiDAO detaiDAO = new DetaiDAO();
+		 QuaTrinhThucHienDAO thucHienDAO = new QuaTrinhThucHienDAO();
 		
 		    //Cap nhat doi tuong de tai ung vs idDeTai
 			
@@ -85,34 +92,22 @@ public class PublicDangKyNghiemThuController extends HttpServlet {
 	            objUser = (User)session.getAttribute("sobjUserPublic");
 	        }
 			
-			int idDeTai = Integer.parseInt(request.getParameter("did"));
+			int idDeTai = Integer.parseInt(request.getParameter("did")); //luu 
 			
-			String tenDeTai = request.getParameter("tenDeTai");
-			int idLinhVucNghienCuu = Integer.parseInt(request.getParameter("idLinhVucNghienCuu"));
-			int idCapDeTai = Integer.parseInt(request.getParameter("idCapDeTai"));
-			String tinhCapThiet = request.getParameter("tinhCapThiet");
-			String mucTieu = request.getParameter("mucTieu");
-			String noiDung = request.getParameter("noiDungChinh");
-			String sanPham = request.getParameter("sanPham");
-			String hieuQua = request.getParameter("hieuQuaDukien");
-			int kinhPhiThucHien = Integer.parseInt(request.getParameter("kinhPhiThucHien"));
-			int idUser = objUser.getIdUser();
+			String noiDung = request.getParameter("noiDung");
+			String chuDe = "Đăng ký nghiệm thu";
+			
+			int idGiangVien = objUser.getIdUser(); //luu vào idGiangVien trong bảng quatrinhthuchien
 			
 			
+			QuaTrinhThucHien objQTTH = new QuaTrinhThucHien(0, idDeTai, LibraryConstant.DangChoXetNghiemThu, null, chuDe, noiDung);
 			
-			DeTai objDeTai = new DeTai( 0, tenDeTai, "", idLinhVucNghienCuu,
-										"", 0, "", null, null, "", idUser, "", "", "",
-										tinhCapThiet, mucTieu, "", "",
-										noiDung, sanPham, hieuQua, kinhPhiThucHien, 
-										"", idCapDeTai,"", null, objUser.getIdKhoa(), "",0,"");
-			
-			objDeTai.setIdDeTai(idDeTai); //set lại idDeTai lấy dc
 
-			if(detaiDAO.editDeTaiPublic(objDeTai) >  0){
-			   response.sendRedirect(request.getContextPath()+"/list-register-detai?msg=2");
+			if(thucHienDAO.addItem(objQTTH) >  0){
+			   response.sendRedirect(request.getContextPath()+"/quanly-detai?msg=1");
 			   return;
 			}else{
-			   response.sendRedirect(request.getContextPath()+"/list-register-detai?msg=0");
+			   response.sendRedirect(request.getContextPath()+"/quanly-detai?msg=0");
 			   return;
 			}
 

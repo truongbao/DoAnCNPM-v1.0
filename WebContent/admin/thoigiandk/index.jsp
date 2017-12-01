@@ -48,7 +48,7 @@
                             			<h4>Bắt đầu từ <%= tgThuyetMinh != null ? tgThuyetMinh.getThoiGianBatDau() : "..." %> đến <%= tgThuyetMinh != null ? tgThuyetMinh.getThoiGianKetThuc() : "..." %> </h4>
                             		</div>
                             	</div>
-                            	<form class="row" method="post" action="" id="change-time" style="font-size: 18px" hidden>
+                            	<form class="row" method="post" action="<%=request.getContextPath() %>/admin/thoigiandk/edit" id="change-time" style="font-size: 18px" hidden>
                             		<div class="text-center col-md-6 col-md-offset-3" style="margin-top: 50px;">
                             			<b>Thời gian bắt đầu:</b> <input type="text" data-format="yyyy-MM-dd" name="tgbd" class="date-picker form-control" style="border: 1px solid black;color: black; background: #0FAB49; font-size: 18px; font-weight: bold;" placeholder="Nhập thời gian bắt đầu mới" />
                             		</div>
