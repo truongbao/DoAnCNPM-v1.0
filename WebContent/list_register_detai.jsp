@@ -70,6 +70,8 @@
 					              case 0: out.print("<h4 style='color :red'>  Thất bại ! </h4> ");break; 
 					              case 1: out.print("<h4 style='color :red'> Thêm thành công ! </h4> ");break; 
 					              case 2: out.print("<h4 style='color :red'> Sửa thành công ! </h4> ");break; 
+					              case 3: out.print("<h4 style='color :red'> Upload file tạo thuyết minh thành công  ! </h4> ");break; 
+					              case 4: out.print("<h4 style='color :red'> Upload file tạo thuyết minh thành công  ! </h4> ");break; 
 					             
 					           	 }
 					        }
@@ -168,13 +170,12 @@
 									  <%
 									    //viet phuong thuc lay ra trangThai mới cập nhật ứng vs idDeTai vừa dk
 									    DeTaiThongBao objDeTaiById =  detaiDAO.getTrangThaiUpdateByIdDeTaiDKAndWasRead(objDT.getIdDeTai());
-									    if( objDeTaiById != null && objDeTaiById.getWasRead() == 0){
+									    if( objDeTaiById != null && objDeTaiById.getWasRead() == 0 ){
 									  
 									  %>
 										<a href="<%=request.getContextPath()%>/thong-bao?id_detai=<%=objDT.getIdDeTai() %>" class="btn btn-danger" style="">  Xem </a>
-									  <%}else{%> 
-									  
-									  <%} %>
+									  <%}%> 
+									 
 									</center>
 								</td> 
 								

@@ -100,7 +100,11 @@
 								
 								<td >
 									<center>
-									    <a href="<%=request.getContextPath()%>/update-detai?did=<%=objDetai.getIdDeTai()%>" class="btn btn-primary"  style="">  Đăng ký</a>
+									    <%
+									        if( LibraryConstant.DaDuyet.equals( objDetai.getTrangThai()) ){
+									    %>
+									    <a href="<%=request.getContextPath()%>/dangky-nghiemthu?did=<%=objDetai.getIdDeTai()%>" class="btn btn-primary"  style="">  Đăng ký</a>
+									    <%} %>
 									</center>
 								</td>
 								 
@@ -114,10 +118,9 @@
 									    if( objDeTaiById != null && objDeTaiById.getWasRead() == 0){
 									  
 									  %>
-										<a href="<%=request.getContextPath()%>/thong-bao?id_detai=<%=objDetai.getIdDeTai() %>" class="btn btn-danger" style="">  Xem </a>
-									  <%}else{%> 
+										<a href="<%=request.getContextPath()%>/thong-bao-qldt?id_detai=<%=objDetai.getIdDeTai() %>" class="btn btn-danger" style="">  Xem </a>
+									  <%}%> 
 									  
-									  <%} %>
 									</center>
 								</td> 
 								
@@ -125,7 +128,7 @@
 								<td>
 									<center> <!-- thong bao old -->
 									    <% if( objDeTaiById != null && objDeTaiById.getWasRead() == 1){ %>
-										    <a href="<%=request.getContextPath()%>/thong-bao-old?id_detai=<%=objDetai.getIdDeTai() %>" class="btn btn-primary" style="">  Xem </a>
+										    <a href="<%=request.getContextPath()%>/thong-bao-old-qldt?id_detai=<%=objDetai.getIdDeTai() %>" class="btn btn-primary" style="">  Xem </a>
 									    <%} %>
 									</center>
 								</td> 

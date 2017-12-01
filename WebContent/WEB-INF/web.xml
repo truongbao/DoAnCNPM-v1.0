@@ -760,6 +760,35 @@
   </servlet-mapping>
   
   
+  <servlet>
+     <servlet-name>PublicIndexThongBaoQLDTController</servlet-name>
+     <servlet-class>controller.PublicIndexThongBaoQLDTController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+     <servlet-name>PublicIndexThongBaoQLDTController</servlet-name>
+     <url-pattern>/thong-bao-qldt</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <servlet-name>PublicIndexThongBaoOldQLDTController</servlet-name>
+     <servlet-class>controller.PublicIndexThongBaoOldQLDTController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+     <servlet-name>PublicIndexThongBaoOldQLDTController</servlet-name>
+     <url-pattern>/thong-bao-old-qldt</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <servlet-name>PublicDangKyNghiemThuController</servlet-name>
+     <servlet-class>controller.PublicDangKyNghiemThuController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+     <servlet-name>PublicDangKyNghiemThuController</servlet-name>
+     <url-pattern>/dangky-nghiemthu</url-pattern>
+  </servlet-mapping>
+  
+  
+  
   
     <servlet>
 		<servlet-name>ConnectorServlet</servlet-name>

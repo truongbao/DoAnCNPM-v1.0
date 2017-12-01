@@ -137,7 +137,7 @@ public class AdminDuyetDXAdmin extends HttpServlet {
 				} else if (detai.getTrangThai().equals(LibraryConstant.ChoDeNghiChinhSuaDeXuat)) {
 					newTrangthai = LibraryConstant.TruongDeXuatChinhSua;
 				} else if (detai.getTrangThai().equals(LibraryConstant.DangChoDuyetCapTruong)) {
-					newTrangthai = LibraryConstant.DangChoXetThuyetMinh;
+					newTrangthai = LibraryConstant.DangLamThuyetMinh;
 				}
 				
 				if (detaiDAO.updateToTrangThai(newTrangthai, idDeTai) != 0) {
@@ -186,7 +186,7 @@ public class AdminDuyetDXAdmin extends HttpServlet {
 							} else if (detai.getTrangThai().equals(LibraryConstant.ChoDeNghiChinhSuaDeXuat)) {
 								newTrangthai = LibraryConstant.TruongDeXuatChinhSua;
 							} else if (detai.getTrangThai().equals(LibraryConstant.DangChoDuyetCapTruong)) {
-								newTrangthai = LibraryConstant.DangChoXetThuyetMinh;
+								newTrangthai = LibraryConstant.DangLamThuyetMinh;
 							}
 							result = detaiDAO.updateToTrangThai(newTrangthai, idDeTai);
 							

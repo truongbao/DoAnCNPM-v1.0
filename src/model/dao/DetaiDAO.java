@@ -262,7 +262,7 @@ public class DetaiDAO {
 				+ " INNER JOIN thongbao AS tb ON tb.idDeTai = dt.idDeTai "
 				+ "  WHERE  dt.idDeTai = "+idDeTai;
 		      //+ "  WHERE  dt.trangThai IN ('3','7','10','11','5','8')  and  dt.idDeTai = "+idDeTai;
-
+		
 		DeTaiThongBao objDeTaiThongBao =null;
 		try {
 			st = conn.createStatement();
